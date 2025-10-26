@@ -1,54 +1,273 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+<header class="main-navigation full-width">
+  <div class="nav-container">
+        <div class="nav-left">
+          <div class="header__menu">
+            {% if section.settings.menu.links.size > 0 %}
+              {% for link in section.settings.menu.links %}
+                {% if link.title == 'Produkty' %}
+                  <div class="dropdown">
+                    <a href="{{ link.url }}" class="dropdown-toggle">
+                      {{ link.title }}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6,9 12,15 18,9"></polyline>
+                      </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                      <a href="/collections/sosy-i-syropy-do-gotowania">Sosy i syropy do gotowania</a>
+                      <a href="/collections/dodatki-i-pasty">Dodatki i pasty</a>
+                      <a href="/collections/ryz">Ryż</a>
+                      <a href="/collections/noodle-i-kluchy">Noodle i kluchy</a>
+                      <a href="/collections/soki-i-napoje">Soki i napoje</a>
+                      <a href="/collections/octy-i-oleje">Octy i oleje</a>
+                      <a href="/collections/zupoteka-szybka-micha">Zupoteka & Szybka micha</a>
+                      <a href="/collections/przystawki">Przystawki</a>
+                      <a href="/collections/slodycze-i-przekaski">Słodycze i przekąski</a>
+                      <a href="/collections/herbata">Herbata</a>
+                      <a href="/collections/kawa">Kawa</a>
+                      <a href="/collections/plony">Plony</a>
+                      <a href="/collections/yamamoto-selection">Yamamoto Selection</a>
+                      <a href="/collections/owoce-morza">Owoce morza</a>
+                      <a href="/collections/przydasie-i-tentegi">Przydasie i Tentegi</a>
+                    </div>
+                  </div>
+                {% else %}
+                  {{ link.title | link_to: link.url }}
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              <!-- Default menu when no menu is configured -->
+              <div class="dropdown">
+                <a href="/collections" class="dropdown-toggle">
+                  Produkty
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                  </svg>
+                </a>
+                <div class="dropdown-menu">
+                  <a href="/collections/sosy-i-syropy-do-gotowania">Sosy i syropy do gotowania</a>
+                  <a href="/collections/dodatki-i-pasty">Dodatki i pasty</a>
+                  <a href="/collections/ryz">Ryż</a>
+                  <a href="/collections/noodle-i-kluchy">Noodle i kluchy</a>
+                  <a href="/collections/soki-i-napoje">Soki i napoje</a>
+                  <a href="/collections/octy-i-oleje">Octy i oleje</a>
+                  <a href="/collections/zupoteka-szybka-micha">Zupoteka & Szybka micha</a>
+                  <a href="/collections/przystawki">Przystawki</a>
+                  <a href="/collections/slodycze-i-przekaski">Słodycze i przekąski</a>
+                  <a href="/collections/herbata">Herbata</a>
+                  <a href="/collections/kawa">Kawa</a>
+                  <a href="/collections/plony">Plony</a>
+                  <a href="/collections/yamamoto-selection">Yamamoto Selection</a>
+                  <a href="/collections/owoce-morza">Owoce morza</a>
+                  <a href="/collections/przydasie-i-tentegi">Przydasie i Tentegi</a>
+                </div>
+              </div>
+              <a href="/pages/o-nas">O nas</a>
+              <a href="/pages/kontakt">Kontakt</a>
+            {% endif %}
+          </div>
+        </div>
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
-
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
-
-      {{ 'icon-cart.svg' | inline_asset_content }}
-    </a>
+    <div class="nav-right">
+      <div class="header__logo">
+        <a href="{{ routes.root_url }}">
+          <img src="{{ 'konbini-logo.svg' | asset_url }}" alt="{{ shop.name }}" class="logo-img" />
+        </a>
+      </div>
+    </div>
   </div>
 </header>
 
 {% stylesheet %}
-  header {
-    height: 5rem;
+  .main-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: white;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 80px;
+  }
+
+  .nav-container {
+    width: 100%;
+    padding: 0 48px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  header a {
+
+  .nav-left {
+    flex: 1;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .header__menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__menu a {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .header__menu a:hover {
+    color: var(--color-primary-light);
+  }
+
+  /* Dropdown styles */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--color-primary);
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .dropdown-toggle:hover {
+    color: var(--color-primary-light);
+  }
+
+  .dropdown-toggle svg {
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown:hover .dropdown-toggle svg {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 8px 0;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 8px 16px;
+    color: var(--color-primary);
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .header__icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .header__icons a {
     position: relative;
     text-decoration: none;
     color: var(--color-foreground);
   }
-  header a sup {
+
+  .header__icons a sup {
     position: absolute;
     left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
-  }
-  header svg {
-    width: 2rem;
-  }
-  header .header__menu,
-  header .header__icons {
+    top: -8px;
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .header__icons svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 36px;
+    width: auto;
+    max-width: 200px;
+  }
+
+  .header__logo a {
+    text-decoration: none;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 0 24px;
+    }
+    
+    .header__menu {
+      gap: 1rem;
+    }
+    
+    .nav-right {
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-container {
+      padding: 0 16px;
+    }
+    
+    .header__menu {
+      display: none;
+    }
   }
 {% endstylesheet %}
 

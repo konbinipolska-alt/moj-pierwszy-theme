@@ -1,0 +1,346 @@
+{% comment %}
+  Categories Section - Simple Version
+  Displays categories with icons and names
+{% endcomment %}
+
+<div class="categories-section">
+  <div class="categories-container">
+    <div class="categories-wrapper">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="category-block" {{ block.shopify_attributes }}>
+            {% if block.settings.icon %}
+              {{ block.settings.icon | image_url: width: 60 | image_tag: 
+                class: 'category-icon',
+                loading: 'lazy',
+                alt: block.settings.custom_name | default: block.settings.category_name
+              }}
+            {% else %}
+              <div class="category-icon-placeholder">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <rect width="60" height="60" rx="8" fill="#f6f6f7"/>
+                  <path d="M20 25h20M20 30h20M20 35h15" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            {% endif %}
+            
+            <div class="category-name">
+              {{ block.settings.custom_name | default: block.settings.category_name | downcase }}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..15) %}
+          <div class="category-block category-placeholder-block">
+            <div class="category-icon-placeholder">
+              <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <rect width="60" height="60" rx="8" fill="#f6f6f7"/>
+                <path d="M20 25h20M20 30h20M20 35h15" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="category-name">kategoria {{ i }}</div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .categories-section {
+    padding: 0;
+    margin-top: 24px;
+    margin-bottom: 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background-color: white;
+  }
+
+  .categories-container {
+    position: relative;
+    width: 100%;
+    padding: 0 48px;
+  }
+
+  .categories-wrapper {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    justify-content: space-between;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .categories-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-block {
+    flex: 1;
+    min-width: 80px;
+    height: 120px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 8px 12px 8px;
+    margin: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .category-block:hover {
+    transform: translateY(-2px);
+  }
+
+  .category-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 8px;
+  }
+
+  .category-icon-placeholder {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .category-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-align: center;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    padding: 8px 4px 0 4px;
+    margin-top: auto;
+  }
+
+  .category-placeholder-block {
+    background: #f6f6f7;
+    border: 2px dashed #d1d5db;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .categories-container {
+      padding: 0 24px;
+    }
+
+    .category-block {
+      min-width: 70px;
+      height: 110px;
+      padding: 10px 6px 10px 6px;
+    }
+
+    .category-icon,
+    .category-icon-placeholder {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 6px;
+    }
+
+    .category-name {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .categories-container {
+      padding: 0 16px;
+    }
+
+    .category-block {
+      min-width: 60px;
+      height: 100px;
+      padding: 8px 4px 8px 4px;
+    }
+
+    .category-icon,
+    .category-icon-placeholder {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 6px;
+    }
+
+    .category-name {
+      font-size: 11px;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Categories with Icons",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "select",
+          "id": "category_name",
+          "label": "Category",
+          "options": [
+            { "value": "sosy-i-syropy-do-gotowania", "label": "Sosy i syropy do gotowania" },
+            { "value": "dodatki-i-pasty", "label": "Dodatki i pasty" },
+            { "value": "ryz", "label": "Ryż" },
+            { "value": "noodle-i-kluchy", "label": "Noodle i kluchy" },
+            { "value": "soki-i-napoje", "label": "Soki i napoje" },
+            { "value": "octy-i-oleje", "label": "Octy i oleje" },
+            { "value": "zupoteka-szybka-micha", "label": "Zupoteka szybka micha" },
+            { "value": "przystawki", "label": "Przystawki" },
+            { "value": "slodycze-i-przekaski", "label": "Słodycze i przekąski" },
+            { "value": "herbata", "label": "Herbata" },
+            { "value": "kawa", "label": "Kawa" },
+            { "value": "plony", "label": "Plony" },
+            { "value": "yamamoto-selection", "label": "Yamamoto Selection" },
+            { "value": "owoce-morza", "label": "Owoce morza" },
+            { "value": "przydasie-i-tentegi", "label": "Przydasie i tentegi" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Category icon"
+        },
+        {
+          "type": "text",
+          "id": "custom_name",
+          "label": "Custom display name",
+          "info": "Leave empty to use category name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categories with Icons",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "sosy-i-syropy-do-gotowania",
+            "custom_name": "sosy"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "dodatki-i-pasty",
+            "custom_name": "dodatki"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "ryz",
+            "custom_name": "ryż"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "noodle-i-kluchy",
+            "custom_name": "noodle"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "soki-i-napoje",
+            "custom_name": "napoje"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "octy-i-oleje",
+            "custom_name": "oleje"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "zupoteka-szybka-micha",
+            "custom_name": "zupy"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "przystawki",
+            "custom_name": "przystawki"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "slodycze-i-przekaski",
+            "custom_name": "słodycze"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "herbata",
+            "custom_name": "herbata"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "kawa",
+            "custom_name": "kawa"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "plony",
+            "custom_name": "plony"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "yamamoto-selection",
+            "custom_name": "yamamoto"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "owoce-morza",
+            "custom_name": "owoce morza"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "przydasie-i-tentegi",
+            "custom_name": "przydasie"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,5 +1,22 @@
 /** Critical CSS for the theme. This file is included on every page. */
 
+/* Import Quicksand font */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables */
+:root {
+  --color-primary: #0b00b5;
+  --color-primary-light: #3d3dff;
+  --color-primary-dark: #0800a0;
+  --color-background: #ffffff;
+  --color-foreground: #1f2937;
+  --color-border: #e5e7eb;
+  
+  /* Layout dimensions */
+  --header-height: 80px;
+  --categories-height: 168px;
+}
+
 /* Reset styles inspired by https://www.joshwcomeau.com/css/custom-css-reset/ */
 * {
   box-sizing: border-box;
@@ -10,6 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
+  padding-top: 80px; /* Space for fixed navigation */
   min-height: 100svh;
 }
 
@@ -73,7 +91,7 @@ p:empty {
 
 /** Theme styles below */
 body {
-  font-family: var(--font-primary--family);
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--color-background);
   color: var(--color-foreground);
 }
@@ -106,6 +124,7 @@ body {
   width: 100%;
 }
 
+
 /* Child elements, by default, are constrained to the central column of the grid. */
 .shopify-section > * {
   grid-column: 2;
@@ -115,3 +134,5 @@ body {
 .shopify-section > .full-width {
   grid-column: 1 / -1;
 }
+
+

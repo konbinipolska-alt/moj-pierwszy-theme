@@ -1,20 +1,247 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
-      "type": "hello-world",
+      "type": "image-slider",
+      "settings": {
+        "show_arrows": true,
+        "corner_style": "rounded"
+      },
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "background_color": "#ff6b6b",
+            "caption": "1"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "background_color": "#4ecdc4",
+            "caption": "2"
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "background_color": "#45b7d1",
+            "caption": "3"
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "background_color": "#96ceb4",
+            "caption": "4"
+          }
+        },
+        "image_5": {
+          "type": "image",
+          "settings": {
+            "background_color": "#feca57",
+            "caption": "5"
+          }
+        },
+        "image_6": {
+          "type": "image",
+          "settings": {
+            "background_color": "#ff9ff3",
+            "caption": "6"
+          }
+        },
+        "image_7": {
+          "type": "image",
+          "settings": {
+            "background_color": "#54a0ff",
+            "caption": "7"
+          }
+        },
+        "image_8": {
+          "type": "image",
+          "settings": {
+            "background_color": "#5f27cd",
+            "caption": "8"
+          }
+        },
+        "image_9": {
+          "type": "image",
+          "settings": {
+            "background_color": "#00d2d3",
+            "caption": "9"
+          }
+        },
+        "image_10": {
+          "type": "image",
+          "settings": {
+            "background_color": "#ff9f43",
+            "caption": "10"
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "image_8",
+        "image_9",
+        "image_10"
+      ]
+    },
+    "categories": {
+      "type": "categories",
+      "settings": {
+        "show_arrows": true
+      },
+      "blocks": {
+        "category_1": {
+          "type": "category",
+          "settings": {
+            "category_name": "sosy-i-syropy-do-gotowania",
+            "custom_name": "sosy"
+          }
+        },
+        "category_2": {
+          "type": "category",
+          "settings": {
+            "category_name": "dodatki-i-pasty",
+            "custom_name": "dodatki"
+          }
+        },
+        "category_3": {
+          "type": "category",
+          "settings": {
+            "category_name": "ryz",
+            "custom_name": "ryż"
+          }
+        },
+        "category_4": {
+          "type": "category",
+          "settings": {
+            "category_name": "noodle-i-kluchy",
+            "custom_name": "noodle"
+          }
+        },
+        "category_5": {
+          "type": "category",
+          "settings": {
+            "category_name": "soki-i-napoje",
+            "custom_name": "napoje"
+          }
+        },
+        "category_6": {
+          "type": "category",
+          "settings": {
+            "category_name": "octy-i-oleje",
+            "custom_name": "oleje"
+          }
+        },
+        "category_7": {
+          "type": "category",
+          "settings": {
+            "category_name": "zupoteka-szybka-micha",
+            "custom_name": "zupy"
+          }
+        },
+        "category_8": {
+          "type": "category",
+          "settings": {
+            "category_name": "przystawki",
+            "custom_name": "przystawki"
+          }
+        },
+        "category_9": {
+          "type": "category",
+          "settings": {
+            "category_name": "slodycze-i-przekaski",
+            "custom_name": "słodycze"
+          }
+        },
+        "category_10": {
+          "type": "category",
+          "settings": {
+            "category_name": "herbata",
+            "custom_name": "herbata"
+          }
+        },
+        "category_11": {
+          "type": "category",
+          "settings": {
+            "category_name": "kawa",
+            "custom_name": "kawa"
+          }
+        },
+        "category_12": {
+          "type": "category",
+          "settings": {
+            "category_name": "plony",
+            "custom_name": "plony"
+          }
+        },
+        "category_13": {
+          "type": "category",
+          "settings": {
+            "category_name": "yamamoto-selection",
+            "custom_name": "yamamoto"
+          }
+        },
+        "category_14": {
+          "type": "category",
+          "settings": {
+            "category_name": "owoce-morza",
+            "custom_name": "owoce morza"
+          }
+        },
+        "category_15": {
+          "type": "category",
+          "settings": {
+            "category_name": "przydasie-i-tentegi",
+            "custom_name": "przydasie"
+          }
+        }
+      },
+      "block_order": [
+        "category_1",
+        "category_2",
+        "category_3",
+        "category_4",
+        "category_5",
+        "category_6",
+        "category_7",
+        "category_8",
+        "category_9",
+        "category_10",
+        "category_11",
+        "category_12",
+        "category_13",
+        "category_14",
+        "category_15"
+      ]
+    },
+    "divider": {
+      "type": "divider",
       "settings": {}
+    },
+    "divider2": {
+      "type": "divider",
+      "settings": {}
+    },
+    "content": {
+      "type": "content-section",
+      "settings": {
+        "heading": "Welcome to Konbini",
+        "text": "<p>Discover authentic Japanese flavors and premium quality products. From traditional sauces to modern snacks, we bring the best of Japan to your table.</p>"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "divider",
+    "categories",
+    "divider2",
+    "content"
   ]
 }

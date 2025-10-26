@@ -1,0 +1,48 @@
+{% comment %}
+  Horizontal Divider Section
+  Creates a 1px horizontal line across full viewport width
+{% endcomment %}
+
+<div class="divider-section full-width">
+  <div class="divider-line"></div>
+</div>
+
+{% stylesheet %}
+  .divider-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 0;
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+
+  /* Drugi divider (divider2) ma odstęp do content */
+  .shopify-section[data-section-id*="divider2"] .divider-section {
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+
+  .divider-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-primary);
+    opacity: 0.2;
+    margin: 0;
+    padding: 0;
+  }
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Horizontal Divider",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Horizontal Divider"
+    }
+  ]
+}
+{% endschema %}
