@@ -529,6 +529,9 @@
       // Update slides reference
       this.slides = this.wrapper.querySelectorAll('.slide');
       this.currentIndex = slidesToClone; // Start at first original slide
+      
+      // Ensure we start at the correct position
+      this.updateSlider();
     }
 
     bindEvents() {
