@@ -63,9 +63,9 @@
     height: 600px;
     overflow: visible;
     position: relative;
-    padding: 0 0 0 48px;
-    margin-top: 24px;
-    margin-bottom: 0;
+    padding: 80px 0 0 48px; /* Only 80px for navigation, no extra spacing */
+    margin-top: 0;
+    margin-bottom: 80px; /* Even larger margin to prevent overlap */
   }
 
   .slider-container {
@@ -73,6 +73,7 @@
     width: 100%;
     height: 600px;
     overflow: hidden;
+    margin-bottom: 0; /* Remove margin-bottom from slider-container */
   }
 
   .slider-wrapper {
@@ -210,25 +211,90 @@
     right: 16px;
   }
 
-  /* Mobile optimizations */
-  @media (max-width: 768px) {
+  /* Tablet optimizations */
+  @media (max-width: 1024px) {
     .image-slider {
-      height: 450px;
-      padding: 24px 0 0 24px;
-      padding-top: 104px; /* 80px navigation + 24px spacing */
+      height: 550px; /* 500px + 10% = 550px */
+      padding: 80px 0 0 0; /* Only 80px for navigation, no extra spacing */
+      margin-top: 0;
+      margin-bottom: 80px; /* Even larger margin to prevent overlap */
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .image-slider.full-width {
+      width: 100%;
+      margin-left: 0;
     }
 
     .slider-container {
-      height: 450px;
-    }
-
-    .slide {
-      width: 253px;
-      height: 450px;
+      height: 550px; /* 500px + 10% = 550px */
+      padding-left: 0;
+      margin-bottom: 0; /* Remove margin-bottom from slider-container */
     }
 
     .slider-wrapper {
-      gap: 12px;
+      gap: 20px; /* Match page margin */
+      padding-left: 0;
+    }
+
+    .slide:first-child {
+      margin-left: 20px !important; /* Match page margin */
+    }
+
+    .slide {
+      width: 308px; /* 280px + 10% = 308px */
+      height: 550px; /* 500px + 10% = 550px */
+    }
+
+    .slider-arrow {
+      width: 44px;
+      height: 44px;
+    }
+
+    .slider-arrow--prev {
+      left: 16px;
+    }
+
+    .slider-arrow--next {
+      right: 16px;
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .image-slider {
+      height: 495px; /* 450px + 10% = 495px */
+      padding: 80px 0 0 0; /* Only 80px for navigation, no extra spacing */
+      margin-top: 0;
+      margin-bottom: 80px; /* Even larger margin to prevent overlap */
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .image-slider.full-width {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .slider-container {
+      height: 495px; /* 450px + 10% = 495px */
+      padding-left: 0;
+      margin-bottom: 0; /* Remove margin-bottom from slider-container */
+    }
+
+    .slider-wrapper {
+      gap: 20px; /* Match page margin */
+      padding-left: 0;
+    }
+
+    .slide:first-child {
+      margin-left: 20px !important; /* Match page margin */
+    }
+
+    .slide {
+      width: 278px; /* 253px + 10% = 278px */
+      height: 495px; /* 450px + 10% = 495px */
     }
 
     .slider-arrow {
@@ -247,22 +313,37 @@
 
   @media (max-width: 480px) {
     .image-slider {
-      height: 375px;
-      padding: 24px 0 0 16px;
-      padding-top: 104px; /* 80px navigation + 24px spacing */
+      height: 413px; /* 375px + 10% = 413px */
+      padding: 80px 0 0 0; /* Only 80px for navigation, no extra spacing */
+      margin-top: 0;
+      margin-bottom: 80px; /* Even larger margin to prevent overlap */
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .image-slider.full-width {
+      width: 100%;
+      margin-left: 0;
     }
 
     .slider-container {
-      height: 375px;
-    }
-
-    .slide {
-      width: 211px;
-      height: 375px;
+      height: 413px; /* 375px + 10% = 413px */
+      padding-left: 0;
+      margin-bottom: 0; /* Remove margin-bottom from slider-container */
     }
 
     .slider-wrapper {
-      gap: 10px;
+      gap: 20px; /* Match page margin */
+      padding-left: 0;
+    }
+
+    .image-slider .slider-container .slider-wrapper .slide:first-child {
+      margin-left: 20px !important; /* Match page margin */
+    }
+
+    .slide {
+      width: 232px; /* 211px + 10% = 232px */
+      height: 413px; /* 375px + 10% = 413px */
     }
 
     .slider-arrow {
@@ -276,6 +357,104 @@
 
     .slider-arrow--next {
       right: 8px;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .image-slider {
+      height: 385px; /* 350px + 10% = 385px */
+      padding: 80px 0 0 0; /* Only 80px for navigation, no extra spacing */
+      margin-top: 0;
+      margin-bottom: 80px; /* Even larger margin to prevent overlap */
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .image-slider.full-width {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .slider-container {
+      height: 385px; /* 350px + 10% = 385px */
+      padding-left: 0;
+      margin-bottom: 0; /* Remove margin-bottom from slider-container */
+    }
+
+    .slider-wrapper {
+      gap: 20px; /* Match page margin */
+      padding-left: 0;
+    }
+
+    .image-slider .slider-container .slider-wrapper .slide:first-child {
+      margin-left: 20px !important; /* Match page margin */
+    }
+
+    .slide {
+      width: 217px; /* 197px + 10% = 217px */
+      height: 385px; /* 350px + 10% = 385px */
+    }
+
+    .slider-arrow {
+      width: 32px;
+      height: 32px;
+    }
+
+    .slider-arrow--prev {
+      left: 8px;
+    }
+
+    .slider-arrow--next {
+      right: 8px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .image-slider {
+      height: 352px; /* 320px + 10% = 352px */
+      padding: 80px 0 0 0; /* Only 80px for navigation, no extra spacing */
+      margin-top: 0;
+      margin-bottom: 80px; /* Even larger margin to prevent overlap */
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .image-slider.full-width {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .slider-container {
+      height: 352px; /* 320px + 10% = 352px */
+      padding-left: 0;
+      margin-bottom: 0; /* Remove margin-bottom from slider-container */
+    }
+
+    .slider-wrapper {
+      gap: 20px; /* Match page margin */
+      padding-left: 0;
+    }
+
+    .image-slider .slider-container .slider-wrapper .slide:first-child {
+      margin-left: 20px !important; /* Match page margin */
+    }
+
+    .slide {
+      width: 198px; /* 180px + 10% = 198px */
+      height: 352px; /* 320px + 10% = 352px */
+    }
+
+    .slider-arrow {
+      width: 28px;
+      height: 28px;
+    }
+
+    .slider-arrow--prev {
+      left: 6px;
+    }
+
+    .slider-arrow--next {
+      right: 6px;
     }
   }
 {% endstylesheet %}
@@ -308,9 +487,25 @@
       this.updateSlider();
     }
 
-    calculateVisibleSlides() {
+    calculateSlideDimensions() {
       const containerWidth = this.sliderContainer.offsetWidth;
+      
+      // Get current slide dimensions based on screen size
+      const firstSlide = this.slides[0];
+      if (firstSlide) {
+        const slideRect = firstSlide.getBoundingClientRect();
+        this.slideWidth = slideRect.width;
+        
+        // Get gap from CSS
+        const wrapperStyle = window.getComputedStyle(this.wrapper);
+        this.gap = parseInt(wrapperStyle.gap) || 16;
+      }
+      
       this.slidesVisible = Math.max(1, Math.floor(containerWidth / (this.slideWidth + this.gap)));
+    }
+
+    calculateVisibleSlides() {
+      this.calculateSlideDimensions();
     }
 
     setupInfiniteScroll() {
@@ -403,6 +598,7 @@
       this.updateSlider();
       
       // Check if we need to reset position for infinite scroll
+      this.calculateSlideDimensions();
       if (this.currentIndex >= this.slides.length - this.slidesVisible) {
         setTimeout(() => {
           this.currentIndex = this.slidesVisible;
@@ -422,6 +618,7 @@
       this.updateSlider();
       
       // Check if we need to reset position for infinite scroll
+      this.calculateSlideDimensions();
       if (this.currentIndex < this.slidesVisible) {
         setTimeout(() => {
           this.currentIndex = this.slides.length - (this.slidesVisible * 2);
@@ -435,6 +632,8 @@
     }
 
     updateSlider() {
+      // Recalculate dimensions before updating
+      this.calculateSlideDimensions();
       const translateX = -this.currentIndex * (this.slideWidth + this.gap);
       this.wrapper.style.transform = `translateX(${translateX}px)`;
     }

@@ -27,7 +27,6 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding-top: 80px; /* Space for fixed navigation */
   min-height: 100svh;
 }
 

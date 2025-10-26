@@ -93,9 +93,7 @@
     },
     "categories": {
       "type": "categories",
-      "settings": {
-        "show_arrows": true
-      },
+      "settings": {},
       "blocks": {
         "category_1": {
           "type": "category",
