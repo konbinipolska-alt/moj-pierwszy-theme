@@ -12,6 +12,13 @@
     "main": {
       "type": "modular-slider",
       "blocks": {
+        "image_slide_wide_BDqAff": {
+          "type": "image_slide_wide",
+          "settings": {
+            "link": "",
+            "alt_text": "Image slide"
+          }
+        },
         "slide_1": {
           "type": "image_slide",
           "settings": {
@@ -60,6 +67,7 @@
         }
       },
       "block_order": [
+        "image_slide_wide_BDqAff",
         "slide_1",
         "slide_2",
         "video_slide_UNMUg8",
