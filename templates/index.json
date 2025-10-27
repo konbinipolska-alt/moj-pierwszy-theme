@@ -12,68 +12,32 @@
     "main": {
       "type": "modular-slider",
       "blocks": {
-        "image_slide_wide_BDqAff": {
-          "type": "image_slide_wide",
+        "image_large_MjGb7U": {
+          "type": "image_large",
           "settings": {
             "link": "",
             "alt_text": "Image slide"
           }
         },
-        "slide_1": {
-          "type": "image_slide",
+        "image_medium_8RwfDm": {
+          "type": "image_medium",
           "settings": {
             "link": "",
-            "alt_text": "Slide 1"
+            "alt_text": "Image slide"
           }
         },
-        "slide_2": {
-          "type": "text_slide",
-          "settings": {
-            "heading": "Welcome to Konbini",
-            "text": "<p>Discover authentic Japanese flavors and premium quality products.</p>",
-            "link": "",
-            "background_color": "#eeeeee",
-            "text_color": "#333333"
-          }
-        },
-        "video_slide_UNMUg8": {
-          "type": "video_slide",
-          "settings": {
-            "link": ""
-          }
-        },
-        "product_slide_Ab3qFi": {
-          "type": "product_slide",
-          "settings": {
-            "product": ""
-          }
-        },
-        "slide_3": {
-          "type": "image_slide",
+        "image_small_JXEpKb": {
+          "type": "image_small",
           "settings": {
             "link": "",
-            "alt_text": "Slide 3"
-          }
-        },
-        "text_slide_9dATnb": {
-          "type": "text_slide",
-          "settings": {
-            "heading": "Welcome to Konbini",
-            "text": "<p>Discover authentic Japanese flavors and premium quality products.</p>",
-            "link": "",
-            "background_color": "#f8f9fa",
-            "text_color": "#333333"
+            "alt_text": "Image slide"
           }
         }
       },
       "block_order": [
-        "image_slide_wide_BDqAff",
-        "slide_1",
-        "slide_2",
-        "video_slide_UNMUg8",
-        "product_slide_Ab3qFi",
-        "slide_3",
-        "text_slide_9dATnb"
+        "image_large_MjGb7U",
+        "image_medium_8RwfDm",
+        "image_small_JXEpKb"
       ],
       "settings": {
         "show_arrows": true
