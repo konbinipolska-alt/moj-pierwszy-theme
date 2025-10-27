@@ -1,6 +1,6 @@
 {% comment %}
   Image Slider Section
-  Features: Configurable slides, images/colors, simple navigation, responsive design
+  Configurable slider with dynamic slides, images/colors, responsive design
 {% endcomment %}
 
 <div class="image-slider-section">
@@ -9,15 +9,27 @@
       {% for i in (1..section.settings.slide_count) %}
         {% assign slide_image_key = 'slide_' | append: i | append: '_image' %}
         {% assign slide_color_key = 'slide_' | append: i | append: '_color' %}
-        {% assign slide_image = section.settings[slide_image_key] %}
-        {% assign slide_color = section.settings[slide_color_key] | default: '#cccccc' %}
-        
         {% assign slide_link_key = 'slide_' | append: i | append: '_link' %}
+        {% assign slide_product_key = 'slide_' | append: i | append: '_product' %}
+        {% assign slide_collection_key = 'slide_' | append: i | append: '_collection' %}
+        
+        {% assign slide_image = section.settings[slide_image_key] %}
+        {% assign slide_color = section.settings[slide_color_key] %}
         {% assign slide_link = section.settings[slide_link_key] %}
+        {% assign slide_product = section.settings[slide_product_key] %}
+        {% assign slide_collection = section.settings[slide_collection_key] %}
+        
+        {% comment %} Determine the final link URL {% endcomment %}
+        {% assign final_link = slide_link %}
+        {% if slide_product %}
+          {% assign final_link = slide_product.url %}
+        {% elsif slide_collection %}
+          {% assign final_link = slide_collection.url %}
+        {% endif %}
         
         <div class="slide" data-slide="{{ forloop.index0 }}">
-          {% if slide_link %}
-            <a href="{{ slide_link }}" class="slide-link">
+          {% if final_link %}
+            <a href="{{ final_link }}" class="slide-link">
           {% endif %}
           
           {% if slide_image %}
@@ -36,14 +48,15 @@
             </div>
           {% endif %}
           
-          {% if slide_link %}
+          {% if final_link %}
             </a>
           {% endif %}
         </div>
       {% endfor %}
     </div>
 
-    {% if section.settings.show_arrows and section.settings.slide_count > 1 %}
+    {% if section.settings.slide_count > 1 %}
+      <!-- Navigation arrows -->
       <button class="slider-arrow slider-arrow--prev" aria-label="Previous slide">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -88,6 +101,18 @@
     height: 600px;
     flex-shrink: 0;
     position: relative;
+  }
+
+  .slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .slide-link:hover {
+    text-decoration: none;
   }
 
   .slide-image {
@@ -309,15 +334,9 @@
       "id": "slide_count",
       "label": "Number of slides",
       "min": 1,
-      "max": 10,
+      "max": 12,
       "step": 1,
-      "default": 2
-    },
-    {
-      "type": "checkbox",
-      "id": "show_arrows",
-      "label": "Show navigation arrows",
-      "default": true
+      "default": 3
     },
     {
       "type": "header",
@@ -332,7 +351,22 @@
       "type": "color",
       "id": "slide_1_color",
       "label": "Slide 1 Color",
-      "default": "#cccccc"
+      "default": "#ff6b6b"
+    },
+    {
+      "type": "url",
+      "id": "slide_1_link",
+      "label": "Slide 1 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_1_product",
+      "label": "Slide 1 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_1_collection",
+      "label": "Slide 1 Collection"
     },
     {
       "type": "image_picker",
@@ -343,7 +377,22 @@
       "type": "color",
       "id": "slide_2_color",
       "label": "Slide 2 Color",
-      "default": "#cccccc"
+      "default": "#4ecdc4"
+    },
+    {
+      "type": "url",
+      "id": "slide_2_link",
+      "label": "Slide 2 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_2_product",
+      "label": "Slide 2 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_2_collection",
+      "label": "Slide 2 Collection"
     },
     {
       "type": "image_picker",
@@ -354,7 +403,22 @@
       "type": "color",
       "id": "slide_3_color",
       "label": "Slide 3 Color",
-      "default": "#cccccc"
+      "default": "#45b7d1"
+    },
+    {
+      "type": "url",
+      "id": "slide_3_link",
+      "label": "Slide 3 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_3_product",
+      "label": "Slide 3 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_3_collection",
+      "label": "Slide 3 Collection"
     },
     {
       "type": "image_picker",
@@ -365,7 +429,22 @@
       "type": "color",
       "id": "slide_4_color",
       "label": "Slide 4 Color",
-      "default": "#cccccc"
+      "default": "#96ceb4"
+    },
+    {
+      "type": "url",
+      "id": "slide_4_link",
+      "label": "Slide 4 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_4_product",
+      "label": "Slide 4 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_4_collection",
+      "label": "Slide 4 Collection"
     },
     {
       "type": "image_picker",
@@ -376,7 +455,22 @@
       "type": "color",
       "id": "slide_5_color",
       "label": "Slide 5 Color",
-      "default": "#cccccc"
+      "default": "#feca57"
+    },
+    {
+      "type": "url",
+      "id": "slide_5_link",
+      "label": "Slide 5 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_5_product",
+      "label": "Slide 5 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_5_collection",
+      "label": "Slide 5 Collection"
     },
     {
       "type": "image_picker",
@@ -387,7 +481,22 @@
       "type": "color",
       "id": "slide_6_color",
       "label": "Slide 6 Color",
-      "default": "#cccccc"
+      "default": "#ff9ff3"
+    },
+    {
+      "type": "url",
+      "id": "slide_6_link",
+      "label": "Slide 6 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_6_product",
+      "label": "Slide 6 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_6_collection",
+      "label": "Slide 6 Collection"
     },
     {
       "type": "image_picker",
@@ -398,7 +507,22 @@
       "type": "color",
       "id": "slide_7_color",
       "label": "Slide 7 Color",
-      "default": "#cccccc"
+      "default": "#54a0ff"
+    },
+    {
+      "type": "url",
+      "id": "slide_7_link",
+      "label": "Slide 7 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_7_product",
+      "label": "Slide 7 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_7_collection",
+      "label": "Slide 7 Collection"
     },
     {
       "type": "image_picker",
@@ -409,7 +533,22 @@
       "type": "color",
       "id": "slide_8_color",
       "label": "Slide 8 Color",
-      "default": "#cccccc"
+      "default": "#5f27cd"
+    },
+    {
+      "type": "url",
+      "id": "slide_8_link",
+      "label": "Slide 8 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_8_product",
+      "label": "Slide 8 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_8_collection",
+      "label": "Slide 8 Collection"
     },
     {
       "type": "image_picker",
@@ -420,7 +559,22 @@
       "type": "color",
       "id": "slide_9_color",
       "label": "Slide 9 Color",
-      "default": "#cccccc"
+      "default": "#00d2d3"
+    },
+    {
+      "type": "url",
+      "id": "slide_9_link",
+      "label": "Slide 9 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_9_product",
+      "label": "Slide 9 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_9_collection",
+      "label": "Slide 9 Collection"
     },
     {
       "type": "image_picker",
@@ -431,17 +585,84 @@
       "type": "color",
       "id": "slide_10_color",
       "label": "Slide 10 Color",
-      "default": "#cccccc"
+      "default": "#ff6348"
+    },
+    {
+      "type": "url",
+      "id": "slide_10_link",
+      "label": "Slide 10 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_10_product",
+      "label": "Slide 10 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_10_collection",
+      "label": "Slide 10 Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_11_image",
+      "label": "Slide 11 Image"
+    },
+    {
+      "type": "color",
+      "id": "slide_11_color",
+      "label": "Slide 11 Color",
+      "default": "#2ed573"
+    },
+    {
+      "type": "url",
+      "id": "slide_11_link",
+      "label": "Slide 11 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_11_product",
+      "label": "Slide 11 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_11_collection",
+      "label": "Slide 11 Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_12_image",
+      "label": "Slide 12 Image"
+    },
+    {
+      "type": "color",
+      "id": "slide_12_color",
+      "label": "Slide 12 Color",
+      "default": "#ff4757"
+    },
+    {
+      "type": "url",
+      "id": "slide_12_link",
+      "label": "Slide 12 Link"
+    },
+    {
+      "type": "product",
+      "id": "slide_12_product",
+      "label": "Slide 12 Product"
+    },
+    {
+      "type": "collection",
+      "id": "slide_12_collection",
+      "label": "Slide 12 Collection"
     }
   ],
   "presets": [
     {
       "name": "Image Slider",
       "settings": {
-        "slide_count": 2,
-        "show_arrows": true,
+        "slide_count": 3,
         "slide_1_color": "#ff6b6b",
-        "slide_2_color": "#4ecdc4"
+        "slide_2_color": "#4ecdc4",
+        "slide_3_color": "#45b7d1"
       }
     }
   ]

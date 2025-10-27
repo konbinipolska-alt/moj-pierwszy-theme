@@ -4,7 +4,6 @@
       "type": "image-slider",
       "settings": {
         "slide_count": 3,
-        "show_arrows": true,
         "slide_1_color": "#ff6b6b",
         "slide_2_color": "#4ecdc4",
         "slide_3_color": "#45b7d1"
