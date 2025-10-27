@@ -26,7 +26,7 @@
           "settings": {
             "heading": "Welcome to Konbini",
             "text": "<p>Discover authentic Japanese flavors and premium quality products.</p>",
-            "background_color": "#f8f9fa",
+            "background_color": "#eeeeee",
             "text_color": "#333333"
           }
         },

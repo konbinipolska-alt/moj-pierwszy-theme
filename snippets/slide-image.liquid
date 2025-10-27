@@ -18,7 +18,7 @@
 {% else %}
   {% comment %} Auto-assign gray scale color based on block index {% endcomment %}
   {% assign gray_percentage = forloop.index | times: 10 %}
-  {% assign slide_color = 'rgb(' | append: gray_percentage | append: '%, ' | append: gray_percentage | append: '%, ' | append: gray_percentage | append: '%)' %}
+  {% assign slide_color = '#eeeeee' %}
   
   <div class="slide-color" style="background-color: {{ slide_color }};">
     <div class="slide-content">
