@@ -62,6 +62,33 @@
             "text_color": "#333333",
             "link": ""
           }
+        },
+        "product_small_n8yh99": {
+          "type": "product_small",
+          "settings": {
+            "product": "",
+            "heading": "",
+            "text": "",
+            "link": ""
+          }
+        },
+        "product_medium_kYCqym": {
+          "type": "product_medium",
+          "settings": {
+            "product": "",
+            "heading": "",
+            "text": "",
+            "link": ""
+          }
+        },
+        "product_large_4kFftE": {
+          "type": "product_large",
+          "settings": {
+            "product": "",
+            "heading": "",
+            "text": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -70,7 +97,10 @@
         "image_large_MjGb7U",
         "text_small_DbkTQX",
         "text_medium_iYfRbU",
-        "text_large_UKAKYB"
+        "text_large_UKAKYB",
+        "product_small_n8yh99",
+        "product_medium_kYCqym",
+        "product_large_4kFftE"
       ],
       "settings": {
         "show_arrows": true
