@@ -1,6 +1,8 @@
 {% comment %}
   Modular Slider Section
-  Uses blocks for individual slides with three sizes: small, medium, large
+  4 types of slides x 3 sizes = 12 slide types
+  Types: image, text, video, product
+  Sizes: small (9:16), medium (2x+12px), large (3x+24px)
 {% endcomment %}
 
 <div class="modular-slider-section">
@@ -20,6 +22,12 @@
             {% render 'slide-text-medium', block: block %}
           {% when 'text_large' %}
             {% render 'slide-text-large', block: block %}
+          {% when 'video_small' %}
+            {% render 'slide-video-small', block: block %}
+          {% when 'video_medium' %}
+            {% render 'slide-video-medium', block: block %}
+          {% when 'video_large' %}
+            {% render 'slide-video-large', block: block %}
           {% when 'product_small' %}
             {% render 'slide-product-small', block: block %}
           {% when 'product_medium' %}
@@ -47,7 +55,7 @@
 </div>
 
 {% stylesheet %}
-  /* Basic styles for modular slider */
+  /* Modular Slider Styles */
   .modular-slider-section {
     position: relative;
     margin-top: 80px;
@@ -68,13 +76,13 @@
     display: flex;
     height: 100%;
     width: max-content;
-    gap: 12px;
+    gap: 12px; /* This controls spacing between slides */
     transition: transform 0.4s ease-in-out;
   }
 
-  /* Small slides - 9:16 aspect ratio */
+  /* Slide size classes */
   .slide-small {
-    width: calc((600px * 9) / 16); /* 9:16 aspect ratio */
+    width: calc((600px * 9) / 16); /* 9:16 aspect ratio = 337.5px */
     height: 600px;
     flex-shrink: 0;
     position: relative;
@@ -82,9 +90,8 @@
     overflow: hidden;
   }
   
-  /* Medium slides - 2x small + 12px gap */
   .slide-medium {
-    width: calc(((600px * 9) / 16) * 2 + 12px); /* 2x small + gap */
+    width: calc(((600px * 9) / 16) * 2 + 12px); /* 2x small + gap = 687px */
     height: 600px;
     flex-shrink: 0;
     position: relative;
@@ -92,9 +99,8 @@
     overflow: hidden;
   }
   
-  /* Large slides - 3x small + 24px gap */
   .slide-large {
-    width: calc(((600px * 9) / 16) * 3 + 24px); /* 3x small + gaps */
+    width: calc(((600px * 9) / 16) * 3 + 24px); /* 3x small + gaps = 1036.5px */
     height: 600px;
     flex-shrink: 0;
     position: relative;
@@ -134,7 +140,7 @@
     right: 16px;
   }
 
-  /* Tablet */
+  /* Tablet responsive */
   @media (max-width: 1024px) {
     .slider-container {
       width: calc(100vw - 64px);
@@ -143,22 +149,22 @@
     }
     
     .slide-small {
-      width: calc((500px * 9) / 16);
+      width: calc((500px * 9) / 16); /* 281.25px */
       height: 500px;
     }
     
     .slide-medium {
-      width: calc(((500px * 9) / 16) * 2 + 12px);
+      width: calc(((500px * 9) / 16) * 2 + 12px); /* 574.5px */
       height: 500px;
     }
     
     .slide-large {
-      width: calc(((500px * 9) / 16) * 3 + 24px);
+      width: calc(((500px * 9) / 16) * 3 + 24px); /* 867.75px */
       height: 500px;
     }
   }
 
-  /* Mobile */
+  /* Mobile responsive */
   @media (max-width: 768px) {
     .slider-container {
       width: calc(100vw - 40px);
@@ -167,17 +173,17 @@
     }
     
     .slide-small {
-      width: calc((400px * 9) / 16);
+      width: calc((400px * 9) / 16); /* 225px */
       height: 400px;
     }
     
     .slide-medium {
-      width: calc(((400px * 9) / 16) * 2 + 12px);
+      width: calc(((400px * 9) / 16) * 2 + 12px); /* 462px */
       height: 400px;
     }
     
     .slide-large {
-      width: calc(((400px * 9) / 16) * 3 + 24px);
+      width: calc(((400px * 9) / 16) * 3 + 24px); /* 699px */
       height: 400px;
     }
     
@@ -197,7 +203,7 @@
     constructor(container) {
       this.container = container;
       this.sliderWrapper = container.querySelector('.slider-wrapper');
-      this.slides = container.querySelectorAll('.slide-small, .slide-medium, .slide-large'); // Include all slide sizes
+      this.slides = container.querySelectorAll('.slide-small, .slide-medium, .slide-large');
       this.prevArrow = container.querySelector('.slider-arrow--prev');
       this.nextArrow = container.querySelector('.slider-arrow--next');
 
@@ -254,12 +260,13 @@
 
     /**
      * Update slider position based on current index
+     * Calculates offset by summing widths of previous slides + gaps
      */
     updateSlider() {
       let offset = 0;
       for (let i = 0; i < this.currentIndex; i++) {
         const slideWidth = this.slides[i].offsetWidth;
-        const gap = 12;
+        const gap = 12; // Gap between slides
         offset += slideWidth + gap;
       }
       this.sliderWrapper.style.transform = `translateX(-${offset}px)`;
@@ -463,6 +470,57 @@
           "id": "text_color",
           "label": "Text Color",
           "default": "#333333"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "video_small",
+      "name": "Video Slide (Small)",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video URL",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "video_medium",
+      "name": "Video Slide (Medium)",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video URL",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "video_large",
+      "name": "Video Slide (Large)",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video URL",
+          "accept": ["youtube", "vimeo"]
         },
         {
           "type": "url",

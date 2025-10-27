@@ -1,24 +1,26 @@
 {% comment %}
-  Image Slide Large - 3x small + 24px gap
+  Video Slide Medium - 2x small + 12px gap
 {% endcomment %}
 
 {% if block.settings.link %}
   <a href="{{ block.settings.link }}" class="slide-link">
 {% endif %}
 
-<div class="slide-large">
-  {% if block.settings.image %}
-    <div class="slide-image">
-      {{ block.settings.image | image_url: width: 1920 | image_tag: 
-        loading: 'lazy',
-        alt: block.settings.alt_text | default: 'Large image slide',
-        class: 'slide-img'
+<div class="slide-medium">
+  {% if block.settings.video_url %}
+    <div class="slide-video">
+      {{ block.settings.video_url | video_tag: 
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false,
+        class: 'slide-video-element'
       }}
     </div>
   {% else %}
     <div class="slide-empty">
-      <div class="empty-icon">📷</div>
-      <div class="empty-text">No image selected</div>
+      <div class="empty-icon">🎥</div>
+      <div class="empty-text">No video selected</div>
     </div>
   {% endif %}
 </div>
@@ -28,14 +30,14 @@
 {% endif %}
 
 <style>
-  .slide-image {
+  .slide-video {
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
   }
 
-  .slide-img {
+  .slide-video-element {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -55,13 +57,13 @@
   }
 
   .empty-icon {
-    font-size: 64px;
-    margin-bottom: 16px;
+    font-size: 48px;
+    margin-bottom: 12px;
     opacity: 0.5;
   }
 
   .empty-text {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
   }
 

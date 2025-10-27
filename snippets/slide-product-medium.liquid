@@ -1,6 +1,5 @@
 {% comment %}
-  Product Slide Medium Snippet
-  Renders a medium product slide (2x small + 12px gap)
+  Product Slide Medium - 2x small + 12px gap
 {% endcomment %}
 
 {% if block.settings.product %}
@@ -19,22 +18,16 @@
       <div class="product-info">
         <h3 class="product-title">{{ block.settings.product.title }}</h3>
         {% if block.settings.product.price %}
-          <div class="product-price">
-            {{ block.settings.product.price | money }}
-          </div>
+          <div class="product-price">{{ block.settings.product.price | money }}</div>
         {% endif %}
       </div>
     </div>
   </a>
 {% else %}
-  {% comment %} Empty state - no product provided {% endcomment %}
   <div class="slide-medium">
-    <div class="slide-color empty-state" style="background-color: #eeeeee;">
-      <div class="slide-content">
-        <div class="empty-state-icon">🛍️</div>
-        <div class="empty-state-text">No product selected</div>
-        <div class="empty-state-subtext">Add a product in the theme editor</div>
-      </div>
+    <div class="slide-empty">
+      <div class="empty-icon">🛍️</div>
+      <div class="empty-text">No product selected</div>
     </div>
   </div>
 {% endif %}
@@ -83,6 +76,29 @@
     color: #007bff;
   }
 
+  .slide-empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee;
+    color: #666;
+    text-align: center;
+  }
+
+  .empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+
+  .empty-text {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
   .slide-link {
     display: block;
     width: 100%;
@@ -97,84 +113,5 @@
 
   .slide-link:hover .product-title {
     color: #007bff;
-  }
-  
-  /* Empty state styles */
-  .empty-state {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #666;
-  }
-  
-  .empty-state-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-    opacity: 0.5;
-  }
-  
-  .empty-state-text {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-  
-  .empty-state-subtext {
-    font-size: 14px;
-    opacity: 0.7;
-  }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .product-info {
-      padding: 15px;
-    }
-    
-    .product-title {
-      font-size: 16px;
-    }
-    
-    .product-price {
-      font-size: 14px;
-    }
-    
-    .empty-state-icon {
-      font-size: 36px;
-    }
-    
-    .empty-state-text {
-      font-size: 16px;
-    }
-    
-    .empty-state-subtext {
-      font-size: 12px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .product-info {
-      padding: 12px;
-    }
-    
-    .product-title {
-      font-size: 14px;
-    }
-    
-    .product-price {
-      font-size: 12px;
-    }
-    
-    .empty-state-icon {
-      font-size: 28px;
-    }
-    
-    .empty-state-text {
-      font-size: 14px;
-    }
-    
-    .empty-state-subtext {
-      font-size: 11px;
-    }
   }
 </style>
