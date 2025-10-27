@@ -12,6 +12,16 @@
     "main": {
       "type": "modular-slider",
       "blocks": {
+        "text_medium_kBBDit": {
+          "type": "text_medium",
+          "settings": {
+            "heading": "Slide Heading",
+            "text": "<p>Add your text here</p>",
+            "background_color": "#eeeeee",
+            "text_color": "#333333",
+            "link": ""
+          }
+        },
         "image_small_7jxw4a": {
           "type": "image_small",
           "settings": {
@@ -36,6 +46,7 @@
         }
       },
       "block_order": [
+        "text_medium_kBBDit",
         "image_small_7jxw4a",
         "image_medium_C7NcX3",
         "image_large_RpPxUd"
