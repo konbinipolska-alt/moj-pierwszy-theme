@@ -11,6 +11,34 @@
   "sections": {
     "main": {
       "type": "modular-slider",
+      "blocks": {
+        "image_small_ckqbtK": {
+          "type": "image_small",
+          "settings": {
+            "link": "",
+            "alt_text": "Image slide"
+          }
+        },
+        "image_medium_M8ixAB": {
+          "type": "image_medium",
+          "settings": {
+            "link": "",
+            "alt_text": "Image slide"
+          }
+        },
+        "image_large_GkRHYf": {
+          "type": "image_large",
+          "settings": {
+            "link": "",
+            "alt_text": "Image slide"
+          }
+        }
+      },
+      "block_order": [
+        "image_small_ckqbtK",
+        "image_medium_M8ixAB",
+        "image_large_GkRHYf"
+      ],
       "settings": {
         "show_arrows": true
       }
