@@ -31,6 +31,16 @@
             "link": ""
           }
         },
+        "content_slide_cPYTdi": {
+          "type": "content_slide",
+          "settings": {
+            "heading": "Slide Heading",
+            "text": "<p>Add your text here</p>",
+            "background_color": "#eeeeee",
+            "text_color": "#333333",
+            "link": ""
+          }
+        },
         "image_slide_1": {
           "type": "image_slide",
           "settings": {
@@ -51,6 +61,7 @@
       "block_order": [
         "content_slide_1",
         "product_slide_aNLdYJ",
+        "content_slide_cPYTdi",
         "image_slide_1",
         "product_slide_1"
       ],
