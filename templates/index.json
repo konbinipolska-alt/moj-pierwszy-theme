@@ -3,93 +3,12 @@
     "main": {
       "type": "image-slider",
       "settings": {
+        "slide_count": 3,
         "show_arrows": true,
-        "corner_style": "rounded"
-      },
-      "blocks": {
-        "image_1": {
-          "type": "image",
-          "settings": {
-            "background_color": "#ff6b6b",
-            "caption": "1"
-          }
-        },
-        "image_2": {
-          "type": "image",
-          "settings": {
-            "background_color": "#4ecdc4",
-            "caption": "2"
-          }
-        },
-        "image_3": {
-          "type": "image",
-          "settings": {
-            "background_color": "#45b7d1",
-            "caption": "3"
-          }
-        },
-        "image_4": {
-          "type": "image",
-          "settings": {
-            "background_color": "#96ceb4",
-            "caption": "4"
-          }
-        },
-        "image_5": {
-          "type": "image",
-          "settings": {
-            "background_color": "#feca57",
-            "caption": "5"
-          }
-        },
-        "image_6": {
-          "type": "image",
-          "settings": {
-            "background_color": "#ff9ff3",
-            "caption": "6"
-          }
-        },
-        "image_7": {
-          "type": "image",
-          "settings": {
-            "background_color": "#54a0ff",
-            "caption": "7"
-          }
-        },
-        "image_8": {
-          "type": "image",
-          "settings": {
-            "background_color": "#5f27cd",
-            "caption": "8"
-          }
-        },
-        "image_9": {
-          "type": "image",
-          "settings": {
-            "background_color": "#00d2d3",
-            "caption": "9"
-          }
-        },
-        "image_10": {
-          "type": "image",
-          "settings": {
-            "background_color": "#ff9f43",
-            "caption": "10"
-          }
-        }
-      },
-      "block_order": [
-        "image_1",
-        "image_2",
-        "image_3",
-        "image_4",
-        "image_5",
-        "image_6",
-        "image_7",
-        "image_8",
-        "image_9",
-        "image_10"
-      ]
+        "slide_1_color": "#ff6b6b",
+        "slide_2_color": "#4ecdc4",
+        "slide_3_color": "#45b7d1"
+      }
     },
     "categories": {
       "type": "categories",
@@ -219,14 +138,6 @@
         "category_15"
       ]
     },
-    "divider": {
-      "type": "divider",
-      "settings": {}
-    },
-    "divider2": {
-      "type": "divider",
-      "settings": {}
-    },
     "content": {
       "type": "content-section",
       "settings": {
@@ -237,9 +148,7 @@
   },
   "order": [
     "main",
-    "divider",
     "categories",
-    "divider2",
     "content"
   ]
 }
