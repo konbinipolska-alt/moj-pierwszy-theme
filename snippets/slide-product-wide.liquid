@@ -5,7 +5,7 @@
 
 {% if block.settings.product %}
   <a href="{{ block.settings.product.url }}" class="slide-link">
-    <div class="slide-product product-slide-wide">
+    <div class="slide-wide product-slide-wide">
       {% if block.settings.custom_image %}
         <div class="product-image">
           {{ block.settings.custom_image | image_url: width: 1920 | image_tag: 
@@ -46,7 +46,7 @@
 {% endif %}
 
 <style>
-  .slide-product {
+  .slide-wide {
     width: 100%;
     height: 100%;
     display: flex;

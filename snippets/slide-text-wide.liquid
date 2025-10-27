@@ -7,7 +7,7 @@
   <a href="{{ block.settings.link }}" class="slide-link">
 {% endif %}
 
-<div class="slide-text text-slide-wide" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }};">
+<div class="slide-wide text-slide-wide" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }};">
   <div class="slide-text-content">
     {% if block.settings.heading != blank or block.settings.text != blank %}
       {% if block.settings.heading != blank %}
@@ -35,7 +35,7 @@
 {% endif %}
 
 <style>
-  .slide-text {
+  .slide-wide {
     width: 100%;
     height: 100%;
     display: flex;

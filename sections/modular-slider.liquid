@@ -82,13 +82,14 @@
     overflow: hidden;
   }
   
-  /* Wide slides - override the base slide width */
-  .slide.wide-slide,
-  .slide.image-slide-wide,
-  .slide.text-slide-wide,
-  .slide.video-slide-wide,
-  .slide.product-slide-wide {
-    width: calc(((600px * 9) / 16) * 2 + 12px) !important; /* 2x normal width + gap */
+  /* Wide slides - separate class for wide slides */
+  .slide-wide {
+    width: calc(((600px * 9) / 16) * 2 + 12px); /* 2x normal width + gap */
+    height: 600px;
+    flex-shrink: 0;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   /* Navigation arrows */
@@ -136,12 +137,9 @@
       height: 500px;
     }
     
-    .slide.wide-slide,
-    .slide.image-slide-wide,
-    .slide.text-slide-wide,
-    .slide.video-slide-wide,
-    .slide.product-slide-wide {
-      width: calc(((500px * 9) / 16) * 2 + 12px) !important;
+    .slide-wide {
+      width: calc(((500px * 9) / 16) * 2 + 12px);
+      height: 500px;
     }
   }
 
@@ -158,12 +156,9 @@
       height: 400px;
     }
     
-    .slide.wide-slide,
-    .slide.image-slide-wide,
-    .slide.text-slide-wide,
-    .slide.video-slide-wide,
-    .slide.product-slide-wide {
-      width: calc(((400px * 9) / 16) * 2 + 12px) !important;
+    .slide-wide {
+      width: calc(((400px * 9) / 16) * 2 + 12px);
+      height: 400px;
     }
     
     .slider-arrow {
@@ -187,21 +182,21 @@
    * Handles navigation for modular slider with different slide types
    */
   class ModularSlider {
-    constructor(container) {
-      this.container = container;
-      this.sliderWrapper = container.querySelector('.slider-wrapper');
-      this.slides = container.querySelectorAll('.slide');
-      this.prevArrow = container.querySelector('.slider-arrow--prev');
-      this.nextArrow = container.querySelector('.slider-arrow--next');
-      
-      this.currentIndex = 0;
-      this.isTransitioning = false;
-      
-      if (this.slides.length <= 1) return;
-      
-      this.bindEvents();
-      this.updateSlider();
-    }
+           constructor(container) {
+             this.container = container;
+             this.sliderWrapper = container.querySelector('.slider-wrapper');
+             this.slides = container.querySelectorAll('.slide, .slide-wide'); // Include both normal and wide slides
+             this.prevArrow = container.querySelector('.slider-arrow--prev');
+             this.nextArrow = container.querySelector('.slider-arrow--next');
+
+             this.currentIndex = 0;
+             this.isTransitioning = false;
+
+             if (this.slides.length <= 1) return;
+
+             this.bindEvents();
+             this.updateSlider();
+           }
     
     /**
      * Bind event listeners to navigation arrows
