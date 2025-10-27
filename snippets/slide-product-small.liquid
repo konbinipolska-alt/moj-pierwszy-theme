@@ -4,7 +4,7 @@
 
 {% if block.settings.product %}
   <a href="{{ block.settings.product.url }}" class="slide-link">
-    <div class="slide-small">
+    <div class="slide-small" style="display: flex; flex-direction: column; background: white; border-radius: 8px; overflow: hidden;">
       {% if block.settings.product.featured_image %}
         <div class="product-image">
           {{ block.settings.product.featured_image | image_url: width: 1920 | image_tag: 
@@ -24,7 +24,7 @@
     </div>
   </a>
 {% else %}
-  <div class="slide-small">
+  <div class="slide-small" style="display: flex; flex-direction: column; background: white; border-radius: 8px; overflow: hidden;">
     <div class="slide-empty">
       <div class="empty-icon">🛍️</div>
       <div class="empty-text">No product selected</div>
@@ -32,84 +32,3 @@
   </div>
 {% endif %}
 
-<style>
-  .slide-small {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .product-image {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .product-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .product-info {
-    padding: 12px;
-    background: white;
-    border-top: 1px solid #e9ecef;
-  }
-
-  .product-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 6px;
-    color: #333;
-    line-height: 1.3;
-  }
-
-  .product-price {
-    font-size: 12px;
-    font-weight: 600;
-    color: #007bff;
-  }
-
-  .slide-empty {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #eeeeee;
-    color: #666;
-    text-align: center;
-  }
-
-  .empty-icon {
-    font-size: 32px;
-    margin-bottom: 8px;
-    opacity: 0.5;
-  }
-
-  .empty-text {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .slide-link {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .slide-link:hover {
-    text-decoration: none;
-  }
-
-  .slide-link:hover .product-title {
-    color: #007bff;
-  }
-</style>

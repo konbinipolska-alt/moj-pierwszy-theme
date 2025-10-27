@@ -6,7 +6,7 @@
   <a href="{{ block.settings.link }}" class="slide-link">
 {% endif %}
 
-<div class="slide-small" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }};">
+<div class="slide-small" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; display: flex; align-items: center; justify-content: center; padding: 20px; text-align: center;">
   {% if block.settings.heading != blank or block.settings.text != blank %}
     <div class="slide-content">
       {% if block.settings.heading != blank %}
@@ -28,71 +28,3 @@
   </a>
 {% endif %}
 
-<style>
-  .slide-small {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-  }
-
-  .slide-content {
-    max-width: 100%;
-  }
-
-  .slide-heading {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-
-  .slide-text {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .slide-text p {
-    margin-bottom: 8px;
-  }
-
-  .slide-text p:last-child {
-    margin-bottom: 0;
-  }
-
-  .slide-empty {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #eeeeee;
-    color: #666;
-    text-align: center;
-  }
-
-  .empty-icon {
-    font-size: 32px;
-    margin-bottom: 8px;
-    opacity: 0.5;
-  }
-
-  .empty-text {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .slide-link {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .slide-link:hover {
-    text-decoration: none;
-  }
-</style>
