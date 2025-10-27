@@ -10,94 +10,41 @@
 {
   "sections": {
     "main": {
-      "type": "modular-slider",
+      "type": "slider-container",
       "blocks": {
-        "video_large_DinaC7": {
-          "type": "video_large",
+        "content_slide_1": {
+          "type": "content_slide",
           "settings": {
-            "video_url": "",
-            "link": ""
-          }
-        },
-        "video_medium_fzgaWg": {
-          "type": "video_medium",
-          "settings": {
-            "video_url": "",
-            "link": ""
-          }
-        },
-        "video_small_nWjVKk": {
-          "type": "video_small",
-          "settings": {
-            "video_url": "",
-            "link": ""
-          }
-        },
-        "text_large_jLjpV4": {
-          "type": "text_large",
-          "settings": {
-            "heading": "Slide Heading",
-            "text": "<p>Add your text here</p>",
-            "background_color": "#eeeeee",
+            "heading": "Welcome to Konbini",
+            "text": "<p>Discover authentic Japanese flavors and premium quality products.</p>",
+            "background_color": "#e8f4fd",
             "text_color": "#333333",
             "link": ""
           }
         },
-        "text_medium_hnPzd3": {
-          "type": "text_medium",
+        "image_slide_1": {
+          "type": "image_slide",
           "settings": {
-            "heading": "Slide Heading",
-            "text": "<p>Add your text here</p>",
-            "background_color": "#eeeeee",
-            "text_color": "#333333",
+            "link": "",
+            "alt_text": "Japanese products"
+          }
+        },
+        "product_slide_1": {
+          "type": "product_slide",
+          "settings": {
+            "heading": "",
+            "text": "",
             "link": ""
-          }
-        },
-        "text_small_mfLcTb": {
-          "type": "text_small",
-          "settings": {
-            "heading": "Slide Heading",
-            "text": "<p>Add your text here</p>",
-            "background_color": "#eeeeee",
-            "text_color": "#333333",
-            "link": ""
-          }
-        },
-        "image_small_fyM7bY": {
-          "type": "image_small",
-          "settings": {
-            "link": "",
-            "alt_text": "Image slide"
-          }
-        },
-        "image_large_MhL4Fx": {
-          "type": "image_large",
-          "settings": {
-            "link": "",
-            "alt_text": "Image slide"
-          }
-        },
-        "image_medium_iURhbc": {
-          "type": "image_medium",
-          "settings": {
-            "link": "",
-            "alt_text": "Image slide"
           }
         }
       },
       "block_order": [
-        "video_large_DinaC7",
-        "video_medium_fzgaWg",
-        "video_small_nWjVKk",
-        "text_large_jLjpV4",
-        "text_medium_hnPzd3",
-        "text_small_mfLcTb",
-        "image_small_fyM7bY",
-        "image_large_MhL4Fx",
-        "image_medium_iURhbc"
+        "content_slide_1",
+        "image_slide_1",
+        "product_slide_1"
       ],
       "settings": {
-        "show_arrows": true
+        "section_title": "Featured Content"
       }
     },
     "categories": {
