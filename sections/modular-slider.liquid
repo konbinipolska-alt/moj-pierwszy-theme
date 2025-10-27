@@ -82,12 +82,13 @@
     overflow: hidden;
   }
   
+  /* Wide slides - override the base slide width */
   .slide.wide-slide,
   .slide.image-slide-wide,
   .slide.text-slide-wide,
   .slide.video-slide-wide,
   .slide.product-slide-wide {
-    width: calc(((600px * 9) / 16) * 2 + 12px); /* 2x normal width + gap */
+    width: calc(((600px * 9) / 16) * 2 + 12px) !important; /* 2x normal width + gap */
   }
 
   /* Navigation arrows */
@@ -140,7 +141,7 @@
     .slide.text-slide-wide,
     .slide.video-slide-wide,
     .slide.product-slide-wide {
-      width: calc(((500px * 9) / 16) * 2 + 12px);
+      width: calc(((500px * 9) / 16) * 2 + 12px) !important;
     }
   }
 
@@ -162,7 +163,7 @@
     .slide.text-slide-wide,
     .slide.video-slide-wide,
     .slide.product-slide-wide {
-      width: calc(((400px * 9) / 16) * 2 + 12px);
+      width: calc(((400px * 9) / 16) * 2 + 12px) !important;
     }
     
     .slider-arrow {
