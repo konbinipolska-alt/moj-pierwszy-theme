@@ -1,12 +1,12 @@
 {% comment %}
-  Text Slide Medium - 2x small + 12px gap
+  Text Slide - 9:16 aspect ratio
 {% endcomment %}
 
 {% if block.settings.link %}
   <a href="{{ block.settings.link }}" class="slide-link">
 {% endif %}
 
-<div class="slide-medium" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; display: flex; align-items: center; justify-content: center; padding: 40px; text-align: center;">
+<div class="slide" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; display: flex; align-items: center; justify-content: center; padding: 20px; text-align: center;">
   {% if block.settings.heading != blank or block.settings.text != blank %}
     <div class="slide-content">
       {% if block.settings.heading != blank %}
@@ -27,4 +27,3 @@
 {% if block.settings.link %}
   </a>
 {% endif %}
-

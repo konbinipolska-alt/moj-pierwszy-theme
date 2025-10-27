@@ -1,17 +1,17 @@
 {% comment %}
-  Image Slide Medium - 2x small + 12px gap
+  Image Slide - 9:16 aspect ratio
 {% endcomment %}
 
 {% if block.settings.link %}
   <a href="{{ block.settings.link }}" class="slide-link">
 {% endif %}
 
-<div class="slide-medium">
+<div class="slide">
   {% if block.settings.image %}
     <div class="slide-image">
       {{ block.settings.image | image_url: width: 1920 | image_tag: 
         loading: 'lazy',
-        alt: block.settings.alt_text | default: 'Medium image slide',
+        alt: block.settings.alt_text | default: 'Image slide',
         class: 'slide-img'
       }}
     </div>
@@ -26,4 +26,3 @@
 {% if block.settings.link %}
   </a>
 {% endif %}
-

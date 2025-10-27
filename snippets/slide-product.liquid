@@ -1,10 +1,10 @@
 {% comment %}
-  Product Slide Medium - 2x small + 12px gap
+  Product Slide - 9:16 aspect ratio
 {% endcomment %}
 
 {% if block.settings.product %}
   <a href="{{ block.settings.product.url }}" class="slide-link">
-    <div class="slide-medium" style="display: flex; flex-direction: column; background: white; border-radius: 8px; overflow: hidden;">
+    <div class="slide" style="display: flex; flex-direction: column; background: white; border-radius: 8px; overflow: hidden;">
       {% if block.settings.product.featured_image %}
         <div class="product-image">
           {{ block.settings.product.featured_image | image_url: width: 1920 | image_tag: 
@@ -24,11 +24,10 @@
     </div>
   </a>
 {% else %}
-  <div class="slide-medium" style="display: flex; flex-direction: column; background: white; border-radius: 8px; overflow: hidden;">
+  <div class="slide" style="display: flex; flex-direction: column; background: white; border-radius: 8px; overflow: hidden;">
     <div class="slide-empty">
       <div class="empty-icon">🛍️</div>
       <div class="empty-text">No product selected</div>
     </div>
   </div>
 {% endif %}
-

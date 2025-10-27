@@ -1,12 +1,12 @@
 {% comment %}
-  Video Slide Large - 3x small + 24px gap
+  Video Slide - 9:16 aspect ratio
 {% endcomment %}
 
 {% if block.settings.link %}
   <a href="{{ block.settings.link }}" class="slide-link">
 {% endif %}
 
-<div class="slide-large">
+<div class="slide">
   {% if block.settings.video_url %}
     <div class="slide-video">
       {{ block.settings.video_url | video_tag: 
@@ -28,4 +28,3 @@
 {% if block.settings.link %}
   </a>
 {% endif %}
-
