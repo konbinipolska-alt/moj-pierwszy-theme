@@ -12,22 +12,22 @@
     "main": {
       "type": "modular-slider",
       "blocks": {
-        "image_small_ckqbtK": {
-          "type": "image_small",
+        "image_large_RpPxUd": {
+          "type": "image_large",
           "settings": {
             "link": "",
             "alt_text": "Image slide"
           }
         },
-        "image_medium_M8ixAB": {
+        "image_medium_C7NcX3": {
           "type": "image_medium",
           "settings": {
             "link": "",
             "alt_text": "Image slide"
           }
         },
-        "image_large_GkRHYf": {
-          "type": "image_large",
+        "image_small_7jxw4a": {
+          "type": "image_small",
           "settings": {
             "link": "",
             "alt_text": "Image slide"
@@ -35,9 +35,9 @@
         }
       },
       "block_order": [
-        "image_small_ckqbtK",
-        "image_medium_M8ixAB",
-        "image_large_GkRHYf"
+        "image_large_RpPxUd",
+        "image_medium_C7NcX3",
+        "image_small_7jxw4a"
       ],
       "settings": {
         "show_arrows": true
