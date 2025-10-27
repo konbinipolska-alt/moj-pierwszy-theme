@@ -11,13 +11,11 @@
   "sections": {
     "main": {
       "type": "modular-slider",
-      "settings": {
-        "show_arrows": true
-      },
       "blocks": {
         "slide_1": {
           "type": "image_slide",
           "settings": {
+            "link": "",
             "alt_text": "Slide 1"
           }
         },
@@ -26,22 +24,52 @@
           "settings": {
             "heading": "Welcome to Konbini",
             "text": "<p>Discover authentic Japanese flavors and premium quality products.</p>",
+            "link": "",
             "background_color": "#f8f9fa",
             "text_color": "#333333"
+          }
+        },
+        "video_slide_UNMUg8": {
+          "type": "video_slide",
+          "settings": {
+            "link": ""
+          }
+        },
+        "product_slide_Ab3qFi": {
+          "type": "product_slide",
+          "settings": {
+            "product": ""
           }
         },
         "slide_3": {
           "type": "image_slide",
           "settings": {
+            "link": "",
             "alt_text": "Slide 3"
+          }
+        },
+        "text_slide_9dATnb": {
+          "type": "text_slide",
+          "settings": {
+            "heading": "Welcome to Konbini",
+            "text": "<p>Discover authentic Japanese flavors and premium quality products.</p>",
+            "link": "",
+            "background_color": "#f8f9fa",
+            "text_color": "#333333"
           }
         }
       },
       "block_order": [
         "slide_1",
         "slide_2",
-        "slide_3"
-      ]
+        "video_slide_UNMUg8",
+        "product_slide_Ab3qFi",
+        "slide_3",
+        "text_slide_9dATnb"
+      ],
+      "settings": {
+        "show_arrows": true
+      }
     },
     "categories": {
       "type": "categories",
