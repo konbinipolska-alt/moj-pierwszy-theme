@@ -1,0 +1,131 @@
+{% comment %}
+  Image Slide Small Snippet
+  Renders a small image slide (9:16 aspect ratio)
+{% endcomment %}
+
+{% if block.settings.link %}
+  <a href="{{ block.settings.link }}" class="slide-link">
+{% endif %}
+
+<div class="slide-small">
+  {% if block.settings.image %}
+    <div class="slide-image">
+      {{ block.settings.image | image_url: width: 1920 | image_tag: 
+        loading: 'lazy',
+        alt: block.settings.alt_text | default: 'Small slider image',
+        class: 'slide-img'
+      }}
+    </div>
+  {% else %}
+    {% comment %} Empty state - no image provided {% endcomment %}
+    <div class="slide-color empty-state" style="background-color: #eeeeee;">
+      <div class="slide-content">
+        <div class="empty-state-icon">📷</div>
+        <div class="empty-state-text">No image selected</div>
+        <div class="empty-state-subtext">Add an image in the theme editor</div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% if block.settings.link %}
+  </a>
+{% endif %}
+
+<style>
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .slide-color {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .slide-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+  }
+
+  .slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .slide-link:hover {
+    text-decoration: none;
+  }
+  
+  /* Empty state styles */
+  .empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #666;
+  }
+  
+  .empty-state-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+  
+  .empty-state-text {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  
+  .empty-state-subtext {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .empty-state-icon {
+      font-size: 28px;
+    }
+    
+    .empty-state-text {
+      font-size: 12px;
+    }
+    
+    .empty-state-subtext {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .empty-state-icon {
+      font-size: 24px;
+    }
+    
+    .empty-state-text {
+      font-size: 11px;
+    }
+    
+    .empty-state-subtext {
+      font-size: 9px;
+    }
+  }
+</style>
