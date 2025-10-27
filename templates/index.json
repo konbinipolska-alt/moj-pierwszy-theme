@@ -12,32 +12,47 @@
     "main": {
       "type": "modular-slider",
       "blocks": {
-        "image_small_ckqbtK": {
-          "type": "image_small",
+        "text_small_1": {
+          "type": "text_small",
           "settings": {
-            "link": "",
-            "alt_text": "Image slide"
+            "heading": "Small Text Slide",
+            "text": "<p>This is a small text slide with 9:16 aspect ratio</p>",
+            "background_color": "#e8f4fd",
+            "text_color": "#333333",
+            "link": ""
           }
         },
-        "image_medium_M8ixAB": {
+        "image_medium_1": {
           "type": "image_medium",
           "settings": {
             "link": "",
-            "alt_text": "Image slide"
+            "alt_text": "Medium image slide"
           }
         },
-        "image_large_GkRHYf": {
-          "type": "image_large",
+        "text_large_1": {
+          "type": "text_large",
           "settings": {
-            "link": "",
-            "alt_text": "Image slide"
+            "heading": "Large Text Slide",
+            "text": "<p>This is a large text slide that takes up 3x small width plus gaps</p>",
+            "background_color": "#f0f8ff",
+            "text_color": "#333333",
+            "link": ""
+          }
+        },
+        "product_small_1": {
+          "type": "product_small",
+          "settings": {
+            "heading": "",
+            "text": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "image_small_ckqbtK",
-        "image_medium_M8ixAB",
-        "image_large_GkRHYf"
+        "text_small_1",
+        "image_medium_1", 
+        "text_large_1",
+        "product_small_1"
       ],
       "settings": {
         "show_arrows": true
