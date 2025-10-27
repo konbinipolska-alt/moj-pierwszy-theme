@@ -32,12 +32,45 @@
             "link": "",
             "alt_text": "Image slide"
           }
+        },
+        "text_small_DbkTQX": {
+          "type": "text_small",
+          "settings": {
+            "heading": "Slide Heading",
+            "text": "<p>Add your text here</p>",
+            "background_color": "#eeeeee",
+            "text_color": "#333333",
+            "link": ""
+          }
+        },
+        "text_medium_iYfRbU": {
+          "type": "text_medium",
+          "settings": {
+            "heading": "Slide Heading",
+            "text": "<p>Add your text here</p>",
+            "background_color": "#eeeeee",
+            "text_color": "#333333",
+            "link": ""
+          }
+        },
+        "text_large_UKAKYB": {
+          "type": "text_large",
+          "settings": {
+            "heading": "Slide Heading",
+            "text": "<p>Add your text here</p>",
+            "background_color": "#eeeeee",
+            "text_color": "#333333",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "image_small_JXEpKb",
         "image_medium_8RwfDm",
-        "image_large_MjGb7U"
+        "image_large_MjGb7U",
+        "text_small_DbkTQX",
+        "text_medium_iYfRbU",
+        "text_large_UKAKYB"
       ],
       "settings": {
         "show_arrows": true
