@@ -12,9 +12,10 @@
     "main": {
       "type": "modular-slider",
       "blocks": {
-        "image_large_RpPxUd": {
-          "type": "image_large",
+        "image_small_7jxw4a": {
+          "type": "image_small",
           "settings": {
+            "image": "shopify://shop_images/image.png",
             "link": "",
             "alt_text": "Image slide"
           }
@@ -26,8 +27,8 @@
             "alt_text": "Image slide"
           }
         },
-        "image_small_7jxw4a": {
-          "type": "image_small",
+        "image_large_RpPxUd": {
+          "type": "image_large",
           "settings": {
             "link": "",
             "alt_text": "Image slide"
@@ -35,9 +36,9 @@
         }
       },
       "block_order": [
-        "image_large_RpPxUd",
+        "image_small_7jxw4a",
         "image_medium_C7NcX3",
-        "image_small_7jxw4a"
+        "image_large_RpPxUd"
       ],
       "settings": {
         "show_arrows": true
