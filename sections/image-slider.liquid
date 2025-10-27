@@ -10,26 +10,14 @@
         {% assign slide_image_key = 'slide_' | append: i | append: '_image' %}
         {% assign slide_color_key = 'slide_' | append: i | append: '_color' %}
         {% assign slide_link_key = 'slide_' | append: i | append: '_link' %}
-        {% assign slide_product_key = 'slide_' | append: i | append: '_product' %}
-        {% assign slide_collection_key = 'slide_' | append: i | append: '_collection' %}
         
         {% assign slide_image = section.settings[slide_image_key] %}
         {% assign slide_color = section.settings[slide_color_key] %}
         {% assign slide_link = section.settings[slide_link_key] %}
-        {% assign slide_product = section.settings[slide_product_key] %}
-        {% assign slide_collection = section.settings[slide_collection_key] %}
-        
-        {% comment %} Determine the final link URL {% endcomment %}
-        {% assign final_link = slide_link %}
-        {% if slide_product %}
-          {% assign final_link = slide_product.url %}
-        {% elsif slide_collection %}
-          {% assign final_link = slide_collection.url %}
-        {% endif %}
         
         <div class="slide" data-slide="{{ forloop.index0 }}">
-          {% if final_link %}
-            <a href="{{ final_link }}" class="slide-link">
+          {% if slide_link %}
+            <a href="{{ slide_link }}" class="slide-link">
           {% endif %}
           
           {% if slide_image %}
@@ -48,7 +36,7 @@
             </div>
           {% endif %}
           
-          {% if final_link %}
+          {% if slide_link %}
             </a>
           {% endif %}
         </div>
@@ -359,16 +347,6 @@
       "label": "Slide 1 Link"
     },
     {
-      "type": "product",
-      "id": "slide_1_product",
-      "label": "Slide 1 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_1_collection",
-      "label": "Slide 1 Collection"
-    },
-    {
       "type": "header",
       "content": "Slide 2 Settings"
     },
@@ -387,16 +365,6 @@
       "type": "url",
       "id": "slide_2_link",
       "label": "Slide 2 Link"
-    },
-    {
-      "type": "product",
-      "id": "slide_2_product",
-      "label": "Slide 2 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_2_collection",
-      "label": "Slide 2 Collection"
     },
     {
       "type": "header",
@@ -419,16 +387,6 @@
       "label": "Slide 3 Link"
     },
     {
-      "type": "product",
-      "id": "slide_3_product",
-      "label": "Slide 3 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_3_collection",
-      "label": "Slide 3 Collection"
-    },
-    {
       "type": "header",
       "content": "Slide 4 Settings"
     },
@@ -447,16 +405,6 @@
       "type": "url",
       "id": "slide_4_link",
       "label": "Slide 4 Link"
-    },
-    {
-      "type": "product",
-      "id": "slide_4_product",
-      "label": "Slide 4 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_4_collection",
-      "label": "Slide 4 Collection"
     },
     {
       "type": "header",
@@ -479,16 +427,6 @@
       "label": "Slide 5 Link"
     },
     {
-      "type": "product",
-      "id": "slide_5_product",
-      "label": "Slide 5 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_5_collection",
-      "label": "Slide 5 Collection"
-    },
-    {
       "type": "header",
       "content": "Slide 6 Settings"
     },
@@ -507,16 +445,6 @@
       "type": "url",
       "id": "slide_6_link",
       "label": "Slide 6 Link"
-    },
-    {
-      "type": "product",
-      "id": "slide_6_product",
-      "label": "Slide 6 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_6_collection",
-      "label": "Slide 6 Collection"
     },
     {
       "type": "header",
@@ -539,16 +467,6 @@
       "label": "Slide 7 Link"
     },
     {
-      "type": "product",
-      "id": "slide_7_product",
-      "label": "Slide 7 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_7_collection",
-      "label": "Slide 7 Collection"
-    },
-    {
       "type": "header",
       "content": "Slide 8 Settings"
     },
@@ -567,16 +485,6 @@
       "type": "url",
       "id": "slide_8_link",
       "label": "Slide 8 Link"
-    },
-    {
-      "type": "product",
-      "id": "slide_8_product",
-      "label": "Slide 8 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_8_collection",
-      "label": "Slide 8 Collection"
     },
     {
       "type": "header",
@@ -599,16 +507,6 @@
       "label": "Slide 9 Link"
     },
     {
-      "type": "product",
-      "id": "slide_9_product",
-      "label": "Slide 9 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_9_collection",
-      "label": "Slide 9 Collection"
-    },
-    {
       "type": "header",
       "content": "Slide 10 Settings"
     },
@@ -627,16 +525,6 @@
       "type": "url",
       "id": "slide_10_link",
       "label": "Slide 10 Link"
-    },
-    {
-      "type": "product",
-      "id": "slide_10_product",
-      "label": "Slide 10 Product"
-    },
-    {
-      "type": "collection",
-      "id": "slide_10_collection",
-      "label": "Slide 10 Collection"
     }
   ],
   "presets": [
