@@ -1,0 +1,481 @@
+{% comment %}
+  Image Slider Section
+  Configurable slider with dynamic slides, images/colors, responsive design
+{% endcomment %}
+
+<div class="image-slider-section">
+  <div class="slider-container">
+    <div class="slider-wrapper">
+      {% for i in (1..section.settings.slide_count) %}
+        {% assign slide_image_key = 'slide_' | append: i | append: '_image' %}
+        {% assign slide_link_key = 'slide_' | append: i | append: '_link' %}
+        
+        {% assign slide_image = section.settings[slide_image_key] %}
+        {% assign slide_link = section.settings[slide_link_key] %}
+        
+        {% comment %} Auto-assign gray scale colors (10%, 20%, 30%, ..., 90%) {% endcomment %}
+        {% assign gray_percentage = i | times: 10 %}
+        {% assign slide_color = 'rgb(' | append: gray_percentage | append: '%, ' | append: gray_percentage | append: '%, ' | append: gray_percentage | append: '%)' %}
+        
+        <div class="slide" data-slide="{{ forloop.index0 }}">
+          {% if slide_link %}
+            <a href="{{ slide_link }}" class="slide-link">
+          {% endif %}
+          
+          {% if slide_image %}
+            <div class="slide-image">
+              {{ slide_image | image_url: width: 1920 | image_tag: 
+                loading: 'lazy',
+                alt: slide_image.alt | default: 'Slider image',
+                class: 'slide-img'
+              }}
+            </div>
+          {% else %}
+            <div class="slide-color" style="background-color: {{ slide_color }};">
+              <div class="slide-content">
+                <div class="slide-caption">{{ i }}</div>
+              </div>
+            </div>
+          {% endif %}
+          
+          {% if slide_link %}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.slide_count > 1 %}
+      <!-- Navigation arrows -->
+      <button class="slider-arrow slider-arrow--prev" aria-label="Previous slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="slider-arrow slider-arrow--next" aria-label="Next slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .image-slider-section {
+    position: relative;
+    margin-top: 80px;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  .slider-container {
+    position: relative;
+    width: calc(100vw - 96px);
+    margin: 0 48px;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .slider-wrapper {
+    display: flex;
+    height: 100%;
+    width: max-content;
+    gap: 12px;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .slide {
+    width: calc((600px * 9) / 16);
+    height: 600px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .slide-link:hover {
+    text-decoration: none;
+  }
+
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .slide-color {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .slide-caption {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .slider-arrow:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .slider-arrow--prev {
+    left: 16px;
+  }
+
+  .slider-arrow--next {
+    right: 16px;
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .slider-container {
+      width: calc(100vw - 64px);
+      margin: 0 32px;
+      height: 500px;
+    }
+    
+    .slide {
+      width: calc((500px * 9) / 16);
+      height: 500px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .slider-container {
+      width: calc(100vw - 40px);
+      margin: 0 20px;
+      height: 400px;
+    }
+    
+    .slide {
+      width: calc((400px * 9) / 16);
+      height: 400px;
+    }
+    
+    .slider-arrow {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .slider-arrow--prev {
+      left: 12px;
+    }
+    
+    .slider-arrow--next {
+      right: 12px;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  /**
+   * Simple Image Slider
+   * Features: Basic slide navigation with modulo-based infinite loop
+   */
+  class SimpleSlider {
+    constructor(container) {
+      this.container = container;
+      this.wrapper = container.querySelector('.slider-wrapper');
+      this.slides = container.querySelectorAll('.slide');
+      this.prevArrow = container.querySelector('.slider-arrow--prev');
+      this.nextArrow = container.querySelector('.slider-arrow--next');
+      
+      this.currentIndex = 0;
+      this.isTransitioning = false;
+      
+      if (this.slides.length <= 1) return;
+      
+      this.bindEvents();
+      this.updateSlider();
+    }
+
+    /**
+     * Bind event listeners to navigation arrows
+     */
+    bindEvents() {
+      if (this.prevArrow) {
+        this.prevArrow.addEventListener('click', () => this.prevSlide());
+      }
+      
+      if (this.nextArrow) {
+        this.nextArrow.addEventListener('click', () => this.nextSlide());
+      }
+    }
+
+    /**
+     * Move to next slide using modulo for infinite loop
+     */
+    nextSlide() {
+      if (this.isTransitioning) return;
+      
+      this.isTransitioning = true;
+      this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+      this.updateSlider();
+      
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 400);
+    }
+
+    /**
+     * Move to previous slide using modulo for infinite loop
+     */
+    prevSlide() {
+      if (this.isTransitioning) return;
+      
+      this.isTransitioning = true;
+      this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+      this.updateSlider();
+      
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 400);
+    }
+
+    /**
+     * Update slider position based on current index
+     */
+    updateSlider() {
+      if (this.slides.length === 0) return;
+      
+      const slideWidth = this.slides[0].offsetWidth;
+      const gap = 12;
+      const translateX = -this.currentIndex * (slideWidth + gap);
+      
+      this.wrapper.style.transform = `translateX(${translateX}px)`;
+    }
+  }
+
+  /**
+   * Initialize all sliders on the page
+   */
+  function initSliders() {
+    const sliders = document.querySelectorAll('.image-slider-section');
+    sliders.forEach(slider => {
+      if (!slider.dataset.sliderInitialized) {
+        slider.dataset.sliderInitialized = 'true';
+        new SimpleSlider(slider);
+      }
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSliders);
+  } else {
+    initSliders();
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Image Slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "slide_count",
+      "label": "Number of slides",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Slide 1 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1_image",
+      "label": "Slide 1 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_1_link",
+      "label": "Slide 1 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_image",
+      "label": "Slide 2 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_2_link",
+      "label": "Slide 2 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_image",
+      "label": "Slide 3 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_3_link",
+      "label": "Slide 3 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_4_image",
+      "label": "Slide 4 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_4_link",
+      "label": "Slide 4 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 5 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_5_image",
+      "label": "Slide 5 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_5_link",
+      "label": "Slide 5 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 6 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_6_image",
+      "label": "Slide 6 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_6_link",
+      "label": "Slide 6 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 7 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_7_image",
+      "label": "Slide 7 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_7_link",
+      "label": "Slide 7 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 8 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_8_image",
+      "label": "Slide 8 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_8_link",
+      "label": "Slide 8 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 9 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_9_image",
+      "label": "Slide 9 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_9_link",
+      "label": "Slide 9 Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 10 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_10_image",
+      "label": "Slide 10 Image"
+    },
+    {
+      "type": "url",
+      "id": "slide_10_link",
+      "label": "Slide 10 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Slider",
+      "settings": {
+        "slide_count": 3
+      }
+    }
+  ]
+}
+{% endschema %}

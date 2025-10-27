@@ -1,0 +1,103 @@
+{% comment %}
+  Text Slide Snippet
+  Renders a text slide with heading, text, and optional link
+{% endcomment %}
+
+{% if block.settings.link %}
+  <a href="{{ block.settings.link }}" class="slide-link">
+{% endif %}
+
+<div class="slide-text" style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }};">
+  <div class="slide-text-content">
+    {% if block.settings.heading != blank %}
+      <h2 class="slide-heading">{{ block.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if block.settings.text != blank %}
+      <div class="slide-text-body">
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% if block.settings.link %}
+  </a>
+{% endif %}
+
+<style>
+  .slide-text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .slide-text-content {
+    max-width: 100%;
+  }
+
+  .slide-heading {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .slide-text-body {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .slide-text-body p {
+    margin-bottom: 15px;
+  }
+
+  .slide-text-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .slide-link:hover {
+    text-decoration: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .slide-text {
+      padding: 30px;
+    }
+    
+    .slide-heading {
+      font-size: 28px;
+    }
+    
+    .slide-text-body {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .slide-text {
+      padding: 20px;
+    }
+    
+    .slide-heading {
+      font-size: 24px;
+    }
+    
+    .slide-text-body {
+      font-size: 14px;
+    }
+  }
+</style>
