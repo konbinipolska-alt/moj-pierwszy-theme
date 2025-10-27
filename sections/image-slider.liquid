@@ -8,12 +8,14 @@
     <div class="slider-wrapper">
       {% for i in (1..section.settings.slide_count) %}
         {% assign slide_image_key = 'slide_' | append: i | append: '_image' %}
-        {% assign slide_color_key = 'slide_' | append: i | append: '_color' %}
         {% assign slide_link_key = 'slide_' | append: i | append: '_link' %}
         
         {% assign slide_image = section.settings[slide_image_key] %}
-        {% assign slide_color = section.settings[slide_color_key] %}
         {% assign slide_link = section.settings[slide_link_key] %}
+        
+        {% comment %} Auto-assign gray scale colors (10%, 20%, 30%, ..., 90%) {% endcomment %}
+        {% assign gray_percentage = i | times: 10 %}
+        {% assign slide_color = 'rgb(' | append: gray_percentage | append: '%, ' | append: gray_percentage | append: '%, ' | append: gray_percentage | append: '%)' %}
         
         <div class="slide" data-slide="{{ forloop.index0 }}">
           {% if slide_link %}
@@ -336,12 +338,6 @@
       "label": "Slide 1 Image"
     },
     {
-      "type": "color",
-      "id": "slide_1_color",
-      "label": "Slide 1 Color",
-      "default": "#ff6b6b"
-    },
-    {
       "type": "url",
       "id": "slide_1_link",
       "label": "Slide 1 Link"
@@ -354,12 +350,6 @@
       "type": "image_picker",
       "id": "slide_2_image",
       "label": "Slide 2 Image"
-    },
-    {
-      "type": "color",
-      "id": "slide_2_color",
-      "label": "Slide 2 Color",
-      "default": "#4ecdc4"
     },
     {
       "type": "url",
@@ -376,12 +366,6 @@
       "label": "Slide 3 Image"
     },
     {
-      "type": "color",
-      "id": "slide_3_color",
-      "label": "Slide 3 Color",
-      "default": "#45b7d1"
-    },
-    {
       "type": "url",
       "id": "slide_3_link",
       "label": "Slide 3 Link"
@@ -394,12 +378,6 @@
       "type": "image_picker",
       "id": "slide_4_image",
       "label": "Slide 4 Image"
-    },
-    {
-      "type": "color",
-      "id": "slide_4_color",
-      "label": "Slide 4 Color",
-      "default": "#96ceb4"
     },
     {
       "type": "url",
@@ -416,12 +394,6 @@
       "label": "Slide 5 Image"
     },
     {
-      "type": "color",
-      "id": "slide_5_color",
-      "label": "Slide 5 Color",
-      "default": "#feca57"
-    },
-    {
       "type": "url",
       "id": "slide_5_link",
       "label": "Slide 5 Link"
@@ -434,12 +406,6 @@
       "type": "image_picker",
       "id": "slide_6_image",
       "label": "Slide 6 Image"
-    },
-    {
-      "type": "color",
-      "id": "slide_6_color",
-      "label": "Slide 6 Color",
-      "default": "#ff9ff3"
     },
     {
       "type": "url",
@@ -456,12 +422,6 @@
       "label": "Slide 7 Image"
     },
     {
-      "type": "color",
-      "id": "slide_7_color",
-      "label": "Slide 7 Color",
-      "default": "#54a0ff"
-    },
-    {
       "type": "url",
       "id": "slide_7_link",
       "label": "Slide 7 Link"
@@ -474,12 +434,6 @@
       "type": "image_picker",
       "id": "slide_8_image",
       "label": "Slide 8 Image"
-    },
-    {
-      "type": "color",
-      "id": "slide_8_color",
-      "label": "Slide 8 Color",
-      "default": "#5f27cd"
     },
     {
       "type": "url",
@@ -496,12 +450,6 @@
       "label": "Slide 9 Image"
     },
     {
-      "type": "color",
-      "id": "slide_9_color",
-      "label": "Slide 9 Color",
-      "default": "#00d2d3"
-    },
-    {
       "type": "url",
       "id": "slide_9_link",
       "label": "Slide 9 Link"
@@ -516,12 +464,6 @@
       "label": "Slide 10 Image"
     },
     {
-      "type": "color",
-      "id": "slide_10_color",
-      "label": "Slide 10 Color",
-      "default": "#ff6348"
-    },
-    {
       "type": "url",
       "id": "slide_10_link",
       "label": "Slide 10 Link"
@@ -531,10 +473,7 @@
     {
       "name": "Image Slider",
       "settings": {
-        "slide_count": 3,
-        "slide_1_color": "#ff6b6b",
-        "slide_2_color": "#4ecdc4",
-        "slide_3_color": "#45b7d1"
+        "slide_count": 3
       }
     }
   ]
