@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "image-slider",
+      "type": "image-slider-simple",
       "blocks": {
         "image_slide_1": {
           "type": "image_slide",
