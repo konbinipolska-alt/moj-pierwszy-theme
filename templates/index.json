@@ -10,64 +10,36 @@
 {
   "sections": {
     "main": {
-      "type": "slider-container",
+      "type": "image-slider",
       "blocks": {
-        "content_slide_1": {
-          "type": "content_slide",
-          "settings": {
-            "heading": "Welcome to Konbini",
-            "text": "<p>Discover authentic Japanese flavors and premium quality products.</p>",
-            "background_color": "#e8f4fd",
-            "text_color": "#333333",
-            "link": ""
-          }
-        },
-        "product_slide_aNLdYJ": {
-          "type": "product_slide",
-          "settings": {
-            "product": "",
-            "heading": "vsdvs",
-            "text": "<p>vcxvsd </p>",
-            "link": ""
-          }
-        },
-        "content_slide_cPYTdi": {
-          "type": "content_slide",
-          "settings": {
-            "heading": "Slide Heading",
-            "text": "<p>Add your text here</p>",
-            "background_color": "#eeeeee",
-            "text_color": "#333333",
-            "link": ""
-          }
-        },
         "image_slide_1": {
           "type": "image_slide",
           "settings": {
             "link": "",
-            "alt_text": "Japanese products"
+            "alt_text": "Slide 1"
           }
         },
-        "product_slide_1": {
-          "type": "product_slide",
+        "image_slide_2": {
+          "type": "image_slide",
           "settings": {
-            "product": "",
-            "heading": "",
-            "text": "",
-            "link": ""
+            "link": "",
+            "alt_text": "Slide 2"
+          }
+        },
+        "image_slide_3": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide 3"
           }
         }
       },
       "block_order": [
-        "content_slide_1",
-        "product_slide_aNLdYJ",
-        "content_slide_cPYTdi",
         "image_slide_1",
-        "product_slide_1"
+        "image_slide_2",
+        "image_slide_3"
       ],
-      "settings": {
-        "section_title": "Featured Content"
-      }
+      "settings": {}
     },
     "categories": {
       "type": "categories",
