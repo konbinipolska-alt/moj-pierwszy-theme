@@ -22,6 +22,7 @@
               alt="{{ block.settings.alt_text | default: 'Slide image' }}"
               loading="lazy"
               class="slide-image"
+              style="object-fit: {{ block.settings.image_fit | default: 'cover' }};"
             >
             
             {% if block.settings.link != blank %}
@@ -88,7 +89,6 @@
   .slide-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     object-position: center;
     display: block;
   }
@@ -166,6 +166,22 @@
           "id": "alt_text",
           "label": "Alt text",
           "default": "Slide image"
+        },
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Image fit",
+          "options": [
+            {
+              "value": "cover",
+              "label": "Fill (adjust to longer side)"
+            },
+            {
+              "value": "contain",
+              "label": "Keep original proportions"
+            }
+          ],
+          "default": "cover"
         }
       ]
     }
