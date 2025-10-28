@@ -184,9 +184,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentScroll = slider.scrollLeft;
     const slideWidth = getSlideWidth();
     const scrollAmount = slideWidth;
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+    
+    let newScroll = currentScroll + (direction * scrollAmount);
+    
+    // Loop functionality
+    if (newScroll < 0) {
+      // Go to end when at start and scrolling left
+      newScroll = maxScroll;
+    } else if (newScroll > maxScroll) {
+      // Go to start when at end and scrolling right
+      newScroll = 0;
+    }
     
     slider.scrollTo({
-      left: currentScroll + (direction * scrollAmount),
+      left: newScroll,
       behavior: 'smooth'
     });
   }
@@ -194,16 +206,13 @@ document.addEventListener('DOMContentLoaded', function() {
   leftArrow.addEventListener('click', () => scrollSlider(-1));
   rightArrow.addEventListener('click', () => scrollSlider(1));
   
-  // Update arrow visibility based on scroll position
+  // Update arrow visibility based on scroll position (with loop, arrows are always enabled)
   function updateArrows() {
-    const isAtStart = slider.scrollLeft <= 0;
-    const isAtEnd = slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth);
-    
-    leftArrow.style.opacity = isAtStart ? '0.5' : '1';
-    rightArrow.style.opacity = isAtEnd ? '0.5' : '1';
-    
-    leftArrow.disabled = isAtStart;
-    rightArrow.disabled = isAtEnd;
+    // With loop functionality, arrows are always enabled
+    leftArrow.style.opacity = '1';
+    rightArrow.style.opacity = '1';
+    leftArrow.disabled = false;
+    rightArrow.disabled = false;
   }
   
   slider.addEventListener('scroll', updateArrows);
