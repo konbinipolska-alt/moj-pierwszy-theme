@@ -26,6 +26,41 @@
             "alt_text": "Slide 2"
           }
         },
+        "image_slide_rMY3BU": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_pXjyby": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_4mPzL8": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_g43mbn": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_7XQeVE": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
         "image_slide_3": {
           "type": "image_slide",
           "settings": {
@@ -37,6 +72,11 @@
       "block_order": [
         "image_slide_1",
         "image_slide_2",
+        "image_slide_rMY3BU",
+        "image_slide_pXjyby",
+        "image_slide_4mPzL8",
+        "image_slide_g43mbn",
+        "image_slide_7XQeVE",
         "image_slide_3"
       ],
       "settings": {}
