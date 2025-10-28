@@ -103,6 +103,13 @@
     z-index: 10;
     transition: all 0.2s ease;
     color: #374151;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .image-slider-section:hover .slider-arrow {
+    opacity: 1;
+    visibility: visible;
   }
 
   .slider-arrow:hover {
@@ -144,7 +151,12 @@
     }
     .slider-container { padding-right: 20px; }
     .slide { width: 225px; height: 400px; }
-    .slider-arrow { width: 36px; height: 36px; }
+    .slider-arrow { 
+      width: 36px; 
+      height: 36px; 
+      opacity: 1 !important; 
+      visibility: visible !important; 
+    }
     .slider-arrow svg { width: 14px; height: 14px; }
     .slider-arrow-left { left: 32px; } /* 20px margin + 12px offset */
   }
