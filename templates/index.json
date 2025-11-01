@@ -217,19 +217,14 @@
     "spacer_1": {
       "type": "spacer",
       "settings": {
-        "height": 48
+        "height": 60
       }
     },
     "highlight": {
       "type": "highlight",
       "settings": {
-        "left_text": "日本語",
-        "right_text": "日本語",
-        "show_lines": true,
         "background_color": "#0b00b5",
-        "center_image": "shopify://shop_images/close-up-salmon-sushi-roll-with-white-rice-light-grey-background.png",
-        "image_size": 100,
-        "image_position": "center-center"
+        "height": 700
       }
     },
     "content": {
