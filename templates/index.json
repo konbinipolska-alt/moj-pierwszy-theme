@@ -214,89 +214,15 @@
       ],
       "settings": {}
     },
+    "kafelki_3KqnXh": {
+      "type": "kafelki",
+      "name": "Kafelki",
+      "settings": {}
+    },
     "spacer_1": {
       "type": "spacer",
       "settings": {
         "height": 60
-      }
-    },
-    "highlight": {
-      "type": "highlight",
-      "blocks": {
-        "sub_section_yKTVUd": {
-          "type": "sub_section",
-          "settings": {
-            "block_color": "rgba(0,0,0,0)",
-            "text_color": "#000000",
-            "show_lines": false,
-            "line_color": "rgba(0,0,0,0)",
-            "line_offset": 25,
-            "line_width": 4,
-            "text": ""
-          }
-        },
-        "sub_section_nfqyeT": {
-          "type": "sub_section",
-          "settings": {
-            "block_color": "rgba(0,0,0,0)",
-            "text_color": "#ffffff",
-            "show_lines": true,
-            "line_color": "#ffffff",
-            "line_offset": 10,
-            "line_width": 4,
-            "text": "日本語"
-          }
-        },
-        "sub_section_necMyb": {
-          "type": "sub_section",
-          "settings": {
-            "block_color": "rgba(0,0,0,0)",
-            "text_color": "#000000",
-            "show_lines": false,
-            "line_color": "#ffffff",
-            "line_offset": 25,
-            "line_width": 2,
-            "text": ""
-          }
-        },
-        "sub_section_RTx9rh": {
-          "type": "sub_section",
-          "settings": {
-            "block_color": "rgba(0,0,0,0)",
-            "text_color": "#ffffff",
-            "show_lines": true,
-            "line_color": "#ffffff",
-            "line_offset": 10,
-            "line_width": 4,
-            "text": "日本語"
-          }
-        },
-        "sub_section_hDipDK": {
-          "type": "sub_section",
-          "settings": {
-            "block_color": "rgba(0,0,0,0)",
-            "text_color": "#000000",
-            "show_lines": false,
-            "line_color": "rgba(0,0,0,0)",
-            "line_offset": 25,
-            "line_width": 2,
-            "text": ""
-          }
-        }
-      },
-      "block_order": [
-        "sub_section_yKTVUd",
-        "sub_section_nfqyeT",
-        "sub_section_necMyb",
-        "sub_section_RTx9rh",
-        "sub_section_hDipDK"
-      ],
-      "settings": {
-        "background_color": "#0b00b5",
-        "height": 800,
-        "overlay_image": "shopify://shop_images/close-up-salmon-sushi-roll-with-white-rice-light-grey-background.png",
-        "image_size": 140,
-        "image_position": "center-center"
       }
     },
     "content": {
@@ -310,8 +236,8 @@
   "order": [
     "main",
     "categories",
+    "kafelki_3KqnXh",
     "spacer_1",
-    "highlight",
     "content"
   ]
 }
