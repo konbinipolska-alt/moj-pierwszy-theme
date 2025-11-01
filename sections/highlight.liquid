@@ -1,5 +1,15 @@
 <div class="highlight-section">
   <div class="highlight-wrapper">
+    {% if section.settings.overlay_image %}
+      <div class="highlight-overlay-image image-{{ section.settings.image_position }}">
+        <img 
+          src="{{ section.settings.overlay_image | image_url: width: 1200 }}" 
+          alt="{{ section.settings.overlay_image.alt | escape }}"
+          class="overlay-image"
+          style="height: {{ section.settings.image_size }}%;"
+        />
+      </div>
+    {% endif %}
     {% for block in section.blocks %}
       <div class="highlight-block" style="background-color: {{ block.settings.block_color | default: 'white' }};" {{ block.shopify_attributes }}>
         {% if block.settings.show_lines %}
@@ -31,6 +41,69 @@
     gap: 48px;
     box-sizing: border-box;
     padding: 48px 48px 48px 48px;
+    position: relative;
+  }
+
+  .highlight-overlay-image {
+    position: absolute;
+    width: calc(100% - 96px);
+    height: calc(100% - 96px);
+    top: 48px;
+    left: 48px;
+    display: flex;
+  }
+
+  .overlay-image {
+    width: auto;
+    object-fit: contain;
+  }
+
+  .image-left-top .overlay-image {
+    align-self: flex-start;
+    justify-self: flex-start;
+  }
+
+  .image-left-center .overlay-image {
+    align-self: center;
+    justify-self: flex-start;
+  }
+
+  .image-left-bottom .overlay-image {
+    align-self: flex-end;
+    justify-self: flex-start;
+  }
+
+  .image-center-top .overlay-image {
+    align-self: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image-center-center .overlay-image {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image-center-bottom .overlay-image {
+    align-self: flex-end;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image-right-top .overlay-image {
+    align-self: flex-start;
+    margin-left: auto;
+  }
+
+  .image-right-center .overlay-image {
+    align-self: center;
+    margin-left: auto;
+  }
+
+  .image-right-bottom .overlay-image {
+    align-self: flex-end;
+    margin-left: auto;
   }
 
   .highlight-block {
@@ -76,6 +149,65 @@
       "id": "height",
       "label": "Wysokość (px)",
       "default": 700
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_image",
+      "label": "Zdjęcie nad blokami"
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Wielkość zdjęcia (%)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Pozycja zdjęcia",
+      "options": [
+        {
+          "value": "left-top",
+          "label": "Lewa góra"
+        },
+        {
+          "value": "left-center",
+          "label": "Lewa środek"
+        },
+        {
+          "value": "left-bottom",
+          "label": "Lewa dół"
+        },
+        {
+          "value": "center-top",
+          "label": "Środek góra"
+        },
+        {
+          "value": "center-center",
+          "label": "Środek środek"
+        },
+        {
+          "value": "center-bottom",
+          "label": "Środek dół"
+        },
+        {
+          "value": "right-top",
+          "label": "Prawa góra"
+        },
+        {
+          "value": "right-center",
+          "label": "Prawa środek"
+        },
+        {
+          "value": "right-bottom",
+          "label": "Prawa dół"
+        }
+      ],
+      "default": "center-center"
     }
   ],
   "blocks": [
