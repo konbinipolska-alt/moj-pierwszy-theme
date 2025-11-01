@@ -292,6 +292,7 @@
         "sub_section_hDipDK"
       ],
       "settings": {
+        "theme": "light",
         "background_color": "#0b00b5",
         "height": 800,
         "overlay_image": "shopify://shop_images/close-up-salmon-sushi-roll-with-white-rice-light-grey-background.png",
