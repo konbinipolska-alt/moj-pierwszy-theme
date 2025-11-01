@@ -4,7 +4,7 @@
   .kafelki-section {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    height: 100px;
+    height: {{ section.settings.rows | default: 1 | times: 20 }}px;
     background-image: 
       repeating-linear-gradient(
         90deg,
@@ -26,7 +26,14 @@
 {% schema %}
 {
   "name": "Kafelki",
-  "settings": [],
+  "settings": [
+    {
+      "type": "number",
+      "id": "rows",
+      "label": "Ilość rzędów",
+      "default": 1
+    }
+  ],
   "presets": [
     {
       "name": "Kafelki"
