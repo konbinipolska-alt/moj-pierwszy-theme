@@ -224,7 +224,8 @@
       "type": "kafelki",
       "name": "Kafelki",
       "settings": {
-        "rows": 5
+        "rows": 5,
+        "stroke_width": 2
       }
     },
     "content": {
