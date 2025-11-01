@@ -214,16 +214,16 @@
       ],
       "settings": {}
     },
+    "spacer_1": {
+      "type": "spacer",
+      "settings": {
+        "height": 24
+      }
+    },
     "kafelki_3KqnXh": {
       "type": "kafelki",
       "name": "Kafelki",
       "settings": {}
-    },
-    "spacer_1": {
-      "type": "spacer",
-      "settings": {
-        "height": 60
-      }
     },
     "content": {
       "type": "content-section",
@@ -236,8 +236,8 @@
   "order": [
     "main",
     "categories",
-    "kafelki_3KqnXh",
     "spacer_1",
+    "kafelki_3KqnXh",
     "content"
   ]
 }
