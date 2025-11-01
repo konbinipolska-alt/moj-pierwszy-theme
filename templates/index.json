@@ -223,12 +223,34 @@
     "highlight": {
       "type": "highlight",
       "blocks": {
+        "sub_section_nfqyeT": {
+          "type": "sub_section",
+          "settings": {
+            "block_color": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "text": "日本語"
+          }
+        },
+        "sub_section_necMyb": {
+          "type": "sub_section",
+          "settings": {
+            "block_color": "rgba(0,0,0,0)",
+            "text_color": "#000000",
+            "text": ""
+          }
+        },
         "sub_section_RTx9rh": {
           "type": "sub_section",
-          "settings": {}
+          "settings": {
+            "block_color": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "text": "日本語"
+          }
         }
       },
       "block_order": [
+        "sub_section_nfqyeT",
+        "sub_section_necMyb",
         "sub_section_RTx9rh"
       ],
       "settings": {
