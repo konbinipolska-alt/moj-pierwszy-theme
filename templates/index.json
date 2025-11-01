@@ -222,6 +222,15 @@
     },
     "highlight": {
       "type": "highlight",
+      "blocks": {
+        "sub_section_RTx9rh": {
+          "type": "sub_section",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "sub_section_RTx9rh"
+      ],
       "settings": {
         "background_color": "#0b00b5",
         "height": 700
