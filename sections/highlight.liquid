@@ -11,15 +11,15 @@
       </div>
     {% endif %}
     {% for block in section.blocks %}
-      <div class="highlight-block" style="background-color: {{ block.settings.block_color | default: 'white' }};" {{ block.shopify_attributes }}>
+      <div class="highlight-block" style="background-color: {% if section.settings.theme == 'light' %}{{ block.settings.block_color | default: '#0b00b5' }}{% else %}{{ block.settings.block_color | default: '#ffffff' }}{% endif %};" {{ block.shopify_attributes }}>
         {% if block.settings.show_lines %}
-          <div class="vertical-line vertical-line-left" style="background-color: {{ block.settings.line_color | default: 'white' }}; left: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
+          <div class="vertical-line vertical-line-left" style="background-color: {% if section.settings.theme == 'light' %}{{ block.settings.line_color | default: '#0b00b5' }}{% else %}{{ block.settings.line_color | default: '#ffffff' }}{% endif %}; left: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
         {% endif %}
         {% if block.settings.text %}
-          <div class="highlight-block-text" style="color: {% if section.settings.theme == 'light' %}{{ block.settings.text_color | default: 'black' }}{% else %}{{ block.settings.text_color | default: 'white' }}{% endif %};">{{ block.settings.text }}</div>
+          <div class="highlight-block-text" style="color: {% if section.settings.theme == 'light' %}{{ block.settings.text_color | default: '#ffffff' }}{% else %}{{ block.settings.text_color | default: '#0b00b5' }}{% endif %};">{{ block.settings.text }}</div>
         {% endif %}
         {% if block.settings.show_lines %}
-          <div class="vertical-line vertical-line-right" style="background-color: {{ block.settings.line_color | default: 'white' }}; right: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
+          <div class="vertical-line vertical-line-right" style="background-color: {% if section.settings.theme == 'light' %}{{ block.settings.line_color | default: '#0b00b5' }}{% else %}{{ block.settings.line_color | default: '#ffffff' }}{% endif %}; right: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
         {% endif %}
       </div>
     {% endfor %}
