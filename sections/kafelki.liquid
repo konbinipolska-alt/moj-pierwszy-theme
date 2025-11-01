@@ -1,11 +1,7 @@
 <div class="kafelki-section">
   <div class="kafelki-wrapper">
     {% for block in section.blocks %}
-      <div class="kafelek" {{ block.shopify_attributes }}>
-        {% if block.settings.text %}
-          <div class="kafelek-text">{{ block.settings.text }}</div>
-        {% endif %}
-      </div>
+      <div class="kafelek" {{ block.shopify_attributes }}></div>
     {% endfor %}
   </div>
 </div>
@@ -21,29 +17,17 @@
   }
 
   .kafelki-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 48px;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
   }
 
   .kafelek {
-    aspect-ratio: 1;
-    background-color: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-  }
-
-  .kafelek-text {
-    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1f2937;
-    text-align: center;
-    padding: 24px;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: 1px solid #0b00b5;
+    box-sizing: border-box;
   }
 </style>
 
@@ -54,14 +38,7 @@
     {
       "type": "kafelek",
       "name": "Kafelek",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Tekst",
-          "default": "Kafelek"
-        }
-      ]
+      "settings": []
     }
   ],
   "presets": [
