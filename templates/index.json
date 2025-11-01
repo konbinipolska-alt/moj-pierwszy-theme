@@ -231,6 +231,7 @@
             "show_lines": true,
             "line_color": "rgba(0,0,0,0)",
             "line_offset": 25,
+            "line_width": 2,
             "text": ""
           }
         },
@@ -242,6 +243,7 @@
             "show_lines": true,
             "line_color": "#ffffff",
             "line_offset": 10,
+            "line_width": 2,
             "text": "日本語"
           }
         },
@@ -253,6 +255,7 @@
             "show_lines": false,
             "line_color": "#ffffff",
             "line_offset": 25,
+            "line_width": 2,
             "text": ""
           }
         },
@@ -264,6 +267,7 @@
             "show_lines": true,
             "line_color": "#ffffff",
             "line_offset": 10,
+            "line_width": 2,
             "text": "日本語"
           }
         },
@@ -275,6 +279,7 @@
             "show_lines": true,
             "line_color": "rgba(0,0,0,0)",
             "line_offset": 25,
+            "line_width": 2,
             "text": ""
           }
         }
@@ -288,7 +293,10 @@
       ],
       "settings": {
         "background_color": "#0b00b5",
-        "height": 700
+        "height": 700,
+        "overlay_image": "shopify://shop_images/close-up-salmon-sushi-roll-with-white-rice-light-grey-background.png",
+        "image_size": 100,
+        "image_position": "center-center"
       }
     },
     "content": {
