@@ -268,7 +268,7 @@
             "line_color": "#ffffff",
             "line_offset": 10,
             "line_width": 4,
-            "text": "コンビニ"
+            "text": "日本語"
           }
         },
         "sub_section_hDipDK": {
@@ -292,7 +292,6 @@
         "sub_section_hDipDK"
       ],
       "settings": {
-        "theme": "dark",
         "background_color": "#0b00b5",
         "height": 800,
         "overlay_image": "shopify://shop_images/close-up-salmon-sushi-roll-with-white-rice-light-grey-background.png",
