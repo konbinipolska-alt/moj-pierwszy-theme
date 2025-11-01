@@ -45,7 +45,7 @@
 
   .highlight-container {
     width: 100%;
-    padding: 48px;
+    padding: 0 48px;
     height: 700px;
     display: flex;
     justify-content: space-between;
@@ -64,6 +64,8 @@
   .highlight-left,
   .highlight-right {
     align-items: flex-start;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
 
   .vertical-text {
@@ -82,17 +84,16 @@
     position: absolute;
     width: 2px;
     background-color: white;
-    top: 0;
-    bottom: 0;
-    height: 100%;
+    top: 48px;
+    bottom: 48px;
   }
 
   .vertical-line-left {
-    right: 48px;
+    left: -48px;
   }
 
   .vertical-line-right {
-    left: 48px;
+    right: -48px;
   }
 
   .center-image-container {
