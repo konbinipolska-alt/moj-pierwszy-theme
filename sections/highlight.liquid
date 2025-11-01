@@ -1,4 +1,4 @@
-<div class="highlight-section highlight-section-{{ section.settings.theme | default: 'dark' }}">
+<div class="highlight-section">
   <div class="highlight-wrapper">
     {% if section.settings.overlay_image %}
       <div class="highlight-overlay-image image-{{ section.settings.image_position }}">
@@ -11,15 +11,15 @@
       </div>
     {% endif %}
     {% for block in section.blocks %}
-      <div class="highlight-block" {{ block.shopify_attributes }}>
+      <div class="highlight-block" style="background-color: {{ block.settings.block_color | default: 'white' }};" {{ block.shopify_attributes }}>
         {% if block.settings.show_lines %}
-          <div class="vertical-line vertical-line-left" style="left: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
+          <div class="vertical-line vertical-line-left" style="background-color: {{ block.settings.line_color | default: 'white' }}; left: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
         {% endif %}
         {% if block.settings.text %}
-          <div class="highlight-block-text">{{ block.settings.text }}</div>
+          <div class="highlight-block-text" style="color: {{ block.settings.text_color | default: 'black' }};">{{ block.settings.text }}</div>
         {% endif %}
         {% if block.settings.show_lines %}
-          <div class="vertical-line vertical-line-right" style="right: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
+          <div class="vertical-line vertical-line-right" style="background-color: {{ block.settings.line_color | default: 'white' }}; right: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
         {% endif %}
       </div>
     {% endfor %}
@@ -30,15 +30,8 @@
   .highlight-section {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    height: {{ section.settings.height | default: 700 }}px;
-  }
-
-  .highlight-section-dark {
     background-color: {{ section.settings.background_color | default: '#0b00b5' }};
-  }
-
-  .highlight-section-light {
-    background-color: {{ section.settings.background_color | default: '#ffffff' }};
+    height: {{ section.settings.height | default: 700 }}px;
   }
 
   .highlight-wrapper {
@@ -118,19 +111,10 @@
 
   .highlight-block {
     flex: 1;
-    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-  }
-
-  .highlight-section-dark .highlight-block {
-    background-color: transparent;
-  }
-
-  .highlight-section-light .highlight-block {
-    background-color: transparent;
   }
 
   .vertical-line {
@@ -140,12 +124,12 @@
     top: 0;
   }
 
-  .highlight-section-dark .vertical-line {
-    background-color: #ffffff;
+  .vertical-line-left {
+    left: 25%;
   }
 
-  .highlight-section-light .vertical-line {
-    background-color: #0b00b5;
+  .vertical-line-right {
+    right: 25%;
   }
 
   .highlight-block-text {
@@ -153,15 +137,8 @@
     writing-mode: vertical-lr;
     text-orientation: upright;
     font-weight: bold;
+    white-space: nowrap;
     font-size: calc(({{ section.settings.height | default: 700 }}px - 96px) * 0.33);
-  }
-
-  .highlight-section-dark .highlight-block-text {
-    color: #ffffff;
-  }
-
-  .highlight-section-light .highlight-block-text {
-    color: #0b00b5;
   }
 </style>
 
@@ -169,22 +146,6 @@
 {
   "name": "Highlight",
   "settings": [
-    {
-      "type": "select",
-      "id": "theme",
-      "label": "Motyw kolorystyczny",
-      "options": [
-        {
-          "value": "light",
-          "label": "Jasny"
-        },
-        {
-          "value": "dark",
-          "label": "Ciemny"
-        }
-      ],
-      "default": "dark"
-    },
     {
       "type": "color",
       "id": "background_color",
