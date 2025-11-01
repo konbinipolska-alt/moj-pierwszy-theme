@@ -32,7 +32,7 @@
   </div>
 </div>
 
-{% stylesheet %}
+<style>
   .highlight-section {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
@@ -71,7 +71,6 @@
     letter-spacing: 0.1em;
     font-weight: bold;
     white-space: nowrap;
-    transform: scale(1);
   }
 
   .vertical-line {
@@ -105,17 +104,14 @@
   /* Image position classes */
   .image-left-top .center-image {
     align-self: flex-start;
-    justify-self: flex-start;
   }
 
   .image-left-center .center-image {
     align-self: center;
-    justify-self: flex-start;
   }
 
   .image-left-bottom .center-image {
     align-self: flex-end;
-    justify-self: flex-start;
   }
 
   .image-center-top .center-image {
@@ -154,8 +150,14 @@
   /* Responsive design */
   @media (max-width: 768px) {
     .highlight-section {
+      height: auto;
+      min-height: 400px;
+    }
+
+    .highlight-container {
+      height: auto;
+      min-height: 400px;
       padding: 24px;
-      min-height: auto;
     }
 
     .vertical-text {
@@ -169,18 +171,14 @@
   }
 
   @media (max-width: 480px) {
-    .highlight-section {
-      padding: 16px;
-    }
-
     .highlight-container {
       flex-direction: column;
       gap: 20px;
+      padding: 16px;
     }
 
     .highlight-column {
       flex: none;
-      height: auto;
       min-height: 200px;
     }
 
@@ -192,7 +190,7 @@
       display: none;
     }
   }
-{% endstylesheet %}
+</style>
 
 {% schema %}
 {
@@ -289,4 +287,3 @@
   ]
 }
 {% endschema %}
-
