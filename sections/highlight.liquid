@@ -3,13 +3,13 @@
     {% for block in section.blocks %}
       <div class="highlight-block" style="background-color: {{ block.settings.block_color | default: 'white' }};" {{ block.shopify_attributes }}>
         {% if block.settings.show_lines %}
-          <div class="vertical-line vertical-line-left"></div>
+          <div class="vertical-line vertical-line-left" style="background-color: {{ block.settings.line_color | default: 'white' }}; left: {{ block.settings.line_offset | default: 25 }}%;"></div>
         {% endif %}
         {% if block.settings.text %}
           <div class="highlight-block-text" style="color: {{ block.settings.text_color | default: 'black' }};">{{ block.settings.text }}</div>
         {% endif %}
         {% if block.settings.show_lines %}
-          <div class="vertical-line vertical-line-right"></div>
+          <div class="vertical-line vertical-line-right" style="background-color: {{ block.settings.line_color | default: 'white' }}; right: {{ block.settings.line_offset | default: 25 }}%;"></div>
         {% endif %}
       </div>
     {% endfor %}
@@ -50,13 +50,6 @@
     top: 0;
   }
 
-  .vertical-line-left {
-    left: 25%;
-  }
-
-  .vertical-line-right {
-    right: 25%;
-  }
 
   .highlight-block-text {
     font-family: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
@@ -107,6 +100,22 @@
           "id": "show_lines",
           "label": "Pokaż pionowe linie",
           "default": true
+        },
+        {
+          "type": "color",
+          "id": "line_color",
+          "label": "Kolor linii",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "line_offset",
+          "label": "Odstęp linii od krawędzi (%)",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "default": 25,
+          "unit": "%"
         },
         {
           "type": "text",
