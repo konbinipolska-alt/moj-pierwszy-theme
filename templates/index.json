@@ -223,7 +223,9 @@
     "kafelki_3KqnXh": {
       "type": "kafelki",
       "name": "Kafelki",
-      "settings": {}
+      "settings": {
+        "rows": 5
+      }
     },
     "content": {
       "type": "content-section",
