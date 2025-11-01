@@ -1,0 +1,290 @@
+<div class="highlight-section">
+  <div class="highlight-container">
+    <!-- Left column -->
+    <div class="highlight-column highlight-left">
+      <div class="vertical-text">{{ section.settings.left_text | escape }}</div>
+      {% if section.settings.show_lines %}
+        <div class="vertical-line vertical-line-left"></div>
+      {% endif %}
+    </div>
+
+    <!-- Center column -->
+    <div class="highlight-column highlight-center">
+      {% if section.settings.center_image %}
+        <div class="center-image-container image-{{ section.settings.image_position }}">
+          <img 
+            src="{{ section.settings.center_image | image_url: width: 1200 }}" 
+            alt="{{ section.settings.center_image.alt | escape }}"
+            class="center-image"
+            style="height: {{ section.settings.image_size }}%;"
+          />
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Right column -->
+    <div class="highlight-column highlight-right">
+      <div class="vertical-text">{{ section.settings.right_text | escape }}</div>
+      {% if section.settings.show_lines %}
+        <div class="vertical-line vertical-line-right"></div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .highlight-section {
+    width: 100%;
+    background-color: {{ section.settings.background_color | default: '#0b00b5' }};
+    padding: 48px;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+  }
+
+  .highlight-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .highlight-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .vertical-text {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    font-size: 48px;
+    color: white;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    white-space: nowrap;
+    transform: scale(1);
+  }
+
+  .vertical-line {
+    position: absolute;
+    width: 2px;
+    background-color: white;
+    top: 48px;
+    bottom: 48px;
+  }
+
+  .vertical-line-left {
+    right: 0;
+  }
+
+  .vertical-line-right {
+    left: 0;
+  }
+
+  .center-image-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .center-image {
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+
+  /* Image position classes */
+  .image-left-top .center-image {
+    align-self: flex-start;
+    justify-self: flex-start;
+  }
+
+  .image-left-center .center-image {
+    align-self: center;
+    justify-self: flex-start;
+  }
+
+  .image-left-bottom .center-image {
+    align-self: flex-end;
+    justify-self: flex-start;
+  }
+
+  .image-center-top .center-image {
+    align-self: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image-center-center .center-image {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image-center-bottom .center-image {
+    align-self: flex-end;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image-right-top .center-image {
+    align-self: flex-start;
+    margin-left: auto;
+  }
+
+  .image-right-center .center-image {
+    align-self: center;
+    margin-left: auto;
+  }
+
+  .image-right-bottom .center-image {
+    align-self: flex-end;
+    margin-left: auto;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .highlight-section {
+      padding: 24px;
+      min-height: auto;
+    }
+
+    .vertical-text {
+      font-size: 24px;
+    }
+
+    .vertical-line {
+      top: 24px;
+      bottom: 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .highlight-section {
+      padding: 16px;
+    }
+
+    .highlight-container {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .highlight-column {
+      flex: none;
+      height: auto;
+      min-height: 200px;
+    }
+
+    .vertical-text {
+      font-size: 20px;
+    }
+
+    .vertical-line {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Highlight",
+  "settings": [
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Lewy tekst (japoński)",
+      "default": "日本語"
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Prawy tekst (japoński)",
+      "default": "日本語"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_lines",
+      "label": "Pokaż pionowe linie",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Kolor tła",
+      "default": "#0b00b5"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Zdjęcie środkowe"
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Wielkość zdjęcia (%)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Pozycja zdjęcia",
+      "options": [
+        {
+          "value": "left-top",
+          "label": "Lewa góra"
+        },
+        {
+          "value": "left-center",
+          "label": "Lewa środek"
+        },
+        {
+          "value": "left-bottom",
+          "label": "Lewa dół"
+        },
+        {
+          "value": "center-top",
+          "label": "Środek góra"
+        },
+        {
+          "value": "center-center",
+          "label": "Środek środek"
+        },
+        {
+          "value": "center-bottom",
+          "label": "Środek dół"
+        },
+        {
+          "value": "right-top",
+          "label": "Prawa góra"
+        },
+        {
+          "value": "right-center",
+          "label": "Prawa środek"
+        },
+        {
+          "value": "right-bottom",
+          "label": "Prawa dół"
+        }
+      ],
+      "default": "center-center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Highlight"
+    }
+  ]
+}
+{% endschema %}
+
