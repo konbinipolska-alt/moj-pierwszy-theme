@@ -214,6 +214,17 @@
       ],
       "settings": {}
     },
+    "highlight": {
+      "type": "highlight",
+      "settings": {
+        "left_text": "日本語",
+        "right_text": "日本語",
+        "show_lines": true,
+        "background_color": "#0b00b5",
+        "image_size": 50,
+        "image_position": "center-center"
+      }
+    },
     "content": {
       "type": "content-section",
       "settings": {
@@ -225,6 +236,7 @@
   "order": [
     "main",
     "categories",
+    "highlight",
     "content"
   ]
 }
