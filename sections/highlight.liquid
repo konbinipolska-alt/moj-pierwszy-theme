@@ -38,7 +38,7 @@
     margin-left: calc(-50vw + 50%);
     background-color: {{ section.settings.background_color | default: '#0b00b5' }};
     padding: 0;
-    margin-top: 0;
+    margin-top: 48px;
     margin-bottom: 0;
     height: 700px;
   }
@@ -71,22 +71,28 @@
     letter-spacing: 0.1em;
     font-weight: bold;
     white-space: nowrap;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
 
   .vertical-line {
     position: absolute;
     width: 2px;
     background-color: white;
-    top: 48px;
-    bottom: 48px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
   }
 
   .vertical-line-left {
-    right: 0;
+    right: -50px;
   }
 
   .vertical-line-right {
-    left: 0;
+    left: -50px;
   }
 
   .center-image-container {
