@@ -4,23 +4,19 @@
   .kafelki-section {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    height: calc({{ section.settings.rows | default: 1 | times: 20 }}px + 2px);
+    height: {{ section.settings.rows | default: 1 | times: 20 }}px;
     background-size: 20px 20px;
     background-image: 
       repeating-linear-gradient(
         90deg,
-        #0b00b5 0,
-        #0b00b5 1px,
-        transparent 1px,
+        transparent 0,
         transparent 19px,
         #0b00b5 19px,
         #0b00b5 20px
       ),
       repeating-linear-gradient(
         0deg,
-        #0b00b5 0,
-        #0b00b5 1px,
-        transparent 1px,
+        transparent 0,
         transparent 19px,
         #0b00b5 19px,
         #0b00b5 20px
