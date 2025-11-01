@@ -7,6 +7,31 @@
             </a>
           </div>
           
+          <!-- Mobile menu dropdown -->
+          <div class="mobile-menu-dropdown">
+            <button class="mobile-menu-toggle" aria-label="Menu">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="5" r="1"></circle>
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="12" cy="19" r="1"></circle>
+              </svg>
+            </button>
+            <div class="mobile-menu-dropdown-content">
+              {% if section.settings.menu.links.size > 0 %}
+                {% for link in section.settings.menu.links %}
+                  {% unless link.title == 'Produkty' %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  {% endunless %}
+                {% endfor %}
+              {% else %}
+                <a href="/pages/o-nas">O nas</a>
+                <a href="/pages/kontakt">Kontakt</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+    <div class="nav-right">
           <div class="header__menu">
             {% if section.settings.menu.links.size > 0 %}
               {% for link in section.settings.menu.links %}
@@ -71,32 +96,6 @@
               <span class="desktop-only"><a href="/pages/kontakt">Kontakt</a></span>
             {% endif %}
           </div>
-          
-          <!-- Mobile menu dropdown -->
-          <div class="mobile-menu-dropdown">
-            <button class="mobile-menu-toggle" aria-label="Menu">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="5" r="1"></circle>
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="12" cy="19" r="1"></circle>
-              </svg>
-            </button>
-            <div class="mobile-menu-dropdown-content">
-              {% if section.settings.menu.links.size > 0 %}
-                {% for link in section.settings.menu.links %}
-                  {% unless link.title == 'Produkty' %}
-                    <a href="{{ link.url }}">{{ link.title }}</a>
-                  {% endunless %}
-                {% endfor %}
-              {% else %}
-                <a href="/pages/o-nas">O nas</a>
-                <a href="/pages/kontakt">Kontakt</a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-
-    <div class="nav-right">
     </div>
   </div>
 </header>
@@ -190,7 +189,7 @@
   .dropdown-menu {
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0;
     background-color: var(--color-background);
     border: 1px solid var(--color-border);
     border-radius: 8px;
