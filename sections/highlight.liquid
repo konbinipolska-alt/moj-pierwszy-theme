@@ -61,6 +61,11 @@
     position: relative;
   }
 
+  .highlight-left,
+  .highlight-right {
+    align-items: flex-start;
+  }
+
   .vertical-text {
     writing-mode: vertical-lr;
     text-orientation: upright;
@@ -71,11 +76,8 @@
     letter-spacing: 0.1em;
     font-weight: bold;
     white-space: nowrap;
-    height: 100%;
-    display: flex;
-    align-items: flex-start;
-    padding-top: 48px;
-    padding-bottom: 48px;
+    margin-top: 48px;
+    margin-bottom: 48px;
   }
 
   .vertical-line {
@@ -84,15 +86,14 @@
     background-color: white;
     top: 0;
     bottom: 0;
-    height: 100%;
   }
 
   .vertical-line-left {
-    right: -50px;
+    left: -48px;
   }
 
   .vertical-line-right {
-    left: -50px;
+    right: -48px;
   }
 
   .center-image-container {
