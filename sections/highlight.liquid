@@ -11,15 +11,39 @@
       </div>
     {% endif %}
     {% for block in section.blocks %}
-      <div class="highlight-block" style="background-color: {% if section.settings.theme == 'light' %}{{ block.settings.block_color | default: '#0b00b5' }}{% else %}{{ block.settings.block_color | default: '#ffffff' }}{% endif %};" {{ block.shopify_attributes }}>
+      {% assign block_bg = block.settings.block_color %}
+      {% assign block_text = block.settings.text_color %}
+      {% assign block_line = block.settings.line_color %}
+      
+      {% if block.settings.block_color == '#ffffff' or block.settings.block_color == blank %}
+        {% if section.settings.theme == 'light' %}
+          {% assign block_bg = '#0b00b5' %}
+        {% endif %}
+      {% endif %}
+      
+      {% if block.settings.text_color == '#000000' or block.settings.text_color == blank %}
+        {% if section.settings.theme == 'light' %}
+          {% assign block_text = '#ffffff' %}
+        {% else %}
+          {% assign block_text = '#0b00b5' %}
+        {% endif %}
+      {% endif %}
+      
+      {% if block.settings.line_color == '#ffffff' or block.settings.line_color == blank %}
+        {% if section.settings.theme == 'light' %}
+          {% assign block_line = '#0b00b5' %}
+        {% endif %}
+      {% endif %}
+      
+      <div class="highlight-block" style="background-color: {{ block_bg }};" {{ block.shopify_attributes }}>
         {% if block.settings.show_lines %}
-          <div class="vertical-line vertical-line-left" style="background-color: {% if section.settings.theme == 'light' %}{{ block.settings.line_color | default: '#0b00b5' }}{% else %}{{ block.settings.line_color | default: '#ffffff' }}{% endif %}; left: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
+          <div class="vertical-line vertical-line-left" style="background-color: {{ block_line }}; left: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
         {% endif %}
         {% if block.settings.text %}
-          <div class="highlight-block-text" style="color: {% if section.settings.theme == 'light' %}{{ block.settings.text_color | default: '#ffffff' }}{% else %}{{ block.settings.text_color | default: '#0b00b5' }}{% endif %};">{{ block.settings.text }}</div>
+          <div class="highlight-block-text" style="color: {{ block_text }};">{{ block.settings.text }}</div>
         {% endif %}
         {% if block.settings.show_lines %}
-          <div class="vertical-line vertical-line-right" style="background-color: {% if section.settings.theme == 'light' %}{{ block.settings.line_color | default: '#0b00b5' }}{% else %}{{ block.settings.line_color | default: '#ffffff' }}{% endif %}; right: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
+          <div class="vertical-line vertical-line-right" style="background-color: {{ block_line }}; right: {{ block.settings.line_offset | default: 25 }}%; width: {{ block.settings.line_width | default: 2 }}px;"></div>
         {% endif %}
       </div>
     {% endfor %}
