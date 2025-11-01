@@ -4,7 +4,7 @@
   .kafelki-section {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    height: {{ section.settings.rows | default: 1 | times: 20 }}px;
+    height: calc({{ section.settings.rows | default: 1 | times: 20 }}px + 1px);
     background-image: 
       repeating-linear-gradient(
         90deg,
