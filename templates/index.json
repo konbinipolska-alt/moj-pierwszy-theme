@@ -265,8 +265,8 @@
         "gap": 24,
         "columns_per_row": 2,
         "size_mode": "fixed",
-        "block_width": 500,
-        "block_height": 250
+        "block_width": 600,
+        "block_height": 200
       }
     },
     "content": {
