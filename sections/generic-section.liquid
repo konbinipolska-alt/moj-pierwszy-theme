@@ -4,11 +4,25 @@
       <div class="generic-block" 
            style="
              {% if block.settings.background_color %}background-color: {{ block.settings.background_color }};{% endif %}
-             {% if block.settings.background_image %}background-image: url('{{ block.settings.background_image | image_url: width: 1200 }}'); background-size: cover; background-position: center;{% endif %}
              padding: {{ block.settings.padding | default: 0 }}px;
              {% if block.settings.show_border %}border: 1px solid {{ block.settings.border_color | default: '#0b00b5' }};{% else %}border: none;{% endif %}
            " 
            {{ block.shopify_attributes }}>
+        {% if block.settings.background_image %}
+          <div class="generic-block-media" 
+               style="
+                 background-image: url('{{ block.settings.background_image | image_url: width: 1200 }}'); 
+                 background-size: {{ block.settings.media_scale | default: 100 }}%; 
+                 background-position: {{ block.settings.media_position | default: 'center' }};
+                 background-repeat: no-repeat;
+               "></div>
+        {% elsif block.settings.background_video %}
+          <video class="generic-block-media" 
+                 style="object-position: {{ block.settings.media_position | default: 'center' }};"
+                 autoplay loop muted playsinline>
+            <source src="{{ block.settings.background_video }}" type="video/mp4">
+          </video>
+        {% endif %}
         {% if block.settings.link != blank %}
           <a href="{{ block.settings.link }}" class="block-link"></a>
         {% endif %}
@@ -69,11 +83,29 @@
   .generic-block {
     background-color: white;
     position: relative;
+    overflow: hidden;
     {% if section.settings.size_mode == 'fixed' %}
       width: {{ section.settings.block_width | default: 300 }}px;
       height: {{ section.settings.block_height | default: 200 }}px;
       max-width: 100%;
     {% endif %}
+  }
+
+  .generic-block-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .generic-block-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .block-link {
@@ -245,6 +277,63 @@
           "type": "image_picker",
           "id": "background_image",
           "label": "Grafika tła"
+        },
+        {
+          "type": "text",
+          "id": "background_video",
+          "label": "Video tła (URL)"
+        },
+        {
+          "type": "select",
+          "id": "media_position",
+          "label": "Pozycja grafiki/video",
+          "options": [
+            {
+              "value": "left top",
+              "label": "Lewa góra"
+            },
+            {
+              "value": "center top",
+              "label": "Środek góra"
+            },
+            {
+              "value": "right top",
+              "label": "Prawa góra"
+            },
+            {
+              "value": "left center",
+              "label": "Lewa środek"
+            },
+            {
+              "value": "center",
+              "label": "Środek"
+            },
+            {
+              "value": "right center",
+              "label": "Prawa środek"
+            },
+            {
+              "value": "left bottom",
+              "label": "Lewa dół"
+            },
+            {
+              "value": "center bottom",
+              "label": "Środek dół"
+            },
+            {
+              "value": "right bottom",
+              "label": "Prawa dół"
+            }
+          ],
+          "default": "center",
+          "info": "Tylko dla grafiki"
+        },
+        {
+          "type": "number",
+          "id": "media_scale",
+          "label": "Skala grafiki (%)",
+          "default": 100,
+          "info": "Tylko dla grafiki, 100 = pokrywa całość"
         },
         {
           "type": "checkbox",
