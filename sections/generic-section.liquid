@@ -57,7 +57,7 @@
 
   .generic-wrapper {
     width: 100%;
-    padding: 48px;
+    padding: {{ section.settings.margin_top | default: 48 }}px {{ section.settings.margin_right | default: 48 }}px {{ section.settings.margin_bottom | default: 48 }}px {{ section.settings.margin_left | default: 48 }}px;
     display: grid;
     {% if section.settings.size_mode == 'auto' %}
       grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, 1fr);
@@ -184,6 +184,38 @@
       "id": "background_color",
       "label": "Kolor tła",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Marginesy"
+    },
+    {
+      "type": "number",
+      "id": "margin_top",
+      "label": "Margines górny (px)",
+      "default": 48
+    },
+    {
+      "type": "number",
+      "id": "margin_right",
+      "label": "Margines prawy (px)",
+      "default": 48
+    },
+    {
+      "type": "number",
+      "id": "margin_bottom",
+      "label": "Margines dolny (px)",
+      "default": 48
+    },
+    {
+      "type": "number",
+      "id": "margin_left",
+      "label": "Margines lewy (px)",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Układ bloków"
     },
     {
       "type": "number",
