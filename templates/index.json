@@ -356,7 +356,7 @@
         "content_block_6h6K44": {
           "type": "content_block",
           "settings": {
-            "background_color": "#efefef",
+            "background_color": "#fafafa",
             "background_video": "",
             "media_position": "center",
             "media_scale": 100,
@@ -373,15 +373,8 @@
             "subheader_color": "",
             "subheader_font_size": 14,
             "subheader_line_height": 150,
-            "content_position": "bottom",
-            "text_alignment": "left",
-            "button_position": "bottom",
-            "button_text": "",
-            "button_link": "",
-            "button_background_color": "",
-            "button_border_color": "",
-            "button_text_color": "",
-            "button_border_radius": 0
+            "content_position": "top",
+            "text_alignment": "left"
           }
         }
       },
