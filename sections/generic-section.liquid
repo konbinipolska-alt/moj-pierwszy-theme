@@ -1,4 +1,11 @@
-<div class="generic-section"></div>
+<div class="generic-section">
+  <div class="generic-wrapper">
+    {% for block in section.blocks %}
+      <div class="generic-block" {{ block.shopify_attributes }}>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 
 <style>
   .generic-section {
@@ -6,6 +13,30 @@
     margin-left: calc(-50vw + 50%);
     background-color: {{ section.settings.background_color | default: '#ffffff' }};
     height: {{ section.settings.height | default: 700 }}px;
+  }
+
+  .generic-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 48px;
+    display: grid;
+    {% if section.settings.size_type == 'aspect' %}
+      grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, 1fr);
+      grid-template-rows: repeat({{ section.settings.rows | default: 2 }}, 1fr);
+    {% else %}
+      grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, 1fr);
+      grid-auto-rows: {{ section.settings.block_height | default: 200 }}px;
+    {% endif %}
+    gap: 48px;
+    box-sizing: border-box;
+  }
+
+  .generic-block {
+    background-color: white;
+    border: 1px solid #0b00b5;
+    {% if section.settings.size_type == 'aspect' %}
+      aspect-ratio: {{ section.settings.aspect_ratio | default: 1 }};
+    {% endif %}
   }
 </style>
 
@@ -24,6 +55,56 @@
       "id": "height",
       "label": "Wysokość (px)",
       "default": 700
+    },
+    {
+      "type": "select",
+      "id": "size_type",
+      "label": "Typ rozmiaru bloków",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "Stała wysokość w px"
+        },
+        {
+          "value": "aspect",
+          "label": "Aspect ratio"
+        }
+      ],
+      "default": "fixed"
+    },
+    {
+      "type": "number",
+      "id": "block_height",
+      "label": "Wysokość bloku (px)",
+      "default": 200,
+      "info": "Tylko gdy typ rozmiaru: stała wysokość"
+    },
+    {
+      "type": "number",
+      "id": "aspect_ratio",
+      "label": "Aspect ratio",
+      "default": 1,
+      "info": "Tylko gdy typ rozmiaru: aspect ratio"
+    },
+    {
+      "type": "number",
+      "id": "columns_per_row",
+      "label": "Ilość kolumn w rzędzie",
+      "default": 3
+    },
+    {
+      "type": "number",
+      "id": "rows",
+      "label": "Ilość rzędów",
+      "default": 2,
+      "info": "Tylko gdy typ rozmiaru: aspect ratio"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Blok",
+      "settings": []
     }
   ],
   "presets": [
