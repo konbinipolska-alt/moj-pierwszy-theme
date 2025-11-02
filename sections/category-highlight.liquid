@@ -6,6 +6,7 @@
              style="
                {% if block.settings.background_color %}background-color: {{ block.settings.background_color }};{% endif %}
                padding: {{ block.settings.padding | default: 48 }}px;
+               {% if block.settings.width %}width: {{ block.settings.width }}%;{% endif %}
              "
              {{ block.shopify_attributes }}>
           <div class="content-block-inner content-position-{{ block.settings.content_position }}">
@@ -155,6 +156,13 @@
           "id": "padding",
           "label": "Marginesy wewnętrzne (px)",
           "default": 48
+        },
+        {
+          "type": "number",
+          "id": "width",
+          "label": "Szerokość bloku (%)",
+          "default": 40,
+          "info": "Procent szerokości sekcji"
         },
         {
           "type": "header",
