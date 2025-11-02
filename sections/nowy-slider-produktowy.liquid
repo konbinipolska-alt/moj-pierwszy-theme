@@ -237,6 +237,8 @@
 
 <style>
   .new-ps-card { flex: 0 0 auto; width: {{ section.settings.product_card_width | default: 260 }}px; height: 100%; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .new-ps-card { transition: background-color .2s ease; }
+  .new-ps-card:hover { background-color: #fafafa !important; }
   .new-ps-card-link { display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; }
   .new-ps-card-media { position: relative; width: 100%; overflow: hidden; }
   .new-ps-card-media .new-ps-card-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
