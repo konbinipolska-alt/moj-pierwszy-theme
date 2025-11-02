@@ -240,53 +240,73 @@
         "block_a4FDbb": {
           "type": "block",
           "settings": {
-            "block_name": "Blok",
             "background_color": "",
+            "show_border": true,
+            "border_color": "#0b00b5",
             "header": "",
             "header_link": "",
             "subheader": "",
             "link": "",
             "padding": 0,
-            "content_position": "center-center"
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_color": "#0b00b5",
+            "subheader_color": "#0b00b5"
           }
         },
         "block_dt4QpV": {
           "type": "block",
           "settings": {
-            "block_name": "2",
             "background_color": "",
-            "header": "",
+            "show_border": true,
+            "border_color": "#0b00b5",
+            "header": "dkjald;",
             "header_link": "",
-            "subheader": "",
+            "subheader": "kl;jca;khc;",
             "link": "",
             "padding": 0,
-            "content_position": "center-center"
+            "content_position_vertical": "top",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_color": "#0b00b5",
+            "subheader_color": "#0b00b5"
           }
         },
         "block_FMzpJU": {
           "type": "block",
           "settings": {
-            "block_name": "Blok",
             "background_color": "",
+            "show_border": true,
+            "border_color": "#0b00b5",
             "header": "",
             "header_link": "",
             "subheader": "",
             "link": "",
             "padding": 0,
-            "content_position": "center-center"
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_color": "#0b00b5",
+            "subheader_color": "#0b00b5"
           }
         },
         "block_bTjhDX": {
           "type": "block",
           "settings": {
-            "block_name": "Blok",
             "background_color": "",
+            "show_border": true,
+            "border_color": "#0b00b5",
             "header": "",
             "header_link": "",
             "subheader": "",
             "link": "",
             "padding": 0,
-            "content_position": "center-center"
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_color": "#0b00b5",
+            "subheader_color": "#0b00b5"
           }
         }
       },
@@ -298,6 +318,7 @@
       ],
       "settings": {
         "background_color": "#ffffff",
+        "margins": 48,
         "gap": 24,
         "columns_per_row": 2,
         "size_mode": "fixed",
