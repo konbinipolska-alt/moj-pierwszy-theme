@@ -446,7 +446,7 @@
       "name": "Nowy slider produktowy",
       "settings": {
         "background_color": "#ffffff",
-        "height": 600,
+        "height": 500,
         "margins": 48,
         "gap": 25,
         "inner_padding": 16,
