@@ -46,26 +46,26 @@
               {% assign product = all_products[b.settings.product] %}
               <div class="new-ps-card" 
                    style="
-                     width: {{ b.settings.card_width | default: section.settings.product_card_width | default: 260 }}px;
+                     width: {{ section.settings.product_card_width | default: 260 }}px;
                      height: 100%;
-                     {% if b.settings.card_bg_color %}background: {{ b.settings.card_bg_color }};{% else %}background: #fff;{% endif %}
-                     border-radius: {{ b.settings.border_radius | default: 8 }}px;
-                     {% if b.settings.enable_shadow == false %}box-shadow: none;{% else %}box-shadow: 0 2px 8px rgba(0,0,0,0.1);{% endif %}
+                     {% if section.settings.card_bg_color %}background: {{ section.settings.card_bg_color }};{% else %}background: #fff;{% endif %}
+                     border-radius: {{ section.settings.border_radius | default: 8 }}px;
+                     {% if section.settings.enable_shadow == false %}box-shadow: none;{% else %}box-shadow: 0 2px 8px rgba(0,0,0,0.1);{% endif %}
                    ">
                 <a href="{{ product.url }}" class="new-ps-card-link">
                   {% if product.featured_image %}
-                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy" style="border-top-left-radius: {{ b.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ b.settings.border_radius | default: 8 }}px;">
+                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy" style="border-top-left-radius: {{ section.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ section.settings.border_radius | default: 8 }}px;">
                   {% endif %}
                   <div class="new-ps-card-info" style="padding: 12px; height: 35%; display: flex; flex-direction: column; justify-content: space-between;">
-                    <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ b.settings.content_gap | default: 8 }}px; text-align: {{ b.settings.text_alignment | default: 'left' }}; color: {{ b.settings.text_color | default: '#1a1a1a' }};">
-                      <h3 class="new-ps-card-title" style="font-size: {{ b.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
+                    <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ section.settings.content_gap | default: 8 }}px; text-align: {{ section.settings.text_alignment | default: 'left' }}; color: {{ section.settings.text_color | default: '#1a1a1a' }};">
+                      <h3 class="new-ps-card-title" style="font-size: {{ section.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
                       {% if product.compare_at_price > product.price %}
-                        <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline; justify-content: {{ b.settings.text_alignment | default: 'left' }};">
-                          <span class="old-price" style="text-decoration: line-through; opacity: .6;">{{ product.compare_at_price | money }}</span>
-                          <span class="sale-price" style="color: {{ b.settings.sale_color | default: '#e11d48' }}; font-size: {{ b.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
+                        <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline; justify-content: {{ section.settings.text_alignment | default: 'left' }};">
+                          <span class="old-price">{{ product.compare_at_price | money }}</span>
+                          <span class="sale-price" style="color: {{ section.settings.sale_color | default: '#e11d48' }}; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
                         </div>
                       {% else %}
-                        <p class="new-ps-card-price" style="font-size: {{ b.settings.price_font_size | default: 18 }}px; font-weight: 700; margin: 0; color: {{ b.settings.text_color | default: '#0b00b5' }}; text-align: {{ b.settings.text_alignment | default: 'left' }};">{{ product.price | money }}</p>
+                        <p class="new-ps-card-price" style="font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700; margin: 0; color: {{ section.settings.text_color | default: '#1a1a1a' }}; text-align: {{ section.settings.text_alignment | default: 'left' }};">{{ product.price | money }}</p>
                       {% endif %}
                     </div>
                     <form method="post" action="/cart/add" class="new-ps-add-to-cart" style="display: flex; justify-content: flex-end; margin-top: 8px;">
@@ -88,21 +88,21 @@
           {% if coll_handle and collections[coll_handle] %}
             {% assign products = collections[coll_handle].products | limit: section.settings.product_limit %}
             {% for product in products %}
-              <div class="new-ps-card" style="width: {{ section.settings.product_card_width | default: 260 }}px; height: 100%; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+              <div class="new-ps-card" style="width: {{ section.settings.product_card_width | default: 260 }}px; height: 100%; {% if section.settings.card_bg_color %}background: {{ section.settings.card_bg_color }};{% else %}background: #fff;{% endif %} border-radius: {{ section.settings.border_radius | default: 8 }}px; {% if section.settings.enable_shadow == false %}box-shadow: none;{% else %}box-shadow: 0 2px 8px rgba(0,0,0,0.1);{% endif %}">
                 <a href="{{ product.url }}" class="new-ps-card-link">
                   {% if product.featured_image %}
-                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy" style="border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy" style="border-top-left-radius: {{ section.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ section.settings.border_radius | default: 8 }}px;">
                   {% endif %}
                   <div class="new-ps-card-info" style="padding: 12px; height: 35%; display: flex; flex-direction: column; justify-content: space-between;">
-                    <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: 8px; text-align: left; color: #1a1a1a;">
-                      <h3 class="new-ps-card-title" style="font-size: 16px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
+                    <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ section.settings.content_gap | default: 8 }}px; text-align: {{ section.settings.text_alignment | default: 'left' }}; color: {{ section.settings.text_color | default: '#1a1a1a' }};">
+                      <h3 class="new-ps-card-title" style="font-size: {{ section.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
                       {% if product.compare_at_price > product.price %}
-                        <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline;">
-                          <span class="old-price" style="text-decoration: line-through; opacity: .6;">{{ product.compare_at_price | money }}</span>
-                          <span class="sale-price" style="color: #e11d48; font-size: 18px; font-weight: 700;">{{ product.price | money }}</span>
+                        <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline; justify-content: {{ section.settings.text_alignment | default: 'left' }};">
+                          <span class="old-price">{{ product.compare_at_price | money }}</span>
+                          <span class="sale-price" style="color: {{ section.settings.sale_color | default: '#e11d48' }}; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
                         </div>
                       {% else %}
-                        <p class="new-ps-card-price" style="font-size: 18px; font-weight: 700; margin: 0; color: #0b00b5;">{{ product.price | money }}</p>
+                        <p class="new-ps-card-price" style="font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700; margin: 0; color: {{ section.settings.text_color | default: '#1a1a1a' }}; text-align: {{ section.settings.text_alignment | default: 'left' }};">{{ product.price | money }}</p>
                       {% endif %}
                     </div>
                     <form method="post" action="/cart/add" class="new-ps-add-to-cart" style="display: flex; justify-content: flex-end; margin-top: 8px;">
@@ -265,6 +265,17 @@ document.addEventListener('DOMContentLoaded', function() {
     { "type": "number", "id": "inner_padding", "label": "Wewnętrzne paddingi slidera (px)", "default": 16 },
     { "type": "number", "id": "content_tile_width", "label": "Szerokość kafla contentowego (px)", "default": 400 },
     { "type": "number", "id": "product_card_width", "label": "Szerokość karty produktu (px)", "default": 260 },
+    { "type": "color", "id": "card_bg_color", "label": "Kolor tła karty" },
+    { "type": "color", "id": "text_color", "label": "Kolor tekstu", "default": "#1a1a1a" },
+    { "type": "number", "id": "title_font_size", "label": "Wielkość nazwy produktu (px)", "default": 16 },
+    { "type": "number", "id": "price_font_size", "label": "Wielkość ceny (px)", "default": 18 },
+    { "type": "select", "id": "text_alignment", "label": "Wyrównanie tekstu", "default": "left", "options": [
+      {"value":"left","label":"Lewo"},{"value":"center","label":"Środek"},{"value":"right","label":"Prawo"}
+    ] },
+    { "type": "number", "id": "content_gap", "label": "Odstęp między elementami opisu (px)", "default": 8 },
+    { "type": "color", "id": "sale_color", "label": "Kolor przeceny", "default": "#e11d48" },
+    { "type": "number", "id": "border_radius", "label": "Zaokrąglenie rogów (px)", "default": 8 },
+    { "type": "checkbox", "id": "enable_shadow", "label": "Włącz cień kart", "default": true },
     { "type": "select", "id": "source_mode", "label": "Źródło produktów", "default": "collection", "options": [
       { "value": "collection", "label": "Kolekcja" },
       { "value": "manual", "label": "Ręcznie (bloki)" }
@@ -311,19 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "product_item",
       "name": "Produkt",
       "settings": [
-        { "type": "product", "id": "product", "label": "Produkt" },
-        { "type": "number", "id": "card_width", "label": "Szerokość karty (px)", "default": 260 },
-        { "type": "color", "id": "card_bg_color", "label": "Kolor tła karty" },
-        { "type": "color", "id": "text_color", "label": "Kolor tekstu", "default": "#1a1a1a" },
-        { "type": "number", "id": "title_font_size", "label": "Wielkość nazwy produktu (px)", "default": 16 },
-        { "type": "number", "id": "price_font_size", "label": "Wielkość ceny (px)", "default": 18 },
-        { "type": "select", "id": "text_alignment", "label": "Wyrównanie tekstu", "default": "left", "options": [
-          {"value":"left","label":"Lewo"},{"value":"center","label":"Środek"},{"value":"right","label":"Prawo"}
-        ] },
-        { "type": "number", "id": "content_gap", "label": "Odstęp między elementami opisu (px)", "default": 8 },
-        { "type": "color", "id": "sale_color", "label": "Kolor przeceny", "default": "#e11d48" },
-        { "type": "number", "id": "border_radius", "label": "Zaokrąglenie rogów (px)", "default": 8 },
-        { "type": "checkbox", "id": "enable_shadow", "label": "Włącz cień", "default": true }
+        { "type": "product", "id": "product", "label": "Produkt" }
       ]
     }
   ],
