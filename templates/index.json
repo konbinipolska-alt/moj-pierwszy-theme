@@ -352,6 +352,33 @@
     },
     "category_highlight_8TAAap": {
       "type": "category-highlight",
+      "blocks": {
+        "content_block_6h6K44": {
+          "type": "content_block",
+          "settings": {
+            "background_color": "#efefef",
+            "padding": 48,
+            "width": 400,
+            "header": "Kiszonki",
+            "header_color": "",
+            "header_line_height": 120,
+            "subheader": "dfbsdkfbsdlkblblbsdhfkjbadfjlkbdsalfjkhadfjkbsdnlkfbdnlkvhaiap;",
+            "subheader_color": "",
+            "subheader_line_height": 150,
+            "content_position": "top",
+            "text_alignment": "left",
+            "button_text": "dshsjhpdhvp;p;",
+            "button_link": "",
+            "button_background_color": "",
+            "button_border_color": "",
+            "button_text_color": "",
+            "button_border_radius": 0
+          }
+        }
+      },
+      "block_order": [
+        "content_block_6h6K44"
+      ],
       "name": "Category Highlight",
       "settings": {
         "background_color": "#ffffff",
