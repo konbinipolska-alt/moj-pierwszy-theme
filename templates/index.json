@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "image-slider-simple",
+      "type": "user-image-slider-simple",
       "blocks": {
         "image_slide_2": {
           "type": "image_slide",
@@ -215,13 +215,13 @@
       "settings": {}
     },
     "spacer_1": {
-      "type": "spacer",
+      "type": "user-spacer",
       "settings": {
         "height": 24
       }
     },
     "kafelki_3KqnXh": {
-      "type": "tiles-divider",
+      "type": "user-tiles-divider",
       "name": "Kafelki",
       "settings": {
         "rows": 5,
@@ -235,7 +235,7 @@
       }
     },
     "generic_section": {
-      "type": "generic-section",
+      "type": "user-highlights",
       "blocks": {
         "block_a4FDbb": {
           "type": "block",
@@ -340,7 +340,7 @@
       }
     },
     "spotify_player_bEC9xV": {
-      "type": "spotify-player",
+      "type": "user-spotify-player",
       "name": "Spotify Player",
       "settings": {
         "background_color": "#ffffff",
@@ -351,7 +351,7 @@
       }
     },
     "nowy_slider_produktowy_jQTUxJ": {
-      "type": "nowy-slider-produktowy",
+      "type": "user-nowy-slider-produktowy",
       "blocks": {
         "content_tile_BmG6GA": {
           "type": "content_tile",
@@ -469,7 +469,7 @@
       }
     },
     "category_highlight_8TAAap": {
-      "type": "category-highlight",
+      "type": "user-category-highlight",
       "blocks": {
         "content_block_6h6K44": {
           "type": "content_block",

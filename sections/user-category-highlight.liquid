@@ -1,0 +1,638 @@
+<div class="category-highlight-section">
+  <div class="category-highlight-wrapper">
+    {% for block in section.blocks %}
+      {% if block.type == 'content_block' %}
+        <div class="content-block" 
+             style="
+               {% if block.settings.background_color %}background-color: {{ block.settings.background_color }};{% endif %}
+               padding: {{ block.settings.padding | default: 48 }}px;
+               {% if block.settings.width %}width: {{ block.settings.width }}px;{% endif %}
+               {% if block.settings.show_border %}border: {{ block.settings.border_width | default: 1 }}px solid {{ block.settings.border_color | default: '#0b00b5' }};{% else %}border: none;{% endif %}
+             "
+             {{ block.shopify_attributes }}>
+          {% if block.settings.background_image %}
+            <div class="content-block-media" 
+                 style="
+                   background-image: url('{{ block.settings.background_image | image_url: width: 1200 }}'); 
+                   background-size: {{ block.settings.media_scale | default: 100 }}%; 
+                   background-position: {{ block.settings.media_position | default: 'center' }};
+                   background-repeat: no-repeat;
+                 "></div>
+          {% elsif block.settings.background_video %}
+            <video class="content-block-media" 
+                   style="object-position: {{ block.settings.media_position | default: 'center' }};"
+                   autoplay loop muted playsinline>
+              <source src="{{ block.settings.background_video }}" type="video/mp4">
+            </video>
+          {% endif %}
+          <div class="content-block-inner content-position-{{ block.settings.content_position }}">
+            <div class="content-text-wrapper">
+              {% if block.settings.header != blank %}
+                <h2 class="content-header" 
+                    style="
+                      text-align: {{ block.settings.text_alignment | default: 'left' }};
+                      color: {{ block.settings.header_color | default: '#0b00b5' }};
+                      font-size: {{ block.settings.header_font_size | default: 32 }}px;
+                      line-height: {{ block.settings.header_line_height | default: 120 | divided_by: 100.0 }};
+                    ">
+                  {{ block.settings.header | newline_to_br }}
+                </h2>
+              {% endif %}
+              {% if block.settings.subheader != blank %}
+                <p class="content-subheader" 
+                   style="
+                     text-align: {{ block.settings.text_alignment | default: 'left' }};
+                     color: {{ block.settings.subheader_color | default: '#0b00b5' }};
+                     font-size: {{ block.settings.subheader_font_size | default: 14 }}px;
+                     line-height: {{ block.settings.subheader_line_height | default: 150 | divided_by: 100.0 }};
+                   ">
+                  {{ block.settings.subheader | newline_to_br }}
+                </p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% elsif block.type == 'product_slider' %}
+        <div class="product-slider-block" {{ block.shopify_attributes }}>
+          <button class="product-slider-arrow product-slider-arrow-left" aria-label="Previous">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="product-slider-container">
+            {% for block in section.blocks %}
+              {% if block.type == 'product_item' %}
+                {% assign product = all_products[block.settings.product] %}
+                <div class="product-slide" {{ block.shopify_attributes }}>
+                  <a href="{{ product.url }}" class="product-slide-link">
+                    {% if product.featured_image %}
+                      <img 
+                        src="{{ product.featured_image | image_url: width: 400 }}"
+                        alt="{{ product.title | escape }}"
+                        loading="lazy"
+                        class="product-slide-image"
+                      >
+                    {% else %}
+                      <div class="product-slide-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                          <circle cx="8.5" cy="8.5" r="1.5"/>
+                          <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                      </div>
+                    {% endif %}
+                    <div class="product-slide-info">
+                      <h3 class="product-slide-title">{{ product.title }}</h3>
+                      <p class="product-slide-price">{{ product.price | money }}</p>
+                    </div>
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <button class="product-slider-arrow product-slider-arrow-right" aria-label="Next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .category-highlight-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background-color: {{ section.settings.background_color | default: '#ffffff' }};
+    height: {{ section.settings.height | default: 700 }}px;
+  }
+
+  .category-highlight-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: {{ section.settings.margins | default: 48 }}px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .content-block {
+    flex: 0 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .content-block-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .content-block-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .content-block-inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+  }
+
+  .content-position-top {
+    justify-content: flex-start;
+  }
+
+  .content-position-center {
+    justify-content: center;
+  }
+
+  .content-position-bottom {
+    justify-content: flex-end;
+  }
+
+  .content-text-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: inherit;
+  }
+
+  .content-header {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .content-subheader {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin: 0 0 1.5rem 0;
+  }
+
+  /* Product Slider Styles */
+  .product-slider-block {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-slider-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 100%;
+    padding: 0 48px;
+    align-items: center;
+  }
+  .product-slider-container::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  .product-slide {
+    flex: 0 0 auto;
+    width: 280px;
+    height: calc(100% - 32px);
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .product-slide:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .product-slide-image {
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .product-slide-placeholder {
+    width: 100%;
+    height: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f6f7;
+    color: #9ca3af;
+  }
+
+  .product-slide-placeholder svg {
+    opacity: 0.5;
+  }
+
+  .product-slide-info {
+    padding: 16px;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-slide-title {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1a1a1a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .product-slide-price {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0;
+    color: #0b00b5;
+  }
+
+  .product-slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    color: #374151;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .product-slider-block:hover .product-slider-arrow {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .product-slider-arrow:hover {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .product-slider-arrow-left {
+    left: 0;
+  }
+
+  .product-slider-arrow-right {
+    right: 0;
+  }
+
+  .product-slider-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .product-slider-container {
+      padding: 0 20px;
+    }
+    .product-slide {
+      width: 200px;
+    }
+    .product-slider-arrow {
+      opacity: 1 !important;
+      visibility: visible !important;
+      width: 36px;
+      height: 36px;
+    }
+    .product-slider-arrow svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const productSliderBlocks = document.querySelectorAll('.product-slider-block');
+  
+  productSliderBlocks.forEach(block => {
+    const container = block.querySelector('.product-slider-container');
+    const leftArrow = block.querySelector('.product-slider-arrow-left');
+    const rightArrow = block.querySelector('.product-slider-arrow-right');
+    
+    if (!container || !leftArrow || !rightArrow) return;
+    
+    const slideWidth = 280 + 16; // slide width + gap
+    const mobileSlideWidth = 200 + 16;
+    
+    function getSlideWidth() {
+      return window.innerWidth <= 768 ? mobileSlideWidth : slideWidth;
+    }
+    
+    function scrollSlider(direction) {
+      const currentScroll = container.scrollLeft;
+      const scrollAmount = getSlideWidth();
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      
+      let newScroll = currentScroll + (direction * scrollAmount);
+      
+      if (newScroll < 0) {
+        newScroll = maxScroll;
+      } else if (newScroll > maxScroll) {
+        newScroll = 0;
+      }
+      
+      container.scrollTo({
+        left: newScroll,
+        behavior: 'smooth'
+      });
+    }
+    
+    leftArrow.addEventListener('click', () => scrollSlider(-1));
+    rightArrow.addEventListener('click', () => scrollSlider(1));
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Category Highlight",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Kolor tła",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "height",
+      "label": "Wysokość sekcji (px)",
+      "default": 700
+    },
+    {
+      "type": "number",
+      "id": "margins",
+      "label": "Marginesy sekcji (px)",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Tło"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Kolor tła"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Grafika tła"
+        },
+        {
+          "type": "text",
+          "id": "background_video",
+          "label": "Video tła (URL)"
+        },
+        {
+          "type": "select",
+          "id": "media_position",
+          "label": "Pozycja grafiki/video",
+          "options": [
+            {
+              "value": "left top",
+              "label": "Lewa góra"
+            },
+            {
+              "value": "center top",
+              "label": "Środek góra"
+            },
+            {
+              "value": "right top",
+              "label": "Prawa góra"
+            },
+            {
+              "value": "left center",
+              "label": "Lewa środek"
+            },
+            {
+              "value": "center",
+              "label": "Środek"
+            },
+            {
+              "value": "right center",
+              "label": "Prawa środek"
+            },
+            {
+              "value": "left bottom",
+              "label": "Lewa dół"
+            },
+            {
+              "value": "center bottom",
+              "label": "Środek dół"
+            },
+            {
+              "value": "right bottom",
+              "label": "Prawa dół"
+            }
+          ],
+          "default": "center",
+          "info": "Tylko dla grafiki"
+        },
+        {
+          "type": "number",
+          "id": "media_scale",
+          "label": "Skala grafiki (%)",
+          "default": 100,
+          "info": "Tylko dla grafiki, 100 = pokrywa całość"
+        },
+        {
+          "type": "number",
+          "id": "padding",
+          "label": "Marginesy wewnętrzne (px)",
+          "default": 48
+        },
+        {
+          "type": "number",
+          "id": "width",
+          "label": "Szerokość bloku (px)",
+          "default": 400
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border",
+          "label": "Pokaż ramkę",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "border_width",
+          "label": "Grubość ramki (px)",
+          "default": 1
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Kolor ramki",
+          "default": "#0b00b5"
+        },
+        {
+          "type": "header",
+          "content": "Treść"
+        },
+        {
+          "type": "textarea",
+          "id": "header",
+          "label": "Header"
+        },
+        {
+          "type": "color",
+          "id": "header_color",
+          "label": "Kolor headera",
+          "default": "#0b00b5"
+        },
+        {
+          "type": "number",
+          "id": "header_font_size",
+          "label": "Wielkość czcionki headera (px)",
+          "default": 32,
+          "info": "Domyślnie: 32px"
+        },
+        {
+          "type": "number",
+          "id": "header_line_height",
+          "label": "Interlinia headera",
+          "default": 120,
+          "info": "Domyślnie: 120"
+        },
+        {
+          "type": "textarea",
+          "id": "subheader",
+          "label": "Subheader"
+        },
+        {
+          "type": "color",
+          "id": "subheader_color",
+          "label": "Kolor subheadera",
+          "default": "#0b00b5"
+        },
+        {
+          "type": "number",
+          "id": "subheader_font_size",
+          "label": "Wielkość czcionki subheadera (px)",
+          "default": 14,
+          "info": "Domyślnie: 14px"
+        },
+        {
+          "type": "number",
+          "id": "subheader_line_height",
+          "label": "Interlinia subheadera",
+          "default": 150,
+          "info": "Domyślnie: 150"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Pozycja treści",
+          "options": [
+            {
+              "value": "top",
+              "label": "Góra"
+            },
+            {
+              "value": "center",
+              "label": "Środek"
+            },
+            {
+              "value": "bottom",
+              "label": "Dół"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Wyrównanie tekstu",
+          "options": [
+            {
+              "value": "left",
+              "label": "Lewo"
+            },
+            {
+              "value": "center",
+              "label": "Środek"
+            },
+            {
+              "value": "right",
+              "label": "Prawo"
+            }
+          ],
+          "default": "left"
+        },
+      ]
+    },
+    {
+      "type": "product_slider",
+      "name": "Product Slider",
+      "settings": []
+    },
+    {
+      "type": "product_item",
+      "name": "Product Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

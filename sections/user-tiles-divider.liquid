@@ -1,0 +1,57 @@
+<div class="kafelki-section"></div>
+
+<style>
+  .kafelki-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    height: calc({{ section.settings.rows | default: 1 | times: 20 }}px + 1px);
+    overflow: hidden;
+    background-position: -1px 0;
+    background-repeat: repeat;
+  }
+  
+  {% assign stroke_width = section.settings.stroke_width | default: 1 %}
+  
+  {% if stroke_width == 1 %}
+    .kafelki-section {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAnIGhlaWdodD0nMjAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PGxpbmUgeDE9JzAnIHkxPScwJyB4Mj0nMjAnIHkyPScwJyBzdHJva2U9JyMwYjAwYjUnIHN0cm9rZS13aWR0aD0nMScvPjxsaW5lIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScyMCcgc3Ryb2tlPScjMGIwMGI1JyBzdHJva2Utd2lkdGg9JzEnLz48L3N2Zz4=");
+    }
+  {% elsif stroke_width == 1.5 %}
+    .kafelki-section {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAnIGhlaWdodD0nMjAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PGxpbmUgeDE9JzAnIHkxPScwJyB4Mj0nMjAnIHkyPScwJyBzdHJva2U9JyMwYjAwYjUnIHN0cm9rZS13aWR0aD0nMS41Jy8+PGxpbmUgeDE9JzAnIHkxPScwJyB4Mj0nMCcgeTI9JzIwJyBzdHJva2U9JyMwYjAwYjUnIHN0cm9rZS13aWR0aD0nMS41Jy8+PC9zdmc+");
+    }
+  {% else %}
+    .kafelki-section {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAnIGhlaWdodD0nMjAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PGxpbmUgeDE9JzAnIHkxPScwJyB4Mj0nMjAnIHkyPScwJyBzdHJva2U9JyMwYjAwYjUnIHN0cm9rZS13aWR0aD0nMicvPjxsaW5lIHgxPScwJyB5MT0nMCcgeDI9JzAnIHkyPScyMCcgc3Ryb2tlPScjMGIwMGI1JyBzdHJva2Utd2lkdGg9JzInLz48L3N2Zz4=");
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+{
+  "name": "Tiles Divider",
+  "settings": [
+    {
+      "type": "number",
+      "id": "rows",
+      "label": "Ilość rzędów",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "stroke_width",
+      "label": "Grubość linii (px)",
+      "min": 1,
+      "max": 2,
+      "step": 0.5,
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tiles Divider"
+    }
+  ]
+}
+{% endschema %}
+

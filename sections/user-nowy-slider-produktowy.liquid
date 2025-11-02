@@ -1,0 +1,383 @@
+<div class="new-ps-section">
+  <div class="new-ps-wrapper">
+    {% comment %} Sticky content tile on the left {% endcomment %}
+    {% assign has_content_tile = false %}
+    {% for block in section.blocks %}
+      {% if block.type == 'content_tile' %}
+        {% assign has_content_tile = true %}
+        <div class="new-ps-content-tile" style="width: {{ section.settings.content_tile_width | default: 400 }}px; padding: {{ block.settings.padding | default: 24 }}px; {% if block.settings.background_color %}background-color: {{ block.settings.background_color }};{% endif %} {% if block.settings.show_border %}border: {{ block.settings.border_width | default: 1 }}px solid {{ block.settings.border_color | default: '#0b00b5' }};{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.background_image %}
+            <div class="new-ps-content-media" style="background-image: url('{{ block.settings.background_image | image_url: width: 1600 }}'); background-size: {{ block.settings.media_scale | default: 100 }}%; background-position: {{ block.settings.media_position | default: 'center' }}; background-repeat: no-repeat;"></div>
+          {% elsif block.settings.background_video %}
+            <video class="new-ps-content-media" autoplay loop muted playsinline style="object-position: {{ block.settings.media_position | default: 'center' }};">
+              <source src="{{ block.settings.background_video }}" type="video/mp4">
+            </video>
+          {% endif %}
+          <div class="new-ps-content-inner content-position-{{ block.settings.content_position | default: 'center' }}">
+            {% if block.settings.header != blank %}
+              <h2 class="new-ps-header" style="color: {{ block.settings.header_color | default: '#0b00b5' }}; font-size: {{ block.settings.header_font_size | default: 32 }}px; line-height: {{ block.settings.header_line_height | default: 120 | divided_by: 100.0 }}; text-align: {{ block.settings.text_alignment | default: 'left' }};">
+                {{ block.settings.header | newline_to_br }}
+              </h2>
+            {% endif %}
+            {% if block.settings.subheader != blank %}
+              <p class="new-ps-subheader" style="color: {{ block.settings.subheader_color | default: '#0b00b5' }}; font-size: {{ block.settings.subheader_font_size | default: 14 }}px; line-height: {{ block.settings.subheader_line_height | default: 150 | divided_by: 100.0 }}; text-align: {{ block.settings.text_alignment | default: 'left' }};">
+                {{ block.settings.subheader | newline_to_br }}
+              </p>
+            {% endif %}
+          </div>
+        </div>
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} Right side: products slider {% endcomment %}
+    <div class="new-ps-slider">
+      <button class="new-ps-arrow new-ps-arrow-left" aria-label="Poprzedni">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="new-ps-track" style="gap: {{ section.settings.gap | default: 16 }}px;">
+        {% comment %} Source mode: manual product_item blocks or collection products {% endcomment %}
+        {% if section.settings.source_mode == 'manual' %}
+          {% for b in section.blocks %}
+            {% if b.type == 'product_item' %}
+              {% assign product = all_products[b.settings.product] %}
+              <div class="new-ps-card" 
+                   style="
+                     width: {{ section.settings.product_card_width | default: 260 }}px;
+                     height: 100%;
+                     {% if section.settings.card_bg_color %}background: {{ section.settings.card_bg_color }};{% else %}background: #fff;{% endif %}
+                     border-radius: {{ section.settings.border_radius | default: 8 }}px;
+                     {% if section.settings.enable_shadow == false %}box-shadow: none;{% else %}box-shadow: 0 2px 8px rgba(0,0,0,0.1);{% endif %}
+                   ">
+                <a href="{{ product.url }}" class="new-ps-card-link">
+                  {% if product.featured_image %}
+                    <div class="new-ps-card-media" style="aspect-ratio: {% if section.settings.image_ratio == 'square' %}1 / 1{% else %}{{ product.featured_image.aspect_ratio | default: 1 }}{% endif %}; border-top-left-radius: {{ section.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ section.settings.border_radius | default: 8 }}px;">
+                      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy">
+                    </div>
+                  {% endif %}
+                  <div class="new-ps-card-info" style="padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ section.settings.content_gap | default: 8 }}px; text-align: {{ section.settings.text_alignment | default: 'left' }}; color: {{ section.settings.text_color | default: '#0b00b5' }};">
+                      <h3 class="new-ps-card-title" style="font-size: {{ section.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
+                    </div>
+                    <div class="new-ps-card-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: {{ section.settings.actions_gap | default: 16 }}px;">
+                      <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline;">
+                        {% if product.compare_at_price > product.price %}
+                          <span class="sale-price" style="color: #E11D48; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
+                          <span class="old-price" style="opacity:.5; font-size: calc({{ section.settings.price_font_size | default: 18 }}px * .8); text-decoration: line-through;">{{ product.compare_at_price | money }}</span>
+                        {% else %}
+                          <span class="new-ps-card-price" style="font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700; color: {{ section.settings.text_color | default: '#0b00b5' }};">{{ product.price | money }}</span>
+                        {% endif %}
+                      </div>
+                      <form method="post" action="/cart/add" class="new-ps-add-to-cart" style="display: flex; align-items: center; gap: 8px; margin: 0;">
+                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <div class="qty-control" style="display: inline-flex; align-items: center; gap: 8px;">
+                          <button type="button" class="qty-btn qty-minus" aria-label="Minus" disabled style="border: 1px solid #e5e7eb; background: #fff; width: 28px; height: 28px; border-radius: 6px;">−</button>
+                          <span class="qty-value">1</span>
+                          <button type="button" class="qty-btn qty-plus" aria-label="Plus" style="border: 1px solid #e5e7eb; background: #fff; width: 28px; height: 28px; border-radius: 6px;">+</button>
+                        </div>
+                        <button type="submit" class="new-ps-cart-btn" aria-label="Dodaj do koszyka" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e5e7eb; background: #fff; cursor: pointer;">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="10" cy="20" r="1"/>
+                            <circle cx="18" cy="20" r="1"/>
+                            <path d="M2 2h3l3.6 7.59a2 2 0 0 0 1.8 1.21H19a2 2 0 0 0 1.92-1.46L23 6H6"/>
+                          </svg>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% assign coll_handle = section.settings.collection %}
+          {% if coll_handle and collections[coll_handle] %}
+            {% assign products = collections[coll_handle].products | limit: section.settings.product_limit %}
+            {% for product in products %}
+              <div class="new-ps-card" style="width: {{ section.settings.product_card_width | default: 260 }}px; height: 100%; {% if section.settings.card_bg_color %}background: {{ section.settings.card_bg_color }};{% else %}background: #fff;{% endif %} border-radius: {{ section.settings.border_radius | default: 8 }}px; {% if section.settings.enable_shadow == false %}box-shadow: none;{% else %}box-shadow: 0 2px 8px rgba(0,0,0,0.1);{% endif %}">
+                <a href="{{ product.url }}" class="new-ps-card-link">
+                  {% if product.featured_image %}
+                    <div class="new-ps-card-media" style="aspect-ratio: {% if section.settings.image_ratio == 'square' %}1 / 1{% else %}{{ product.featured_image.aspect_ratio | default: 1 }}{% endif %}; border-top-left-radius: {{ section.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ section.settings.border_radius | default: 8 }}px;">
+                      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy">
+                    </div>
+                  {% endif %}
+                  <div class="new-ps-card-info" style="padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ section.settings.content_gap | default: 8 }}px; text-align: {{ section.settings.text_alignment | default: 'left' }}; color: {{ section.settings.text_color | default: '#0b00b5' }};">
+                      <h3 class="new-ps-card-title" style="font-size: {{ section.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
+                    </div>
+                    <div class="new-ps-card-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: {{ section.settings.actions_gap | default: 16 }}px;">
+                      <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline;">
+                        {% if product.compare_at_price > product.price %}
+                          <span class="sale-price" style="color: #E11D48; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
+                          <span class="old-price" style="opacity:.5; font-size: calc({{ section.settings.price_font_size | default: 18 }}px * .8); text-decoration: line-through;">{{ product.compare_at_price | money }}</span>
+                        {% else %}
+                          <span class="new-ps-card-price" style="font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700; color: {{ section.settings.text_color | default: '#0b00b5' }};">{{ product.price | money }}</span>
+                        {% endif %}
+                      </div>
+                      <form method="post" action="/cart/add" class="new-ps-add-to-cart" style="display: flex; align-items: center; gap: 8px; margin: 0;">
+                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <div class="qty-control" style="display: inline-flex; align-items: center; gap: 8px;">
+                          <button type="button" class="qty-btn qty-minus" aria-label="Minus" disabled style="border: 1px solid #e5e7eb; background: #fff; width: 28px; height: 28px; border-radius: 6px;">−</button>
+                          <span class="qty-value">1</span>
+                          <button type="button" class="qty-btn qty-plus" aria-label="Plus" style="border: 1px solid #e5e7eb; background: #fff; width: 28px; height: 28px; border-radius: 6px;">+</button>
+                        </div>
+                        <button type="submit" class="new-ps-cart-btn" aria-label="Dodaj do koszyka" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e5e7eb; background: #fff; cursor: pointer;">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="10" cy="20" r="1"/>
+                            <circle cx="18" cy="20" r="1"/>
+                            <path d="M2 2h3l3.6 7.59a2 2 0 0 0 1.8 1.21H19a2 2 0 0 0 1.92-1.46L23 6H6"/>
+                          </svg>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <button class="new-ps-arrow new-ps-arrow-right" aria-label="Następny">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .new-ps-section { 
+    width: 100vw; 
+    margin-left: calc(-50vw + 50%);
+    background-color: {{ section.settings.background_color | default: '#ffffff' }};
+  }
+  .new-ps-wrapper {
+    width: 100%;
+    height: {{ section.settings.height | default: 700 }}px;
+    padding: {{ section.settings.margins | default: 48 }}px;
+    box-sizing: border-box;
+    display: flex;
+    gap: {{ section.settings.gap | default: 16 }}px;
+    align-items: stretch;
+  }
+  .new-ps-content-tile {
+    position: sticky;
+    left: {{ section.settings.margins | default: 48 }}px;
+    top: {{ section.settings.margins | default: 48 }}px; /* ensures tile stays visible vertically */
+    bottom: {{ section.settings.margins | default: 48 }}px;
+    height: calc(100%);
+    box-sizing: border-box;
+    overflow: hidden;
+    background-clip: padding-box;
+  }
+  .new-ps-content-media {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+  }
+  .new-ps-content-inner {
+    position: relative; z-index: 5;
+    display: flex; flex-direction: column; justify-content: center; height: 100%;
+  }
+  .content-position-top { justify-content: flex-start; }
+  .content-position-center { justify-content: center; }
+  .content-position-bottom { justify-content: flex-end; }
+  .new-ps-header {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+  }
+  .new-ps-subheader {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+  }
+
+  .new-ps-slider {
+    position: relative;
+    flex: 1;
+    overflow: hidden; /* arrows can overlay */
+    /* extend to the right viewport edge */
+    margin-right: calc(-50vw + 50%);
+    padding-right: 0;
+  }
+  .new-ps-track {
+    height: 100%; display: flex; align-items: stretch; overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+    padding-left: {{ section.settings.inner_padding | default: 16 }}px;
+    padding-right: 0;
+  }
+  .new-ps-track::-webkit-scrollbar { display: none; }
+
+  .new-ps-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.95); border: 1px solid #e5e7eb;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    z-index: 10; color: #374151; transition: all 0.2s ease; opacity: 0; visibility: hidden;
+  }
+  .new-ps-slider:hover .new-ps-arrow { opacity: 1; visibility: visible; }
+  .new-ps-arrow:hover { background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: translateY(-50%) scale(1.05); }
+  .new-ps-arrow-left { left: 8px; }
+  .new-ps-arrow-right { right: {{ section.settings.margins | default: 48 }}px; }
+
+  @media (max-width: 768px) {
+    .new-ps-wrapper { flex-direction: column; height: auto; }
+    .new-ps-content-tile { position: relative; left: 0; top: 0; bottom: 0; width: 100% !important; }
+    .new-ps-track { padding-left: 20px; padding-right: 0; }
+    .new-ps-arrow { opacity: 1 !important; visibility: visible !important; width: 36px; height: 36px; }
+  }
+</style>
+
+{% comment %} Product card is rendered inline in loops above {% endcomment %}
+
+<style>
+  .new-ps-card { flex: 0 0 auto; width: {{ section.settings.product_card_width | default: 260 }}px; height: 100%; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .new-ps-card { transition: background-color .2s ease; }
+  .new-ps-card:hover { background-color: #fafafa !important; }
+  .new-ps-card-link { display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; }
+  .new-ps-card-media { position: relative; width: 100%; overflow: hidden; }
+  .new-ps-card-media .new-ps-card-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .new-ps-card-info { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+  .new-ps-card-title { font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 1rem; font-weight: 600; margin: 0 0 6px 0; color: {{ section.settings.text_color | default: '#0b00b5' }}; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .new-ps-card-price { font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 1.125rem; font-weight: 700; margin: 0; color: {{ section.settings.text_color | default: '#0b00b5' }}; }
+  .new-ps-card-price-wrap .old-price { text-decoration: line-through; opacity: .6; }
+  .new-ps-add-to-cart .new-ps-cart-btn:hover { box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.new-ps-section').forEach(function(root){
+    const slider = root.querySelector('.new-ps-track');
+    const left = root.querySelector('.new-ps-arrow-left');
+    const right = root.querySelector('.new-ps-arrow-right');
+    if (!slider || !left || !right) return;
+
+    function getStep() {
+      const card = slider.querySelector('.new-ps-card');
+      const gap = {{ section.settings.gap | default: 16 }};
+      return (card ? card.getBoundingClientRect().width : {{ section.settings.product_card_width | default: 260 }}) + gap;
+    }
+
+    function scrollByDir(dir) {
+      const step = getStep();
+      const max = slider.scrollWidth - slider.clientWidth;
+      if (max <= 0) return; // nothing to scroll
+      let target = slider.scrollLeft + dir * step;
+      if (target < 0) target = max; else if (target > max) target = 0;
+      slider.scrollTo({ left: target, behavior: 'smooth' });
+    }
+
+    left.addEventListener('click', function(){ scrollByDir(-1); });
+    right.addEventListener('click', function(){ scrollByDir(1); });
+
+    // Qty controls per card
+    root.querySelectorAll('.new-ps-card').forEach(function(card){
+      const minus = card.querySelector('.qty-minus');
+      const plus = card.querySelector('.qty-plus');
+      const valueEl = card.querySelector('.qty-value');
+      const qtyInput = card.querySelector('input[name="quantity"]');
+      if (!minus || !plus || !valueEl || !qtyInput) return;
+      let qty = parseInt(qtyInput.value || '1', 10) || 1;
+      function refresh(){
+        if (qty < 1) qty = 1;
+        valueEl.textContent = qty;
+        qtyInput.value = qty;
+        minus.disabled = qty <= 1;
+      }
+      minus.addEventListener('click', function(){ if (qty > 1) { qty -= 1; refresh(); } });
+      plus.addEventListener('click', function(){ qty += 1; refresh(); });
+      refresh();
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Nowy slider produktowy",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Kolor tła", "default": "#ffffff" },
+    { "type": "number", "id": "height", "label": "Wysokość sekcji (px)", "default": 700 },
+    { "type": "number", "id": "margins", "label": "Marginesy sekcji (px)", "default": 48 },
+    { "type": "number", "id": "gap", "label": "Odstęp między kartami (px)", "default": 16 },
+    { "type": "number", "id": "inner_padding", "label": "Wewnętrzne paddingi slidera (px)", "default": 16 },
+    { "type": "number", "id": "content_tile_width", "label": "Szerokość kafla contentowego (px)", "default": 400 },
+    { "type": "number", "id": "product_card_width", "label": "Szerokość karty produktu (px)", "default": 260 },
+    { "type": "select", "id": "image_ratio", "label": "Proporcje zdjęcia", "default": "square", "options": [
+      {"value":"square","label":"1:1"},
+      {"value":"original","label":"Oryginalny"}
+    ] },
+    { "type": "color", "id": "card_bg_color", "label": "Kolor tła karty" },
+    { "type": "color", "id": "text_color", "label": "Kolor tekstu", "default": "#0b00b5" },
+    { "type": "number", "id": "title_font_size", "label": "Wielkość nazwy produktu (px)", "default": 16 },
+    { "type": "number", "id": "price_font_size", "label": "Wielkość ceny (px)", "default": 18 },
+    { "type": "select", "id": "text_alignment", "label": "Wyrównanie tekstu", "default": "left", "options": [
+      {"value":"left","label":"Lewo"},{"value":"center","label":"Środek"},{"value":"right","label":"Prawo"}
+    ] },
+    { "type": "number", "id": "content_gap", "label": "Odstęp między elementami opisu (px)", "default": 8 },
+    { "type": "number", "id": "actions_gap", "label": "Odstęp od nazwy do akcji (px)", "default": 16 },
+    { "type": "color", "id": "sale_color", "label": "Kolor przeceny", "default": "#e11d48" },
+    { "type": "number", "id": "border_radius", "label": "Zaokrąglenie rogów (px)", "default": 8 },
+    { "type": "checkbox", "id": "enable_shadow", "label": "Włącz cień kart", "default": true },
+    { "type": "select", "id": "source_mode", "label": "Źródło produktów", "default": "collection", "options": [
+      { "value": "collection", "label": "Kolekcja" },
+      { "value": "manual", "label": "Ręcznie (bloki)" }
+    ] },
+    { "type": "collection", "id": "collection", "label": "Kolekcja produktów", "info": "Używane gdy Źródło = Kolekcja" },
+    { "type": "number", "id": "product_limit", "label": "Limit produktów (kolekcja)", "default": 10 }
+  ],
+  "blocks": [
+    {
+      "type": "content_tile",
+      "name": "Kafelek treści",
+      "limit": 1,
+      "settings": [
+        { "type": "color", "id": "background_color", "label": "Kolor tła" },
+        { "type": "image_picker", "id": "background_image", "label": "Grafika tła" },
+        { "type": "text", "id": "background_video", "label": "Video tła (URL)" },
+        { "type": "select", "id": "media_position", "label": "Pozycja tła", "default": "center", "options": [
+          {"value":"left top","label":"Lewy górny"},{"value":"center top","label":"Środek góra"},{"value":"right top","label":"Prawy górny"},
+          {"value":"left center","label":"Lewo środek"},{"value":"center","label":"Środek"},{"value":"right center","label":"Prawo środek"},
+          {"value":"left bottom","label":"Lewy dół"},{"value":"center bottom","label":"Środek dół"},{"value":"right bottom","label":"Prawy dół"}
+        ] },
+        { "type": "number", "id": "media_scale", "label": "Skala tła (%)", "default": 100 },
+        { "type": "number", "id": "padding", "label": "Padding (px)", "default": 24 },
+        { "type": "checkbox", "id": "show_border", "label": "Pokaż ramkę", "default": false },
+        { "type": "number", "id": "border_width", "label": "Grubość ramki (px)", "default": 1 },
+        { "type": "color", "id": "border_color", "label": "Kolor ramki", "default": "#0b00b5" },
+        { "type": "textarea", "id": "header", "label": "Header" },
+        { "type": "color", "id": "header_color", "label": "Kolor headera", "default": "#0b00b5" },
+        { "type": "number", "id": "header_font_size", "label": "Wielkość headera (px)", "default": 32 },
+        { "type": "number", "id": "header_line_height", "label": "Interlinia headera", "default": 120, "info": "Domyślnie: 120" },
+        { "type": "textarea", "id": "subheader", "label": "Subheader" },
+        { "type": "color", "id": "subheader_color", "label": "Kolor subheadera", "default": "#0b00b5" },
+        { "type": "number", "id": "subheader_font_size", "label": "Wielkość subheadera (px)", "default": 14 },
+        { "type": "number", "id": "subheader_line_height", "label": "Interlinia subheadera", "default": 150, "info": "Domyślnie: 150" },
+        { "type": "select", "id": "content_position", "label": "Pozycja treści", "default": "center", "options": [
+          {"value":"top","label":"Góra"},{"value":"center","label":"Środek"},{"value":"bottom","label":"Dół"}
+        ] },
+        { "type": "select", "id": "text_alignment", "label": "Wyrównanie tekstu", "default": "left", "options": [
+          {"value":"left","label":"Lewo"},{"value":"center","label":"Środek"},{"value":"right","label":"Prawo"}
+        ] }
+      ]
+    },
+    {
+      "type": "product_item",
+      "name": "Produkt",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Produkt" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Nowy slider produktowy" }
+  ]
+}
+{% endschema %}
+
+

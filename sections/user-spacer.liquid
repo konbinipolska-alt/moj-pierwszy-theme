@@ -1,0 +1,29 @@
+<div class="spacer-section"></div>
+
+<style>
+  .spacer-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    height: {{ section.settings.height | default: 48 }}px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Spacer",
+  "settings": [
+    {
+      "type": "number",
+      "id": "height",
+      "label": "Wysokość (px)",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spacer"
+    }
+  ]
+}
+{% endschema %}
+
