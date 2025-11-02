@@ -52,6 +52,48 @@
             </div>
           </div>
         </div>
+      {% elsif block.type == 'product_slider' %}
+        <div class="product-slider-block" {{ block.shopify_attributes }}>
+          <button class="product-slider-arrow product-slider-arrow-left" aria-label="Previous">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="product-slider-container">
+            {% assign products = collections[section.settings.collection].products | limit: block.settings.product_limit %}
+            {% for product in products %}
+              <div class="product-slide">
+                <a href="{{ product.url }}" class="product-slide-link">
+                  {% if product.featured_image %}
+                    <img 
+                      src="{{ product.featured_image | image_url: width: 400 }}"
+                      alt="{{ product.title | escape }}"
+                      loading="lazy"
+                      class="product-slide-image"
+                    >
+                  {% else %}
+                    <div class="product-slide-placeholder">
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                      </svg>
+                    </div>
+                  {% endif %}
+                  <div class="product-slide-info">
+                    <h3 class="product-slide-title">{{ product.title }}</h3>
+                    <p class="product-slide-price">{{ product.price | money }}</p>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+          <button class="product-slider-arrow product-slider-arrow-right" aria-label="Next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       {% endif %}
     {% endfor %}
   </div>
@@ -142,7 +184,211 @@
     font-weight: 400;
     margin: 0 0 1.5rem 0;
   }
+
+  /* Product Slider Styles */
+  .product-slider-block {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-slider-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 100%;
+    padding: 0 48px;
+    align-items: center;
+  }
+  .product-slider-container::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  .product-slide {
+    flex: 0 0 auto;
+    width: 280px;
+    height: calc(100% - 32px);
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .product-slide:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .product-slide-image {
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .product-slide-placeholder {
+    width: 100%;
+    height: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f6f7;
+    color: #9ca3af;
+  }
+
+  .product-slide-placeholder svg {
+    opacity: 0.5;
+  }
+
+  .product-slide-info {
+    padding: 16px;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-slide-title {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1a1a1a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .product-slide-price {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0;
+    color: #0b00b5;
+  }
+
+  .product-slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    color: #374151;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .product-slider-block:hover .product-slider-arrow {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .product-slider-arrow:hover {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .product-slider-arrow-left {
+    left: 0;
+  }
+
+  .product-slider-arrow-right {
+    right: 0;
+  }
+
+  .product-slider-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .product-slider-container {
+      padding: 0 20px;
+    }
+    .product-slide {
+      width: 200px;
+    }
+    .product-slider-arrow {
+      opacity: 1 !important;
+      visibility: visible !important;
+      width: 36px;
+      height: 36px;
+    }
+    .product-slider-arrow svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const productSliderBlocks = document.querySelectorAll('.product-slider-block');
+  
+  productSliderBlocks.forEach(block => {
+    const container = block.querySelector('.product-slider-container');
+    const leftArrow = block.querySelector('.product-slider-arrow-left');
+    const rightArrow = block.querySelector('.product-slider-arrow-right');
+    
+    if (!container || !leftArrow || !rightArrow) return;
+    
+    const slideWidth = 280 + 16; // slide width + gap
+    const mobileSlideWidth = 200 + 16;
+    
+    function getSlideWidth() {
+      return window.innerWidth <= 768 ? mobileSlideWidth : slideWidth;
+    }
+    
+    function scrollSlider(direction) {
+      const currentScroll = container.scrollLeft;
+      const scrollAmount = getSlideWidth();
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      
+      let newScroll = currentScroll + (direction * scrollAmount);
+      
+      if (newScroll < 0) {
+        newScroll = maxScroll;
+      } else if (newScroll > maxScroll) {
+        newScroll = 0;
+      }
+      
+      container.scrollTo({
+        left: newScroll,
+        behavior: 'smooth'
+      });
+    }
+    
+    leftArrow.addEventListener('click', () => scrollSlider(-1));
+    rightArrow.addEventListener('click', () => scrollSlider(1));
+  });
+});
+</script>
 
 {% schema %}
 {
@@ -165,6 +411,11 @@
       "id": "margins",
       "label": "Marginesy sekcji (px)",
       "default": 48
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Kolekcja produktów"
     }
   ],
   "blocks": [
@@ -368,11 +619,18 @@
           "default": "left"
         },
       ]
-    }
-  ],
-  "presets": [
+    },
     {
-      "name": "Category Highlight"
+      "type": "product_slider",
+      "name": "Product Slider",
+      "settings": [
+        {
+          "type": "number",
+          "id": "product_limit",
+          "label": "Limit produktów",
+          "default": 10
+        }
+      ]
     }
   ]
 }
