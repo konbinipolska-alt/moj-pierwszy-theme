@@ -240,66 +240,73 @@
         "block_a4FDbb": {
           "type": "block",
           "settings": {
-            "background_color": "",
             "show_border": true,
-            "border_color": "#0b00b5",
-            "header": "Yōkai",
-            "subheader": "Naklejki znajdziesz w każdym zamówieniu, szukaj edycji specjalnej",
-            "link": "",
             "padding": 0,
+            "background_color": "",
+            "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
+            "header": "Yōkai",
+            "subheader": "Naklejki znajdziesz w każdym zamówieniu, \nszukaj edycji specjalnej",
+            "link": "",
             "content_position_vertical": "center",
             "text_alignment": "center",
             "header_subheader_gap": 2,
-            "text_color": "#0b00b5"
+            "header_font_size": 24,
+            "subheader_font_size": 14
           }
         },
         "block_dt4QpV": {
           "type": "block",
           "settings": {
-            "background_color": "",
             "show_border": true,
+            "padding": 24,
+            "background_color": "",
             "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
             "header": "Reactionals",
             "subheader": "sprawdzamy nowości",
             "link": "",
-            "padding": 24,
             "content_position_vertical": "bottom",
             "text_alignment": "left",
             "header_subheader_gap": 2,
-            "text_color": "#0b00b5"
+            "header_font_size": 24,
+            "subheader_font_size": 14
           }
         },
         "block_FMzpJU": {
           "type": "block",
           "settings": {
-            "background_color": "",
             "show_border": true,
+            "padding": 24,
+            "background_color": "",
             "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
             "header": "Zaraz się zacznie rabatowanie",
             "subheader": "twój rabat zwiększa się z wartością koszyka, już przy pierwszych zakupach. aktualną wysokość rabatu sprawdzisz w koszyku",
             "link": "",
-            "padding": 24,
             "content_position_vertical": "bottom",
             "text_alignment": "left",
             "header_subheader_gap": 2,
-            "text_color": "#0b00b5",
-            "header_font_size": 0
+            "header_font_size": 24,
+            "subheader_font_size": 14
           }
         },
         "block_bTjhDX": {
           "type": "block",
           "settings": {
-            "background_color": "",
             "show_border": true,
+            "padding": 0,
+            "background_color": "",
             "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
             "header": "",
             "subheader": "",
             "link": "",
-            "padding": 0,
             "content_position_vertical": "center",
             "text_alignment": "center",
-            "header_subheader_gap": 8,
-            "text_color": "#0b00b5"
+            "header_subheader_gap": 2,
+            "header_font_size": 24,
+            "subheader_font_size": 14
           }
         }
       },
