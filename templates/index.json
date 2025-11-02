@@ -237,14 +237,6 @@
     "generic_section": {
       "type": "generic-section",
       "blocks": {
-        "block_PKePyj": {
-          "type": "block",
-          "settings": {}
-        },
-        "block_Rpfq8R": {
-          "type": "block",
-          "settings": {}
-        },
         "block_Tzp34U": {
           "type": "block",
           "settings": {}
@@ -263,8 +255,6 @@
         }
       },
       "block_order": [
-        "block_PKePyj",
-        "block_Rpfq8R",
         "block_Tzp34U",
         "block_dt4QpV",
         "block_FMzpJU",
@@ -276,7 +266,7 @@
         "size_type": "fixed",
         "block_height": 200,
         "aspect_ratio": 2,
-        "columns_per_row": 3,
+        "columns_per_row": 2,
         "rows": 2
       }
     },
