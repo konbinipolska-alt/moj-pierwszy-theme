@@ -62,7 +62,7 @@
                     <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ section.settings.content_gap | default: 8 }}px; text-align: {{ section.settings.text_alignment | default: 'left' }}; color: {{ section.settings.text_color | default: '#0b00b5' }};">
                       <h3 class="new-ps-card-title" style="font-size: {{ section.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
                     </div>
-                    <div class="new-ps-card-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                    <div class="new-ps-card-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: {{ section.settings.actions_gap | default: 16 }}px;">
                       <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline;">
                         {% if product.compare_at_price > product.price %}
                           <span class="sale-price" style="color: #E11D48; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
@@ -109,7 +109,7 @@
                     <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ section.settings.content_gap | default: 8 }}px; text-align: {{ section.settings.text_alignment | default: 'left' }}; color: {{ section.settings.text_color | default: '#0b00b5' }};">
                       <h3 class="new-ps-card-title" style="font-size: {{ section.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
                     </div>
-                    <div class="new-ps-card-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                    <div class="new-ps-card-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: {{ section.settings.actions_gap | default: 16 }}px;">
                       <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline;">
                         {% if product.compare_at_price > product.price %}
                           <span class="sale-price" style="color: #E11D48; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
@@ -318,6 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
       {"value":"left","label":"Lewo"},{"value":"center","label":"Środek"},{"value":"right","label":"Prawo"}
     ] },
     { "type": "number", "id": "content_gap", "label": "Odstęp między elementami opisu (px)", "default": 8 },
+    { "type": "number", "id": "actions_gap", "label": "Odstęp od nazwy do akcji (px)", "default": 16 },
     { "type": "color", "id": "sale_color", "label": "Kolor przeceny", "default": "#e11d48" },
     { "type": "number", "id": "border_radius", "label": "Zaokrąglenie rogów (px)", "default": 8 },
     { "type": "checkbox", "id": "enable_shadow", "label": "Włącz cień kart", "default": true },
