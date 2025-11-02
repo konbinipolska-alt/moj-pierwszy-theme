@@ -376,23 +376,22 @@
             "content_position": "top",
             "text_alignment": "left"
           }
+        },
+        "product_slider_FcUEch": {
+          "type": "product_slider",
+          "settings": {}
         }
       },
       "block_order": [
-        "content_block_6h6K44"
+        "content_block_6h6K44",
+        "product_slider_FcUEch"
       ],
       "name": "Category Highlight",
       "settings": {
         "background_color": "#ffffff",
         "height": 700,
-        "margins": 48
-      }
-    },
-    "content": {
-      "type": "content-section",
-      "settings": {
-        "heading": "Welcome to Konbini",
-        "text": "<p>Discover authentic Japanese flavors and premium quality products. From traditional sauces to modern snacks, we bring the best of Japan to your table.</p>"
+        "margins": 48,
+        "collection": ""
       }
     }
   },
@@ -404,7 +403,6 @@
     "spacer_n6g4U3",
     "generic_section",
     "spotify_player_bEC9xV",
-    "category_highlight_8TAAap",
-    "content"
+    "category_highlight_8TAAap"
   ]
 }
