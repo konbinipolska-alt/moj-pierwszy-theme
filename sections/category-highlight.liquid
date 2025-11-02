@@ -7,6 +7,7 @@
                {% if block.settings.background_color %}background-color: {{ block.settings.background_color }};{% endif %}
                padding: {{ block.settings.padding | default: 48 }}px;
                {% if block.settings.width %}width: {{ block.settings.width }}px;{% endif %}
+               {% if block.settings.show_border %}border: {{ block.settings.border_width | default: 1 }}px solid {{ block.settings.border_color | default: '#0b00b5' }};{% else %}border: none;{% endif %}
              "
              {{ block.shopify_attributes }}>
           {% if block.settings.background_image %}
@@ -271,6 +272,24 @@
           "id": "width",
           "label": "Szerokość bloku (px)",
           "default": 400
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border",
+          "label": "Pokaż ramkę",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "border_width",
+          "label": "Grubość ramki (px)",
+          "default": 1
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Kolor ramki",
+          "default": "#0b00b5"
         },
         {
           "type": "header",
