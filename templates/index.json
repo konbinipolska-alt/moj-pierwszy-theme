@@ -84,7 +84,9 @@
         "image_slide_7XQeVE",
         "image_slide_3"
       ],
-      "settings": {}
+      "settings": {
+        "slide_border_radius": 3100
+      }
     },
     "categories": {
       "type": "categories",
@@ -472,14 +474,6 @@
         "stroke_width": 2
       }
     },
-    "user_tiles_divider_HrUdCn": {
-      "type": "user-tiles-divider",
-      "name": "Kafelki",
-      "settings": {
-        "rows": 5,
-        "stroke_width": 2
-      }
-    },
     "generic_section": {
       "type": "user-highlights",
       "blocks": {
@@ -583,6 +577,14 @@
         "size_mode": "fixed",
         "block_width": 574,
         "block_height": 300
+      }
+    },
+    "user_tiles_divider_HrUdCn": {
+      "type": "user-tiles-divider",
+      "name": "Kafelki",
+      "settings": {
+        "rows": 5,
+        "stroke_width": 2
       }
     },
     "spotify_player_bEC9xV": {
