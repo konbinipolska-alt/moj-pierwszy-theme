@@ -184,11 +184,12 @@
     overflow: hidden; /* arrows can overlay */
     /* extend to the right viewport edge */
     margin-right: calc(-50vw + 50%);
-    padding-right: {{ section.settings.margins | default: 48 }}px;
+    padding-right: 0;
   }
   .new-ps-track {
     height: 100%; display: flex; align-items: stretch; overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
-    padding: 0 {{ section.settings.inner_padding | default: 16 }}px;
+    padding-left: {{ section.settings.inner_padding | default: 16 }}px;
+    padding-right: 0;
   }
   .new-ps-track::-webkit-scrollbar { display: none; }
 
@@ -207,7 +208,7 @@
   @media (max-width: 768px) {
     .new-ps-wrapper { flex-direction: column; height: auto; }
     .new-ps-content-tile { position: relative; left: 0; top: 0; bottom: 0; width: 100% !important; }
-    .new-ps-track { padding: 0 20px; }
+    .new-ps-track { padding-left: 20px; padding-right: 0; }
     .new-ps-arrow { opacity: 1 !important; visibility: visible !important; width: 36px; height: 36px; }
   }
 </style>
