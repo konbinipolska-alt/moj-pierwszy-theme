@@ -381,11 +381,32 @@
           "settings": {
             "product": "sample"
           }
+        },
+        "product_item_WWFfqX": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_xn9pFk": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_hPz6KD": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
         }
       },
       "block_order": [
         "content_tile_BmG6GA",
-        "product_item_nxKeiB"
+        "product_item_nxKeiB",
+        "product_item_WWFfqX",
+        "product_item_xn9pFk",
+        "product_item_hPz6KD"
       ],
       "name": "Nowy slider produktowy",
       "settings": {
@@ -396,7 +417,7 @@
         "inner_padding": 16,
         "content_tile_width": 400,
         "product_card_width": 260,
-        "source_mode": "collection",
+        "source_mode": "manual",
         "collection": "",
         "product_limit": 10
       }
