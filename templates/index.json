@@ -241,14 +241,6 @@
           "type": "block",
           "settings": {}
         },
-        "block_HaitBb": {
-          "type": "block",
-          "settings": {}
-        },
-        "block_Tzp34U": {
-          "type": "block",
-          "settings": {}
-        },
         "block_dt4QpV": {
           "type": "block",
           "settings": {}
@@ -264,8 +256,6 @@
       },
       "block_order": [
         "block_a4FDbb",
-        "block_HaitBb",
-        "block_Tzp34U",
         "block_dt4QpV",
         "block_FMzpJU",
         "block_bTjhDX"
@@ -273,7 +263,7 @@
       "settings": {
         "background_color": "#ffffff",
         "gap": 24,
-        "columns_per_row": 3,
+        "columns_per_row": 2,
         "size_mode": "fixed",
         "block_width": 600,
         "block_height": 200
