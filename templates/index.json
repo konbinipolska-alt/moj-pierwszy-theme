@@ -448,7 +448,7 @@
         "background_color": "#ffffff",
         "height": 600,
         "margins": 48,
-        "gap": 12,
+        "gap": 25,
         "inner_padding": 16,
         "content_tile_width": 300,
         "product_card_width": 300,
