@@ -12,7 +12,7 @@
         {% if block.settings.link != blank %}
           <a href="{{ block.settings.link }}" class="block-link"></a>
         {% endif %}
-        <div class="generic-block-content content-{{ block.settings.content_position_vertical | default: 'center' }}-{{ block.settings.content_position_horizontal | default: 'center' }}">
+        <div class="generic-block-content content-{{ block.settings.content_position_vertical | default: 'center' }}-center">
           {% if block.settings.header_link != blank %}
             <a href="{{ block.settings.header_link }}" class="header-link">
               <h2 class="generic-header" 
@@ -315,26 +315,6 @@
             {
               "value": "bottom",
               "label": "Dół"
-            }
-          ],
-          "default": "center"
-        },
-        {
-          "type": "select",
-          "id": "content_position_horizontal",
-          "label": "Pozycja zawartości - w poziomie",
-          "options": [
-            {
-              "value": "left",
-              "label": "Lewo"
-            },
-            {
-              "value": "center",
-              "label": "Środek"
-            },
-            {
-              "value": "right",
-              "label": "Prawo"
             }
           ],
           "default": "center"
