@@ -60,32 +60,34 @@
             </svg>
           </button>
           <div class="product-slider-container">
-            {% assign products = collections[section.settings.collection].products | limit: section.settings.product_limit %}
-            {% for product in products %}
-              <div class="product-slide">
-                <a href="{{ product.url }}" class="product-slide-link">
-                  {% if product.featured_image %}
-                    <img 
-                      src="{{ product.featured_image | image_url: width: 400 }}"
-                      alt="{{ product.title | escape }}"
-                      loading="lazy"
-                      class="product-slide-image"
-                    >
-                  {% else %}
-                    <div class="product-slide-placeholder">
-                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                        <circle cx="8.5" cy="8.5" r="1.5"/>
-                        <polyline points="21 15 16 10 5 21"/>
-                      </svg>
+            {% for block in section.blocks %}
+              {% if block.type == 'product_item' %}
+                {% assign product = all_products[block.settings.product] %}
+                <div class="product-slide" {{ block.shopify_attributes }}>
+                  <a href="{{ product.url }}" class="product-slide-link">
+                    {% if product.featured_image %}
+                      <img 
+                        src="{{ product.featured_image | image_url: width: 400 }}"
+                        alt="{{ product.title | escape }}"
+                        loading="lazy"
+                        class="product-slide-image"
+                      >
+                    {% else %}
+                      <div class="product-slide-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                          <circle cx="8.5" cy="8.5" r="1.5"/>
+                          <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                      </div>
+                    {% endif %}
+                    <div class="product-slide-info">
+                      <h3 class="product-slide-title">{{ product.title }}</h3>
+                      <p class="product-slide-price">{{ product.price | money }}</p>
                     </div>
-                  {% endif %}
-                  <div class="product-slide-info">
-                    <h3 class="product-slide-title">{{ product.title }}</h3>
-                    <p class="product-slide-price">{{ product.price | money }}</p>
-                  </div>
-                </a>
-              </div>
+                  </a>
+                </div>
+              {% endif %}
             {% endfor %}
           </div>
           <button class="product-slider-arrow product-slider-arrow-right" aria-label="Next">
@@ -411,17 +413,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "margins",
       "label": "Marginesy sekcji (px)",
       "default": 48
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Kolekcja produktów"
-    },
-    {
-      "type": "number",
-      "id": "product_limit",
-      "label": "Limit produktów w sliderze",
-      "default": 10
     }
   ],
   "blocks": [
@@ -630,6 +621,17 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "product_slider",
       "name": "Product Slider",
       "settings": []
+    },
+    {
+      "type": "product_item",
+      "name": "Product Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
     }
   ]
 }
