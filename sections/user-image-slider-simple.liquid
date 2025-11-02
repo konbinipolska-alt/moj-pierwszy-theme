@@ -14,7 +14,7 @@
   
   <div class="slider-container">
     {% for block in section.blocks %}
-      <div class="slide" {{ block.shopify_attributes }}>
+      <div class="slide" style="border-radius: {{ block.settings.border_radius | default: 8 }}px; overflow: hidden;" {{ block.shopify_attributes }}>
         {% if block.settings.image %}
           {% if block.settings.link %}<a href="{{ block.settings.link }}" class="slide-link">{% endif %}
           <img
@@ -72,7 +72,6 @@
     flex: 0 0 auto;
     width: 337.5px; /* 9:16 of 600px */
     height: 600px;
-    border-radius: 8px;
     overflow: hidden;
     background-color: #eeeeee;
     position: relative;
@@ -236,7 +235,8 @@ document.addEventListener('DOMContentLoaded', function() {
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
         { "type": "url", "id": "link", "label": "Link (optional)" },
-        { "type": "text", "id": "alt_text", "label": "Alt text", "default": "Slide image" }
+        { "type": "text", "id": "alt_text", "label": "Alt text", "default": "Slide image" },
+        { "type": "number", "id": "border_radius", "label": "Zaokrąglenie rogów (px)", "default": 8 }
       ]
     }
   ],
