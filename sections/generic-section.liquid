@@ -12,6 +12,7 @@
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     background-color: {{ section.settings.background_color | default: '#ffffff' }};
+    overflow: hidden;
   }
 
   .generic-wrapper {
@@ -22,7 +23,7 @@
       grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, 1fr);
       grid-auto-rows: auto;
     {% else %}
-      grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, {{ section.settings.block_width | default: 300 }}px);
+      grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, minmax(0, {{ section.settings.block_width | default: 300 }}px));
       grid-auto-rows: {{ section.settings.block_height | default: 200 }}px;
     {% endif %}
     gap: {{ section.settings.gap | default: 48 }}px;
@@ -38,6 +39,7 @@
     {% if section.settings.size_mode == 'fixed' %}
       width: {{ section.settings.block_width | default: 300 }}px;
       height: {{ section.settings.block_height | default: 200 }}px;
+      max-width: 100%;
     {% endif %}
   }
 </style>
