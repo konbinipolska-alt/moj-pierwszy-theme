@@ -467,49 +467,6 @@
         "collection": "",
         "product_limit": 10
       }
-    },
-    "category_highlight_8TAAap": {
-      "type": "user-category-highlight",
-      "blocks": {
-        "content_block_6h6K44": {
-          "type": "content_block",
-          "settings": {
-            "background_color": "#fafafa",
-            "background_video": "",
-            "media_position": "center",
-            "media_scale": 100,
-            "padding": 48,
-            "width": 400,
-            "show_border": false,
-            "border_width": 1,
-            "border_color": "#0b00b5",
-            "header": "Kiszonki",
-            "header_color": "",
-            "header_font_size": 32,
-            "header_line_height": 120,
-            "subheader": "dfbsdkfbsdlkblblbsdhfkjbadfjlkbdsalfjkhadfjkbsdnlkfbdnlkvhaiap;",
-            "subheader_color": "",
-            "subheader_font_size": 14,
-            "subheader_line_height": 150,
-            "content_position": "top",
-            "text_alignment": "left"
-          }
-        },
-        "product_slider_FcUEch": {
-          "type": "product_slider",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "content_block_6h6K44",
-        "product_slider_FcUEch"
-      ],
-      "name": "Category Highlight",
-      "settings": {
-        "background_color": "#ffffff",
-        "height": 700,
-        "margins": 48
-      }
     }
   },
   "order": [
@@ -520,7 +477,6 @@
     "spacer_n6g4U3",
     "generic_section",
     "spotify_player_bEC9xV",
-    "nowy_slider_produktowy_jQTUxJ",
-    "category_highlight_8TAAap"
+    "nowy_slider_produktowy_jQTUxJ"
   ]
 }
