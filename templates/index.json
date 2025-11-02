@@ -350,6 +350,57 @@
         "theme": "0"
       }
     },
+    "nowy_slider_produktowy_jQTUxJ": {
+      "type": "nowy-slider-produktowy",
+      "blocks": {
+        "content_tile_BmG6GA": {
+          "type": "content_tile",
+          "settings": {
+            "background_color": "#fafafa",
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "padding": 24,
+            "show_border": false,
+            "border_width": 1,
+            "border_color": "#0b00b5",
+            "header": "Napoje",
+            "header_color": "#0b00b5",
+            "header_font_size": 28,
+            "header_line_height": 120,
+            "subheader": "w tej kategorii znajdziesz specjalnie wyselekcjonowane napoje z japonii i korei. Tylko najlepsze gówno",
+            "subheader_color": "#0b00b5",
+            "subheader_font_size": 14,
+            "subheader_line_height": 150,
+            "content_position": "top",
+            "text_alignment": "left"
+          }
+        },
+        "product_item_nxKeiB": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        }
+      },
+      "block_order": [
+        "content_tile_BmG6GA",
+        "product_item_nxKeiB"
+      ],
+      "name": "Nowy slider produktowy",
+      "settings": {
+        "background_color": "#ffffff",
+        "height": 700,
+        "margins": 48,
+        "gap": 16,
+        "inner_padding": 16,
+        "content_tile_width": 400,
+        "product_card_width": 260,
+        "source_mode": "collection",
+        "collection": "",
+        "product_limit": 10
+      }
+    },
     "category_highlight_8TAAap": {
       "type": "category-highlight",
       "blocks": {
@@ -390,8 +441,7 @@
       "settings": {
         "background_color": "#ffffff",
         "height": 700,
-        "margins": 48,
-        "collection": ""
+        "margins": 48
       }
     }
   },
@@ -403,6 +453,7 @@
     "spacer_n6g4U3",
     "generic_section",
     "spotify_player_bEC9xV",
+    "nowy_slider_produktowy_jQTUxJ",
     "category_highlight_8TAAap"
   ]
 }
