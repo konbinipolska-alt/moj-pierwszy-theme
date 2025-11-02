@@ -25,7 +25,7 @@
               <source src="{{ block.settings.background_video }}" type="video/mp4">
             </video>
           {% endif %}
-          <div class="content-block-inner content-position-{{ block.settings.content_position }} has-button-position-{{ block.settings.button_position | default: 'after' }}">
+          <div class="content-block-inner content-position-{{ block.settings.content_position }}">
             <div class="content-text-wrapper">
               {% if block.settings.header != blank %}
                 <h2 class="content-header" 
@@ -52,7 +52,7 @@
             </div>
             {% if block.settings.button_text != blank %}
               <a href="{{ block.settings.button_link }}" 
-                 class="content-button button-position-{{ block.settings.button_position | default: 'after' }}"
+                 class="content-button"
                  style="
                    border-radius: {{ block.settings.button_border_radius | default: 0 }}px;
                    background-color: {{ block.settings.button_background_color | default: '#0b00b5' }};
@@ -122,28 +122,16 @@
     z-index: 5;
   }
 
-  .content-position-top.has-button-position-after {
+  .content-position-top {
     justify-content: flex-start;
   }
 
-  .content-position-center.has-button-position-after {
+  .content-position-center {
     justify-content: center;
   }
 
-  .content-position-bottom.has-button-position-after {
+  .content-position-bottom {
     justify-content: flex-end;
-  }
-
-  .content-position-top.has-button-position-bottom {
-    justify-content: flex-start;
-  }
-
-  .content-position-center.has-button-position-bottom {
-    justify-content: flex-start;
-  }
-
-  .content-position-bottom.has-button-position-bottom {
-    justify-content: flex-start;
   }
 
   .content-text-wrapper {
@@ -162,14 +150,6 @@
     font-size: 1.125rem;
     font-weight: 400;
     margin: 0 0 1.5rem 0;
-  }
-
-  .button-position-after {
-    margin-top: 0 !important;
-  }
-
-  .button-position-bottom {
-    margin-top: auto !important;
   }
 
   .content-button {
@@ -414,22 +394,6 @@
         {
           "type": "header",
           "content": "Button"
-        },
-        {
-          "type": "select",
-          "id": "button_position",
-          "label": "Pozycja buttona",
-          "options": [
-            {
-              "value": "after",
-              "label": "Po treści"
-            },
-            {
-              "value": "bottom",
-              "label": "Na dole"
-            }
-          ],
-          "default": "after"
         },
         {
           "type": "text",
