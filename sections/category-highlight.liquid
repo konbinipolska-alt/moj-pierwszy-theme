@@ -1,14 +1,21 @@
 <div class="category-highlight-section">
+  <div class="category-highlight-wrapper">
+  </div>
 </div>
 
 <style>
   .category-highlight-section {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    margin-top: {{ section.settings.margins | default: 48 }}px;
-    margin-bottom: {{ section.settings.margins | default: 48 }}px;
     background-color: {{ section.settings.background_color | default: '#ffffff' }};
     height: {{ section.settings.height | default: 700 }}px;
+  }
+
+  .category-highlight-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: {{ section.settings.margins | default: 48 }}px;
+    box-sizing: border-box;
   }
 </style>
 
