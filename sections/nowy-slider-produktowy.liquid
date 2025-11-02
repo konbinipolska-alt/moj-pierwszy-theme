@@ -54,9 +54,11 @@
                    ">
                 <a href="{{ product.url }}" class="new-ps-card-link">
                   {% if product.featured_image %}
-                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy" style="border-top-left-radius: {{ section.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ section.settings.border_radius | default: 8 }}px;">
+                    <div class="new-ps-card-media" style="aspect-ratio: {% if section.settings.image_ratio == 'square' %}1 / 1{% else %}{{ product.featured_image.aspect_ratio | default: 1 }}{% endif %}; border-top-left-radius: {{ section.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ section.settings.border_radius | default: 8 }}px;">
+                      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy">
+                    </div>
                   {% endif %}
-                  <div class="new-ps-card-info" style="padding: 12px; height: 35%; display: flex; flex-direction: column; gap: 10px;">
+                  <div class="new-ps-card-info" style="padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ section.settings.content_gap | default: 8 }}px; text-align: {{ section.settings.text_alignment | default: 'left' }}; color: {{ section.settings.text_color | default: '#0b00b5' }};">
                       <h3 class="new-ps-card-title" style="font-size: {{ section.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
                     </div>
@@ -99,9 +101,11 @@
               <div class="new-ps-card" style="width: {{ section.settings.product_card_width | default: 260 }}px; height: 100%; {% if section.settings.card_bg_color %}background: {{ section.settings.card_bg_color }};{% else %}background: #fff;{% endif %} border-radius: {{ section.settings.border_radius | default: 8 }}px; {% if section.settings.enable_shadow == false %}box-shadow: none;{% else %}box-shadow: 0 2px 8px rgba(0,0,0,0.1);{% endif %}">
                 <a href="{{ product.url }}" class="new-ps-card-link">
                   {% if product.featured_image %}
-                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy" style="border-top-left-radius: {{ section.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ section.settings.border_radius | default: 8 }}px;">
+                    <div class="new-ps-card-media" style="aspect-ratio: {% if section.settings.image_ratio == 'square' %}1 / 1{% else %}{{ product.featured_image.aspect_ratio | default: 1 }}{% endif %}; border-top-left-radius: {{ section.settings.border_radius | default: 8 }}px; border-top-right-radius: {{ section.settings.border_radius | default: 8 }}px;">
+                      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy">
+                    </div>
                   {% endif %}
-                  <div class="new-ps-card-info" style="padding: 12px; height: 35%; display: flex; flex-direction: column; gap: 10px;">
+                  <div class="new-ps-card-info" style="padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div class="new-ps-card-text" style="display: flex; flex-direction: column; gap: {{ section.settings.content_gap | default: 8 }}px; text-align: {{ section.settings.text_alignment | default: 'left' }}; color: {{ section.settings.text_color | default: '#0b00b5' }};">
                       <h3 class="new-ps-card-title" style="font-size: {{ section.settings.title_font_size | default: 16 }}px; font-weight: 600; margin: 0;">{{ product.title }}</h3>
                     </div>
@@ -234,8 +238,9 @@
 <style>
   .new-ps-card { flex: 0 0 auto; width: {{ section.settings.product_card_width | default: 260 }}px; height: 100%; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .new-ps-card-link { display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; }
-  .new-ps-card-image { width: 100%; height: 65%; object-fit: cover; display: block; }
-  .new-ps-card-info { padding: 12px; height: 35%; display: flex; flex-direction: column; justify-content: space-between; }
+  .new-ps-card-media { position: relative; width: 100%; overflow: hidden; }
+  .new-ps-card-media .new-ps-card-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .new-ps-card-info { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
   .new-ps-card-title { font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 1rem; font-weight: 600; margin: 0 0 6px 0; color: {{ section.settings.text_color | default: '#0b00b5' }}; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .new-ps-card-price { font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 1.125rem; font-weight: 700; margin: 0; color: {{ section.settings.text_color | default: '#0b00b5' }}; }
   .new-ps-card-price-wrap .old-price { text-decoration: line-through; opacity: .6; }
@@ -301,6 +306,10 @@ document.addEventListener('DOMContentLoaded', function() {
     { "type": "number", "id": "inner_padding", "label": "Wewnętrzne paddingi slidera (px)", "default": 16 },
     { "type": "number", "id": "content_tile_width", "label": "Szerokość kafla contentowego (px)", "default": 400 },
     { "type": "number", "id": "product_card_width", "label": "Szerokość karty produktu (px)", "default": 260 },
+    { "type": "select", "id": "image_ratio", "label": "Proporcje zdjęcia", "default": "square", "options": [
+      {"value":"square","label":"1:1"},
+      {"value":"original","label":"Oryginalny"}
+    ] },
     { "type": "color", "id": "card_bg_color", "label": "Kolor tła karty" },
     { "type": "color", "id": "text_color", "label": "Kolor tekstu", "default": "#0b00b5" },
     { "type": "number", "id": "title_font_size", "label": "Wielkość nazwy produktu (px)", "default": 16 },
