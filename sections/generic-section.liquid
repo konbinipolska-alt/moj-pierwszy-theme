@@ -12,7 +12,7 @@
         {% if block.settings.link != blank %}
           <a href="{{ block.settings.link }}" class="block-link"></a>
         {% endif %}
-        <div class="generic-block-content content-{{ block.settings.content_position_vertical | default: 'center' }}-center">
+        <div class="generic-block-content content-center-{{ block.settings.content_position_vertical | default: 'center' }}">
           {% if block.settings.header_link != blank %}
             <a href="{{ block.settings.header_link }}" class="header-link">
               <h2 class="generic-header" 
