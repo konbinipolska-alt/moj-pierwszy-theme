@@ -6,19 +6,29 @@
              style="
                {% if block.settings.background_color %}background-color: {{ block.settings.background_color }};{% endif %}
                padding: {{ block.settings.padding | default: 48 }}px;
-               {% if block.settings.width %}width: {{ block.settings.width }}%;{% endif %}
+               {% if block.settings.width %}width: {{ block.settings.width }}px;{% endif %}
              "
              {{ block.shopify_attributes }}>
           <div class="content-block-inner content-position-{{ block.settings.content_position }}">
             {% if block.settings.header != blank %}
               <h2 class="content-header" 
-                  style="text-align: {{ block.settings.text_alignment | default: 'left' }};">
+                  style="
+                    text-align: {{ block.settings.text_alignment | default: 'left' }};
+                    {% if block.settings.header_color %}color: {{ block.settings.header_color }};{% endif %}
+                    {% if block.settings.header_font_size %}font-size: {{ block.settings.header_font_size }}px;{% endif %}
+                    {% if block.settings.header_line_height %}line-height: {{ block.settings.header_line_height }};{% endif %}
+                  ">
                 {{ block.settings.header | newline_to_br }}
               </h2>
             {% endif %}
             {% if block.settings.subheader != blank %}
               <p class="content-subheader" 
-                 style="text-align: {{ block.settings.text_alignment | default: 'left' }};">
+                 style="
+                   text-align: {{ block.settings.text_alignment | default: 'left' }};
+                   {% if block.settings.subheader_color %}color: {{ block.settings.subheader_color }};{% endif %}
+                   {% if block.settings.subheader_font_size %}font-size: {{ block.settings.subheader_font_size }}px;{% endif %}
+                   {% if block.settings.subheader_line_height %}line-height: {{ block.settings.subheader_line_height }};{% endif %}
+                 ">
                 {{ block.settings.subheader | newline_to_br }}
               </p>
             {% endif %}
@@ -29,6 +39,7 @@
                    border-radius: {{ block.settings.button_border_radius | default: 0 }}px;
                    {% if block.settings.button_background_color %}background-color: {{ block.settings.button_background_color }};{% endif %}
                    {% if block.settings.button_border_color %}border: 1px solid {{ block.settings.button_border_color }};{% endif %}
+                   {% if block.settings.button_text_color %}color: {{ block.settings.button_text_color }};{% endif %}
                  ">
                 {{ block.settings.button_text }}
               </a>
@@ -160,9 +171,8 @@
         {
           "type": "number",
           "id": "width",
-          "label": "Szerokość bloku (%)",
-          "default": 40,
-          "info": "Procent szerokości sekcji"
+          "label": "Szerokość bloku (px)",
+          "default": 400
         },
         {
           "type": "header",
@@ -174,9 +184,41 @@
           "label": "Header"
         },
         {
+          "type": "color",
+          "id": "header_color",
+          "label": "Kolor headera"
+        },
+        {
+          "type": "number",
+          "id": "header_font_size",
+          "label": "Wielkość czcionki headera (px)"
+        },
+        {
+          "type": "number",
+          "id": "header_line_height",
+          "label": "Interlinia headera",
+          "default": 1.2
+        },
+        {
           "type": "textarea",
           "id": "subheader",
           "label": "Subheader"
+        },
+        {
+          "type": "color",
+          "id": "subheader_color",
+          "label": "Kolor subheadera"
+        },
+        {
+          "type": "number",
+          "id": "subheader_font_size",
+          "label": "Wielkość czcionki subheadera (px)"
+        },
+        {
+          "type": "number",
+          "id": "subheader_line_height",
+          "label": "Interlinia subheadera",
+          "default": 1.5
         },
         {
           "type": "select",
@@ -241,6 +283,11 @@
           "type": "color",
           "id": "button_border_color",
           "label": "Kolor obramowania buttona"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Kolor tekstu buttona"
         },
         {
           "type": "number",
