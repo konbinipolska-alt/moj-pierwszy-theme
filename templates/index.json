@@ -244,15 +244,13 @@
             "show_border": true,
             "border_color": "#0b00b5",
             "header": "Yōkai",
-            "header_link": "",
             "subheader": "Naklejki znajdziesz w każdym zamówieniu, szukaj edycji specjalnej",
             "link": "",
             "padding": 0,
             "content_position_vertical": "center",
             "text_alignment": "center",
             "header_subheader_gap": 2,
-            "header_color": "#0b00b5",
-            "subheader_color": "#0b00b5"
+            "text_color": "#0b00b5"
           }
         },
         "block_dt4QpV": {
@@ -262,15 +260,13 @@
             "show_border": true,
             "border_color": "#0b00b5",
             "header": "Reactionals",
-            "header_link": "",
             "subheader": "sprawdzamy nowości",
             "link": "",
             "padding": 24,
             "content_position_vertical": "bottom",
             "text_alignment": "left",
             "header_subheader_gap": 2,
-            "header_color": "#0b00b5",
-            "subheader_color": "#0b00b5"
+            "text_color": "#0b00b5"
           }
         },
         "block_FMzpJU": {
@@ -280,15 +276,13 @@
             "show_border": true,
             "border_color": "#0b00b5",
             "header": "Zaraz się zacznie rabatowanie",
-            "header_link": "",
-            "subheader": "twój rabat zwiększa się z wartością koszyka, już przy pierwszych zakupach.",
+            "subheader": "twój rabat zwiększa się z wartością koszyka, już przy pierwszych zakupach. aktualną wysokość rabatu sprawdzisz w koszyku",
             "link": "",
             "padding": 24,
             "content_position_vertical": "bottom",
             "text_alignment": "left",
             "header_subheader_gap": 2,
-            "header_color": "#0b00b5",
-            "subheader_color": "#0b00b5"
+            "text_color": "#0b00b5"
           }
         },
         "block_bTjhDX": {
@@ -298,15 +292,13 @@
             "show_border": true,
             "border_color": "#0b00b5",
             "header": "",
-            "header_link": "",
             "subheader": "",
             "link": "",
             "padding": 0,
             "content_position_vertical": "center",
             "text_alignment": "center",
             "header_subheader_gap": 8,
-            "header_color": "#0b00b5",
-            "subheader_color": "#0b00b5"
+            "text_color": "#0b00b5"
           }
         }
       },
