@@ -15,8 +15,8 @@
                   style="
                     text-align: {{ block.settings.text_alignment | default: 'left' }};
                     {% if block.settings.header_color %}color: {{ block.settings.header_color }};{% endif %}
-                    {% if block.settings.header_font_size %}font-size: {{ block.settings.header_font_size }}px;{% endif %}
-                    {% if block.settings.header_line_height %}line-height: {{ block.settings.header_line_height | divided_by: 100.0 }};{% endif %}
+                    font-size: {{ block.settings.header_font_size | default: 32 }}px;
+                    line-height: {{ block.settings.header_line_height | default: 120 | divided_by: 100.0 }};
                   ">
                 {{ block.settings.header | newline_to_br }}
               </h2>
@@ -26,8 +26,8 @@
                  style="
                    text-align: {{ block.settings.text_alignment | default: 'left' }};
                    {% if block.settings.subheader_color %}color: {{ block.settings.subheader_color }};{% endif %}
-                   {% if block.settings.subheader_font_size %}font-size: {{ block.settings.subheader_font_size }}px;{% endif %}
-                   {% if block.settings.subheader_line_height %}line-height: {{ block.settings.subheader_line_height | divided_by: 100.0 }};{% endif %}
+                   font-size: {{ block.settings.subheader_font_size | default: 18 }}px;
+                   line-height: {{ block.settings.subheader_line_height | default: 150 | divided_by: 100.0 }};
                  ">
                 {{ block.settings.subheader | newline_to_br }}
               </p>
@@ -191,7 +191,8 @@
         {
           "type": "number",
           "id": "header_font_size",
-          "label": "Wielkość czcionki headera (px)"
+          "label": "Wielkość czcionki headera (px)",
+          "default": 32
         },
         {
           "type": "number",
@@ -212,7 +213,8 @@
         {
           "type": "number",
           "id": "subheader_font_size",
-          "label": "Wielkość czcionki subheadera (px)"
+          "label": "Wielkość czcionki subheadera (px)",
+          "default": 18
         },
         {
           "type": "number",
