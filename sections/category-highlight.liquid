@@ -16,7 +16,7 @@
                     text-align: {{ block.settings.text_alignment | default: 'left' }};
                     {% if block.settings.header_color %}color: {{ block.settings.header_color }};{% endif %}
                     {% if block.settings.header_font_size %}font-size: {{ block.settings.header_font_size }}px;{% endif %}
-                    {% if block.settings.header_line_height %}line-height: {{ block.settings.header_line_height }};{% endif %}
+                    {% if block.settings.header_line_height %}line-height: {{ block.settings.header_line_height | divided_by: 100.0 }};{% endif %}
                   ">
                 {{ block.settings.header | newline_to_br }}
               </h2>
@@ -27,7 +27,7 @@
                    text-align: {{ block.settings.text_alignment | default: 'left' }};
                    {% if block.settings.subheader_color %}color: {{ block.settings.subheader_color }};{% endif %}
                    {% if block.settings.subheader_font_size %}font-size: {{ block.settings.subheader_font_size }}px;{% endif %}
-                   {% if block.settings.subheader_line_height %}line-height: {{ block.settings.subheader_line_height }};{% endif %}
+                   {% if block.settings.subheader_line_height %}line-height: {{ block.settings.subheader_line_height | divided_by: 100.0 }};{% endif %}
                  ">
                 {{ block.settings.subheader | newline_to_br }}
               </p>
@@ -197,7 +197,7 @@
           "type": "number",
           "id": "header_line_height",
           "label": "Interlinia headera",
-          "default": 1.2
+          "default": 120
         },
         {
           "type": "textarea",
@@ -218,7 +218,7 @@
           "type": "number",
           "id": "subheader_line_height",
           "label": "Interlinia subheadera",
-          "default": 1.5
+          "default": 150
         },
         {
           "type": "select",
