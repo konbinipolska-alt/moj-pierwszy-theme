@@ -228,12 +228,6 @@
         "stroke_width": 2
       }
     },
-    "spacer_n6g4U3": {
-      "type": "spacer",
-      "settings": {
-        "height": 24
-      }
-    },
     "generic_section": {
       "type": "user-highlights",
       "blocks": {
@@ -360,7 +354,7 @@
             "background_video": "",
             "media_position": "center",
             "media_scale": 100,
-            "padding": 0,
+            "padding": 24,
             "show_border": false,
             "border_width": 1,
             "border_color": "#0b00b5",
@@ -474,7 +468,6 @@
     "categories",
     "spacer_1",
     "kafelki_3KqnXh",
-    "spacer_n6g4U3",
     "generic_section",
     "spotify_player_bEC9xV",
     "nowy_slider_produktowy_jQTUxJ"
