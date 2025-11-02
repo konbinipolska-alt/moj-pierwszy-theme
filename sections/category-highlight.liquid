@@ -1,0 +1,45 @@
+<div class="category-highlight-section">
+</div>
+
+<style>
+  .category-highlight-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: {{ section.settings.margins | default: 48 }}px;
+    margin-bottom: {{ section.settings.margins | default: 48 }}px;
+    background-color: {{ section.settings.background_color | default: '#ffffff' }};
+    height: {{ section.settings.height | default: 700 }}px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Category Highlight",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Kolor tła",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "height",
+      "label": "Wysokość sekcji (px)",
+      "default": 700
+    },
+    {
+      "type": "number",
+      "id": "margins",
+      "label": "Marginesy sekcji (px)",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Highlight"
+    }
+  ]
+}
+{% endschema %}
+
