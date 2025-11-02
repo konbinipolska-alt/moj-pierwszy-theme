@@ -60,7 +60,7 @@
             </svg>
           </button>
           <div class="product-slider-container">
-            {% assign products = collections[section.settings.collection].products | limit: block.settings.product_limit %}
+            {% assign products = collections[section.settings.collection].products | limit: section.settings.product_limit %}
             {% for product in products %}
               <div class="product-slide">
                 <a href="{{ product.url }}" class="product-slide-link">
@@ -416,6 +416,12 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "collection",
       "id": "collection",
       "label": "Kolekcja produktów"
+    },
+    {
+      "type": "number",
+      "id": "product_limit",
+      "label": "Limit produktów w sliderze",
+      "default": 10
     }
   ],
   "blocks": [
@@ -623,14 +629,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "product_slider",
       "name": "Product Slider",
-      "settings": [
-        {
-          "type": "number",
-          "id": "product_limit",
-          "label": "Limit produktów",
-          "default": 10
-        }
-      ]
+      "settings": []
     }
   ]
 }
