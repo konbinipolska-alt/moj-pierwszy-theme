@@ -25,7 +25,7 @@
               <source src="{{ block.settings.background_video }}" type="video/mp4">
             </video>
           {% endif %}
-          <div class="content-block-inner content-position-{{ block.settings.content_position }}">
+          <div class="content-block-inner content-position-{{ block.settings.content_position }} has-button-position-{{ block.settings.button_position | default: 'after' }}">
             <div class="content-text-wrapper">
               {% if block.settings.header != blank %}
                 <h2 class="content-header" 
@@ -122,16 +122,28 @@
     z-index: 5;
   }
 
-  .content-position-top {
+  .content-position-top.has-button-position-after {
     justify-content: flex-start;
   }
 
-  .content-position-center {
+  .content-position-center.has-button-position-after {
     justify-content: center;
   }
 
-  .content-position-bottom {
+  .content-position-bottom.has-button-position-after {
     justify-content: flex-end;
+  }
+
+  .content-position-top.has-button-position-bottom {
+    justify-content: flex-start;
+  }
+
+  .content-position-center.has-button-position-bottom {
+    justify-content: flex-start;
+  }
+
+  .content-position-bottom.has-button-position-bottom {
+    justify-content: flex-start;
   }
 
   .content-text-wrapper {
