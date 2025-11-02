@@ -265,9 +265,9 @@
             "header_link": "",
             "subheader": "kl;jca;khc;",
             "link": "",
-            "padding": 0,
+            "padding": 24,
             "content_position_vertical": "top",
-            "text_alignment": "center",
+            "text_alignment": "left",
             "header_subheader_gap": 8,
             "header_color": "#0b00b5",
             "subheader_color": "#0b00b5"
