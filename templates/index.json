@@ -237,6 +237,14 @@
     "generic_section": {
       "type": "generic-section",
       "blocks": {
+        "block_a4FDbb": {
+          "type": "block",
+          "settings": {}
+        },
+        "block_HaitBb": {
+          "type": "block",
+          "settings": {}
+        },
         "block_Tzp34U": {
           "type": "block",
           "settings": {}
@@ -255,6 +263,8 @@
         }
       },
       "block_order": [
+        "block_a4FDbb",
+        "block_HaitBb",
         "block_Tzp34U",
         "block_dt4QpV",
         "block_FMzpJU",
