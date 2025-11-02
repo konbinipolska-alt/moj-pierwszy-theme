@@ -6,6 +6,7 @@
              {% if block.settings.background_color %}background-color: {{ block.settings.background_color }};{% endif %}
              {% if block.settings.background_image %}background-image: url('{{ block.settings.background_image | image_url: width: 1200 }}'); background-size: cover; background-position: center;{% endif %}
              padding: {{ block.settings.padding | default: 0 }}px;
+             {% if block.settings.show_border %}border: 1px solid {{ block.settings.border_color | default: '#0b00b5' }};{% else %}border: none;{% endif %}
            " 
            {{ block.shopify_attributes }}>
         {% if block.settings.link != blank %}
@@ -57,7 +58,7 @@
 
   .generic-wrapper {
     width: 100%;
-    padding: {{ section.settings.margin_top | default: 48 }}px {{ section.settings.margin_right | default: 48 }}px {{ section.settings.margin_bottom | default: 48 }}px {{ section.settings.margin_left | default: 48 }}px;
+    padding: {{ section.settings.margins | default: 48 }}px;
     display: grid;
     {% if section.settings.size_mode == 'auto' %}
       grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, 1fr);
@@ -75,7 +76,6 @@
 
   .generic-block {
     background-color: white;
-    border: 1px solid #0b00b5;
     position: relative;
     {% if section.settings.size_mode == 'fixed' %}
       width: {{ section.settings.block_width | default: 300 }}px;
@@ -186,31 +186,9 @@
       "default": "#ffffff"
     },
     {
-      "type": "header",
-      "content": "Marginesy"
-    },
-    {
       "type": "number",
-      "id": "margin_top",
-      "label": "Margines górny (px)",
-      "default": 48
-    },
-    {
-      "type": "number",
-      "id": "margin_right",
-      "label": "Margines prawy (px)",
-      "default": 48
-    },
-    {
-      "type": "number",
-      "id": "margin_bottom",
-      "label": "Margines dolny (px)",
-      "default": 48
-    },
-    {
-      "type": "number",
-      "id": "margin_left",
-      "label": "Margines lewy (px)",
+      "id": "margins",
+      "label": "Marginesy sekcji (px)",
       "default": 48
     },
     {
@@ -278,6 +256,18 @@
           "type": "image_picker",
           "id": "background_image",
           "label": "Grafika tła"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border",
+          "label": "Pokaż ramkę",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Kolor ramki",
+          "default": "#0b00b5"
         },
         {
           "type": "header",
