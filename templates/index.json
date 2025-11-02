@@ -228,9 +228,23 @@
         "stroke_width": 2
       }
     },
+    "spacer_n6g4U3": {
+      "type": "spacer",
+      "settings": {
+        "height": 24
+      }
+    },
     "generic_section": {
       "type": "generic-section",
-      "settings": {}
+      "settings": {
+        "background_color": "#ffffff",
+        "height": 700,
+        "size_type": "fixed",
+        "block_height": 200,
+        "aspect_ratio": 1,
+        "columns_per_row": 1,
+        "rows": 1
+      }
     },
     "content": {
       "type": "content-section",
@@ -245,6 +259,7 @@
     "categories",
     "spacer_1",
     "kafelki_3KqnXh",
+    "spacer_n6g4U3",
     "generic_section",
     "content"
   ]
