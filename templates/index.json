@@ -282,7 +282,8 @@
             "content_position_vertical": "bottom",
             "text_alignment": "left",
             "header_subheader_gap": 2,
-            "text_color": "#0b00b5"
+            "text_color": "#0b00b5",
+            "header_font_size": 0
           }
         },
         "block_bTjhDX": {
