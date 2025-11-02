@@ -44,7 +44,17 @@
           {% for b in section.blocks %}
             {% if b.type == 'product_item' %}
               {% assign product = all_products[b.settings.product] %}
-              {% render 'new-ps-product-card', product: product, block: b %}
+              <div class="new-ps-card">
+                <a href="{{ product.url }}" class="new-ps-card-link">
+                  {% if product.featured_image %}
+                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy">
+                  {% endif %}
+                  <div class="new-ps-card-info">
+                    <h3 class="new-ps-card-title">{{ product.title }}</h3>
+                    <p class="new-ps-card-price">{{ product.price | money }}</p>
+                  </div>
+                </a>
+              </div>
             {% endif %}
           {% endfor %}
         {% else %}
@@ -52,7 +62,17 @@
           {% if coll_handle and collections[coll_handle] %}
             {% assign products = collections[coll_handle].products | limit: section.settings.product_limit %}
             {% for product in products %}
-              {% render 'new-ps-product-card', product: product %}
+              <div class="new-ps-card">
+                <a href="{{ product.url }}" class="new-ps-card-link">
+                  {% if product.featured_image %}
+                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy">
+                  {% endif %}
+                  <div class="new-ps-card-info">
+                    <h3 class="new-ps-card-title">{{ product.title }}</h3>
+                    <p class="new-ps-card-price">{{ product.price | money }}</p>
+                  </div>
+                </a>
+              </div>
             {% endfor %}
           {% endif %}
         {% endif %}
@@ -144,23 +164,7 @@
   }
 </style>
 
-{% comment %} Product card partial inside same file fallback {% endcomment %}
-{% unless 'new-ps-product-card' | asset_url %}
-  {% capture _new_ps_card %}
-  <div class="new-ps-card">
-    <a href="{{ product.url }}" class="new-ps-card-link">
-      {% if product.featured_image %}
-        <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="new-ps-card-image" loading="lazy">
-      {% endif %}
-      <div class="new-ps-card-info">
-        <h3 class="new-ps-card-title">{{ product.title }}</h3>
-        <p class="new-ps-card-price">{{ product.price | money }}</p>
-      </div>
-    </a>
-  </div>
-  {% endcapture %}
-  {% assign _ = _new_ps_card %}
-{% endunless %}
+{% comment %} Product card is rendered inline in loops above {% endcomment %}
 
 <style>
   .new-ps-card { flex: 0 0 auto; width: {{ section.settings.product_card_width | default: 260 }}px; height: 100%; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
