@@ -1,0 +1,36 @@
+<div class="generic-section"></div>
+
+<style>
+  .generic-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background-color: {{ section.settings.background_color | default: '#ffffff' }};
+    height: {{ section.settings.height | default: 700 }}px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Generic Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Kolor tła",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "height",
+      "label": "Wysokość (px)",
+      "default": 700
+    }
+  ],
+  "presets": [
+    {
+      "name": "Generic Section"
+    }
+  ]
+}
+{% endschema %}
+
