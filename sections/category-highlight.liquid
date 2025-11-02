@@ -37,9 +37,9 @@
                  class="content-button"
                  style="
                    border-radius: {{ block.settings.button_border_radius | default: 0 }}px;
-                   {% if block.settings.button_background_color %}background-color: {{ block.settings.button_background_color }};{% endif %}
-                   {% if block.settings.button_border_color %}border: 1px solid {{ block.settings.button_border_color }};{% endif %}
-                   {% if block.settings.button_text_color %}color: {{ block.settings.button_text_color }};{% endif %}
+                   background-color: {{ block.settings.button_background_color | default: '#0b00b5' }};
+                   border: 1px solid {{ block.settings.button_border_color | default: '#0b00b5' }};
+                   color: {{ block.settings.button_text_color | default: '#ffffff' }};
                  ">
                 {{ block.settings.button_text }}
               </a>
@@ -192,13 +192,15 @@
           "type": "number",
           "id": "header_font_size",
           "label": "Wielkość czcionki headera (px)",
-          "default": 32
+          "default": 32,
+          "info": "Domyślnie: 32px"
         },
         {
           "type": "number",
           "id": "header_line_height",
           "label": "Interlinia headera",
-          "default": 120
+          "default": 120,
+          "info": "Domyślnie: 120"
         },
         {
           "type": "textarea",
@@ -214,13 +216,15 @@
           "type": "number",
           "id": "subheader_font_size",
           "label": "Wielkość czcionki subheadera (px)",
-          "default": 18
+          "default": 18,
+          "info": "Domyślnie: 18px"
         },
         {
           "type": "number",
           "id": "subheader_line_height",
           "label": "Interlinia subheadera",
-          "default": 150
+          "default": 150,
+          "info": "Domyślnie: 150"
         },
         {
           "type": "select",
@@ -279,17 +283,20 @@
         {
           "type": "color",
           "id": "button_background_color",
-          "label": "Kolor tła buttona"
+          "label": "Kolor tła buttona",
+          "default": "#0b00b5"
         },
         {
           "type": "color",
           "id": "button_border_color",
-          "label": "Kolor obramowania buttona"
+          "label": "Kolor obramowania buttona",
+          "default": "#0b00b5"
         },
         {
           "type": "color",
           "id": "button_text_color",
-          "label": "Kolor tekstu buttona"
+          "label": "Kolor tekstu buttona",
+          "default": "#ffffff"
         },
         {
           "type": "number",
