@@ -360,7 +360,7 @@
             "background_video": "",
             "media_position": "center",
             "media_scale": 100,
-            "padding": 24,
+            "padding": 0,
             "show_border": false,
             "border_width": 1,
             "border_color": "#0b00b5",
