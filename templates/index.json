@@ -348,6 +348,132 @@
         "product_limit": 10
       }
     },
+    "user_nowy_slider_produktowy_N6E9Ch": {
+      "type": "user-nowy-slider-produktowy",
+      "blocks": {
+        "content_tile_RMtWQM": {
+          "type": "content_tile",
+          "settings": {
+            "background_color": "#ffffff",
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "padding": 24,
+            "show_border": false,
+            "border_width": 1,
+            "border_color": "#0b00b5",
+            "header": "Napoje",
+            "header_color": "#0b00b5",
+            "header_font_size": 28,
+            "header_line_height": 120,
+            "subheader": "w tej kategorii znajdziesz specjalnie wyselekcjonowane napoje z japonii i korei. Tylko najlepsze gówno",
+            "subheader_color": "#0b00b5",
+            "subheader_font_size": 14,
+            "subheader_line_height": 150,
+            "content_position": "top",
+            "text_alignment": "left"
+          }
+        },
+        "product_item_HihmcU": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_nhg3LX": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_aaF8za": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_KaQ7HA": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_krPE4j": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_DeaqV9": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_QhbLrL": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_6DzneT": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_rfHfbd": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        }
+      },
+      "block_order": [
+        "content_tile_RMtWQM",
+        "product_item_HihmcU",
+        "product_item_nhg3LX",
+        "product_item_aaF8za",
+        "product_item_KaQ7HA",
+        "product_item_krPE4j",
+        "product_item_DeaqV9",
+        "product_item_QhbLrL",
+        "product_item_6DzneT",
+        "product_item_rfHfbd"
+      ],
+      "name": "Nowy slider produktowy",
+      "settings": {
+        "background_color": "#ffffff",
+        "height": 520,
+        "margins": 48,
+        "gap": 25,
+        "inner_padding": 16,
+        "content_tile_width": 300,
+        "product_card_width": 300,
+        "image_ratio": "square",
+        "card_bg_color": "",
+        "text_color": "#0b00b5",
+        "title_font_size": 14,
+        "price_font_size": 18,
+        "text_alignment": "left",
+        "content_gap": 12,
+        "actions_gap": 38,
+        "sale_color": "#e11d48",
+        "border_radius": 0,
+        "enable_shadow": false,
+        "source_mode": "manual",
+        "collection": "",
+        "product_limit": 10
+      }
+    },
+    "user_tiles_divider_bPTEKY": {
+      "type": "user-tiles-divider",
+      "name": "Kafelki",
+      "settings": {
+        "rows": 5,
+        "stroke_width": 2
+      }
+    },
     "generic_section": {
       "type": "user-highlights",
       "blocks": {
@@ -479,6 +605,8 @@
     "spacer_1",
     "kafelki_3KqnXh",
     "nowy_slider_produktowy_jQTUxJ",
+    "user_nowy_slider_produktowy_N6E9Ch",
+    "user_tiles_divider_bPTEKY",
     "generic_section",
     "user_tiles_divider_HrUdCn",
     "spotify_player_bEC9xV"
