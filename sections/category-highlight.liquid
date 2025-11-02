@@ -14,7 +14,7 @@
               <h2 class="content-header" 
                   style="
                     text-align: {{ block.settings.text_alignment | default: 'left' }};
-                    {% if block.settings.header_color %}color: {{ block.settings.header_color }};{% endif %}
+                    color: {{ block.settings.header_color | default: '#0b00b5' }};
                     font-size: {{ block.settings.header_font_size | default: 32 }}px;
                     line-height: {{ block.settings.header_line_height | default: 120 | divided_by: 100.0 }};
                   ">
@@ -25,8 +25,8 @@
               <p class="content-subheader" 
                  style="
                    text-align: {{ block.settings.text_alignment | default: 'left' }};
-                   {% if block.settings.subheader_color %}color: {{ block.settings.subheader_color }};{% endif %}
-                   font-size: {{ block.settings.subheader_font_size | default: 18 }}px;
+                   color: {{ block.settings.subheader_color | default: '#0b00b5' }};
+                   font-size: {{ block.settings.subheader_font_size | default: 14 }}px;
                    line-height: {{ block.settings.subheader_line_height | default: 150 | divided_by: 100.0 }};
                  ">
                 {{ block.settings.subheader | newline_to_br }}
@@ -186,7 +186,8 @@
         {
           "type": "color",
           "id": "header_color",
-          "label": "Kolor headera"
+          "label": "Kolor headera",
+          "default": "#0b00b5"
         },
         {
           "type": "number",
@@ -210,14 +211,15 @@
         {
           "type": "color",
           "id": "subheader_color",
-          "label": "Kolor subheadera"
+          "label": "Kolor subheadera",
+          "default": "#0b00b5"
         },
         {
           "type": "number",
           "id": "subheader_font_size",
           "label": "Wielkość czcionki subheadera (px)",
-          "default": 18,
-          "info": "Domyślnie: 18px"
+          "default": 14,
+          "info": "Domyślnie: 14px"
         },
         {
           "type": "number",

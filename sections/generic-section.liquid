@@ -30,7 +30,7 @@
           {% if block.settings.header != blank %}
             <h2 class="generic-header" 
                 style="
-                  {% if block.settings.text_color %}color: {{ block.settings.text_color }};{% endif %}
+                  color: {{ block.settings.text_color | default: '#0b00b5' }};
                   font-size: {{ block.settings.header_font_size | default: 24 }}px;
                   text-align: {{ block.settings.text_alignment | default: 'center' }};
                 ">
@@ -41,7 +41,7 @@
             <p class="generic-subheader" 
                style="
                  {% if block.settings.text_color %}color: {{ block.settings.text_color }};{% endif %}
-                 font-size: {{ block.settings.subheader_font_size | default: 16 }}px;
+                 font-size: {{ block.settings.subheader_font_size | default: 14 }}px;
                  text-align: {{ block.settings.text_alignment | default: 'center' }};
                  margin-top: {{ block.settings.header_subheader_gap | default: 8 }}px;
                ">
@@ -443,7 +443,7 @@
           "type": "number",
           "id": "subheader_font_size",
           "label": "Wielkość czcionki subheadera (px)",
-          "default": 16
+          "default": 14
         }
       ]
     }
