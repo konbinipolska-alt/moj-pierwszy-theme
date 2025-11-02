@@ -350,6 +350,15 @@
         "theme": "0"
       }
     },
+    "category_highlight_8TAAap": {
+      "type": "category-highlight",
+      "name": "Category Highlight",
+      "settings": {
+        "background_color": "#0b00b5",
+        "height": 700,
+        "margins": 48
+      }
+    },
     "content": {
       "type": "content-section",
       "settings": {
@@ -366,6 +375,7 @@
     "spacer_n6g4U3",
     "generic_section",
     "spotify_player_bEC9xV",
+    "category_highlight_8TAAap",
     "content"
   ]
 }
