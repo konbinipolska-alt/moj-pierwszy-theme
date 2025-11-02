@@ -239,19 +239,55 @@
       "blocks": {
         "block_a4FDbb": {
           "type": "block",
-          "settings": {}
+          "settings": {
+            "block_name": "Blok",
+            "background_color": "",
+            "header": "",
+            "header_link": "",
+            "subheader": "",
+            "link": "",
+            "padding": 0,
+            "content_position": "center-center"
+          }
         },
         "block_dt4QpV": {
           "type": "block",
-          "settings": {}
+          "settings": {
+            "block_name": "2",
+            "background_color": "",
+            "header": "",
+            "header_link": "",
+            "subheader": "",
+            "link": "",
+            "padding": 0,
+            "content_position": "center-center"
+          }
         },
         "block_FMzpJU": {
           "type": "block",
-          "settings": {}
+          "settings": {
+            "block_name": "Blok",
+            "background_color": "",
+            "header": "",
+            "header_link": "",
+            "subheader": "",
+            "link": "",
+            "padding": 0,
+            "content_position": "center-center"
+          }
         },
         "block_bTjhDX": {
           "type": "block",
-          "settings": {}
+          "settings": {
+            "block_name": "Blok",
+            "background_color": "",
+            "header": "",
+            "header_link": "",
+            "subheader": "",
+            "link": "",
+            "padding": 0,
+            "content_position": "center-center"
+          }
         }
       },
       "block_order": [
