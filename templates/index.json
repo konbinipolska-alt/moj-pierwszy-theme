@@ -406,6 +406,18 @@
             "product": "sample"
           }
         },
+        "product_item_KFD9DH": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_Jj98RM": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
         "product_item_T9XjLd": {
           "type": "product_item",
           "settings": {
@@ -426,6 +438,8 @@
         "product_item_xn9pFk",
         "product_item_TMAEzX",
         "product_item_XXhRKK",
+        "product_item_KFD9DH",
+        "product_item_Jj98RM",
         "product_item_T9XjLd",
         "product_item_hPz6KD"
       ],
