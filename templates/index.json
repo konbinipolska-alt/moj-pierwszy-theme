@@ -234,17 +234,6 @@
         "height": 24
       }
     },
-    "spotify_player_bEC9xV": {
-      "type": "spotify-player",
-      "name": "Spotify Player",
-      "settings": {
-        "background_color": "#ffffff",
-        "margins": 48,
-        "playlist_id": "68q7TYjLgjswOnGRgcsSEq",
-        "player_height": 152,
-        "theme": "0"
-      }
-    },
     "generic_section": {
       "type": "generic-section",
       "blocks": {
@@ -348,6 +337,18 @@
         "size_mode": "fixed",
         "block_width": 574,
         "block_height": 300
+      }
+    },
+    "spotify_player_bEC9xV": {
+      "type": "spotify-player",
+      "disabled": true,
+      "name": "Spotify Player",
+      "settings": {
+        "background_color": "#ffffff",
+        "margins": 48,
+        "playlist_id": "68q7TYjLgjswOnGRgcsSEq",
+        "player_height": 152,
+        "theme": "0"
       }
     },
     "content": {
