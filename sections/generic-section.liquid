@@ -18,22 +18,26 @@
     width: 100%;
     padding: 48px;
     display: grid;
-    {% if section.settings.size_type == 'aspect' %}
+    {% if section.settings.size_mode == 'auto' %}
       grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, 1fr);
-      grid-template-rows: repeat({{ section.settings.rows | default: 2 }}, 1fr);
+      grid-auto-rows: auto;
     {% else %}
-      grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, 1fr);
+      grid-template-columns: repeat({{ section.settings.columns_per_row | default: 3 }}, {{ section.settings.block_width | default: 300 }}px);
       grid-auto-rows: {{ section.settings.block_height | default: 200 }}px;
     {% endif %}
     gap: {{ section.settings.gap | default: 48 }}px;
     box-sizing: border-box;
+    {% if section.settings.size_mode == 'fixed' %}
+      justify-content: center;
+    {% endif %}
   }
 
   .generic-block {
     background-color: white;
     border: 1px solid #0b00b5;
-    {% if section.settings.size_type == 'aspect' %}
-      aspect-ratio: {{ section.settings.aspect_ratio | default: 1 }};
+    {% if section.settings.size_mode == 'fixed' %}
+      width: {{ section.settings.block_width | default: 300 }}px;
+      height: {{ section.settings.block_height | default: 200 }}px;
     {% endif %}
   }
 </style>
@@ -55,47 +59,40 @@
       "default": 48
     },
     {
-      "type": "select",
-      "id": "size_type",
-      "label": "Typ rozmiaru bloków",
-      "options": [
-        {
-          "value": "fixed",
-          "label": "Stała wysokość w px"
-        },
-        {
-          "value": "aspect",
-          "label": "Aspect ratio"
-        }
-      ],
-      "default": "fixed"
-    },
-    {
-      "type": "number",
-      "id": "block_height",
-      "label": "Wysokość bloku (px)",
-      "default": 200,
-      "info": "Tylko gdy typ rozmiaru: stała wysokość"
-    },
-    {
-      "type": "number",
-      "id": "aspect_ratio",
-      "label": "Aspect ratio",
-      "default": 1,
-      "info": "Tylko gdy typ rozmiaru: aspect ratio"
-    },
-    {
       "type": "number",
       "id": "columns_per_row",
       "label": "Ilość kolumn w rzędzie",
       "default": 3
     },
     {
+      "type": "select",
+      "id": "size_mode",
+      "label": "Tryb wymiarów bloków",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (wypełniają przestrzeń)"
+        },
+        {
+          "value": "fixed",
+          "label": "Stałe wymiary w px"
+        }
+      ],
+      "default": "auto"
+    },
+    {
       "type": "number",
-      "id": "rows",
-      "label": "Ilość rzędów",
-      "default": 2,
-      "info": "Tylko gdy typ rozmiaru: aspect ratio"
+      "id": "block_width",
+      "label": "Szerokość bloku (px)",
+      "default": 300,
+      "info": "Tylko gdy tryb: stałe wymiary"
+    },
+    {
+      "type": "number",
+      "id": "block_height",
+      "label": "Wysokość bloku (px)",
+      "default": 200,
+      "info": "Tylko gdy tryb: stałe wymiary"
     }
   ],
   "blocks": [
