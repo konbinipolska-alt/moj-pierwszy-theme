@@ -240,6 +240,9 @@
         "block_a4FDbb": {
           "type": "block",
           "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
             "show_border": true,
             "padding": 0,
             "background_color": "",
@@ -258,6 +261,9 @@
         "block_dt4QpV": {
           "type": "block",
           "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
             "show_border": true,
             "padding": 24,
             "background_color": "",
@@ -276,6 +282,9 @@
         "block_FMzpJU": {
           "type": "block",
           "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
             "show_border": true,
             "padding": 24,
             "background_color": "",
@@ -294,11 +303,15 @@
         "block_bTjhDX": {
           "type": "block",
           "settings": {
+            "background_image": "shopify://shop_images/registronik_photo_of_japanese_music_spotify_playlist_wallpape_617bd591-9e70-44c1-9003-9eb1b6c90eca_1.gif",
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
             "show_border": true,
             "padding": 24,
             "background_color": "",
             "border_color": "#0b00b5",
-            "text_color": "#0b00b5",
+            "text_color": "#ffffff",
             "header": "Nasza playlista do Konbinowania",
             "subheader": "Sprawdź na Spotify - bite 3h vibeu",
             "link": "",
