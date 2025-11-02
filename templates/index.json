@@ -356,7 +356,7 @@
         "content_tile_BmG6GA": {
           "type": "content_tile",
           "settings": {
-            "background_color": "#fafafa",
+            "background_color": "#ffffff",
             "background_video": "",
             "media_position": "center",
             "media_scale": 100,
