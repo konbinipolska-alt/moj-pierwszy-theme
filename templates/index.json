@@ -305,7 +305,7 @@
           "settings": {
             "background_image": "shopify://shop_images/registronik_photo_of_japanese_music_spotify_playlist_wallpape_617bd591-9e70-44c1-9003-9eb1b6c90eca_1.gif",
             "background_video": "",
-            "media_position": "center",
+            "media_position": "left top",
             "media_scale": 100,
             "show_border": true,
             "padding": 24,
