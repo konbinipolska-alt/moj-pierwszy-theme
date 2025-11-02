@@ -394,6 +394,24 @@
             "product": "sample"
           }
         },
+        "product_item_TMAEzX": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_XXhRKK": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_T9XjLd": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
         "product_item_hPz6KD": {
           "type": "product_item",
           "settings": {
@@ -406,6 +424,9 @@
         "product_item_nxKeiB",
         "product_item_WWFfqX",
         "product_item_xn9pFk",
+        "product_item_TMAEzX",
+        "product_item_XXhRKK",
+        "product_item_T9XjLd",
         "product_item_hPz6KD"
       ],
       "name": "Nowy slider produktowy",
