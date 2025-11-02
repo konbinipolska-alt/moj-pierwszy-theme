@@ -472,6 +472,14 @@
         "stroke_width": 2
       }
     },
+    "user_tiles_divider_HrUdCn": {
+      "type": "user-tiles-divider",
+      "name": "Kafelki",
+      "settings": {
+        "rows": 5,
+        "stroke_width": 2
+      }
+    },
     "generic_section": {
       "type": "user-highlights",
       "blocks": {
@@ -598,6 +606,7 @@
     "user_nowy_slider_produktowy_N6E9Ch",
     "user_tiles_divider_bPTEKY",
     "generic_section",
+    "user_tiles_divider_HrUdCn",
     "spotify_player_bEC9xV"
   ]
 }
