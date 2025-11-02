@@ -137,6 +137,9 @@
     position: relative;
     flex: 1;
     overflow: hidden; /* arrows can overlay */
+    /* extend to the right viewport edge */
+    margin-right: calc(-50vw + 50%);
+    padding-right: {{ section.settings.margins | default: 48 }}px;
   }
   .new-ps-track {
     height: 100%; display: flex; align-items: stretch; overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
@@ -154,7 +157,7 @@
   .new-ps-slider:hover .new-ps-arrow { opacity: 1; visibility: visible; }
   .new-ps-arrow:hover { background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: translateY(-50%) scale(1.05); }
   .new-ps-arrow-left { left: 8px; }
-  .new-ps-arrow-right { right: 8px; }
+  .new-ps-arrow-right { right: {{ section.settings.margins | default: 48 }}px; }
 
   @media (max-width: 768px) {
     .new-ps-wrapper { flex-direction: column; height: auto; }
@@ -177,29 +180,30 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const root = document.currentScript.closest('.new-ps-section') || document.querySelector('.new-ps-section');
-  if (!root) return;
-  const slider = root.querySelector('.new-ps-track');
-  const left = root.querySelector('.new-ps-arrow-left');
-  const right = root.querySelector('.new-ps-arrow-right');
-  if (!slider || !left || !right) return;
+  document.querySelectorAll('.new-ps-section').forEach(function(root){
+    const slider = root.querySelector('.new-ps-track');
+    const left = root.querySelector('.new-ps-arrow-left');
+    const right = root.querySelector('.new-ps-arrow-right');
+    if (!slider || !left || !right) return;
 
-  function getStep() {
-    const card = slider.querySelector('.new-ps-card');
-    const gap = {{ section.settings.gap | default: 16 }};
-    return (card ? card.getBoundingClientRect().width : {{ section.settings.product_card_width | default: 260 }}) + gap;
-  }
+    function getStep() {
+      const card = slider.querySelector('.new-ps-card');
+      const gap = {{ section.settings.gap | default: 16 }};
+      return (card ? card.getBoundingClientRect().width : {{ section.settings.product_card_width | default: 260 }}) + gap;
+    }
 
-  function scrollByDir(dir) {
-    const step = getStep();
-    let target = slider.scrollLeft + dir * step;
-    const max = slider.scrollWidth - slider.clientWidth;
-    if (target < 0) target = max; else if (target > max) target = 0;
-    slider.scrollTo({ left: target, behavior: 'smooth' });
-  }
+    function scrollByDir(dir) {
+      const step = getStep();
+      const max = slider.scrollWidth - slider.clientWidth;
+      if (max <= 0) return; // nothing to scroll
+      let target = slider.scrollLeft + dir * step;
+      if (target < 0) target = max; else if (target > max) target = 0;
+      slider.scrollTo({ left: target, behavior: 'smooth' });
+    }
 
-  left.addEventListener('click', () => scrollByDir(-1));
-  right.addEventListener('click', () => scrollByDir(1));
+    left.addEventListener('click', function(){ scrollByDir(-1); });
+    right.addEventListener('click', function(){ scrollByDir(1); });
+  });
 });
 </script>
 
