@@ -13,21 +13,10 @@
           <a href="{{ block.settings.link }}" class="block-link"></a>
         {% endif %}
         <div class="generic-block-content content-center-{{ block.settings.content_position_vertical | default: 'center' }}">
-          {% if block.settings.header_link != blank %}
-            <a href="{{ block.settings.header_link }}" class="header-link">
-              <h2 class="generic-header" 
-                  style="
-                    {% if block.settings.header_color %}color: {{ block.settings.header_color }};{% endif %}
-                    {% if block.settings.header_font_size %}font-size: {{ block.settings.header_font_size }}px;{% endif %}
-                    text-align: {{ block.settings.text_alignment | default: 'center' }};
-                  ">
-{{ block.settings.header | newline_to_br }}
-              </h2>
-            </a>
-          {% elsif block.settings.header != blank %}
+          {% if block.settings.header != blank %}
             <h2 class="generic-header" 
                 style="
-                  {% if block.settings.header_color %}color: {{ block.settings.header_color }};{% endif %}
+                  {% if block.settings.text_color %}color: {{ block.settings.text_color }};{% endif %}
                   {% if block.settings.header_font_size %}font-size: {{ block.settings.header_font_size }}px;{% endif %}
                   text-align: {{ block.settings.text_alignment | default: 'center' }};
                 ">
@@ -37,7 +26,7 @@
           {% if block.settings.subheader != blank %}
             <p class="generic-subheader" 
                style="
-                 {% if block.settings.subheader_color %}color: {{ block.settings.subheader_color }};{% endif %}
+                 {% if block.settings.text_color %}color: {{ block.settings.text_color }};{% endif %}
                  {% if block.settings.subheader_font_size %}font-size: {{ block.settings.subheader_font_size }}px;{% endif %}
                  text-align: {{ block.settings.text_alignment | default: 'center' }};
                  margin-top: {{ block.settings.header_subheader_gap | default: 8 }}px;
@@ -172,10 +161,6 @@
     text-align: center;
   }
 
-  .header-link {
-    text-decoration: none;
-    width: 100%;
-  }
 
   @media (max-width: 768px) {
     .generic-wrapper {
@@ -288,11 +273,6 @@
           "label": "Header"
         },
         {
-          "type": "url",
-          "id": "header_link",
-          "label": "Link headera"
-        },
-        {
           "type": "text",
           "id": "subheader",
           "label": "Subheader"
@@ -356,20 +336,14 @@
         },
         {
           "type": "color",
-          "id": "header_color",
-          "label": "Kolor headera",
+          "id": "text_color",
+          "label": "Kolor tekstu",
           "default": "#0b00b5"
         },
         {
           "type": "number",
           "id": "header_font_size",
           "label": "Wielkość czcionki headera (px)"
-        },
-        {
-          "type": "color",
-          "id": "subheader_color",
-          "label": "Kolor subheadera",
-          "default": "#0b00b5"
         },
         {
           "type": "number",
