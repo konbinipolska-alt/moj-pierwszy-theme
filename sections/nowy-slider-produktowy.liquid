@@ -62,7 +62,7 @@
                       {% if product.compare_at_price > product.price %}
                         <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline; justify-content: {{ section.settings.text_alignment | default: 'left' }};">
                           <span class="old-price">{{ product.compare_at_price | money }}</span>
-                          <span class="sale-price" style="color: {{ section.settings.sale_color | default: '#e11d48' }}; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
+                          <span class="sale-price" style="color: #E11D48; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
                         </div>
                       {% else %}
                         <p class="new-ps-card-price" style="font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700; margin: 0; color: {{ section.settings.text_color | default: '#0b00b5' }}; text-align: {{ section.settings.text_alignment | default: 'left' }};">{{ product.price | money }}</p>
@@ -99,7 +99,7 @@
                       {% if product.compare_at_price > product.price %}
                         <div class="new-ps-card-price-wrap" style="display: flex; gap: 8px; align-items: baseline; justify-content: {{ section.settings.text_alignment | default: 'left' }};">
                           <span class="old-price">{{ product.compare_at_price | money }}</span>
-                          <span class="sale-price" style="color: {{ section.settings.sale_color | default: '#e11d48' }}; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
+                          <span class="sale-price" style="color: #E11D48; font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700;">{{ product.price | money }}</span>
                         </div>
                       {% else %}
                         <p class="new-ps-card-price" style="font-size: {{ section.settings.price_font_size | default: 18 }}px; font-weight: 700; margin: 0; color: {{ section.settings.text_color | default: '#0b00b5' }}; text-align: {{ section.settings.text_alignment | default: 'left' }};">{{ product.price | money }}</p>
