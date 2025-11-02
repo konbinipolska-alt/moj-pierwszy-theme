@@ -341,7 +341,6 @@
     },
     "spotify_player_bEC9xV": {
       "type": "spotify-player",
-      "disabled": true,
       "name": "Spotify Player",
       "settings": {
         "background_color": "#ffffff",
