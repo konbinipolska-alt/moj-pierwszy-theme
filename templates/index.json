@@ -221,12 +221,16 @@
       }
     },
     "kafelki_3KqnXh": {
-      "type": "kafelki",
+      "type": "tiles-divider",
       "name": "Kafelki",
       "settings": {
         "rows": 5,
         "stroke_width": 2
       }
+    },
+    "generic_section": {
+      "type": "generic-section",
+      "settings": {}
     },
     "content": {
       "type": "content-section",
@@ -241,6 +245,7 @@
     "categories",
     "spacer_1",
     "kafelki_3KqnXh",
+    "generic_section",
     "content"
   ]
 }
