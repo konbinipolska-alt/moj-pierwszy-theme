@@ -222,14 +222,6 @@
         "height": 24
       }
     },
-    "kafelki_3KqnXh": {
-      "type": "user-tiles-divider",
-      "name": "Kafelki",
-      "settings": {
-        "rows": 5,
-        "stroke_width": 2
-      }
-    },
     "nowy_slider_produktowy_jQTUxJ": {
       "type": "user-nowy-slider-produktowy",
       "blocks": {
@@ -323,6 +315,7 @@
         "product_item_T9XjLd",
         "product_item_hPz6KD"
       ],
+      "disabled": true,
       "name": "Nowy slider produktowy",
       "settings": {
         "background_color": "#ffffff",
@@ -441,6 +434,7 @@
         "product_item_6DzneT",
         "product_item_rfHfbd"
       ],
+      "disabled": true,
       "name": "Nowy slider produktowy",
       "settings": {
         "background_color": "#ffffff",
@@ -603,7 +597,6 @@
     "main",
     "categories",
     "spacer_1",
-    "kafelki_3KqnXh",
     "nowy_slider_produktowy_jQTUxJ",
     "user_nowy_slider_produktowy_N6E9Ch",
     "user_tiles_divider_bPTEKY",
