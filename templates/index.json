@@ -330,7 +330,7 @@
         "sale_color": "#e11d48",
         "border_radius": 0,
         "enable_shadow": false,
-        "source_mode": "manual",
+        "source_mode": "collection",
         "collection": "soki-i-napoje",
         "product_limit": 10
       }
