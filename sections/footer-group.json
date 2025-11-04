@@ -22,10 +22,37 @@
             "logo_width": 48,
             "text_alignment": "left"
           }
+        },
+        "menu_RJxL7w": {
+          "type": "menu",
+          "settings": {
+            "heading": "sklep",
+            "menu": "footer",
+            "text_alignment": "left",
+            "heading_color": "",
+            "heading_size": 18,
+            "heading_weight": 600,
+            "heading_spacing": 16,
+            "link_color": "",
+            "link_size": 14,
+            "menu_item_gap": 8
+          }
+        },
+        "copyright_pwcyNw": {
+          "type": "copyright",
+          "settings": {
+            "text_alignment": "left",
+            "text_color": "",
+            "font_size": 12,
+            "opacity": 1,
+            "show_powered_by": false
+          }
         }
       },
       "block_order": [
-        "logo_Tg4LA4"
+        "logo_Tg4LA4",
+        "menu_RJxL7w",
+        "copyright_pwcyNw"
       ],
       "name": "Footer",
       "settings": {
