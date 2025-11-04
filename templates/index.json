@@ -15,6 +15,7 @@
         "image_slide_2": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/konbini_poster_A2_300dpi_1.png",
             "link": "",
             "alt_text": "Slide 2"
           }
@@ -22,6 +23,7 @@
         "image_slide_1": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/image.png",
             "link": "",
             "alt_text": "Slide 1"
           }
@@ -29,6 +31,7 @@
         "image_slide_rMY3BU": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/konbini-070625-00060-33-60mm_2.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -36,6 +39,7 @@
         "image_slide_pXjyby": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/Mask_group.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -43,6 +47,7 @@
         "image_slide_4mPzL8": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/sauce.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -50,6 +55,7 @@
         "image_slide_g43mbn": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/image.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -57,6 +63,7 @@
         "image_slide_7XQeVE": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/konbini-070625-00060-33-60mm_2.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -64,6 +71,7 @@
         "image_slide_3": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/Mask_group.png",
             "link": "",
             "alt_text": "Slide 3"
           }
