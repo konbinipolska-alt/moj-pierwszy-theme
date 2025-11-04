@@ -331,7 +331,7 @@
         "sale_color": "#e11d48",
         "border_radius": 0,
         "enable_shadow": false,
-        "source_mode": "collection",
+        "source_mode": "manual",
         "collection": "frontpage",
         "product_limit": 10
       }
