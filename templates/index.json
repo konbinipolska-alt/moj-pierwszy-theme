@@ -331,7 +331,7 @@
         "border_radius": 0,
         "enable_shadow": false,
         "source_mode": "collection",
-        "collection": "soki-i-napoje",
+        "collection": "frontpage",
         "product_limit": 10
       }
     },
