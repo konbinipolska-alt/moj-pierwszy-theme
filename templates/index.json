@@ -260,46 +260,40 @@
         "product_item_WWFfqX": {
           "type": "product_item",
           "settings": {
-            "product": "sample"
+            "product": "ciastka-z-czekolada"
           }
         },
         "product_item_xn9pFk": {
           "type": "product_item",
           "settings": {
-            "product": "sample"
+            "product": "ginger-tea"
           }
         },
         "product_item_TMAEzX": {
           "type": "product_item",
           "settings": {
-            "product": "sample"
+            "product": "ocet-ryzowy"
           }
         },
         "product_item_XXhRKK": {
           "type": "product_item",
           "settings": {
-            "product": "sample"
+            "product": "pepero"
           }
         },
         "product_item_KFD9DH": {
           "type": "product_item",
           "settings": {
-            "product": "sample"
+            "product": "sos-sojowy"
           }
         },
         "product_item_Jj98RM": {
           "type": "product_item",
           "settings": {
-            "product": "sample"
+            "product": "sos-sriracha"
           }
         },
         "product_item_T9XjLd": {
-          "type": "product_item",
-          "settings": {
-            "product": "sample"
-          }
-        },
-        "product_item_hPz6KD": {
           "type": "product_item",
           "settings": {
             "product": "sample"
@@ -315,8 +309,7 @@
         "product_item_XXhRKK",
         "product_item_KFD9DH",
         "product_item_Jj98RM",
-        "product_item_T9XjLd",
-        "product_item_hPz6KD"
+        "product_item_T9XjLd"
       ],
       "name": "Nowy slider produktowy",
       "settings": {
