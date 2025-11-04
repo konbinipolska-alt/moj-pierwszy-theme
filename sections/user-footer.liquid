@@ -15,6 +15,9 @@
                height: var(--footer-block-height, auto);
              {% else %}
                height: var(--footer-block-height, auto);
+               width: {{ block.settings.block_width | default: 200 }}px;
+               flex-shrink: 0;
+               flex-grow: 0;
              {% endif %}
              text-align: {{ block.settings.text_alignment | default: 'left' }};
            ">
@@ -473,6 +476,13 @@
           "label": "Odstęp między pozycjami menu (px)",
           "default": 8,
           "info": "Domyślnie: 8"
+        },
+        {
+          "type": "number",
+          "id": "block_width",
+          "label": "Szerokość bloku (px)",
+          "default": 200,
+          "info": "Domyślnie: 200"
         }
       ]
     },
@@ -556,6 +566,13 @@
           "step": 0.1,
           "default": 1.6,
           "info": "Domyślnie: 1.6"
+        },
+        {
+          "type": "number",
+          "id": "block_width",
+          "label": "Szerokość bloku (px)",
+          "default": 200,
+          "info": "Domyślnie: 200"
         }
       ]
     },
@@ -652,6 +669,13 @@
           "label": "Odstęp między ikonami (px)",
           "default": 12,
           "info": "Domyślnie: 12"
+        },
+        {
+          "type": "number",
+          "id": "block_width",
+          "label": "Szerokość bloku (px)",
+          "default": 200,
+          "info": "Domyślnie: 200"
         }
       ]
     },
@@ -841,6 +865,13 @@
           "label": "Zaokrąglenie rogów (px)",
           "default": 6,
           "info": "Domyślnie: 6"
+        },
+        {
+          "type": "number",
+          "id": "block_width",
+          "label": "Szerokość bloku (px)",
+          "default": 300,
+          "info": "Domyślnie: 300"
         }
       ]
     },
@@ -890,6 +921,13 @@
           "id": "show_powered_by",
           "label": "Pokaż 'Powered by Shopify'",
           "default": false
+        },
+        {
+          "type": "number",
+          "id": "block_width",
+          "label": "Szerokość bloku (px)",
+          "default": 200,
+          "info": "Domyślnie: 200"
         }
       ]
     },
@@ -960,6 +998,13 @@
           "label": "Odstęp między ikonami (px)",
           "default": 8,
           "info": "Domyślnie: 8"
+        },
+        {
+          "type": "number",
+          "id": "block_width",
+          "label": "Szerokość bloku (px)",
+          "default": 200,
+          "info": "Domyślnie: 200"
         }
       ]
     }
