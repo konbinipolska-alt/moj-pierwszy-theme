@@ -1,247 +1,287 @@
 <footer class="user-footer" 
         style="
+          width: 100vw;
           background-color: {{ section.settings.bg_color | default: '#ffffff' }};
-          color: {{ section.settings.text_color | default: '#0b00b5' }};
-          padding-top: {{ section.settings.padding_top | default: 48 }}px;
-          padding-bottom: {{ section.settings.padding_bottom | default: 48 }}px;
-          padding-left: {{ section.settings.padding_left | default: 48 }}px;
-          padding-right: {{ section.settings.padding_right | default: 48 }}px;
-          margin-top: {{ section.settings.margin_top | default: 0 }}px;
-          margin-bottom: {{ section.settings.margin_bottom | default: 0 }}px;
+          color: {{ section.settings.text_color | default: '#0b00b5' };
+          padding: {{ section.settings.padding_vertical | default: 48 }}px {{ section.settings.margin | default: 48 }}px;
         ">
-  <div class="user-footer__container" style="max-width: {{ section.settings.max_width | default: 1200 }}px; margin: 0 auto;">
-    <div class="user-footer__grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: {{ section.settings.column_gap | default: 32 }}px;">
-      {% for block in section.blocks %}
-        <div class="user-footer__column" {{ block.shopify_attributes }}
-             style="
-               text-align: {{ block.settings.text_alignment | default: 'left' }};
-               {% if block.settings.column_width %}width: {{ block.settings.column_width }}px;{% endif %}
-             ">
-          
-          {% case block.type %}
-            {% when 'menu' %}
-              {% if block.settings.menu and block.settings.menu.links.size > 0 %}
-                {% if block.settings.heading != blank %}
-                  <h3 class="user-footer__heading" style="
-                    font-size: {{ block.settings.heading_size | default: 18 }}px;
-                    font-weight: {{ block.settings.heading_weight | default: 600 }};
-                    margin-top: 0;
-                    margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
-                    color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
-                  ">{{ block.settings.heading }}</h3>
+  <div class="user-footer__container" style="display: flex; gap: {{ section.settings.block_gap | default: 32 }}px; align-items: flex-start;">
+    {% for block in section.blocks %}
+      <div class="user-footer__block user-footer__block--{{ block.type }}" {{ block.shopify_attributes }}
+           style="
+             {% if block.type == 'logo' %}
+               flex-shrink: 0;
+               height: var(--footer-block-height, auto);
+             {% else %}
+               height: var(--footer-block-height, auto);
+             {% endif %}
+             text-align: {{ block.settings.text_alignment | default: 'left' }};
+           ">
+        
+        {% case block.type %}
+          {% when 'logo' %}
+            {% if block.settings.logo %}
+              <div class="user-footer__logo">
+                {% if block.settings.logo_link != blank %}
+                  <a href="{{ block.settings.logo_link }}" style="display: inline-block;">
                 {% endif %}
-                <ul class="user-footer__menu" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: {{ block.settings.menu_item_gap | default: 8 }}px;">
-                  {% for link in block.settings.menu.links %}
-                    <li>
-                      <a href="{{ link.url }}" style="
-                        color: {{ block.settings.link_color | default: section.settings.text_color | default: '#0b00b5' }};
-                        text-decoration: none;
-                        font-size: {{ block.settings.link_size | default: 14 }}px;
-                        transition: opacity 0.2s;
-                      " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-                        {{ link.title }}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-
-            {% when 'text' %}
-              {% if block.settings.heading != blank %}
-                <h3 class="user-footer__heading" style="
-                  font-size: {{ block.settings.heading_size | default: 18 }}px;
-                  font-weight: {{ block.settings.heading_weight | default: 600 }};
-                  margin-top: 0;
-                  margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
-                  color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
-                ">{{ block.settings.heading }}</h3>
-              {% endif %}
-              {% if block.settings.text != blank %}
-                <div class="user-footer__text" style="
-                  font-size: {{ block.settings.text_size | default: 14 }}px;
-                  line-height: {{ block.settings.text_line_height | default: 1.6 }};
-                  color: {{ block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' }};
-                  margin-bottom: {{ block.settings.text_spacing | default: 16 }}px;
-                ">{{ block.settings.text }}</div>
-              {% endif %}
-
-            {% when 'logo' %}
-              {% if block.settings.logo %}
-                <div class="user-footer__logo" style="margin-bottom: {{ block.settings.logo_spacing | default: 16 }}px;">
-                  {% if block.settings.logo_link != blank %}
-                    <a href="{{ block.settings.logo_link }}" style="display: inline-block;">
-                  {% endif %}
-                  <img src="{{ block.settings.logo | image_url: width: block.settings.logo_width | default: 180 }}" 
+                {% assign logo_width = block.settings.logo_width | default: 180 %}
+                {% if block.settings.logo.src contains '.svg' %}
+                  <img src="{{ block.settings.logo | image_url }}" 
                        alt="{{ shop.name }}" 
-                       style="max-width: {{ block.settings.logo_width | default: 180 }}px; height: auto;">
-                  {% if block.settings.logo_link != blank %}
+                       class="footer-logo-img"
+                       id="footer-logo-{{ section.id }}"
+                       style="width: {{ logo_width }}px; height: auto; display: block; max-width: 100%;">
+                {% else %}
+                  <img src="{{ block.settings.logo | image_url: width: logo_width }}" 
+                       alt="{{ shop.name }}" 
+                       class="footer-logo-img"
+                       id="footer-logo-{{ section.id }}"
+                       style="max-width: {{ logo_width }}px; height: auto; display: block;">
+                {% endif %}
+                {% if block.settings.logo_link != blank %}
+                  </a>
+                {% endif %}
+              </div>
+              <script>
+                (function() {
+                  const logo = document.getElementById('footer-logo-{{ section.id }}');
+                  if (logo) {
+                    function setBlockHeight() {
+                      const height = logo.offsetHeight || logo.naturalHeight || logo.clientHeight;
+                      if (height > 0) {
+                        document.documentElement.style.setProperty('--footer-block-height', height + 'px');
+                      }
+                    }
+                    
+                    logo.addEventListener('load', setBlockHeight);
+                    
+                    if (logo.complete || logo.naturalWidth > 0) {
+                      setBlockHeight();
+                    } else {
+                      requestAnimationFrame(function() {
+                        setTimeout(setBlockHeight, 100);
+                      });
+                    }
+                  }
+                })();
+              </script>
+            {% endif %}
+
+          {% when 'menu' %}
+            {% if block.settings.menu and block.settings.menu.links.size > 0 %}
+              {% if block.settings.heading != blank %}
+                <h3 class="user-footer__heading" style="
+                  font-size: {{ block.settings.heading_size | default: 18 }}px;
+                  font-weight: {{ block.settings.heading_weight | default: 600 }};
+                  margin-top: 0;
+                  margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
+                  color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
+                ">{{ block.settings.heading }}</h3>
+              {% endif %}
+              <ul class="user-footer__menu" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: {{ block.settings.menu_item_gap | default: 8 }}px;">
+                {% for link in block.settings.menu.links %}
+                  <li>
+                    <a href="{{ link.url }}" style="
+                      color: {{ block.settings.link_color | default: section.settings.text_color | default: '#0b00b5' }};
+                      text-decoration: none;
+                      font-size: {{ block.settings.link_size | default: 14 }}px;
+                      transition: opacity 0.2s;
+                    " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                      {{ link.title }}
                     </a>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-            {% when 'social' %}
-              {% if block.settings.heading != blank %}
-                <h3 class="user-footer__heading" style="
-                  font-size: {{ block.settings.heading_size | default: 18 }}px;
-                  font-weight: {{ block.settings.heading_weight | default: 600 }};
-                  margin-top: 0;
-                  margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
-                  color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
-                ">{{ block.settings.heading }}</h3>
-              {% endif %}
-              <div class="user-footer__social" style="display: flex; gap: {{ block.settings.social_gap | default: 12 }}px; flex-wrap: wrap;">
-                {% if block.settings.facebook != blank %}
-                  <a href="{{ block.settings.facebook }}" target="_blank" rel="noopener noreferrer" style="
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: {{ block.settings.social_icon_size | default: 36 }}px;
-                    height: {{ block.settings.social_icon_size | default: 36 }}px;
-                    border-radius: 50%;
-                    background-color: {{ block.settings.social_bg_color | default: 'transparent' }};
-                    color: {{ block.settings.social_icon_color | default: section.settings.text_color | default: '#0b00b5' }};
-                    text-decoration: none;
-                    transition: opacity 0.2s;
-                  " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                    </svg>
-                  </a>
-                {% endif %}
-                {% if block.settings.instagram != blank %}
-                  <a href="{{ block.settings.instagram }}" target="_blank" rel="noopener noreferrer" style="
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: {{ block.settings.social_icon_size | default: 36 }}px;
-                    height: {{ block.settings.social_icon_size | default: 36 }}px;
-                    border-radius: 50%;
-                    background-color: {{ block.settings.social_bg_color | default: 'transparent' }};
-                    color: {{ block.settings.social_icon_color | default: section.settings.text_color | default: '#0b00b5' }};
-                    text-decoration: none;
-                    transition: opacity 0.2s;
-                  " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                  </a>
-                {% endif %}
-                {% if block.settings.twitter != blank %}
-                  <a href="{{ block.settings.twitter }}" target="_blank" rel="noopener noreferrer" style="
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: {{ block.settings.social_icon_size | default: 36 }}px;
-                    height: {{ block.settings.social_icon_size | default: 36 }}px;
-                    border-radius: 50%;
-                    background-color: {{ block.settings.social_bg_color | default: 'transparent' }};
-                    color: {{ block.settings.social_icon_color | default: section.settings.text_color | default: '#0b00b5' }};
-                    text-decoration: none;
-                    transition: opacity 0.2s;
-                  " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-                    </svg>
-                  </a>
-                {% endif %}
-              </div>
-
-            {% when 'newsletter' %}
-              {% if block.settings.heading != blank %}
-                <h3 class="user-footer__heading" style="
-                  font-size: {{ block.settings.heading_size | default: 18 }}px;
-                  font-weight: {{ block.settings.heading_weight | default: 600 }};
-                  margin-top: 0;
-                  margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
-                  color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
-                ">{{ block.settings.heading }}</h3>
-              {% endif %}
-              {% if block.settings.text != blank %}
-                <div class="user-footer__text" style="
-                  font-size: {{ block.settings.text_size | default: 14 }}px;
-                  line-height: {{ block.settings.text_line_height | default: 1.6 }};
-                  color: {{ block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' }};
-                  margin-bottom: {{ block.settings.text_spacing | default: 16 }}px;
-                ">{{ block.settings.text }}</div>
-              {% endif %}
-              {% form 'customer', class: 'user-footer__newsletter-form' %}
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                  <input type="email" 
-                         name="contact[email]" 
-                         placeholder="{{ block.settings.placeholder | default: 'Twój email' }}"
-                         required
-                         style="
-                           flex: 1;
-                           min-width: 200px;
-                           padding: {{ block.settings.input_padding | default: 12 }}px;
-                           border: 1px solid {{ block.settings.input_border_color | default: '#e5e7eb' }};
-                           border-radius: {{ block.settings.input_border_radius | default: 6 }}px;
-                           font-size: {{ block.settings.input_font_size | default: 14 }}px;
-                         ">
-                  <button type="submit" style="
-                    padding: {{ block.settings.button_padding | default: 12 }}px {{ block.settings.button_padding_horizontal | default: 24 }}px;
-                    background-color: {{ block.settings.button_bg_color | default: section.settings.text_color | default: '#0b00b5' }};
-                    color: {{ block.settings.button_text_color | default: '#ffffff' }};
-                    border: none;
-                    border-radius: {{ block.settings.button_border_radius | default: 6 }}px;
-                    font-size: {{ block.settings.button_font_size | default: 14 }}px;
-                    font-weight: {{ block.settings.button_font_weight | default: 600 }};
-                    cursor: pointer;
-                    transition: opacity 0.2s;
-                  " onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                    {{ block.settings.button_text | default: 'Zapisz się' }}
-                  </button>
-                </div>
-              {% endform %}
-
-            {% when 'copyright' %}
-              <div class="user-footer__copyright" style="
-                font-size: {{ block.settings.font_size | default: 12 }}px;
-                color: {{ block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' }};
-                opacity: {{ block.settings.opacity | default: 0.7 }};
-              ">
-                &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}
-                {% if block.settings.show_powered_by %}
-                  , {{ powered_by_link }}
-                {% endif %}
-              </div>
-
-            {% when 'payment' %}
-              {% if block.settings.heading != blank %}
-                <h3 class="user-footer__heading" style="
-                  font-size: {{ block.settings.heading_size | default: 18 }}px;
-                  font-weight: {{ block.settings.heading_weight | default: 600 }};
-                  margin-top: 0;
-                  margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
-                  color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
-                ">{{ block.settings.heading }}</h3>
-              {% endif %}
-              <div class="user-footer__payment" style="display: flex; flex-wrap: wrap; gap: {{ block.settings.icon_gap | default: 8 }}px;">
-                {% for type in shop.enabled_payment_types %}
-                  <div style="
-                    width: {{ block.settings.icon_size | default: 40 }}px;
-                    height: {{ block.settings.icon_size | default: 40 }}px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                  ">
-                    {{ type | payment_type_svg_tag: class: 'user-footer__payment-icon' }}
-                  </div>
+                  </li>
                 {% endfor %}
+              </ul>
+            {% endif %}
+
+          {% when 'text' %}
+            {% if block.settings.heading != blank %}
+              <h3 class="user-footer__heading" style="
+                font-size: {{ block.settings.heading_size | default: 18 }}px;
+                font-weight: {{ block.settings.heading_weight | default: 600 }};
+                margin-top: 0;
+                margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
+                color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
+              ">{{ block.settings.heading }}</h3>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="user-footer__text" style="
+                font-size: {{ block.settings.text_size | default: 14 }}px;
+                line-height: {{ block.settings.text_line_height | default: 1.6 }};
+                color: {{ block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' }};
+              ">{{ block.settings.text }}</div>
+            {% endif %}
+
+          {% when 'social' %}
+            {% if block.settings.heading != blank %}
+              <h3 class="user-footer__heading" style="
+                font-size: {{ block.settings.heading_size | default: 18 }}px;
+                font-weight: {{ block.settings.heading_weight | default: 600 }};
+                margin-top: 0;
+                margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
+                color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
+              ">{{ block.settings.heading }}</h3>
+            {% endif %}
+            <div class="user-footer__social" style="display: flex; gap: {{ block.settings.social_gap | default: 12 }}px; flex-wrap: wrap;">
+              {% if block.settings.facebook != blank %}
+                <a href="{{ block.settings.facebook }}" target="_blank" rel="noopener noreferrer" style="
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: {{ block.settings.social_icon_size | default: 36 }}px;
+                  height: {{ block.settings.social_icon_size | default: 36 }}px;
+                  border-radius: 50%;
+                  background-color: {{ block.settings.social_bg_color | default: 'transparent' }};
+                  color: {{ block.settings.social_icon_color | default: section.settings.text_color | default: '#0b00b5' }};
+                  text-decoration: none;
+                  transition: opacity 0.2s;
+                " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                  </svg>
+                </a>
+              {% endif %}
+              {% if block.settings.instagram != blank %}
+                <a href="{{ block.settings.instagram }}" target="_blank" rel="noopener noreferrer" style="
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: {{ block.settings.social_icon_size | default: 36 }}px;
+                  height: {{ block.settings.social_icon_size | default: 36 }}px;
+                  border-radius: 50%;
+                  background-color: {{ block.settings.social_bg_color | default: 'transparent' }};
+                  color: {{ block.settings.social_icon_color | default: section.settings.text_color | default: '#0b00b5' }};
+                  text-decoration: none;
+                  transition: opacity 0.2s;
+                " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </a>
+              {% endif %}
+              {% if block.settings.twitter != blank %}
+                <a href="{{ block.settings.twitter }}" target="_blank" rel="noopener noreferrer" style="
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: {{ block.settings.social_icon_size | default: 36 }}px;
+                  height: {{ block.settings.social_icon_size | default: 36 }}px;
+                  border-radius: 50%;
+                  background-color: {{ block.settings.social_bg_color | default: 'transparent' }};
+                  color: {{ block.settings.social_icon_color | default: section.settings.text_color | default: '#0b00b5' }};
+                  text-decoration: none;
+                  transition: opacity 0.2s;
+                " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                  </svg>
+                </a>
+              {% endif %}
+            </div>
+
+          {% when 'newsletter' %}
+            {% if block.settings.heading != blank %}
+              <h3 class="user-footer__heading" style="
+                font-size: {{ block.settings.heading_size | default: 18 }}px;
+                font-weight: {{ block.settings.heading_weight | default: 600 }};
+                margin-top: 0;
+                margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
+                color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
+              ">{{ block.settings.heading }}</h3>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="user-footer__text" style="
+                font-size: {{ block.settings.text_size | default: 14 }}px;
+                line-height: {{ block.settings.text_line_height | default: 1.6 }};
+                color: {{ block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' }};
+                margin-bottom: {{ block.settings.text_spacing | default: 16 }}px;
+              ">{{ block.settings.text }}</div>
+            {% endif %}
+            {% form 'customer', class: 'user-footer__newsletter-form' %}
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <input type="email" 
+                       name="contact[email]" 
+                       placeholder="{{ block.settings.placeholder | default: 'Twój email' }}"
+                       required
+                       style="
+                         flex: 1;
+                         min-width: 200px;
+                         padding: {{ block.settings.input_padding | default: 12 }}px;
+                         border: 1px solid {{ block.settings.input_border_color | default: '#e5e7eb' }};
+                         border-radius: {{ block.settings.input_border_radius | default: 6 }}px;
+                         font-size: {{ block.settings.input_font_size | default: 14 }}px;
+                       ">
+                <button type="submit" style="
+                  padding: {{ block.settings.button_padding | default: 12 }}px {{ block.settings.button_padding_horizontal | default: 24 }}px;
+                  background-color: {{ block.settings.button_bg_color | default: section.settings.text_color | default: '#0b00b5' }};
+                  color: {{ block.settings.button_text_color | default: '#ffffff' }};
+                  border: none;
+                  border-radius: {{ block.settings.button_border_radius | default: 6 }}px;
+                  font-size: {{ block.settings.button_font_size | default: 14 }}px;
+                  font-weight: {{ block.settings.button_font_weight | default: 600 }};
+                  cursor: pointer;
+                  transition: opacity 0.2s;
+                " onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                  {{ block.settings.button_text | default: 'Zapisz się' }}
+                </button>
               </div>
-          {% endcase %}
-        </div>
-      {% endfor %}
-    </div>
+            {% endform %}
+
+          {% when 'copyright' %}
+            <div class="user-footer__copyright" style="
+              font-size: {{ block.settings.font_size | default: 12 }}px;
+              color: {{ block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' }};
+              opacity: {{ block.settings.opacity | default: 0.7 }};
+            ">
+              &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}
+              {% if block.settings.show_powered_by %}
+                , {{ powered_by_link }}
+              {% endif %}
+            </div>
+
+          {% when 'payment' %}
+            {% if block.settings.heading != blank %}
+              <h3 class="user-footer__heading" style="
+                font-size: {{ block.settings.heading_size | default: 18 }}px;
+                font-weight: {{ block.settings.heading_weight | default: 600 }};
+                margin-top: 0;
+                margin-bottom: {{ block.settings.heading_spacing | default: 16 }}px;
+                color: {{ block.settings.heading_color | default: section.settings.text_color | default: '#0b00b5' }};
+              ">{{ block.settings.heading }}</h3>
+            {% endif %}
+            <div class="user-footer__payment" style="display: flex; flex-wrap: wrap; gap: {{ block.settings.icon_gap | default: 8 }}px;">
+              {% for type in shop.enabled_payment_types %}
+                <div style="
+                  width: {{ block.settings.icon_size | default: 40 }}px;
+                  height: {{ block.settings.icon_size | default: 40 }}px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  {{ type | payment_type_svg_tag: class: 'user-footer__payment-icon' }}
+                </div>
+              {% endfor %}
+            </div>
+        {% endcase %}
+      </div>
+    {% endfor %}
   </div>
 </footer>
 
 {% stylesheet %}
   .user-footer {
-    width: 100%;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  
+  .user-footer__container {
+    max-width: 100%;
   }
   
   .user-footer a {
@@ -254,8 +294,8 @@
   }
   
   @media (max-width: 768px) {
-    .user-footer__grid {
-      grid-template-columns: 1fr !important;
+    .user-footer__container {
+      flex-direction: column;
     }
     
     .user-footer {
@@ -293,70 +333,62 @@
     },
     {
       "type": "number",
-      "id": "max_width",
-      "label": "Maksymalna szerokość kontenera (px)",
-      "default": 1200,
-      "info": "Domyślnie: 1200"
+      "id": "margin",
+      "label": "Marginesy boczne (px)",
+      "default": 48,
+      "info": "Domyślnie: 48"
     },
     {
       "type": "number",
-      "id": "column_gap",
-      "label": "Odstęp między kolumnami (px)",
+      "id": "padding_vertical",
+      "label": "Padding pionowy (px)",
+      "default": 48,
+      "info": "Domyślnie: 48"
+    },
+    {
+      "type": "number",
+      "id": "block_gap",
+      "label": "Odstęp między blokami (px)",
       "default": 32,
       "info": "Domyślnie: 32"
-    },
-    {
-      "type": "header",
-      "content": "Marginesy zewnętrzne"
-    },
-    {
-      "type": "number",
-      "id": "margin_top",
-      "label": "Margines górny (px)",
-      "default": 0,
-      "info": "Domyślnie: 0"
-    },
-    {
-      "type": "number",
-      "id": "margin_bottom",
-      "label": "Margines dolny (px)",
-      "default": 0,
-      "info": "Domyślnie: 0"
-    },
-    {
-      "type": "header",
-      "content": "Padding wewnętrzny"
-    },
-    {
-      "type": "number",
-      "id": "padding_top",
-      "label": "Padding górny (px)",
-      "default": 48,
-      "info": "Domyślnie: 48"
-    },
-    {
-      "type": "number",
-      "id": "padding_bottom",
-      "label": "Padding dolny (px)",
-      "default": 48,
-      "info": "Domyślnie: 48"
-    },
-    {
-      "type": "number",
-      "id": "padding_left",
-      "label": "Padding lewy (px)",
-      "default": 48,
-      "info": "Domyślnie: 48"
-    },
-    {
-      "type": "number",
-      "id": "padding_right",
-      "label": "Padding prawy (px)",
-      "default": 48,
-      "info": "Domyślnie: 48"
     }
   ],
   "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "url",
+          "id": "logo_link",
+          "label": "Link do logo",
+          "info": "Opcjonalnie"
+        },
+        {
+          "type": "number",
+          "id": "logo_width",
+          "label": "Szerokość logo (px)",
+          "default": 180,
+          "info": "Domyślnie: 180"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Wyrównanie",
+          "options": [
+            { "value": "left", "label": "Lewo" },
+            { "value": "center", "label": "Środek" },
+            { "value": "right", "label": "Prawo" }
+          ],
+          "default": "left"
+        }
+      ]
+    },
     {
       "type": "menu",
       "name": "Menu",
@@ -381,12 +413,6 @@
             { "value": "right", "label": "Prawo" }
           ],
           "default": "left"
-        },
-        {
-          "type": "number",
-          "id": "column_width",
-          "label": "Szerokość kolumny (px)",
-          "info": "Opcjonalnie"
         },
         {
           "type": "header",
@@ -469,12 +495,6 @@
           "default": "left"
         },
         {
-          "type": "number",
-          "id": "column_width",
-          "label": "Szerokość kolumny (px)",
-          "info": "Opcjonalnie"
-        },
-        {
           "type": "header",
           "content": "Styl nagłówka"
         },
@@ -526,61 +546,6 @@
           "label": "Interlinia tekstu",
           "default": 1.6,
           "info": "Domyślnie: 1.6"
-        },
-        {
-          "type": "number",
-          "id": "text_spacing",
-          "label": "Odstęp pod tekstem (px)",
-          "default": 16,
-          "info": "Domyślnie: 16"
-        }
-      ]
-    },
-    {
-      "type": "logo",
-      "name": "Logo",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "logo",
-          "label": "Logo"
-        },
-        {
-          "type": "url",
-          "id": "logo_link",
-          "label": "Link do logo",
-          "info": "Opcjonalnie"
-        },
-        {
-          "type": "number",
-          "id": "logo_width",
-          "label": "Szerokość logo (px)",
-          "default": 180,
-          "info": "Domyślnie: 180"
-        },
-        {
-          "type": "number",
-          "id": "logo_spacing",
-          "label": "Odstęp pod logo (px)",
-          "default": 16,
-          "info": "Domyślnie: 16"
-        },
-        {
-          "type": "select",
-          "id": "text_alignment",
-          "label": "Wyrównanie",
-          "options": [
-            { "value": "left", "label": "Lewo" },
-            { "value": "center", "label": "Środek" },
-            { "value": "right", "label": "Prawo" }
-          ],
-          "default": "left"
-        },
-        {
-          "type": "number",
-          "id": "column_width",
-          "label": "Szerokość kolumny (px)",
-          "info": "Opcjonalnie"
         }
       ]
     },
@@ -618,12 +583,6 @@
             { "value": "right", "label": "Prawo" }
           ],
           "default": "left"
-        },
-        {
-          "type": "number",
-          "id": "column_width",
-          "label": "Szerokość kolumny (px)",
-          "info": "Opcjonalnie"
         },
         {
           "type": "header",
@@ -717,12 +676,6 @@
             { "value": "right", "label": "Prawo" }
           ],
           "default": "left"
-        },
-        {
-          "type": "number",
-          "id": "column_width",
-          "label": "Szerokość kolumny (px)",
-          "info": "Opcjonalnie"
         },
         {
           "type": "header",
@@ -894,12 +847,6 @@
           "default": "left"
         },
         {
-          "type": "number",
-          "id": "column_width",
-          "label": "Szerokość kolumny (px)",
-          "info": "Opcjonalnie"
-        },
-        {
           "type": "header",
           "content": "Styl tekstu"
         },
@@ -952,12 +899,6 @@
             { "value": "right", "label": "Prawo" }
           ],
           "default": "left"
-        },
-        {
-          "type": "number",
-          "id": "column_width",
-          "label": "Szerokość kolumny (px)",
-          "info": "Opcjonalnie"
         },
         {
           "type": "header",
@@ -1014,10 +955,7 @@
     {
       "name": "Footer",
       "blocks": [
-        { "type": "logo" },
-        { "type": "menu" },
-        { "type": "social" },
-        { "type": "copyright" }
+        { "type": "logo" }
       ]
     }
   ]
