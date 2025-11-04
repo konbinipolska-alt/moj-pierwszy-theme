@@ -12,11 +12,17 @@
   "name": "t:general.footer",
   "sections": {
     "footer": {
-      "type": "footer",
-      "settings": {
-        "menu": "footer",
-        "show_payment_icons": true
-      }
+      "type": "user-footer",
+      "settings": {},
+      "blocks": {
+        "logo": {
+          "type": "logo",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "logo"
+      ]
     }
   },
   "order": [
