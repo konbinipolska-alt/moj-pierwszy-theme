@@ -576,6 +576,7 @@
     },
     "user_tiles_divider_HrUdCn": {
       "type": "user-tiles-divider",
+      "disabled": true,
       "name": "Kafelki",
       "settings": {
         "rows": 5,
@@ -584,6 +585,7 @@
     },
     "spotify_player_bEC9xV": {
       "type": "user-spotify-player",
+      "disabled": true,
       "name": "Spotify Player",
       "settings": {
         "background_color": "#ffffff",
@@ -591,6 +593,14 @@
         "playlist_id": "68q7TYjLgjswOnGRgcsSEq",
         "player_height": 152,
         "theme": "0"
+      }
+    },
+    "user_tiles_divider_bwzjJt": {
+      "type": "user-tiles-divider",
+      "name": "Kafelki",
+      "settings": {
+        "rows": 5,
+        "stroke_width": 2
       }
     }
   },
@@ -604,6 +614,7 @@
     "user_nowy_slider_produktowy_N6E9Ch",
     "generic_section",
     "user_tiles_divider_HrUdCn",
-    "spotify_player_bEC9xV"
+    "spotify_player_bEC9xV",
+    "user_tiles_divider_bwzjJt"
   ]
 }
