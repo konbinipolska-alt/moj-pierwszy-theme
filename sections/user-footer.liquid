@@ -21,10 +21,14 @@
                flex-grow: 0;
              {% endif %}
              text-align: {{ block.settings.text_alignment | default: 'left' }};
-             padding-top: {{ block.settings.padding_vertical | default: 0 }}px;
-             padding-bottom: {{ block.settings.padding_vertical | default: 0 }}px;
-             padding-left: {{ block.settings.padding_horizontal | default: 0 }}px;
-             padding-right: {{ block.settings.padding_horizontal | default: 0 }}px;
+             padding-top: {{ block.settings.padding_top | default: 0 }}px;
+             padding-bottom: {{ block.settings.padding_bottom | default: 0 }}px;
+             padding-left: {{ block.settings.padding_left | default: 0 }}px;
+             padding-right: {{ block.settings.padding_right | default: 0 }}px;
+             margin-top: {{ block.settings.margin_top | default: 0 }}px;
+             margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;
+             margin-left: {{ block.settings.margin_left | default: 0 }}px;
+             margin-right: {{ block.settings.margin_right | default: 0 }}px;
            ">
         
         {% case block.type %}
@@ -422,19 +426,61 @@
             },
             {
               "type": "header",
-              "content": "Padding"
+              "content": "Padding i Marginesy"
             },
             {
               "type": "number",
-              "id": "padding_vertical",
-              "label": "Padding góra/dół (px)",
+              "id": "padding_top",
+              "label": "Padding góra (px)",
               "default": 0,
               "info": "Domyślnie: 0"
             },
             {
               "type": "number",
-              "id": "padding_horizontal",
-              "label": "Padding lewo/prawo (px)",
+              "id": "padding_bottom",
+              "label": "Padding dół (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "padding_left",
+              "label": "Padding lewo (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "padding_right",
+              "label": "Padding prawo (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "margin_top",
+              "label": "Margin góra (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "margin_bottom",
+              "label": "Margin dół (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "margin_left",
+              "label": "Margin lewo (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "margin_right",
+              "label": "Margin prawo (px)",
               "default": 0,
               "info": "Domyślnie: 0"
             }
@@ -527,51 +573,60 @@
         },
         {
           "type": "header",
-          "content": "Padding"
+          "content": "Padding i Marginesy"
         },
         {
           "type": "number",
-          "id": "padding_vertical",
-          "label": "Padding góra/dół (px)",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_bottom",
           "label": "Padding dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
-          "id": "padding_horizontal",
-          "label": "Padding lewo/prawo (px)",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_right",
           "label": "Padding prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_right",
           "label": "Margin prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
@@ -668,51 +723,60 @@
         },
         {
           "type": "header",
-          "content": "Padding"
+          "content": "Padding i Marginesy"
         },
         {
           "type": "number",
-          "id": "padding_vertical",
-          "label": "Padding góra/dół (px)",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_bottom",
           "label": "Padding dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
-          "id": "padding_horizontal",
-          "label": "Padding lewo/prawo (px)",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_right",
           "label": "Padding prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_right",
           "label": "Margin prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
@@ -822,51 +886,60 @@
         },
         {
           "type": "header",
-          "content": "Padding"
+          "content": "Padding i Marginesy"
         },
         {
           "type": "number",
-          "id": "padding_vertical",
-          "label": "Padding góra/dół (px)",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_bottom",
           "label": "Padding dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
-          "id": "padding_horizontal",
-          "label": "Padding lewo/prawo (px)",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_right",
           "label": "Padding prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_right",
           "label": "Margin prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
@@ -1069,51 +1142,60 @@
         },
         {
           "type": "header",
-          "content": "Padding"
+          "content": "Padding i Marginesy"
         },
         {
           "type": "number",
-          "id": "padding_vertical",
-          "label": "Padding góra/dół (px)",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_bottom",
           "label": "Padding dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
-          "id": "padding_horizontal",
-          "label": "Padding lewo/prawo (px)",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_right",
           "label": "Padding prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_right",
           "label": "Margin prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
@@ -1176,51 +1258,60 @@
         },
         {
           "type": "header",
-          "content": "Padding"
+          "content": "Padding i Marginesy"
         },
         {
           "type": "number",
-          "id": "padding_vertical",
-          "label": "Padding góra/dół (px)",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_bottom",
           "label": "Padding dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
-          "id": "padding_horizontal",
-          "label": "Padding lewo/prawo (px)",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_right",
           "label": "Padding prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_right",
           "label": "Margin prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
@@ -1304,51 +1395,60 @@
         },
         {
           "type": "header",
-          "content": "Padding"
+          "content": "Padding i Marginesy"
         },
         {
           "type": "number",
-          "id": "padding_vertical",
-          "label": "Padding góra/dół (px)",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_bottom",
           "label": "Padding dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
-          "id": "padding_horizontal",
-          "label": "Padding lewo/prawo (px)",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "padding_right",
           "label": "Padding prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
         },
         {
           "type": "number",
+          "id": "margin_right",
           "label": "Margin prawo (px)",
           "default": 0,
           "info": "Domyślnie: 0"
