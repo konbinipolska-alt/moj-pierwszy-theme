@@ -6,7 +6,7 @@
           padding: {{ section.settings.padding_vertical | default: 48 }}px {{ section.settings.margin | default: 48 }}px !important;
           margin: 0;
         ">
-  <div class="user-footer__container" style="display: flex; gap: {{ section.settings.block_gap | default: 32 }}px; align-items: flex-start;">
+  <div class="user-footer__container" style="display: flex; gap: {{ section.settings.block_gap | default: 32 }}px; align-items: flex-start; justify-content: flex-start; width: 100%;">
     {% for block in section.blocks %}
       <div class="user-footer__block user-footer__block--{{ block.type }}" {{ block.shopify_attributes }}
            style="
@@ -20,6 +20,14 @@
                flex-grow: 0;
              {% endif %}
              text-align: {{ block.settings.text_alignment | default: 'left' }};
+             padding-top: {{ block.settings.padding_top | default: 0 }}px;
+             padding-bottom: {{ block.settings.padding_bottom | default: 0 }}px;
+             padding-left: {{ block.settings.padding_left | default: 0 }}px;
+             padding-right: {{ block.settings.padding_right | default: 0 }}px;
+             margin-top: {{ block.settings.margin_top | default: 0 }}px;
+             margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;
+             margin-left: {{ block.settings.margin_left | default: 0 }}px;
+             margin-right: {{ block.settings.margin_right | default: 0 }}px;
            ">
         
         {% case block.type %}
@@ -298,6 +306,15 @@
   
   .user-footer__container {
     max-width: 100%;
+    width: 100%;
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  
+  .user-footer__block {
+    margin-left: 0;
+    padding-left: 0;
   }
   
   .user-footer a {
@@ -390,21 +407,81 @@
           "default": 180,
           "info": "Domyślnie: 180"
         },
+                    {
+              "type": "select",
+              "id": "text_alignment",
+              "label": "Wyrównanie",
+              "options": [
+                { "value": "left", "label": "Lewo" },
+                { "value": "center", "label": "Środek" },
+                { "value": "right", "label": "Prawo" }
+              ],
+              "default": "left"
+            },
+            {
+              "type": "header",
+              "content": "Padding i Marginesy"
+            },
+            {
+              "type": "number",
+              "id": "padding_top",
+              "label": "Padding góra (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "padding_bottom",
+              "label": "Padding dół (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "padding_left",
+              "label": "Padding lewo (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "padding_right",
+              "label": "Padding prawo (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "margin_top",
+              "label": "Margin góra (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "margin_bottom",
+              "label": "Margin dół (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "margin_left",
+              "label": "Margin lewo (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            },
+            {
+              "type": "number",
+              "id": "margin_right",
+              "label": "Margin prawo (px)",
+              "default": 0,
+              "info": "Domyślnie: 0"
+            }
+          ]
+        },
         {
-          "type": "select",
-          "id": "text_alignment",
-          "label": "Wyrównanie",
-          "options": [
-            { "value": "left", "label": "Lewo" },
-            { "value": "center", "label": "Środek" },
-            { "value": "right", "label": "Prawo" }
-          ],
-          "default": "left"
-        }
-      ]
-    },
-    {
-      "type": "menu",
+          "type": "menu",
       "name": "Menu",
       "settings": [
         {
@@ -487,6 +564,66 @@
           "label": "Szerokość bloku (px)",
           "default": 200,
           "info": "Domyślnie: 200"
+        },
+        {
+          "type": "header",
+          "content": "Padding i Marginesy"
+        },
+        {
+          "type": "number",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_bottom",
+          "label": "Padding dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_right",
+          "label": "Padding prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_right",
+          "label": "Margin prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
         }
       ]
     },
@@ -577,6 +714,66 @@
           "label": "Szerokość bloku (px)",
           "default": 200,
           "info": "Domyślnie: 200"
+        },
+        {
+          "type": "header",
+          "content": "Padding i Marginesy"
+        },
+        {
+          "type": "number",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_bottom",
+          "label": "Padding dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_right",
+          "label": "Padding prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_right",
+          "label": "Margin prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
         }
       ]
     },
@@ -680,6 +877,66 @@
           "label": "Szerokość bloku (px)",
           "default": 200,
           "info": "Domyślnie: 200"
+        },
+        {
+          "type": "header",
+          "content": "Padding i Marginesy"
+        },
+        {
+          "type": "number",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_bottom",
+          "label": "Padding dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_right",
+          "label": "Padding prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_right",
+          "label": "Margin prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
         }
       ]
     },
@@ -876,6 +1133,66 @@
           "label": "Szerokość bloku (px)",
           "default": 300,
           "info": "Domyślnie: 300"
+        },
+        {
+          "type": "header",
+          "content": "Padding i Marginesy"
+        },
+        {
+          "type": "number",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_bottom",
+          "label": "Padding dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_right",
+          "label": "Padding prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_right",
+          "label": "Margin prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
         }
       ]
     },
@@ -932,6 +1249,66 @@
           "label": "Szerokość bloku (px)",
           "default": 200,
           "info": "Domyślnie: 200"
+        },
+        {
+          "type": "header",
+          "content": "Padding i Marginesy"
+        },
+        {
+          "type": "number",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_bottom",
+          "label": "Padding dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_right",
+          "label": "Padding prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_right",
+          "label": "Margin prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
         }
       ]
     },
@@ -1009,6 +1386,66 @@
           "label": "Szerokość bloku (px)",
           "default": 200,
           "info": "Domyślnie: 200"
+        },
+        {
+          "type": "header",
+          "content": "Padding i Marginesy"
+        },
+        {
+          "type": "number",
+          "id": "padding_top",
+          "label": "Padding góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_bottom",
+          "label": "Padding dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_left",
+          "label": "Padding lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "padding_right",
+          "label": "Padding prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_top",
+          "label": "Margin góra (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_bottom",
+          "label": "Margin dół (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_left",
+          "label": "Margin lewo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
+        },
+        {
+          "type": "number",
+          "id": "margin_right",
+          "label": "Margin prawo (px)",
+          "default": 0,
+          "info": "Domyślnie: 0"
         }
       ]
     }
