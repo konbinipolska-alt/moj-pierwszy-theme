@@ -3,7 +3,8 @@
           width: 100vw;
           background-color: {{ section.settings.bg_color | default: '#ffffff' }};
           color: {{ section.settings.text_color | default: '#0b00b5' }};
-          padding: {{ section.settings.padding_vertical | default: 48 }}px {{ section.settings.margin | default: 48 }}px;
+          padding: {{ section.settings.padding_vertical | default: 48 }}px {{ section.settings.margin | default: 48 }}px !important;
+          margin: 0;
         ">
   <div class="user-footer__container" style="display: flex; gap: {{ section.settings.block_gap | default: 32 }}px; align-items: flex-start;">
     {% for block in section.blocks %}
@@ -278,6 +279,14 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  /* Override any default Shopify section padding for footer */
+  .shopify-section:has(.user-footer) {
+    padding: 0;
+    margin: 0;
   }
   
   .user-footer__container {
