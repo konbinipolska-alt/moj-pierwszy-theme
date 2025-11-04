@@ -11,12 +11,42 @@
   "type": "footer",
   "name": "t:general.footer",
   "sections": {
-    "footer": {
+    "user_footer_M7iLUe": {
       "type": "user-footer",
-      "settings": {}
+      "blocks": {
+        "logo_Tg4LA4": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/konbini-logo-izometric.svg",
+            "logo_link": "",
+            "logo_width": 41,
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "logo_Tg4LA4"
+      ],
+      "name": "Footer",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#0b00b5",
+        "margin": 48,
+        "padding_vertical": 48,
+        "block_gap": 32
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "disabled": true,
+      "settings": {
+        "menu": "footer",
+        "show_payment_icons": true
+      }
     }
   },
   "order": [
+    "user_footer_M7iLUe",
     "footer"
   ]
 }
