@@ -13,16 +13,7 @@
   "sections": {
     "footer": {
       "type": "user-footer",
-      "settings": {},
-      "blocks": {
-        "logo": {
-          "type": "logo",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "logo"
-      ]
+      "settings": {}
     }
   },
   "order": [
