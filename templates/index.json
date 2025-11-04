@@ -219,18 +219,18 @@
       ],
       "settings": {}
     },
+    "spacer_1": {
+      "type": "user-spacer",
+      "settings": {
+        "height": 24
+      }
+    },
     "user_tiles_divider_bPTEKY": {
       "type": "user-tiles-divider",
       "name": "Kafelki",
       "settings": {
         "rows": 5,
         "stroke_width": 2
-      }
-    },
-    "spacer_1": {
-      "type": "user-spacer",
-      "settings": {
-        "height": 24
       }
     },
     "user_spacer_XYyzhV": {
@@ -244,6 +244,7 @@
       "blocks": {
         "content_tile_BmG6GA": {
           "type": "content_tile",
+          "disabled": true,
           "settings": {
             "background_color": "#ffffff",
             "background_video": "",
