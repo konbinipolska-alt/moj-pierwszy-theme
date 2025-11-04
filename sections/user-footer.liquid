@@ -279,14 +279,22 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
   
-  /* Override any default Shopify section padding for footer */
+  /* Override any default Shopify section padding/margin for footer */
   .shopify-section:has(.user-footer) {
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Ensure footer is flush with content above */
+  body > footer,
+  .shopify-section[data-section-type="footer"] {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
   
   .user-footer__container {
