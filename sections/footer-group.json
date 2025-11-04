@@ -26,8 +26,8 @@
         "menu_RJxL7w": {
           "type": "menu",
           "settings": {
-            "heading": "sklep",
-            "menu": "footer",
+            "heading": "Sklep",
+            "menu": "customer-account-main-menu",
             "text_alignment": "left",
             "heading_color": "",
             "heading_size": 18,
@@ -35,7 +35,8 @@
             "heading_spacing": 16,
             "link_color": "",
             "link_size": 14,
-            "menu_item_gap": 8
+            "menu_item_gap": 8,
+            "block_width": 200
           }
         },
         "copyright_pwcyNw": {
@@ -45,7 +46,8 @@
             "text_color": "",
             "font_size": 12,
             "opacity": 1,
-            "show_powered_by": false
+            "show_powered_by": false,
+            "block_width": 200
           }
         }
       },
@@ -60,7 +62,7 @@
         "text_color": "#0b00b5",
         "margin": 48,
         "padding_vertical": 48,
-        "block_gap": 32
+        "block_gap": 48
       }
     },
     "footer": {
