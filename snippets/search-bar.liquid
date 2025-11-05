@@ -198,8 +198,38 @@
     const searchSuggestions = document.getElementById('search-suggestions');
     let debounceTimer;
     let currentRequest = null;
+    let isSearchInputFocused = false;
 
     if (!searchInput || !searchSuggestions) return;
+
+    // Keyboard shortcut: "/" to focus search input
+    document.addEventListener('keydown', function(e) {
+      // Only trigger if not typing in an input/textarea/contenteditable
+      const isTyping = e.target.tagName === 'INPUT' || 
+                      e.target.tagName === 'TEXTAREA' || 
+                      e.target.isContentEditable;
+      
+      // Trigger on "/" key (but not if already in search input)
+      if (e.key === '/' && !isTyping && !isSearchInputFocused) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+      
+      // Escape to blur search input
+      if (e.key === 'Escape' && isSearchInputFocused) {
+        searchInput.blur();
+        searchSuggestions.classList.remove('has-results');
+      }
+    });
+
+    // Track focus state
+    searchInput.addEventListener('focus', function() {
+      isSearchInputFocused = true;
+    });
+
+    searchInput.addEventListener('blur', function() {
+      isSearchInputFocused = false;
+    });
 
     function performSearch(query) {
       if (!query || query.length < 2) {
