@@ -98,8 +98,8 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    color: rgba(11, 0, 181, 0.5);
-    display: flex;
+    color: rgba(11, 0, 181, 1);
+    display: none;
     align-items: center;
     justify-content: center;
     transition: opacity 0.2s ease;
@@ -108,8 +108,7 @@
 
   .search-input:not(:placeholder-shown) + .search-submit,
   .search-form:has(.search-input:not(:placeholder-shown)) .search-submit {
-    opacity: 1;
-    color: rgba(11, 0, 181, 1);
+    display: flex;
   }
 
   .search-submit svg {
