@@ -324,8 +324,17 @@
       isSearchInputFocused = true;
     });
 
-    searchInput.addEventListener('blur', function() {
+    searchInput.addEventListener('blur', function(e) {
       isSearchInputFocused = false;
+      // Use setTimeout to allow click on dropdown items before hiding
+      setTimeout(function() {
+        // Check if focus moved to an element inside the search container
+        const activeElement = document.activeElement;
+        const searchContainer = searchInput.closest('.search-bar-container');
+        if (!searchContainer || !searchContainer.contains(activeElement)) {
+          searchSuggestions.classList.remove('has-results');
+        }
+      }, 200);
     });
 
     function performSearch(query) {
