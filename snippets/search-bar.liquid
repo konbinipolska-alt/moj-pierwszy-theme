@@ -52,8 +52,12 @@
   .search-shortcut-hint {
     position: absolute;
     left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 20px;
     height: 20px;
+    min-width: 20px;
+    min-height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,6 +76,8 @@
   .search-caret {
     position: absolute;
     left: 38px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 3px;
     height: 18px;
     background-color: rgba(11, 0, 181, 0.5);
@@ -95,7 +101,7 @@
 
   .search-input {
     flex: 1;
-    padding: 12px 12px 12px 43px;
+    padding: 12px 12px 12px 41px;
     border: none;
     outline: none;
     font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
