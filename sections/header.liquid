@@ -406,3 +406,24 @@
   ]
 }
 {% endschema %}
+
+<script>
+  (function() {
+    const header = document.getElementById('main-navigation');
+    if (!header) return;
+
+    function handleScroll() {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    // Check initial scroll position
+    handleScroll();
+
+    // Listen for scroll events
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  })();
+</script>
