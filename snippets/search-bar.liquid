@@ -58,6 +58,7 @@
     transition: border-color 0.2s ease;
     overflow: visible;
     z-index: 1;
+    margin-bottom: 12px;
   }
 
   .search-input-wrapper:focus-within .search-input-inner {
@@ -170,7 +171,6 @@
     top: 100%;
     left: 18px;
     right: 0;
-    margin-top: 12px;
     z-index: 1000;
   }
 
@@ -178,11 +178,12 @@
     width: 100%;
     background: white;
     border: 1px solid rgba(11, 0, 181, 0.5);
-    border-top: 1px solid rgba(11, 0, 181, 0.5);
+    border-top: 1px solid rgba(11, 0, 181, 0.5) !important;
     max-height: 400px;
     overflow-y: auto;
     display: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 12px;
   }
 
   .search-suggestions.has-results {
