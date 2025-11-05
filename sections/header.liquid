@@ -218,7 +218,8 @@
     padding: 8px 0;
   }
 
-  .dropdown:hover .dropdown-menu {
+  .dropdown:hover .dropdown-menu,
+  .dropdown.open .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -420,5 +421,37 @@
 
     // Listen for scroll events
     window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Keyboard shortcut: "P" to toggle products dropdown (desktop only)
+    function isDesktop() {
+      return window.innerWidth > 768;
+    }
+
+    document.addEventListener('keydown', function(e) {
+      // Only trigger on desktop
+      if (!isDesktop()) return;
+
+      // Only trigger if not typing in an input/textarea/contenteditable
+      const isTyping = e.target.tagName === 'INPUT' || 
+                      e.target.tagName === 'TEXTAREA' || 
+                      e.target.isContentEditable;
+      
+      // Don't trigger if modifier keys are pressed (Ctrl, Alt, Meta)
+      // Allow Shift for uppercase P
+      const hasModifier = e.ctrlKey || e.altKey || e.metaKey;
+      
+      // Trigger on "P" or "p" key
+      if ((e.key === 'P' || e.key === 'p') && !isTyping && !hasModifier) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Find the products dropdown
+        const dropdown = header.querySelector('.dropdown');
+        if (dropdown) {
+          // Toggle the 'open' class
+          dropdown.classList.toggle('open');
+        }
+      }
+    });
   })();
 </script>
