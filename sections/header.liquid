@@ -1,4 +1,4 @@
-<header class="main-navigation full-width">
+<header class="main-navigation full-width" id="main-navigation">
   <div class="nav-container">
         <div class="nav-left">
           <div class="header__menu">
@@ -115,6 +115,12 @@
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     height: 96px;
+    border-bottom: none;
+    transition: border-bottom 0.2s ease;
+  }
+
+  .main-navigation.scrolled {
+    border-bottom: 1px solid rgba(11, 0, 181, 0.1);
   }
 
   .nav-container {
