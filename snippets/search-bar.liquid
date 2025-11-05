@@ -1,6 +1,7 @@
 <div class="search-bar-container">
   <form action="{{ routes.search_url }}" method="get" class="search-form" role="search">
     <div class="search-input-wrapper">
+      <span class="search-shortcut-hint" aria-label="Naciśnij / aby wyszukać">/</span>
       <span class="search-caret" aria-hidden="true"></span>
       <input 
         type="search" 
@@ -48,9 +49,25 @@
     border: 2px solid #0b00b5;
   }
 
-  .search-caret {
+  .search-shortcut-hint {
     position: absolute;
     left: 12px;
+    padding: 2px 6px;
+    border: 1px solid rgba(11, 0, 181, 0.2);
+    border-radius: 3px;
+    background-color: rgba(11, 0, 181, 0.05);
+    color: rgba(11, 0, 181, 0.5);
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    pointer-events: none;
+    z-index: 1;
+    line-height: 1;
+  }
+
+  .search-caret {
+    position: absolute;
+    left: 32px;
     width: 3px;
     height: 18px;
     background-color: rgba(11, 0, 181, 0.5);
@@ -59,7 +76,9 @@
     z-index: 1;
   }
 
-  /* Hide custom caret when input has focus (user is typing) or has text */
+  /* Hide shortcut hint and custom caret when input has focus (user is typing) or has text */
+  .search-input-wrapper:has(.search-input:focus) .search-shortcut-hint,
+  .search-input-wrapper:has(.search-input:not(:placeholder-shown)) .search-shortcut-hint,
   .search-input-wrapper:has(.search-input:focus) .search-caret,
   .search-input-wrapper:has(.search-input:not(:placeholder-shown)) .search-caret {
     display: none;
@@ -72,7 +91,7 @@
 
   .search-input {
     flex: 1;
-    padding: 12px 12px 12px 20px;
+    padding: 12px 12px 12px 48px;
     border: none;
     outline: none;
     font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
