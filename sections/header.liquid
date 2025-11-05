@@ -90,6 +90,10 @@
           </div>
         </div>
 
+    <div class="nav-center">
+      {% render 'search-bar' %}
+    </div>
+
     <div class="nav-right">
       <div class="header__logo">
         <a href="{{ routes.root_url }}">
@@ -129,9 +133,18 @@
     gap: 1rem;
   }
 
-  .nav-right {
+  .nav-center {
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
+
+  .nav-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     gap: 2rem;
   }
 

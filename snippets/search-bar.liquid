@@ -1,0 +1,360 @@
+<div class="search-bar-container">
+  <form action="{{ routes.search_url }}" method="get" class="search-form" role="search">
+    <div class="search-input-wrapper">
+      <span class="search-caret" aria-hidden="true"></span>
+      <input 
+        type="search" 
+        name="q" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="szukaj wg. nazwy, kategorii lub dania"
+        autocomplete="off"
+        aria-label="Szukaj produktów"
+      />
+      <button type="submit" class="search-submit" aria-label="Szukaj">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+    <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Sugestie wyszukiwania"></div>
+  </form>
+</div>
+
+{% stylesheet %}
+  .search-bar-container {
+    flex: 1;
+    max-width: 70%;
+    margin: 0 2rem;
+    position: relative;
+  }
+
+  .search-form {
+    position: relative;
+    width: 100%;
+  }
+
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(11, 0, 181, 0.5);
+    background: white;
+    transition: border-color 0.2s ease;
+  }
+
+  .search-input-wrapper:focus-within {
+    border: 2px solid rgba(11, 0, 181, 0.5);
+    outline: 1px solid rgba(11, 0, 181, 0.3);
+    outline-offset: 2px;
+  }
+
+  .search-caret {
+    position: absolute;
+    left: 12px;
+    width: 3px;
+    height: 18px;
+    background-color: rgba(11, 0, 181, 0.5);
+    animation: blink 1s infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .search-input:focus ~ .search-caret,
+  .search-input:not(:placeholder-shown) ~ .search-caret {
+    display: none;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .search-input {
+    flex: 1;
+    padding: 12px 12px 12px 20px;
+    border: none;
+    outline: none;
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    color: var(--color-primary);
+    background: transparent;
+    width: 100%;
+  }
+
+  .search-input::placeholder {
+    color: rgba(11, 0, 181, 0.5);
+  }
+
+  .search-submit {
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: rgba(11, 0, 181, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .search-input:not(:placeholder-shown) + .search-submit,
+  .search-form:has(.search-input:not(:placeholder-shown)) .search-submit {
+    opacity: 1;
+    color: rgba(11, 0, 181, 1);
+  }
+
+  .search-submit svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .search-submit:hover {
+    opacity: 1;
+  }
+
+  .search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid rgba(11, 0, 181, 0.5);
+    border-top: none;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-suggestions.has-results {
+    display: block;
+  }
+
+  .search-suggestion-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(11, 0, 181, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+    color: var(--color-primary);
+  }
+
+  .search-suggestion-item:hover,
+  .search-suggestion-item[aria-selected="true"] {
+    background-color: rgba(11, 0, 181, 0.05);
+  }
+
+  .search-suggestion-item:last-child {
+    border-bottom: none;
+  }
+
+  .search-suggestion-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .search-suggestion-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .search-suggestion-title {
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .search-suggestion-price {
+    font-size: 14px;
+    color: rgba(11, 0, 181, 0.7);
+  }
+
+  .search-suggestion-no-results {
+    padding: 16px;
+    text-align: center;
+    color: rgba(11, 0, 181, 0.5);
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .search-bar-container {
+      max-width: 100%;
+      margin: 0 1rem;
+    }
+  }
+{% endstylesheet %}
+
+<script>
+  (function() {
+    const searchInput = document.getElementById('search-input');
+    const searchSuggestions = document.getElementById('search-suggestions');
+    let debounceTimer;
+    let currentRequest = null;
+
+    if (!searchInput || !searchSuggestions) return;
+
+    function performSearch(query) {
+      if (!query || query.length < 2) {
+        searchSuggestions.classList.remove('has-results');
+        searchSuggestions.innerHTML = '';
+        return;
+      }
+
+      // Cancel previous request if still pending
+      if (currentRequest) {
+        currentRequest.abort();
+      }
+
+      // Show loading state
+      searchSuggestions.innerHTML = '<div class="search-suggestion-no-results">Szukanie...</div>';
+      searchSuggestions.classList.add('has-results');
+
+      // Fetch search results from Shopify
+      const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=5`;
+      currentRequest = fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          currentRequest = null;
+          displaySuggestions(data, query);
+        })
+        .catch(error => {
+          currentRequest = null;
+          if (error.name !== 'AbortError') {
+            console.error('Search error:', error);
+            searchSuggestions.innerHTML = '<div class="search-suggestion-no-results">Błąd wyszukiwania</div>';
+          }
+        });
+    }
+
+    function displaySuggestions(data, query) {
+      searchSuggestions.innerHTML = '';
+
+      if (!data.resources || !data.resources.results || data.resources.results.products.length === 0) {
+        searchSuggestions.innerHTML = '<div class="search-suggestion-no-results">Brak wyników</div>';
+        searchSuggestions.classList.add('has-results');
+        return;
+      }
+
+      const products = data.resources.results.products;
+      let selectedIndex = -1;
+
+      products.forEach((product, index) => {
+        const item = document.createElement('a');
+        item.href = product.url;
+        item.className = 'search-suggestion-item';
+        item.setAttribute('role', 'option');
+        item.setAttribute('aria-selected', 'false');
+        item.setAttribute('data-index', index);
+
+        const image = product.image ? 
+          `<img src="${product.image}" alt="${product.title}" class="search-suggestion-image" />` : 
+          '<div class="search-suggestion-image" style="background: #f0f0f0;"></div>';
+
+        const price = product.price ? 
+          `<div class="search-suggestion-price">${formatMoney(product.price)}</div>` : '';
+
+        item.innerHTML = `
+          ${image}
+          <div class="search-suggestion-content">
+            <div class="search-suggestion-title">${highlightMatch(product.title, query)}</div>
+            ${price}
+          </div>
+        `;
+
+        item.addEventListener('mouseenter', () => {
+          setSelected(index);
+        });
+
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = product.url;
+        });
+
+        searchSuggestions.appendChild(item);
+      });
+
+      searchSuggestions.classList.add('has-results');
+
+      function setSelected(index) {
+        const items = searchSuggestions.querySelectorAll('.search-suggestion-item');
+        items.forEach((item, i) => {
+          item.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        });
+        selectedIndex = index;
+      }
+
+      // Keyboard navigation
+      searchInput.addEventListener('keydown', function(e) {
+        const items = searchSuggestions.querySelectorAll('.search-suggestion-item');
+        if (items.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+          setSelected(selectedIndex);
+          items[selectedIndex].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          selectedIndex = Math.max(selectedIndex - 1, -1);
+          if (selectedIndex >= 0) {
+            setSelected(selectedIndex);
+            items[selectedIndex].scrollIntoView({ block: 'nearest' });
+          }
+        } else if (e.key === 'Enter' && selectedIndex >= 0) {
+          e.preventDefault();
+          items[selectedIndex].click();
+        } else if (e.key === 'Escape') {
+          searchSuggestions.classList.remove('has-results');
+          searchInput.blur();
+        }
+      });
+    }
+
+    function highlightMatch(text, query) {
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, '<strong>$1</strong>');
+    }
+
+    function formatMoney(cents) {
+      return new Intl.NumberFormat('pl-PL', {
+        style: 'currency',
+        currency: 'PLN',
+        minimumFractionDigits: 2
+      }).format(cents / 100);
+    }
+
+    searchInput.addEventListener('input', function(e) {
+      const query = e.target.value.trim();
+      
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        performSearch(query);
+      }, 300);
+    });
+
+    searchInput.addEventListener('focus', function() {
+      const query = this.value.trim();
+      if (query.length >= 2) {
+        performSearch(query);
+      }
+    });
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchInput.closest('.search-bar-container').contains(e.target)) {
+        searchSuggestions.classList.remove('has-results');
+      }
+    });
+  })();
+</script>
+
