@@ -2,8 +2,9 @@
   <form action="{{ routes.search_url }}" method="get" class="search-form" role="search">
     <div class="search-input-wrapper">
       <span class="search-shortcut-hint" aria-label="Naciśnij / aby wyszukać">/</span>
-      <span class="search-caret" aria-hidden="true"></span>
-      <input 
+      <div class="search-input-inner">
+        <span class="search-caret" aria-hidden="true"></span>
+        <input 
         type="search" 
         name="q" 
         id="search-input" 
@@ -18,6 +19,7 @@
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
       </button>
+      </div>
     </div>
     <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Sugestie wyszukiwania"></div>
   </form>
@@ -40,20 +42,25 @@
     position: relative;
     display: flex;
     align-items: center;
+    gap: 8px;
+  }
+
+  .search-input-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
     border: 1px solid rgba(11, 0, 181, 0);
     background: white;
     transition: border-color 0.2s ease;
   }
 
-  .search-input-wrapper:focus-within {
+  .search-input-wrapper:focus-within .search-input-inner {
     border: 2px solid #0b00b5;
   }
 
   .search-shortcut-hint {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
     width: 14px;
     height: 20px;
     min-width: 14px;
@@ -73,6 +80,7 @@
     box-sizing: border-box;
     padding-left: 1px;
     transition: all 0.2s ease;
+    flex-shrink: 0;
   }
 
   .search-shortcut-hint.highlighted {
@@ -83,7 +91,7 @@
 
   .search-caret {
     position: absolute;
-    left: 32px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
     width: 3px;
@@ -109,7 +117,7 @@
 
   .search-input {
     flex: 1;
-    padding: 12px 12px 12px 39px;
+    padding: 12px 12px 12px 19px;
     border: none;
     outline: none;
     font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -136,7 +144,7 @@
     flex-shrink: 0;
   }
 
-  .search-input:not(:placeholder-shown) + .search-submit,
+  .search-input-inner:has(.search-input:not(:placeholder-shown)) .search-submit,
   .search-form:has(.search-input:not(:placeholder-shown)) .search-submit {
     display: flex;
   }
