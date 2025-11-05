@@ -72,6 +72,13 @@
     line-height: 1;
     box-sizing: border-box;
     padding-left: 1px;
+    transition: all 0.2s ease;
+  }
+
+  .search-shortcut-hint.highlighted {
+    background-color: rgba(11, 0, 181, 0.1);
+    border-color: rgba(11, 0, 181, 0.4);
+    color: rgba(11, 0, 181, 0.8);
   }
 
   .search-caret {
@@ -244,6 +251,9 @@
 
     if (!searchInput || !searchSuggestions) return;
 
+    // Get shortcut hint element
+    const shortcutHint = document.querySelector('.search-shortcut-hint');
+
     // Keyboard shortcut: "/" to activate search (like GitHub, Linear, Notion)
     document.addEventListener('keydown', function(e) {
       // Only trigger if not typing in an input/textarea/contenteditable
@@ -253,6 +263,11 @@
       
       // Don't trigger if modifier keys are pressed (Ctrl, Alt, Meta, Shift)
       const hasModifier = e.ctrlKey || e.altKey || e.metaKey || e.shiftKey;
+      
+      // Highlight shortcut hint when "/" is pressed
+      if (e.key === '/' && !isTyping && !isSearchInputFocused && !hasModifier && shortcutHint) {
+        shortcutHint.classList.add('highlighted');
+      }
       
       // Trigger on "/" key (but not if already in search input or typing elsewhere)
       if (e.key === '/' && !isTyping && !isSearchInputFocused && !hasModifier) {
@@ -275,6 +290,13 @@
         searchInput.blur();
         searchSuggestions.classList.remove('has-results');
         searchInput.value = '';
+      }
+    });
+
+    // Remove highlight when "/" key is released
+    document.addEventListener('keyup', function(e) {
+      if (e.key === '/' && shortcutHint) {
+        shortcutHint.classList.remove('highlighted');
       }
     });
 
