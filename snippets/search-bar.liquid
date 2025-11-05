@@ -20,8 +20,8 @@
         </svg>
       </button>
       </div>
+      <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Sugestie wyszukiwania"></div>
     </div>
-    <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Sugestie wyszukiwania"></div>
   </form>
 </div>
 
@@ -55,6 +55,7 @@
     background: white;
     transition: border-color 0.2s ease;
     overflow: visible;
+    z-index: 1;
   }
 
   .search-input-wrapper:focus-within .search-input-inner {
@@ -165,8 +166,8 @@
   .search-suggestions {
     position: absolute;
     top: 100%;
-    left: 18px;
-    width: calc(100% - 18px);
+    left: 0;
+    width: 100%;
     background: white;
     border: 1px solid rgba(11, 0, 181, 0.5);
     border-top: none;
