@@ -106,13 +106,8 @@
     z-index: 1;
   }
 
-  /* Hide shortcut hint and custom caret when input has text (but show icon in focus state) */
-  .search-input-wrapper:has(.search-input:not(:placeholder-shown)) .search-shortcut-hint,
-  .search-input-wrapper:has(.search-input:not(:placeholder-shown)) .search-caret {
-    display: none;
-  }
-  
-  /* Hide custom caret when input has focus (but keep icon visible) */
+  /* Hide custom caret when input has text or focus (but keep icon visible) */
+  .search-input-wrapper:has(.search-input:not(:placeholder-shown)) .search-caret,
   .search-input-wrapper:has(.search-input:focus) .search-caret {
     display: none;
   }
