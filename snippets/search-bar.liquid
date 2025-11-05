@@ -202,23 +202,37 @@
 
     if (!searchInput || !searchSuggestions) return;
 
-    // Keyboard shortcut: "/" to focus search input
+    // Keyboard shortcut: "/" to activate search (like GitHub, Linear, Notion)
     document.addEventListener('keydown', function(e) {
       // Only trigger if not typing in an input/textarea/contenteditable
       const isTyping = e.target.tagName === 'INPUT' || 
                       e.target.tagName === 'TEXTAREA' || 
                       e.target.isContentEditable;
       
-      // Trigger on "/" key (but not if already in search input)
-      if (e.key === '/' && !isTyping && !isSearchInputFocused) {
+      // Don't trigger if modifier keys are pressed (Ctrl, Alt, Meta, Shift)
+      const hasModifier = e.ctrlKey || e.altKey || e.metaKey || e.shiftKey;
+      
+      // Trigger on "/" key (but not if already in search input or typing elsewhere)
+      if (e.key === '/' && !isTyping && !isSearchInputFocused && !hasModifier) {
         e.preventDefault();
+        e.stopPropagation();
+        
+        // Focus the search input
         searchInput.focus();
+        
+        // If input has text, trigger search to show suggestions
+        const currentValue = searchInput.value.trim();
+        if (currentValue.length >= 2) {
+          performSearch(currentValue);
+        }
       }
       
-      // Escape to blur search input
+      // Escape to blur search input and hide suggestions
       if (e.key === 'Escape' && isSearchInputFocused) {
+        e.preventDefault();
         searchInput.blur();
         searchSuggestions.classList.remove('has-results');
+        searchInput.value = '';
       }
     });
 
