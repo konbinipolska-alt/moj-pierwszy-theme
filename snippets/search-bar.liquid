@@ -20,7 +20,9 @@
         </svg>
       </button>
       </div>
-      <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Sugestie wyszukiwania"></div>
+      <div class="search-suggestions-wrapper">
+        <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Sugestie wyszukiwania"></div>
+      </div>
     </div>
   </form>
 </div>
@@ -163,10 +165,15 @@
     opacity: 1;
   }
 
-  .search-suggestions {
+  .search-suggestions-wrapper {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 18px;
+    width: calc(100% - 18px);
+    z-index: 1000;
+  }
+
+  .search-suggestions {
     width: 100%;
     background: white;
     border: 1px solid rgba(11, 0, 181, 0.5);
@@ -174,7 +181,6 @@
     max-height: 400px;
     overflow-y: auto;
     display: none;
-    z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
