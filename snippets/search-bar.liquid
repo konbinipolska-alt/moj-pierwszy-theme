@@ -60,8 +60,8 @@
   }
 
   /* Hide custom caret when input has focus (user is typing) or has text */
-  .search-input:focus ~ .search-caret,
-  .search-input:not(:placeholder-shown) ~ .search-caret {
+  .search-input-wrapper:has(.search-input:focus) .search-caret,
+  .search-input-wrapper:has(.search-input:not(:placeholder-shown)) .search-caret {
     display: none;
   }
 
