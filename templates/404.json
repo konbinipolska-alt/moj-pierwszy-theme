@@ -326,7 +326,7 @@
             "link": "",
             "content_position_vertical": "center",
             "text_alignment": "center",
-            "header_subheader_gap": 8,
+            "header_subheader_gap": 2,
             "header_font_size": 24,
             "subheader_font_size": 14
           }
