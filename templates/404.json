@@ -248,6 +248,59 @@
     },
     "user_nowy_slider_produktowy_QyWUAF": {
       "type": "user-nowy-slider-produktowy",
+      "blocks": {
+        "product_item_y8ARGq": {
+          "type": "product_item",
+          "settings": {
+            "product": "sample"
+          }
+        },
+        "product_item_yDceaF": {
+          "type": "product_item",
+          "settings": {
+            "product": "ciastka-z-czekolada"
+          }
+        },
+        "product_item_dpHWW3": {
+          "type": "product_item",
+          "settings": {
+            "product": "ginger-tea"
+          }
+        },
+        "product_item_BqGiXr": {
+          "type": "product_item",
+          "settings": {
+            "product": "pepero"
+          }
+        },
+        "product_item_C4daz8": {
+          "type": "product_item",
+          "settings": {
+            "product": "ocet-ryzowy"
+          }
+        },
+        "product_item_pQnHzM": {
+          "type": "product_item",
+          "settings": {
+            "product": "sos-sojowy"
+          }
+        },
+        "product_item_i7J4L7": {
+          "type": "product_item",
+          "settings": {
+            "product": "sos-sriracha"
+          }
+        }
+      },
+      "block_order": [
+        "product_item_y8ARGq",
+        "product_item_yDceaF",
+        "product_item_dpHWW3",
+        "product_item_BqGiXr",
+        "product_item_C4daz8",
+        "product_item_pQnHzM",
+        "product_item_i7J4L7"
+      ],
       "name": "Nowy slider produktowy",
       "settings": {
         "background_color": "#ffffff",
@@ -268,7 +321,7 @@
         "sale_color": "#e11d48",
         "border_radius": 8,
         "enable_shadow": false,
-        "source_mode": "collection",
+        "source_mode": "manual",
         "collection": "frontpage",
         "product_limit": 10
       }
