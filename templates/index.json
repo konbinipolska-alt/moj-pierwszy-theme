@@ -601,6 +601,13 @@
         "height": 48
       }
     },
+    "user_spacer_8cWp9W": {
+      "type": "user-spacer",
+      "name": "Spacer",
+      "settings": {
+        "height": 48
+      }
+    },
     "user_multimedia_dPGpED": {
       "type": "user-multimedia",
       "name": "Sekcja: Multimedia",
@@ -613,6 +620,7 @@
         "padding_horizontal": 0,
         "padding_vertical_mobile": 0,
         "padding_horizontal_mobile": 0,
+        "video_url": "",
         "alt_text": "",
         "media_height": 480,
         "media_height_mobile": 360,
@@ -634,7 +642,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -648,7 +656,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -662,7 +670,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -676,7 +684,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -690,7 +698,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -704,7 +712,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -718,7 +726,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -732,7 +740,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -746,7 +754,7 @@
             "link": "",
             "open_in_new_tab": false,
             "logo_alignment": "center",
-            "max_width": 0,
+            "max_width": 160,
             "padding_vertical": 0,
             "padding_horizontal": 0,
             "margin_vertical": 0,
@@ -775,60 +783,11 @@
         "padding_horizontal": 0,
         "padding_vertical_mobile": 0,
         "padding_horizontal_mobile": 0,
-        "background_color": "transparent",
+        "background_color": "rgba(0,0,0,0)",
         "column_gap": 24,
         "row_gap": 24,
-        "logo_height": 80,
-        "logo_height_mobile": 64,
         "min_column_width": 100,
         "alignment": "center"
-      }
-    },
-    "user_content_blocks_LcT3gN": {
-      "type": "user-content-blocks",
-      "blocks": {
-        "content_block_pKm8d2": {
-          "type": "content",
-          "settings": {
-            "heading": "Nagłówek sekcji",
-            "text": "Dodaj opis treści w edytorze sekcji."
-          }
-        },
-        "content_block_cEJ4B1": {
-          "type": "content",
-          "settings": {
-            "heading": "Drugi blok",
-            "text": "Możesz zarządzać liczbą bloków, marginesami i paddingami."
-          }
-        }
-      },
-      "block_order": [
-        "content_block_pKm8d2",
-        "content_block_cEJ4B1"
-      ],
-      "name": "Sekcja: Bloki kontentowe",
-      "settings": {
-        "margin_vertical": 0,
-        "margin_horizontal": 0,
-        "margin_vertical_mobile": 0,
-        "margin_horizontal_mobile": 0,
-        "padding_vertical": 0,
-        "padding_horizontal": 0,
-        "padding_vertical_mobile": 0,
-        "padding_horizontal_mobile": 0,
-        "rows": 1,
-        "columns": 2,
-        "columns_mobile": 1,
-        "column_gap": 24,
-        "row_gap": 24,
-        "background_color": "transparent",
-        "block_background": "#ffffff",
-        "text_color": "#0b00b5",
-        "button_text_color": "#ffffff",
-        "button_background_color": "#0b00b5",
-        "block_border_radius": 12,
-        "block_border_width": 0,
-        "block_border_color": "#0b00b5"
       }
     },
     "user_tiles_divider_bwzjJt": {
@@ -854,7 +813,7 @@
     "user_spacer_9P79h8",
     "user_multimedia_dPGpED",
     "user_logo_grid_734Rc3",
-    "user_content_blocks_LcT3gN",
+    "user_spacer_8cWp9W",
     "user_tiles_divider_bwzjJt"
   ]
 }
