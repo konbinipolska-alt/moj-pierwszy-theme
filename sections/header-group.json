@@ -13,7 +13,46 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "blocks": {
+        "nav_dropdown_ikYhrd": {
+          "type": "nav_dropdown",
+          "settings": {
+            "label": "Produkty",
+            "dropdown_menu": "",
+            "show_separator": true
+          }
+        },
+        "nav_link_EMfR3D": {
+          "type": "nav_link",
+          "settings": {
+            "link_type": "custom",
+            "label": "Marki",
+            "url": "",
+            "open_new_tab": false,
+            "show_separator": false
+          }
+        },
+        "nav_link_6gKniE": {
+          "type": "nav_link",
+          "settings": {
+            "link_type": "custom",
+            "label": "Surprise Box",
+            "url": "",
+            "open_new_tab": false,
+            "show_separator": false
+          }
+        }
+      },
+      "block_order": [
+        "nav_dropdown_ikYhrd",
+        "nav_link_EMfR3D",
+        "nav_link_6gKniE"
+      ],
+      "settings": {
+        "link_gap": 24,
+        "separator_height": 24,
+        "separator_margin": 12
+      }
     }
   },
   "order": [
