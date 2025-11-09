@@ -1,0 +1,253 @@
+{%- comment -%}
+  Sekcja: Logos Bar
+  - Pełna szerokość viewportu
+  - Minimalne sterowanie marginesem/paddingiem (jak multimedia)
+  - Elastyczne bloki z logo, wspólny suwak wysokości
+  - Sterowanie odstępami i wyrównaniem
+{%- endcomment -%}
+
+{%- liquid
+  assign section_id = 'logo-bar-' | append: section.id
+
+  assign margin_all = section.settings.margin_all | default: 48
+  assign padding_all = section.settings.padding_all | default: 48
+
+  assign alignment = section.settings.alignment | default: 'center'
+  assign gap = section.settings.gap | default: 24
+  assign logo_height = section.settings.logo_height | default: 80
+
+  assign justify_value = 'center'
+  case alignment
+    when 'left'
+      assign justify_value = 'flex-start'
+    when 'right'
+      assign justify_value = 'flex-end'
+  endcase
+-%}
+
+<section
+  id="{{ section_id }}"
+  class="logo-bar-section"
+  style="--lb-margin: {{ margin_all }}px; --lb-padding: {{ padding_all }}px; --lb-gap: {{ gap }}px; --lb-logo-height: {{ logo_height }}px; --lb-justify: {{ justify_value }};"
+>
+  <div class="logo-bar-container">
+    <div class="logo-bar">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign logo = block.settings.logo -%}
+          {%- assign alt_text = block.settings.alt_text | default: logo.alt | default: 'Logo' -%}
+          {%- assign link = block.settings.link -%}
+          {%- assign new_tab = block.settings.open_in_new_tab -%}
+
+          <div class="logo-bar__item" {{ block.shopify_attributes }}>
+            {%- if logo != blank -%}
+              {%- if link != blank -%}
+                <a
+                  href="{{ link }}"
+                  class="logo-bar__link"
+                  {% if new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                >
+                  {{ logo
+                    | image_url: width: 600
+                    | image_tag:
+                      alt: alt_text,
+                      class: 'logo-bar__image',
+                      loading: 'lazy'
+                  }}
+                </a>
+              {%- else -%}
+                {{ logo
+                  | image_url: width: 600
+                  | image_tag:
+                    alt: alt_text,
+                    class: 'logo-bar__image',
+                    loading: 'lazy'
+                }}
+              {%- endif -%}
+            {%- else -%}
+              <div class="logo-bar__placeholder">
+                {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+                <span>Dodaj logo</span>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="logo-bar__empty">
+          <p>Dodaj bloki, aby wyświetlić logotypy.</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  #{{ section_id }}.logo-bar-section {
+    width: 100vw;
+    margin: var(--lb-margin) 0;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  #{{ section_id }} .logo-bar-container {
+    width: 100%;
+    padding: var(--lb-padding) 0;
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .logo-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: var(--lb-justify);
+    align-items: center;
+    gap: var(--lb-gap);
+  }
+
+  #{{ section_id }} .logo-bar__item {
+    display: flex;
+    align-items: center;
+    height: var(--lb-logo-height);
+  }
+
+  #{{ section_id }} .logo-bar__link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  #{{ section_id }} .logo-bar__image {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
+  #{{ section_id }} .logo-bar__placeholder,
+  #{{ section_id }} .logo-bar__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    background: #f5f5f5;
+    color: #888;
+    border-radius: 8px;
+    min-height: var(--lb-logo-height);
+  }
+
+  @media (max-width: 749px) {
+    #{{ section_id }}.logo-bar-section {
+      margin-left: 0;
+      width: 100%;
+    }
+    #{{ section_id }} .logo-bar-container {
+      padding: calc(var(--lb-padding) * 0.5) 0;
+    }
+    #{{ section_id }} .logo-bar {
+      justify-content: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Sekcja: Logos bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Odstępy sekcji"
+    },
+    {
+      "type": "range",
+      "id": "margin_all",
+      "label": "Margines (góra/dół) (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_all",
+      "label": "Padding (góra/dół) (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Układ logotypów"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Wyrównanie",
+      "options": [
+        { "value": "left", "label": "Do lewej" },
+        { "value": "center", "label": "Do środka" },
+        { "value": "right", "label": "Do prawej" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Odstęp między blokami (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Wysokość bloków (px)",
+      "min": 30,
+      "max": 240,
+      "step": 5,
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Grafika logo"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Tekst alternatywny"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (opcjonalnie)"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_in_new_tab",
+          "label": "Otwórz w nowej karcie",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Sekcja: Logos bar",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
