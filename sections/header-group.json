@@ -19,7 +19,8 @@
           "settings": {
             "label": "Produkty",
             "dropdown_menu": "",
-            "show_separator": false
+            "margin_left": 12,
+            "margin_right": 12
           }
         },
         "nav_link_EMfR3D": {
@@ -29,7 +30,9 @@
             "label": "Marki",
             "url": "",
             "open_new_tab": false,
-            "show_separator": false
+            "margin_left": 12,
+            "margin_right": 12,
+            "badge_size": 20
           }
         },
         "nav_link_6gKniE": {
@@ -39,7 +42,9 @@
             "label": "Surprise Box",
             "url": "",
             "open_new_tab": false,
-            "show_separator": false
+            "margin_left": 12,
+            "margin_right": 12,
+            "badge_size": 20
           }
         },
         "nav_link_c4kryG": {
@@ -49,7 +54,9 @@
             "label": "0-Waste",
             "url": "",
             "open_new_tab": false,
-            "show_separator": true
+            "margin_left": 12,
+            "margin_right": 12,
+            "badge_size": 20
           }
         },
         "nav_link_3r6nBj": {
@@ -60,7 +67,17 @@
             "label": "Konto",
             "url": "",
             "open_new_tab": false,
-            "show_separator": false
+            "margin_left": 12,
+            "margin_right": 12,
+            "badge_size": 20
+          }
+        },
+        "nav_separator_nRTkVP": {
+          "type": "nav_separator",
+          "settings": {
+            "height": 24,
+            "margin_left": 12,
+            "margin_right": 12
           }
         },
         "nav_link_Xkp4je": {
@@ -70,7 +87,9 @@
             "label": "Koszyk",
             "url": "",
             "open_new_tab": false,
-            "show_separator": true
+            "margin_left": 12,
+            "margin_right": 12,
+            "badge_size": 20
           }
         }
       },
@@ -80,10 +99,11 @@
         "nav_link_6gKniE",
         "nav_link_c4kryG",
         "nav_link_3r6nBj",
+        "nav_separator_nRTkVP",
         "nav_link_Xkp4je"
       ],
       "settings": {
-        "link_gap": 24,
+        "separator_gap": 12,
         "separator_height": 24,
         "separator_margin": 24
       }
