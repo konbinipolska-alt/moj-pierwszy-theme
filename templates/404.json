@@ -19,6 +19,7 @@
         "image_slide_KbYnJy": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/konbini_poster_A2_300dpi_1.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -26,6 +27,7 @@
         "image_slide_bGqYKe": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/image.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -33,6 +35,7 @@
         "image_slide_VfUPRb": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/konbini-070625-00060-33-60mm_2.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -40,6 +43,7 @@
         "image_slide_cjTAbh": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/Mask_group.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -47,27 +51,7 @@
         "image_slide_tDYTwH": {
           "type": "image_slide",
           "settings": {
-            "link": "",
-            "alt_text": "Slide image"
-          }
-        },
-        "image_slide_rnxrHx": {
-          "type": "image_slide",
-          "settings": {
-            "link": "",
-            "alt_text": "Slide image"
-          }
-        },
-        "image_slide_DMMDkP": {
-          "type": "image_slide",
-          "settings": {
-            "link": "",
-            "alt_text": "Slide image"
-          }
-        },
-        "image_slide_LL4zxa": {
-          "type": "image_slide",
-          "settings": {
+            "image": "shopify://shop_images/sauce.png",
             "link": "",
             "alt_text": "Slide image"
           }
@@ -78,10 +62,7 @@
         "image_slide_bGqYKe",
         "image_slide_VfUPRb",
         "image_slide_cjTAbh",
-        "image_slide_tDYTwH",
-        "image_slide_rnxrHx",
-        "image_slide_DMMDkP",
-        "image_slide_LL4zxa"
+        "image_slide_tDYTwH"
       ],
       "name": "Image Slider (Simple)",
       "settings": {
@@ -326,6 +307,25 @@
         "product_limit": 10
       }
     },
+    "user_tiles_divider_XPaRKt": {
+      "type": "user-tiles-divider",
+      "name": "Tiles Divider",
+      "settings": {
+        "rows": 5,
+        "stroke_width": 2
+      }
+    },
+    "user_spotify_player_hKNfid": {
+      "type": "user-spotify-player",
+      "name": "Spotify Player",
+      "settings": {
+        "background_color": "#ffffff",
+        "margins": 48,
+        "playlist_id": "68q7TYjLgjswOnGRgcsSEq",
+        "player_height": 152,
+        "theme": "0"
+      }
+    },
     "user_spacer_HVMFiN": {
       "type": "user-spacer",
       "name": "Spacer",
@@ -343,6 +343,8 @@
     "user_tiles_divider_E9KUji",
     "user_spacer_QxQkxt",
     "user_nowy_slider_produktowy_QyWUAF",
+    "user_tiles_divider_XPaRKt",
+    "user_spotify_player_hKNfid",
     "user_spacer_HVMFiN"
   ]
 }
