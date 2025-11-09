@@ -11,65 +11,6 @@
   "type": "footer",
   "name": "t:general.footer",
   "sections": {
-    "user_multimedia_over_footer": {
-      "type": "user-multimedia",
-      "settings": {
-        "margin_vertical": 0,
-        "margin_horizontal": 0,
-        "padding_vertical": 0,
-        "padding_horizontal": 0,
-        "media_height": 480,
-        "media_height_mobile": 360,
-        "show_controls": true
-      }
-    },
-    "user_logo_grid_over_footer": {
-      "type": "user-logo-grid",
-      "blocks": {},
-      "block_order": [],
-      "settings": {
-        "margin_vertical": 0,
-        "margin_horizontal": 0,
-        "padding_vertical": 0,
-        "padding_horizontal": 0,
-        "alignment": "center",
-        "column_gap": 32,
-        "row_gap": 24
-      }
-    },
-    "user_content_blocks_over_footer": {
-      "type": "user-content-blocks",
-      "blocks": {
-        "content_block_1": {
-          "type": "content",
-          "settings": {
-            "heading": "Dodaj treści do sekcji",
-            "text": "Każdy blok personalizujesz indywidualnie — marginesy, paddingi i kolory."
-          }
-        },
-        "content_block_2": {
-          "type": "content",
-          "settings": {
-            "heading": "Dostosuj układ",
-            "text": "W panelu określ liczbę rzędów i kolumn, aby dopasować sekcję do potrzeb sklepu."
-          }
-        }
-      },
-      "block_order": [
-        "content_block_1",
-        "content_block_2"
-      ],
-      "settings": {
-        "rows": 1,
-        "columns": 2,
-        "column_gap": 24,
-        "row_gap": 24,
-        "block_background": "#ffffff",
-        "text_color": "#0b00b5",
-        "button_text_color": "#ffffff",
-        "block_border_radius": 12
-      }
-    },
     "user_footer_M7iLUe": {
       "type": "user-footer",
       "blocks": {
@@ -208,9 +149,6 @@
     }
   },
   "order": [
-    "user_multimedia_over_footer",
-    "user_logo_grid_over_footer",
-    "user_content_blocks_over_footer",
     "user_footer_M7iLUe",
     "footer"
   ]
