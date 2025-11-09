@@ -1,18 +1,14 @@
 <header class="main-navigation full-width" id="main-navigation">
   <div class="nav-container">
         <div class="nav-left">
-          {% assign separator_height_default = 24 %}
-          {% assign separator_margin_default = 12 %}
-          {% assign separator_gap_default = 12 %}
-          {% assign separator_thickness_default = 2 %}
           <nav class="header__menu">
             {% if section.blocks.size > 0 %}
               {% for block in section.blocks %}
                 {% case block.type %}
                   {% when 'nav_dropdown' %}
                     {% assign dropdown_label = block.settings.label | default: 'Produkty' %}
-                    {% assign dropdown_margin_left = block.settings.margin_left | default: separator_gap_default %}
-                    {% assign dropdown_margin_right = block.settings.margin_right | default: separator_gap_default %}
+                    {% assign dropdown_margin_left = block.settings.margin_left | default: 0 %}
+                    {% assign dropdown_margin_right = block.settings.margin_right | default: 12 %}
                     {% assign dropdown_menu = block.settings.dropdown_menu %}
                     <div class="nav-item dropdown nav-item--primary" style="margin-left: {{ dropdown_margin_left }}px; margin-right: {{ dropdown_margin_right }}px;" {{ block.shopify_attributes }}>
                       <button class="dropdown-toggle nav-link" type="button">
@@ -52,8 +48,8 @@
                     {% assign label = block.settings.label | default: 'Link' %}
                     {% assign url = block.settings.url | default: '#' %}
                     {% assign open_new_tab = block.settings.open_new_tab %}
-                    {% assign link_margin_left = block.settings.margin_left | default: separator_gap_default %}
-                    {% assign link_margin_right = block.settings.margin_right | default: separator_gap_default %}
+                    {% assign link_margin_left = block.settings.margin_left | default: 12 %}
+                    {% assign link_margin_right = block.settings.margin_right | default: 12 %}
                     {% if link_type == 'account' %}
                       {% assign url = routes.account_url %}
                     {% endif %}
@@ -68,8 +64,8 @@
                     </div>
                   {% when 'nav_cart' %}
                     {% assign label = block.settings.label | default: 'Koszyk' %}
-                    {% assign margin_left = block.settings.margin_left | default: separator_gap_default %}
-                    {% assign margin_right = block.settings.margin_right | default: separator_gap_default %}
+                    {% assign margin_left = block.settings.margin_left | default: 12 %}
+                    {% assign margin_right = block.settings.margin_right | default: 12 %}
                     {% assign badge_size = block.settings.badge_size | default: 20 %}
                     {% assign badge_value = cart.item_count | default: 0 %}
                     {% assign badge_string = badge_value | append: '' %}
@@ -98,10 +94,10 @@
                       </button>
                     </div>
                   {% when 'nav_separator' %}
-                    {% assign sep_height = block.settings.height | default: separator_height_default %}
-                    {% assign sep_margin_left = block.settings.margin_left | default: separator_gap_default %}
-                    {% assign sep_margin_right = block.settings.margin_right | default: separator_gap_default %}
-                    {% assign sep_thickness = block.settings.thickness | default: separator_thickness_default %}
+                    {% assign sep_height = block.settings.height | default: 24 %}
+                    {% assign sep_margin_left = block.settings.margin_left | default: 12 %}
+                    {% assign sep_margin_right = block.settings.margin_right | default: 12 %}
+                    {% assign sep_thickness = block.settings.thickness | default: 2 %}
                     <div class="nav-item nav-item--separator" style="margin-left: {{ sep_margin_left }}px; margin-right: {{ sep_margin_right }}px;" {{ block.shopify_attributes }}>
                       <span class="nav-separator" style="height: {{ sep_height }}px; width: {{ sep_thickness }}px;"></span>
                     </div>
@@ -247,6 +243,10 @@
     align-items: center;
     position: relative;
     margin: 0;
+  }
+
+  .nav-left .nav-item:first-child {
+    margin-left: 0 !important;
   }
 
   .nav-link,
