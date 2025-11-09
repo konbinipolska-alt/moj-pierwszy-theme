@@ -761,7 +761,7 @@
           "type": "horizontal_text",
           "settings": {
             "background_color": "",
-            "show_border": false,
+            "show_border": true,
             "border_color": "#0b00b5",
             "padding": 0,
             "text_color": "#0b00b5",
@@ -778,7 +778,7 @@
           "type": "horizontal_text",
           "settings": {
             "background_color": "",
-            "show_border": false,
+            "show_border": true,
             "border_color": "#0b00b5",
             "padding": 0,
             "text_color": "#0b00b5",
@@ -838,9 +838,9 @@
         "margins": 0,
         "gap": 24,
         "columns_per_row": 2,
-        "size_mode": "auto",
+        "size_mode": "fixed",
         "block_width": 574,
-        "block_height": 0
+        "block_height": 100
       }
     },
     "user_spacer_HxPdAC": {
