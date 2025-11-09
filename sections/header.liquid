@@ -4,6 +4,7 @@
           {% assign separator_height_default = section.settings.separator_height | default: 24 %}
           {% assign separator_margin_default = section.settings.separator_margin | default: 12 %}
           {% assign separator_gap_default = section.settings.separator_gap | default: 12 %}
+          {% assign separator_thickness_default = section.settings.separator_thickness | default: 2 %}
           <nav class="header__menu">
             {% if section.blocks.size > 0 %}
               {% for block in section.blocks %}
@@ -100,8 +101,9 @@
                     {% assign sep_height = block.settings.height | default: separator_height_default %}
                     {% assign sep_margin_left = block.settings.margin_left | default: separator_gap_default %}
                     {% assign sep_margin_right = block.settings.margin_right | default: separator_gap_default %}
+                    {% assign sep_thickness = block.settings.thickness | default: separator_thickness_default %}
                     <div class="nav-item nav-item--separator" style="margin-left: {{ sep_margin_left }}px; margin-right: {{ sep_margin_right }}px;" {{ block.shopify_attributes }}>
-                      <span class="nav-separator" style="height: {{ sep_height }}px;"></span>
+                      <span class="nav-separator" style="height: {{ sep_height }}px; width: {{ sep_thickness }}px;"></span>
                     </div>
                 {% endcase %}
               {% endfor %}
@@ -571,6 +573,15 @@
     },
     {
       "type": "range",
+      "id": "separator_thickness",
+      "label": "Domyślna grubość separatora (px)",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
       "id": "separator_margin",
       "label": "Domyślny margines separatora (px)",
       "min": 0,
@@ -721,6 +732,15 @@
         },
         {
           "type": "range",
+          "id": "thickness",
+          "label": "Grubość (px)",
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "range",
           "id": "margin_left",
           "label": "Margines z lewej (px)",
           "min": 0,
@@ -754,7 +774,10 @@
         },
         {
           "type": "nav_separator",
-          "settings": {}
+          "settings": {
+            "height": 24,
+            "thickness": 2
+          }
         },
         {
           "type": "nav_link",
