@@ -55,49 +55,46 @@
                     {% assign link_margin_right = block.settings.margin_right | default: separator_gap_default %}
                     {% if link_type == 'account' %}
                       {% assign url = routes.account_url %}
-                    {% elsif link_type == 'cart' %}
-                      {% assign url = routes.cart_url %}
                     {% endif %}
-                    {% assign nav_item_classes = 'nav-item' %}
-                    {% if link_type == 'cart' %}
-                      {% assign nav_item_classes = nav_item_classes | append: ' nav-item--primary nav-item--cart' %}
+                    <div class="nav-item" style="margin-left: {{ link_margin_left }}px; margin-right: {{ link_margin_right }}px;" {{ block.shopify_attributes }}>
+                      <a
+                        class="nav-link"
+                        href="{{ url }}"
+                        {% if open_new_tab and link_type == 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}
+                      >
+                        {{ label }}
+                      </a>
+                    </div>
+                  {% when 'nav_cart' %}
+                    {% assign label = block.settings.label | default: 'Koszyk' %}
+                    {% assign margin_left = block.settings.margin_left | default: separator_gap_default %}
+                    {% assign margin_right = block.settings.margin_right | default: separator_gap_default %}
+                    {% assign badge_size = block.settings.badge_size | default: 20 %}
+                    {% assign badge_value = cart.item_count | default: 0 %}
+                    {% assign badge_string = badge_value | append: '' %}
+                    {% assign badge_length = badge_string | size %}
+                    {% assign badge_classes = 'cart-badge' %}
+                    {% if badge_value > 0 %}
+                      {% assign badge_classes = badge_classes | append: ' cart-badge--active' %}
                     {% endif %}
-                    <div class="{{ nav_item_classes }}" style="margin-left: {{ link_margin_left }}px; margin-right: {{ link_margin_right }}px;" {{ block.shopify_attributes }}>
-                      {% if link_type == 'cart' %}
-                        {% assign badge_size = block.settings.badge_size | default: 20 %}
-                        {% assign badge_value = cart.item_count | default: 0 %}
-                        {% assign badge_string = badge_value | append: '' %}
-                        {% assign badge_length = badge_string | size %}
-                        {% assign badge_classes = 'cart-badge' %}
-                        {% if badge_value > 0 %}
-                          {% assign badge_classes = badge_classes | append: ' cart-badge--active' %}
-                        {% endif %}
-                        {% if badge_length > 1 %}
-                          {% assign badge_classes = badge_classes | append: ' cart-badge--wide' %}
-                        {% endif %}
-                        <button
-                          class="nav-link nav-link--cart"
-                          data-cart-trigger
-                          type="button"
-                          aria-label="{{ 'templates.cart.titles.cart' | t | default: 'Cart' }}"
-                        >
-                          <span class="nav-link-label">{{ label }}</span>
-                          <svg class="nav-link-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="9" cy="21" r="1"></circle>
-                            <circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                          </svg>
-                          <span class="{{ badge_classes }}" data-cart-badge data-badge-size="{{ badge_size }}" style="--badge-size: {{ badge_size }}px;">{{ badge_value }}</span>
-                        </button>
-                      {% else %}
-                        <a
-                          class="nav-link"
-                          href="{{ url }}"
-                          {% if open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-                        >
-                          {{ label }}
-                        </a>
-                      {% endif %}
+                    {% if badge_length > 1 %}
+                      {% assign badge_classes = badge_classes | append: ' cart-badge--wide' %}
+                    {% endif %}
+                    <div class="nav-item nav-item--primary nav-item--cart" style="margin-left: {{ margin_left }}px; margin-right: {{ margin_right }}px;" {{ block.shopify_attributes }}>
+                      <button
+                        class="nav-link nav-link--cart"
+                        data-cart-trigger
+                        type="button"
+                        aria-label="{{ 'templates.cart.titles.cart' | t | default: 'Cart' }}"
+                      >
+                        <span class="nav-link-label">{{ label }}</span>
+                        <svg class="nav-link-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="9" cy="21" r="1"></circle>
+                          <circle cx="20" cy="21" r="1"></circle>
+                          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="{{ badge_classes }}" data-cart-badge data-badge-size="{{ badge_size }}" style="--badge-size: {{ badge_size }}px;">{{ badge_value }}</span>
+                      </button>
                     </div>
                   {% when 'nav_separator' %}
                     {% assign sep_height = block.settings.height | default: separator_height_default %}
@@ -153,17 +150,17 @@
                     {% continue %}
                   {% when 'nav_separator' %}
                     {% continue %}
+                  {% when 'nav_cart' %}
+                    {% continue %}
                   {% when 'nav_link' %}
                     {% assign link_type = block.settings.link_type | default: 'custom' %}
-                    {% if link_type == 'cart' %}
-                      {% continue %}
-                    {% endif %}
-                    {% assign label = block.settings.label | default: 'Link' %}
-                    {% assign url = block.settings.url | default: '#' %}
-                    {% if link_type == 'account' %}
-                      {% assign url = routes.account_url %}
-                    {% endif %}
-                    <a href="{{ url }}">{{ label }}</a>
+                    <a
+                      class="mobile-menu-link"
+                      href="{% if link_type == 'account' %}{{ routes.account_url }}{% else %}{{ block.settings.url | default: '#' }}{% endif %}"
+                      {% if block.settings.open_new_tab and link_type == 'custom' %}target="_blank" rel="noopener noreferrer"{% endif %}
+                    >
+                      {{ block.settings.label | default: 'Link' }}
+                    </a>
                 {% endcase %}
               {% endfor %}
             </div>
@@ -304,7 +301,7 @@
   }
 
   .nav-separator {
-    width: 1px;
+    width: 2px;
     background-color: rgba(11, 0, 181, 0.3);
   }
 
@@ -629,8 +626,7 @@
           "label": "Typ linku",
           "options": [
             { "value": "custom", "label": "Własny adres" },
-            { "value": "account", "label": "Konto (Shopify account)" },
-            { "value": "cart", "label": "Koszyk (szuflada)" }
+            { "value": "account", "label": "Konto (Shopify account)" }
           ],
           "default": "custom"
         },
@@ -668,15 +664,45 @@
           "max": 48,
           "step": 1,
           "default": 12
+        }
+      ]
+    },
+    {
+      "type": "nav_cart",
+      "name": "Link koszyka",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etykieta",
+          "default": "Koszyk"
         },
         {
           "type": "range",
           "id": "badge_size",
-          "label": "Rozmiar odznaki koszyka (px)",
+          "label": "Rozmiar odznaki (px)",
           "min": 16,
           "max": 36,
           "step": 1,
           "default": 20
+        },
+        {
+          "type": "range",
+          "id": "margin_left",
+          "label": "Margines z lewej (px)",
+          "min": 0,
+          "max": 48,
+          "step": 1,
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "margin_right",
+          "label": "Margines z prawej (px)",
+          "min": 0,
+          "max": 48,
+          "step": 1,
+          "default": 12
         }
       ]
     },
@@ -786,12 +812,12 @@
           "settings": {}
         },
         {
-          "type": "nav_link",
+          "type": "nav_cart",
           "settings": {
             "label": "Koszyk",
-            "link_type": "cart",
             "margin_left": 12,
-            "margin_right": 0
+            "margin_right": 0,
+            "badge_size": 20
           }
         }
       ]
