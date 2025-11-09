@@ -53,66 +53,44 @@
         {%- endcapture -%}
 
         <div
-          class="text-columns__item text-columns__item--{{ block.type }}"
+          class="text-columns__item text-columns__item--horizontal"
           style="{{ block_styles }}"
           {{ block.shopify_attributes }}
         >
-          {%- if block.type == 'horizontal_text' -%}
-            {%- assign text = block.settings.text | default: '' -%}
-            {%- assign subtext = block.settings.subtext | default: '' -%}
-            {%- assign font_size = block.settings.font_size | default: 24 -%}
-            {%- assign sub_font_size = block.settings.sub_font_size | default: 16 -%}
-            {%- assign letter_spacing = block.settings.letter_spacing | default: 0 -%}
-            <div
-              class="text-columns__content text-columns__content--horizontal content-{{ align_horizontal }}-{{ justify_vertical }}"
-            >
-              {%- if text != blank -%}
-                <p
-                  class="text-columns__text"
-                  style="
-                    color: {{ block_text_color }};
-                    font-size: {{ font_size }}px;
-                    letter-spacing: {{ letter_spacing }}px;
-                    text-align: {{ align_horizontal }};
-                  "
-                >
-                  {{ text | newline_to_br }}
-                </p>
-              {%- endif -%}
-              {%- if subtext != blank -%}
-                <p
-                  class="text-columns__subtext"
-                  style="
-                    color: {{ block_text_color }};
-                    font-size: {{ sub_font_size }}px;
-                    text-align: {{ align_horizontal }};
-                  "
-                >
-                  {{ subtext | newline_to_br }}
-                </p>
-              {%- endif -%}
-            </div>
-          {%- elsif block.type == 'vertical_text' -%}
-            {%- assign vtext = block.settings.vertical_text | default: '' -%}
-            {%- assign v_font_size = block.settings.vertical_font_size | default: 24 -%}
-            {%- assign v_letter_spacing = block.settings.vertical_letter_spacing | default: 4 -%}
-            <div
-              class="text-columns__content text-columns__content--vertical content-{{ align_horizontal }}-{{ justify_vertical }}"
-            >
-              {%- if vtext != blank -%}
-                <p
-                  class="text-columns__text-vertical"
-                  style="
-                    color: {{ block_text_color }};
-                    font-size: {{ v_font_size }}px;
-                    letter-spacing: {{ v_letter_spacing }}px;
-                  "
-                >
-                  {{ vtext | newline_to_br }}
-                </p>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
+          {%- assign text = block.settings.text | default: '' -%}
+          {%- assign subtext = block.settings.subtext | default: '' -%}
+          {%- assign font_size = block.settings.font_size | default: 24 -%}
+          {%- assign sub_font_size = block.settings.sub_font_size | default: 16 -%}
+          {%- assign letter_spacing = block.settings.letter_spacing | default: 0 -%}
+          <div
+            class="text-columns__content text-columns__content--horizontal content-{{ align_horizontal }}-{{ justify_vertical }}"
+          >
+            {%- if text != blank -%}
+              <p
+                class="text-columns__text"
+                style="
+                  color: {{ block_text_color }};
+                  font-size: {{ font_size }}px;
+                  letter-spacing: {{ letter_spacing }}px;
+                  text-align: {{ align_horizontal }};
+                "
+              >
+                {{ text | newline_to_br }}
+              </p>
+            {%- endif -%}
+            {%- if subtext != blank -%}
+              <p
+                class="text-columns__subtext"
+                style="
+                  color: {{ block_text_color }};
+                  font-size: {{ sub_font_size }}px;
+                  text-align: {{ align_horizontal }};
+                "
+              >
+                {{ subtext | newline_to_br }}
+              </p>
+            {%- endif -%}
+          </div>
         </div>
       {%- endfor -%}
     {%- else -%}
@@ -159,24 +137,10 @@
     flex-direction: column;
   }
 
-  #{{ section_id }} .text-columns__content--vertical {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    justify-content: center;
-    align-items: center;
-  }
-
   #{{ section_id }} .text-columns__text,
-  #{{ section_id }} .text-columns__subtext,
-  #{{ section_id }} .text-columns__text-vertical {
+  #{{ section_id }} .text-columns__subtext {
     margin: 0;
     width: 100%;
-  }
-
-  #{{ section_id }} .text-columns__text-vertical {
-    width: auto;
-    white-space: pre-wrap;
-    text-align: center;
   }
 
   #{{ section_id }} .text-columns__subtext {
@@ -300,7 +264,7 @@
   "blocks": [
     {
       "type": "horizontal_text",
-      "name": "Tekst poziomy",
+      "name": "Tekst",
       "settings": [
         { "type": "header", "content": "Styl bloku" },
         { "type": "color", "id": "background_color", "label": "Kolor tła" },
@@ -378,78 +342,6 @@
           "id": "letter_spacing",
           "label": "Odstęp między literami (px)",
           "default": 0
-        }
-      ]
-    },
-    {
-      "type": "vertical_text",
-      "name": "Tekst pionowy",
-      "settings": [
-        { "type": "header", "content": "Styl bloku" },
-        { "type": "color", "id": "background_color", "label": "Kolor tła" },
-        {
-          "type": "checkbox",
-          "id": "show_border",
-          "label": "Pokaż ramkę",
-          "default": false
-        },
-        {
-          "type": "color",
-          "id": "border_color",
-          "label": "Kolor ramki",
-          "default": "#0b00b5"
-        },
-        {
-          "type": "number",
-          "id": "padding",
-          "label": "Padding wewnętrzny (px)",
-          "default": 24
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Kolor tekstu",
-          "default": "#0b00b5"
-        },
-        { "type": "header", "content": "Treść pionowa" },
-        {
-          "type": "textarea",
-          "id": "vertical_text",
-          "label": "Tekst pionowy"
-        },
-        {
-          "type": "select",
-          "id": "text_alignment",
-          "label": "Wyrównanie (horyzontalne)",
-          "options": [
-            { "value": "left", "label": "Lewo" },
-            { "value": "center", "label": "Środek" },
-            { "value": "right", "label": "Prawo" }
-          ],
-          "default": "center"
-        },
-        {
-          "type": "select",
-          "id": "content_position_vertical",
-          "label": "Pozycja pionowa",
-          "options": [
-            { "value": "top", "label": "Góra" },
-            { "value": "center", "label": "Środek" },
-            { "value": "bottom", "label": "Dół" }
-          ],
-          "default": "center"
-        },
-        {
-          "type": "number",
-          "id": "vertical_font_size",
-          "label": "Rozmiar tekstu pionowego (px)",
-          "default": 24
-        },
-        {
-          "type": "number",
-          "id": "vertical_letter_spacing",
-          "label": "Odstęp pomiędzy znakami (px)",
-          "default": 4
         }
       ]
     }
