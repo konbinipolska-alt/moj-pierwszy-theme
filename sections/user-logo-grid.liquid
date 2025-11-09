@@ -1,0 +1,419 @@
+{%- assign section_id = 'logo-grid-' | append: section.id -%}
+{%- assign margin_vertical = section.settings.margin_vertical | default: 0 -%}
+{%- assign margin_horizontal = section.settings.margin_horizontal | default: 0 -%}
+{%- assign padding_vertical = section.settings.padding_vertical | default: 0 -%}
+{%- assign padding_horizontal = section.settings.padding_horizontal | default: 0 -%}
+
+{%- assign alignment = section.settings.alignment | default: 'center' -%}
+{%- assign justify_content = 'center' -%}
+{%- case alignment -%}
+  {%- when 'left' -%}
+    {%- assign justify_content = 'flex-start' -%}
+  {%- when 'center' -%}
+    {%- assign justify_content = 'center' -%}
+  {%- when 'right' -%}
+    {%- assign justify_content = 'flex-end' -%}
+{%- endcase -%}
+
+<div
+  id="{{ section_id }}"
+  class="logo-grid-section"
+  style="
+    margin: {{ margin_vertical }}px {{ margin_horizontal }}px;
+    padding: {{ padding_vertical }}px {{ padding_horizontal }}px;
+    background-color: {{ section.settings.background_color | default: 'transparent' }};
+  "
+>
+  <div class="logo-grid-inner" style="justify-content: {{ justify_content }};">
+    <div
+      class="logo-grid"
+      style="
+        column-gap: {{ section.settings.column_gap | default: 32 }}px;
+        row-gap: {{ section.settings.row_gap | default: 24 }}px;
+      "
+    >
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <div
+            class="logo-grid__item"
+            {{ block.shopify_attributes }}
+            style="
+              max-width: {{ block.settings.max_width | default: 160 }}px;
+              padding: {{ block.settings.padding_vertical | default: 0 }}px {{ block.settings.padding_horizontal | default: 0 }}px;
+              margin: {{ block.settings.margin_vertical | default: 0 }}px {{ block.settings.margin_horizontal | default: 0 }}px;
+            "
+          >
+            {%- if block.settings.logo != blank -%}
+              {%- if block.settings.link != blank -%}
+                {%- assign open_in_new_tab = block.settings.open_in_new_tab -%}
+                <a
+                  href="{{ block.settings.link }}"
+                  class="logo-grid__link"
+                  {% if open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                  style="justify-content: {{ block.settings.logo_alignment | default: 'center' }};"
+                >
+                  {{ block.settings.logo
+                    | image_url: width: 600
+                    | image_tag:
+                      alt: block.settings.alt_text | default: block.settings.logo.alt | default: 'Logo',
+                      class: 'logo-grid__image',
+                      loading: 'lazy'
+                  }}
+                </a>
+              {%- else -%}
+                <div
+                  class="logo-grid__item-inner"
+                  style="justify-content: {{ block.settings.logo_alignment | default: 'center' }};"
+                >
+                  {{ block.settings.logo
+                    | image_url: width: 600
+                    | image_tag:
+                      alt: block.settings.alt_text | default: block.settings.logo.alt | default: 'Logo',
+                      class: 'logo-grid__image',
+                      loading: 'lazy'
+                  }}
+                </div>
+              {%- endif -%}
+            {%- else -%}
+              <div class="logo-grid__placeholder">
+                {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+                <span>Dodaj logo w ustawieniach bloku</span>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="logo-grid__empty">
+          <p>Dodaj bloki z logo, aby wyświetlić zawartość sekcji.</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  #{{ section_id }} {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .logo-grid-inner {
+    display: flex;
+    width: 100%;
+  }
+
+  #{{ section_id }} .logo-grid {
+    display: grid;
+    grid-auto-flow: row;
+    justify-content: stretch;
+    width: 100%;
+  }
+
+  #{{ section_id }} .logo-grid__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .logo-grid__item-inner,
+  #{{ section_id }} .logo-grid__link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  #{{ section_id }} .logo-grid__link {
+    text-decoration: none;
+  }
+
+  #{{ section_id }} .logo-grid__image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  #{{ section_id }} .logo-grid__placeholder,
+  #{{ section_id }} .logo-grid__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 32px;
+    background: #f5f5f5;
+    color: #999999;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  @media (max-width: 749px) {
+    #{{ section_id }} {
+      margin: {{ section.settings.margin_vertical_mobile | default: margin_vertical }}px {{ section.settings.margin_horizontal_mobile | default: margin_horizontal }}px;
+      padding: {{ section.settings.padding_vertical_mobile | default: padding_vertical }}px {{ section.settings.padding_horizontal_mobile | default: padding_horizontal }}px;
+    }
+
+    #{{ section_id }} .logo-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 750px) {
+    #{{ section_id }} .logo-grid {
+      grid-template-columns: repeat(auto-fit, minmax({{ section.settings.min_column_width | default: 160 }}px, 1fr));
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Sekcja: Logotypy",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Marginesy sekcji"
+    },
+    {
+      "type": "range",
+      "id": "margin_vertical",
+      "label": "Margines góra/dół (px)",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_horizontal",
+      "label": "Margines lewo/prawo (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_vertical_mobile",
+      "label": "Margines góra/dół (mobile, px)",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_horizontal_mobile",
+      "label": "Margines lewo/prawo (mobile, px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding sekcji"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Padding góra/dół (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding lewo/prawo (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "label": "Padding góra/dół (mobile, px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Padding lewo/prawo (mobile, px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Kolor tła",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Odstęp między kolumnami (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "Odstęp między rzędami (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "min_column_width",
+      "label": "Minimalna szerokość kolumny (px)",
+      "min": 80,
+      "max": 320,
+      "step": 10,
+      "default": 160
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Wyrównanie sekcji",
+      "options": [
+        {
+          "value": "left",
+          "label": "Do lewej"
+        },
+        {
+          "value": "center",
+          "label": "Do środka"
+        },
+        {
+          "value": "right",
+          "label": "Do prawej"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Grafika logo"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Tekst alternatywny"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (opcjonalnie)"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_in_new_tab",
+          "label": "Otwórz w nowej karcie",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "logo_alignment",
+          "label": "Wyrównanie logo",
+          "options": [
+            {
+              "value": "flex-start",
+              "label": "Do lewej"
+            },
+            {
+              "value": "center",
+              "label": "Do środka"
+            },
+            {
+              "value": "flex-end",
+              "label": "Do prawej"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Maksymalna szerokość logo (px)",
+          "min": 60,
+          "max": 320,
+          "step": 10,
+          "default": 160
+        },
+        {
+          "type": "range",
+          "id": "padding_vertical",
+          "label": "Padding góra/dół (px)",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_horizontal",
+          "label": "Padding lewo/prawo (px)",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_vertical",
+          "label": "Margines góra/dół (px)",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_horizontal",
+          "label": "Margines lewo/prawo (px)",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Sekcja: Logotypy",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

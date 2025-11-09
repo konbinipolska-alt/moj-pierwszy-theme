@@ -1,0 +1,554 @@
+{%- assign section_id = 'content-blocks-' | append: section.id -%}
+{%- assign margin_vertical = section.settings.margin_vertical | default: 0 -%}
+{%- assign margin_horizontal = section.settings.margin_horizontal | default: 0 -%}
+{%- assign padding_vertical = section.settings.padding_vertical | default: 0 -%}
+{%- assign padding_horizontal = section.settings.padding_horizontal | default: 0 -%}
+
+{%- assign rows = section.settings.rows | default: 1 -%}
+{%- assign columns = section.settings.columns | default: 3 -%}
+{%- assign max_blocks = rows | times: columns -%}
+{%- if max_blocks < 1 -%}
+  {%- assign max_blocks = section.blocks.size -%}
+{%- endif -%}
+
+{%- assign column_gap = section.settings.column_gap | default: 24 -%}
+{%- assign row_gap = section.settings.row_gap | default: 24 -%}
+
+<div
+  id="{{ section_id }}"
+  class="content-blocks-section"
+  style="
+    margin: {{ margin_vertical }}px {{ margin_horizontal }}px;
+    padding: {{ padding_vertical }}px {{ padding_horizontal }}px;
+    background-color: {{ section.settings.background_color | default: 'transparent' }};
+  "
+>
+  <div
+    class="content-blocks-grid"
+    style="
+      --column-gap: {{ column_gap }}px;
+      --row-gap: {{ row_gap }}px;
+      grid-template-columns: repeat({{ columns }}, minmax(0, 1fr));
+    "
+  >
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks limit: max_blocks -%}
+        {%- assign block_margin_vertical = block.settings.margin_vertical | default: 0 -%}
+        {%- assign block_margin_horizontal = block.settings.margin_horizontal | default: 0 -%}
+        {%- assign block_padding_vertical = block.settings.padding_vertical | default: 24 -%}
+        {%- assign block_padding_horizontal = block.settings.padding_horizontal | default: 24 -%}
+        {%- assign block_bg = block.settings.background_color | default: section.settings.block_background | default: '#ffffff' -%}
+        {%- assign block_text_color = block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' -%}
+        {%- assign block_border_radius = block.settings.border_radius | default: section.settings.block_border_radius | default: 0 -%}
+        {%- assign border_width_setting = block.settings.border_width | default: section.settings.block_border_width | default: 0 -%}
+        {%- assign border_width_value = border_width_setting | plus: 0 -%}
+        {%- assign border_color = block.settings.border_color | default: section.settings.block_border_color | default: 'transparent' -%}
+        {%- assign show_border = block.settings.show_border -%}
+        {%- assign border_style = 'none' -%}
+        {%- if show_border or border_width_value > 0 -%}
+          {%- if show_border and border_width_value == 0 -%}
+            {%- assign border_width_value = 1 -%}
+          {%- endif -%}
+          {%- assign border_style = border_width_value | append: 'px solid ' | append: border_color -%}
+        {%- endif -%}
+        {%- assign text_alignment = block.settings.text_alignment | default: 'left' -%}
+        {%- assign button_label = block.settings.button_label -%}
+        {%- assign button_link = block.settings.button_link -%}
+        {%- assign button_new_tab = block.settings.button_new_tab -%}
+        {%- assign button_alignment = 'flex-start' -%}
+        {%- assign block_button_bg = block.settings.button_background_color | default: section.settings.button_background_color | default: block_text_color -%}
+        {%- assign block_button_text = block.settings.button_text_color | default: section.settings.button_text_color | default: '#ffffff' -%}
+        {%- case text_alignment -%}
+          {%- when 'center' -%}
+            {%- assign button_alignment = 'center' -%}
+          {%- when 'right' -%}
+            {%- assign button_alignment = 'flex-end' -%}
+        {%- endcase -%}
+
+        <div
+          class="content-blocks-grid__item"
+          {{ block.shopify_attributes }}
+          style="
+            margin: {{ block_margin_vertical }}px {{ block_margin_horizontal }}px;
+            padding: {{ block_padding_vertical }}px {{ block_padding_horizontal }}px;
+            background-color: {{ block_bg }};
+            color: {{ block_text_color }};
+            border-radius: {{ block_border_radius }}px;
+            border: {{ border_style }};
+            text-align: {{ text_alignment }};
+          "
+        >
+          {%- if block.settings.eyebrow != blank -%}
+            <p class="content-blocks-grid__eyebrow">{{ block.settings.eyebrow }}</p>
+          {%- endif -%}
+
+          {%- if block.settings.heading != blank -%}
+            <h3 class="content-blocks-grid__heading">{{ block.settings.heading }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.text != blank -%}
+            <div class="content-blocks-grid__text">
+              {{ block.settings.text | newline_to_br }}
+            </div>
+          {%- endif -%}
+
+          {%- if button_label != blank and button_link != blank -%}
+            <a
+              href="{{ button_link }}"
+              class="content-blocks-grid__button"
+              style="align-self: {{ button_alignment }}; background-color: {{ block_button_bg }}; color: {{ block_button_text }};"
+              {% if button_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+            >
+              {{ button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="content-blocks-empty">
+        <p>Dodaj bloki, aby zbudować układ treści.</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  #{{ section_id }} {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .content-blocks-grid {
+    display: grid;
+    gap: var(--row-gap) var(--column-gap);
+  }
+
+  #{{ section_id }} .content-blocks-grid__item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #{{ section_id }} .content-blocks-grid__eyebrow {
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  #{{ section_id }} .content-blocks-grid__heading {
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  #{{ section_id }} .content-blocks-grid__text {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  #{{ section_id }} .content-blocks-grid__button {
+    display: inline-flex;
+    align-self: flex-start;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background-color: {{ section.settings.button_background_color | default: section.settings.text_color | default: '#0b00b5' }};
+    color: {{ section.settings.button_text_color | default: '#ffffff' }};
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  #{{ section_id }} .content-blocks-grid__button:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+
+  #{{ section_id }} .content-blocks-empty {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    background: #f5f5f5;
+    color: #999999;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  @media (max-width: 749px) {
+    #{{ section_id }} {
+      margin: {{ section.settings.margin_vertical_mobile | default: margin_vertical }}px {{ section.settings.margin_horizontal_mobile | default: margin_horizontal }}px;
+      padding: {{ section.settings.padding_vertical_mobile | default: padding_vertical }}px {{ section.settings.padding_horizontal_mobile | default: padding_horizontal }}px;
+    }
+
+    #{{ section_id }} .content-blocks-grid {
+      grid-template-columns: repeat({{ section.settings.columns_mobile | default: 1 }}, minmax(0, 1fr));
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Sekcja: Bloki kontentowe",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Marginesy sekcji"
+    },
+    {
+      "type": "range",
+      "id": "margin_vertical",
+      "label": "Margines góra/dół (px)",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_horizontal",
+      "label": "Margines lewo/prawo (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_vertical_mobile",
+      "label": "Margines góra/dół (mobile, px)",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_horizontal_mobile",
+      "label": "Margines lewo/prawo (mobile, px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding sekcji"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Padding góra/dół (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding lewo/prawo (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "label": "Padding góra/dół (mobile, px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Padding lewo/prawo (mobile, px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Układ siatki"
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Liczba rzędów",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Liczba kolumn",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Liczba kolumn (mobile)",
+      "min": 1,
+      "max": 2,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Odstęp między kolumnami (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "Odstęp między rzędami (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Kolor tła sekcji",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "block_background",
+      "label": "Domyślny kolor tła bloków",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Domyślny kolor tekstu",
+      "default": "#0b00b5"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Domyślny kolor tekstu przycisku",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Domyślny kolor tła przycisku",
+      "default": "#0b00b5"
+    },
+    {
+      "type": "range",
+      "id": "block_border_radius",
+      "label": "Domyślne zaokrąglenie bloków (px)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "block_border_width",
+      "label": "Domyślna szerokość obramowania (px)",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "block_border_color",
+      "label": "Domyślny kolor obramowania",
+      "default": "#0b00b5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "Blok treści",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Nagłówek pomocniczy"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Nagłówek"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Treść"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Etykieta przycisku"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link przycisku"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_new_tab",
+          "label": "Otwórz przycisk w nowej karcie",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Wyrównanie tekstu",
+          "options": [
+            {
+              "value": "left",
+              "label": "Do lewej"
+            },
+            {
+              "value": "center",
+              "label": "Do środka"
+            },
+            {
+              "value": "right",
+              "label": "Do prawej"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "header",
+          "content": "Styl bloku"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Kolor tła przycisku"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Kolor tekstu przycisku"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Kolor tła"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Kolor tekstu"
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "label": "Zaokrąglenie narożników (px)",
+          "min": 0,
+          "max": 120,
+          "step": 2,
+          "default": 12
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border",
+          "label": "Pokaż obramowanie",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "label": "Szerokość obramowania (px)",
+          "min": 0,
+          "max": 12,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Kolor obramowania"
+        },
+        {
+          "type": "range",
+          "id": "padding_vertical",
+          "label": "Padding góra/dół (px)",
+          "min": 0,
+          "max": 120,
+          "step": 4,
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "padding_horizontal",
+          "label": "Padding lewo/prawo (px)",
+          "min": 0,
+          "max": 120,
+          "step": 4,
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "margin_vertical",
+          "label": "Margines góra/dół (px)",
+          "min": 0,
+          "max": 120,
+          "step": 4,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_horizontal",
+          "label": "Margines lewo/prawo (px)",
+          "min": 0,
+          "max": 120,
+          "step": 4,
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "max_blocks": 40,
+  "presets": [
+    {
+      "name": "Sekcja: Bloki kontentowe",
+      "blocks": [
+        {
+          "type": "content",
+          "settings": {
+            "heading": "Nagłówek sekcji",
+            "text": "Dodaj opis treści w edytorze sekcji."
+          }
+        },
+        {
+          "type": "content",
+          "settings": {
+            "heading": "Drugi blok",
+            "text": "Możesz zarządzać liczbą bloków, marginesami i paddingami."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
