@@ -601,6 +601,25 @@
         "height": 48
       }
     },
+    "user_multimedia_HTgjgA": {
+      "type": "user-multimedia",
+      "name": "Sekcja: Multimedia",
+      "settings": {
+        "alt_text": "",
+        "margin_all": 48,
+        "padding_all": 48,
+        "width_mode": "auto",
+        "width_px": 1200,
+        "width_percent": 100,
+        "height_px": 480,
+        "height_mobile_px": 360,
+        "media_fit": "cover",
+        "autoplay": false,
+        "loop_video": false,
+        "show_controls": true,
+        "border_radius": 0
+      }
+    },
     "user_spacer_8cWp9W": {
       "type": "user-spacer",
       "name": "Spacer",
@@ -629,6 +648,7 @@
     "user_tiles_divider_HrUdCn",
     "spotify_player_bEC9xV",
     "user_spacer_9P79h8",
+    "user_multimedia_HTgjgA",
     "user_spacer_8cWp9W",
     "user_tiles_divider_bwzjJt"
   ]
