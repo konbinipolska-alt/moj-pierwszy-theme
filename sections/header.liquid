@@ -1,15 +1,18 @@
 <header class="main-navigation full-width" id="main-navigation">
   <div class="nav-container">
         <div class="nav-left">
-          <nav class="header__menu" style="--nav-link-gap: {{ section.settings.link_gap | default: 24 }}px;">
-            {% assign separator_height = section.settings.separator_height | default: 24 %}
-            {% assign separator_margin = section.settings.separator_margin | default: 12 %}
+          {% assign separator_height_default = section.settings.separator_height | default: 24 %}
+          {% assign separator_gap_default = section.settings.separator_gap | default: 24 %}
+          {% assign separator_margin_default = 12 %}
+          <nav class="header__menu" style="--nav-link-gap: {{ separator_gap_default }}px;">
             {% if section.blocks.size > 0 %}
               {% for block in section.blocks %}
                 {% case block.type %}
                   {% when 'nav_dropdown' %}
                     {% assign dropdown_label = block.settings.label | default: 'Produkty' %}
                     {% assign dropdown_separator = block.settings.show_separator %}
+                    {% assign dropdown_separator_height = block.settings.separator_height | default: separator_height_default %}
+                    {% assign dropdown_separator_margin = block.settings.separator_margin | default: separator_margin_default %}
                     {% assign dropdown_menu = block.settings.dropdown_menu %}
                     <div class="nav-item dropdown" {{ block.shopify_attributes }}>
                       <button class="dropdown-toggle nav-link" type="button">
@@ -44,7 +47,7 @@
                         {% endif %}
                       </div>
                       {% if dropdown_separator %}
-                        <span class="nav-separator" style="height: {{ separator_height }}px; margin: 0 {{ separator_margin }}px;"></span>
+                        <span class="nav-separator" style="height: {{ dropdown_separator_height }}px; margin: 0 {{ dropdown_separator_margin }}px;"></span>
                       {% endif %}
                     </div>
                   {% when 'nav_link' %}
@@ -53,6 +56,8 @@
                     {% assign url = block.settings.url | default: '#' %}
                     {% assign show_separator = block.settings.show_separator %}
                     {% assign open_new_tab = block.settings.open_new_tab %}
+                    {% assign link_separator_height = block.settings.separator_height | default: separator_height_default %}
+                    {% assign link_separator_margin = block.settings.separator_margin | default: separator_margin_default %}
                     {% if link_type == 'account' %}
                       {% assign url = routes.account_url %}
                     {% elsif link_type == 'cart' %}
@@ -78,10 +83,7 @@
                         </a>
                       {% endif %}
                       {% if show_separator %}
-                        <span
-                          class="nav-separator"
-                          style="height: {{ separator_height }}px; margin: 0 {{ separator_margin }}px;"
-                        ></span>
+                        <span class="nav-separator" style="height: {{ link_separator_height }}px; margin: 0 {{ link_separator_margin }}px;"></span>
                       {% endif %}
                     </div>
                 {% endcase %}
@@ -111,7 +113,7 @@
                   <a href="/collections/owoce-morza">Owoce morza</a>
                   <a href="/collections/przydasie-i-tentegi">Przydasie i Tentegi</a>
                 </div>
-                <span class="nav-separator" style="height: {{ separator_height }}px; margin: 0 {{ separator_margin }}px;"></span>
+                <span class="nav-separator" style="height: {{ separator_height_default }}px; margin: 0 {{ separator_margin_default }}px;"></span>
               </div>
             {% endif %}
           </nav>
@@ -489,7 +491,7 @@
   "settings": [
     {
       "type": "range",
-      "id": "link_gap",
+      "id": "separator_gap",
       "label": "Odstęp między linkami (px)",
       "min": 0,
       "max": 48,
@@ -504,15 +506,6 @@
       "max": 48,
       "step": 1,
       "default": 24
-    },
-    {
-      "type": "range",
-      "id": "separator_margin",
-      "label": "Margines separatora (px)",
-      "min": 0,
-      "max": 48,
-      "step": 1,
-      "default": 12
     }
   ],
   "blocks": [
@@ -537,6 +530,24 @@
           "id": "show_separator",
           "label": "Pokaż separator po dropdownie",
           "default": true
+        },
+        {
+          "type": "range",
+          "id": "separator_height",
+          "label": "Wysokość separatora (px)",
+          "min": 8,
+          "max": 48,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "separator_margin",
+          "label": "Margines separatora (px)",
+          "min": 0,
+          "max": 48,
+          "step": 1,
+          "default": 12
         }
       ]
     },
@@ -577,6 +588,24 @@
           "id": "show_separator",
           "label": "Pokaż separator po linku",
           "default": true
+        },
+        {
+          "type": "range",
+          "id": "separator_height",
+          "label": "Wysokość separatora (px)",
+          "min": 8,
+          "max": 48,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "separator_margin",
+          "label": "Margines separatora (px)",
+          "min": 0,
+          "max": 48,
+          "step": 1,
+          "default": 12
         }
       ]
     }
