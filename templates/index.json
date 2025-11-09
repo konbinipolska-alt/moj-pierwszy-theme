@@ -641,6 +641,48 @@
             "margin_horizontal": 0
           }
         },
+        "logo_3e7qLk": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
+        "logo_W9Egkx": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
+        "logo_Y76Yg7": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
         "logo_P8fY7V": {
           "type": "logo",
           "settings": {
@@ -668,42 +710,15 @@
             "margin_vertical": 0,
             "margin_horizontal": 0
           }
-        },
-        "logo_aA9cJj": {
-          "type": "logo",
-          "settings": {
-            "alt_text": "",
-            "link": "",
-            "open_in_new_tab": false,
-            "logo_alignment": "center",
-            "max_width": 160,
-            "padding_vertical": 0,
-            "padding_horizontal": 0,
-            "margin_vertical": 0,
-            "margin_horizontal": 0
-          }
-        },
-        "logo_jzUJPT": {
-          "type": "logo",
-          "settings": {
-            "alt_text": "",
-            "link": "",
-            "open_in_new_tab": false,
-            "logo_alignment": "center",
-            "max_width": 160,
-            "padding_vertical": 0,
-            "padding_horizontal": 0,
-            "margin_vertical": 0,
-            "margin_horizontal": 0
-          }
         }
       },
       "block_order": [
         "logo_mAmAbi",
+        "logo_3e7qLk",
+        "logo_W9Egkx",
+        "logo_Y76Yg7",
         "logo_P8fY7V",
-        "logo_7qWYkH",
-        "logo_aA9cJj",
-        "logo_jzUJPT"
+        "logo_7qWYkH"
       ],
       "name": "Sekcja: Logotypy",
       "settings": {
@@ -718,7 +733,7 @@
         "background_color": "transparent",
         "column_gap": 24,
         "row_gap": 24,
-        "min_column_width": 160,
+        "min_column_width": 100,
         "alignment": "center"
       }
     },
