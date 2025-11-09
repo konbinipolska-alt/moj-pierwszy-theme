@@ -1,69 +1,59 @@
 <header class="main-navigation full-width" id="main-navigation">
   <div class="nav-container">
         <div class="nav-left">
-          <div class="header__menu">
-            {% if section.settings.menu.links.size > 0 %}
-              {% for link in section.settings.menu.links %}
-                {% if link.title == 'Produkty' %}
-                  <div class="dropdown">
-                    <a href="{{ link.url }}" class="dropdown-toggle">
-                      {{ link.title }}
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="6,9 12,15 18,9"></polyline>
-                      </svg>
-                    </a>
-                    <div class="dropdown-menu">
-                      <a href="/collections/sosy-i-syropy-do-gotowania">Sosy i syropy do gotowania</a>
-                      <a href="/collections/dodatki-i-pasty">Dodatki i pasty</a>
-                      <a href="/collections/ryz">Ryż</a>
-                      <a href="/collections/noodle-i-kluchy">Noodle i kluchy</a>
-                      <a href="/collections/soki-i-napoje">Soki i napoje</a>
-                      <a href="/collections/octy-i-oleje">Octy i oleje</a>
-                      <a href="/collections/zupoteka-szybka-micha">Zupoteka & Szybka micha</a>
-                      <a href="/collections/przystawki">Przystawki</a>
-                      <a href="/collections/slodycze-i-przekaski">Słodycze i przekąski</a>
-                      <a href="/collections/herbata">Herbata</a>
-                      <a href="/collections/kawa">Kawa</a>
-                      <a href="/collections/plony">Plony</a>
-                      <a href="/collections/yamamoto-selection">Yamamoto Selection</a>
-                      <a href="/collections/owoce-morza">Owoce morza</a>
-                      <a href="/collections/przydasie-i-tentegi">Przydasie i Tentegi</a>
+          <nav class="header__menu" style="--nav-link-gap: {{ section.settings.link_gap | default: 24 }}px;">
+            {% assign separator_height = section.settings.separator_height | default: 24 %}
+            {% assign separator_margin = section.settings.separator_margin | default: 12 %}
+            {% if section.blocks.size > 0 %}
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'nav_link' %}
+                    {% assign link_type = block.settings.link_type | default: 'custom' %}
+                    {% assign label = block.settings.label | default: 'Link' %}
+                    {% assign url = block.settings.url | default: '#' %}
+                    {% assign show_separator = block.settings.show_separator %}
+                    {% assign open_new_tab = block.settings.open_new_tab %}
+                    {% if link_type == 'account' %}
+                      {% assign url = routes.account_url %}
+                    {% elsif link_type == 'cart' %}
+                      {% assign url = routes.cart_url %}
+                    {% endif %}
+                    <div class="nav-item" {{ block.shopify_attributes }}>
+                      {% if link_type == 'cart' %}
+                        <button
+                          class="nav-link nav-link--cart"
+                          data-cart-trigger
+                          type="button"
+                          aria-label="{{ 'templates.cart.titles.cart' | t | default: 'Cart' }}"
+                        >
+                          {{ label }}
+                        </button>
+                      {% else %}
+                        <a
+                          class="nav-link"
+                          href="{{ url }}"
+                          {% if open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                        >
+                          {{ label }}
+                        </a>
+                      {% endif %}
+                      {% if show_separator %}
+                        <span
+                          class="nav-separator"
+                          style="height: {{ separator_height }}px; margin: 0 {{ separator_margin }}px;"
+                        ></span>
+                      {% endif %}
                     </div>
-                  </div>
-                {% else %}
-                  <span class="desktop-only">{{ link.title | link_to: link.url }}</span>
-                {% endif %}
+                {% endcase %}
               {% endfor %}
             {% else %}
-              <!-- Default menu when no menu is configured -->
-              <div class="dropdown">
-                <a href="/collections" class="dropdown-toggle">
-                  Produkty
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="6,9 12,15 18,9"></polyline>
-                  </svg>
-                </a>
-                <div class="dropdown-menu">
-                  <a href="/collections/sosy-i-syropy-do-gotowania">Sosy i syropy do gotowania</a>
-                  <a href="/collections/dodatki-i-pasty">Dodatki i pasty</a>
-                  <a href="/collections/ryz">Ryż</a>
-                  <a href="/collections/noodle-i-kluchy">Noodle i kluchy</a>
-                  <a href="/collections/soki-i-napoje">Soki i napoje</a>
-                  <a href="/collections/octy-i-oleje">Octy i oleje</a>
-                  <a href="/collections/zupoteka-szybka-micha">Zupoteka & Szybka micha</a>
-                  <a href="/collections/przystawki">Przystawki</a>
-                  <a href="/collections/slodycze-i-przekaski">Słodycze i przekąski</a>
-                  <a href="/collections/herbata">Herbata</a>
-                  <a href="/collections/kawa">Kawa</a>
-                  <a href="/collections/plony">Plony</a>
-                  <a href="/collections/yamamoto-selection">Yamamoto Selection</a>
-                  <a href="/collections/owoce-morza">Owoce morza</a>
-                  <a href="/collections/przydasie-i-tentegi">Przydasie i Tentegi</a>
-                </div>
+              <div class="nav-item">
+                <a class="nav-link" href="/">Zero waste</a>
+                <span class="nav-separator" style="height: {{ separator_height }}px; margin: 0 {{ separator_margin }}px;"></span>
               </div>
             {% endif %}
-          </div>
-          
+          </nav>
+
           <!-- Mobile menu dropdown -->
           <div class="mobile-menu-dropdown">
             <button class="mobile-menu-toggle" aria-label="Menu">
@@ -74,13 +64,19 @@
               </svg>
             </button>
             <div class="mobile-menu-dropdown-content">
-              {% if section.settings.menu.links.size > 0 %}
-                {% for link in section.settings.menu.links %}
-                  {% unless link.title == 'Produkty' %}
-                    <a href="{{ link.url }}">{{ link.title }}</a>
-                  {% endunless %}
-                {% endfor %}
-              {% endif %}
+              {% for block in section.blocks %}
+                {% if block.type == 'nav_link' %}
+                  {% assign link_type = block.settings.link_type | default: 'custom' %}
+                  {% assign label = block.settings.label | default: 'Link' %}
+                  {% assign url = block.settings.url | default: '#' %}
+                  {% if link_type == 'account' %}
+                    {% assign url = routes.account_url %}
+                  {% elsif link_type == 'cart' %}
+                    {% assign url = routes.cart_url %}
+                  {% endif %}
+                  <a href="{{ url }}">{{ label }}</a>
+                {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -152,13 +148,27 @@
 
   .header__menu {
     display: flex;
-    gap: 2rem;
+    gap: var(--nav-link-gap, 24px);
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center;
   }
 
-  .header__menu a {
+  .nav-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link,
+  .nav-link--cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     text-decoration: none;
     color: var(--color-primary);
     font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -167,8 +177,18 @@
     transition: color 0.3s ease;
   }
 
-  .header__menu a:hover {
+  .nav-link:hover,
+  .nav-link--cart:hover {
     color: var(--color-primary-light);
+  }
+
+  .nav-separator {
+    width: 1px;
+    background-color: rgba(11, 0, 181, 0.3);
+  }
+
+  .nav-item:last-of-type .nav-separator {
+    display: none;
   }
 
   /* Dropdown styles */
@@ -402,9 +422,123 @@
   "name": "t:general.header",
   "settings": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
+      "type": "range",
+      "id": "link_gap",
+      "label": "Odstęp między linkami (px)",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "separator_height",
+      "label": "Wysokość separatora (px)",
+      "min": 8,
+      "max": 48,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "separator_margin",
+      "label": "Margines separatora (px)",
+      "min": 0,
+      "max": 48,
+      "step": 1,
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Link nawigacji",
+      "settings": [
+        {
+          "type": "select",
+          "id": "link_type",
+          "label": "Typ linku",
+          "options": [
+            { "value": "custom", "label": "Własny adres" },
+            { "value": "account", "label": "Konto (Shopify account)" },
+            { "value": "cart", "label": "Koszyk (szuflada)" }
+          ],
+          "default": "custom"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etykieta linku",
+          "default": "Link"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Adres (dla linku własnego)"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Otwórz w nowej karcie",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_separator",
+          "label": "Pokaż separator po linku",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nawigacja Konbini",
+      "blocks": [
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Zero waste",
+            "url": "/pages/zero-waste",
+            "link_type": "custom",
+            "show_separator": true
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Marki",
+            "url": "/collections/all",
+            "link_type": "custom",
+            "show_separator": true
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Potrawy",
+            "url": "/pages/potrawy",
+            "link_type": "custom",
+            "show_separator": true
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Konto",
+            "link_type": "account",
+            "show_separator": true
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Koszyk",
+            "link_type": "cart",
+            "show_separator": false
+          }
+        }
+      ]
     }
   ]
 }
@@ -429,36 +563,18 @@
     // Listen for scroll events
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Keyboard shortcut: "P" to toggle products dropdown (desktop only)
-    function isDesktop() {
-      return window.innerWidth > 768;
-    }
-
-    document.addEventListener('keydown', function(e) {
-      // Only trigger on desktop
-      if (!isDesktop()) return;
-
-      // Only trigger if not typing in an input/textarea/contenteditable
-      const isTyping = e.target.tagName === 'INPUT' || 
-                      e.target.tagName === 'TEXTAREA' || 
-                      e.target.isContentEditable;
-      
-      // Don't trigger if modifier keys are pressed (Ctrl, Alt, Meta)
-      // Allow Shift for uppercase P
-      const hasModifier = e.ctrlKey || e.altKey || e.metaKey;
-      
-      // Trigger on "P" or "p" key
-      if ((e.key === 'P' || e.key === 'p') && !isTyping && !hasModifier) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Find the products dropdown
-        const dropdown = header.querySelector('.dropdown');
-        if (dropdown) {
-          // Toggle the 'open' class
-          dropdown.classList.toggle('open');
+    const cartButtons = header.querySelectorAll('[data-cart-trigger]');
+    cartButtons.forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (window.Shopify && Shopify.theme && Shopify.theme.cart && typeof Shopify.theme.cart.openDrawer === 'function') {
+          Shopify.theme.cart.openDrawer();
+        } else if (window.toggleCartDrawer && typeof window.toggleCartDrawer === 'function') {
+          window.toggleCartDrawer();
+        } else {
+          window.location.href = "{{ routes.cart_url }}";
         }
-      }
+      });
     });
   })();
 </script>
