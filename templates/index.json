@@ -839,7 +839,7 @@
         "gap": 24,
         "columns_per_row": 2,
         "size_mode": "fixed",
-        "block_width": 740,
+        "block_width": 574,
         "block_height": 70
       }
     },
