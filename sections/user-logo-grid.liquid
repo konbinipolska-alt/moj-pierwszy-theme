@@ -1,46 +1,51 @@
 {%- assign section_id = 'logo-grid-' | append: section.id -%}
 {%- assign margin_vertical = section.settings.margin_vertical | default: 0 -%}
 {%- assign margin_horizontal = section.settings.margin_horizontal | default: 0 -%}
+{%- assign margin_vertical_mobile = section.settings.margin_vertical_mobile | default: margin_vertical -%}
+{%- assign margin_horizontal_mobile = section.settings.margin_horizontal_mobile | default: margin_horizontal -%}
 {%- assign padding_vertical = section.settings.padding_vertical | default: 0 -%}
 {%- assign padding_horizontal = section.settings.padding_horizontal | default: 0 -%}
-
+{%- assign padding_vertical_mobile = section.settings.padding_vertical_mobile | default: padding_vertical -%}
+{%- assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile | default: padding_horizontal -%}
+{%- assign column_gap = section.settings.column_gap | default: 32 -%}
+{%- assign row_gap = section.settings.row_gap | default: 24 -%}
+{%- assign min_column_width = section.settings.min_column_width | default: 160 -%}
 {%- assign alignment = section.settings.alignment | default: 'center' -%}
-{%- assign justify_content = 'center' -%}
-{%- case alignment -%}
-  {%- when 'left' -%}
-    {%- assign justify_content = 'flex-start' -%}
-  {%- when 'center' -%}
-    {%- assign justify_content = 'center' -%}
-  {%- when 'right' -%}
-    {%- assign justify_content = 'flex-end' -%}
-{%- endcase -%}
+
+{%- assign alignment_class = 'logo-grid--align-' | append: alignment -%}
 
 <div
   id="{{ section_id }}"
   class="logo-grid-section"
   style="
-    margin: {{ margin_vertical }}px {{ margin_horizontal }}px;
-    padding: {{ padding_vertical }}px {{ padding_horizontal }}px;
+    --section-margin-vertical: {{ margin_vertical }}px;
+    --section-margin-horizontal: {{ margin_horizontal }}px;
+    --section-padding-vertical: {{ padding_vertical }}px;
+    --section-padding-horizontal: {{ padding_horizontal }}px;
+    --column-gap: {{ column_gap }}px;
+    --row-gap: {{ row_gap }}px;
+    --min-column-width: {{ min_column_width }}px;
     background-color: {{ section.settings.background_color | default: 'transparent' }};
   "
 >
-  <div class="logo-grid-inner" style="justify-content: {{ justify_content }};">
-    <div
-      class="logo-grid"
-      style="
-        column-gap: {{ section.settings.column_gap | default: 32 }}px;
-        row-gap: {{ section.settings.row_gap | default: 24 }}px;
-      "
-    >
+  <div class="logo-grid-inner">
+    <div class="logo-grid {{ alignment_class }}">
       {%- if section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
+          {%- assign block_margin_vertical = block.settings.margin_vertical | default: 0 -%}
+          {%- assign block_margin_horizontal = block.settings.margin_horizontal | default: 0 -%}
+          {%- assign block_padding_vertical = block.settings.padding_vertical | default: 0 -%}
+          {%- assign block_padding_horizontal = block.settings.padding_horizontal | default: 0 -%}
+          {%- assign block_max_width = block.settings.max_width | default: 160 -%}
           <div
             class="logo-grid__item"
             {{ block.shopify_attributes }}
             style="
-              max-width: {{ block.settings.max_width | default: 160 }}px;
-              padding: {{ block.settings.padding_vertical | default: 0 }}px {{ block.settings.padding_horizontal | default: 0 }}px;
-              margin: {{ block.settings.margin_vertical | default: 0 }}px {{ block.settings.margin_horizontal | default: 0 }}px;
+              --item-max-width: {{ block_max_width }}px;
+              --item-padding-vertical: {{ block_padding_vertical }}px;
+              --item-padding-horizontal: {{ block_padding_horizontal }}px;
+              --item-margin-vertical: {{ block_margin_vertical }}px;
+              --item-margin-horizontal: {{ block_margin_horizontal }}px;
             "
           >
             {%- if block.settings.logo != blank -%}
@@ -95,18 +100,35 @@
   #{{ section_id }} {
     width: 100%;
     box-sizing: border-box;
+    margin: var(--section-margin-vertical) var(--section-margin-horizontal);
+    padding: var(--section-padding-vertical) var(--section-padding-horizontal);
   }
 
   #{{ section_id }} .logo-grid-inner {
-    display: flex;
-    width: 100%;
+    display: block;
   }
 
   #{{ section_id }} .logo-grid {
     display: grid;
     grid-auto-flow: row;
-    justify-content: stretch;
-    width: 100%;
+    gap: var(--row-gap) var(--column-gap);
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  #{{ section_id }} .logo-grid.logo-grid--align-left {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  #{{ section_id }} .logo-grid.logo-grid--align-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #{{ section_id }} .logo-grid.logo-grid--align-right {
+    margin-left: auto;
+    margin-right: 0;
   }
 
   #{{ section_id }} .logo-grid__item {
@@ -114,6 +136,9 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    max-width: var(--item-max-width);
+    margin: var(--item-margin-vertical) var(--item-margin-horizontal);
+    padding: var(--item-padding-vertical) var(--item-padding-horizontal);
   }
 
   #{{ section_id }} .logo-grid__item-inner,
@@ -149,18 +174,24 @@
 
   @media (max-width: 749px) {
     #{{ section_id }} {
-      margin: {{ section.settings.margin_vertical_mobile | default: margin_vertical }}px {{ section.settings.margin_horizontal_mobile | default: margin_horizontal }}px;
-      padding: {{ section.settings.padding_vertical_mobile | default: padding_vertical }}px {{ section.settings.padding_horizontal_mobile | default: padding_horizontal }}px;
+      --section-margin-vertical: {{ margin_vertical_mobile }}px;
+      --section-margin-horizontal: {{ margin_horizontal_mobile }}px;
+      --section-padding-vertical: {{ padding_vertical_mobile }}px;
+      --section-padding-horizontal: {{ padding_horizontal_mobile }}px;
     }
 
     #{{ section_id }} .logo-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      justify-items: center;
     }
   }
 
   @media (min-width: 750px) {
     #{{ section_id }} .logo-grid {
-      grid-template-columns: repeat(auto-fit, minmax({{ section.settings.min_column_width | default: 160 }}px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), max-content));
     }
   }
 </style>
