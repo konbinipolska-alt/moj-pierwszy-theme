@@ -2,8 +2,8 @@
   Sekcja: Logos Bar
   - Pełna szerokość viewportu
   - Minimalne sterowanie marginesem/paddingiem (jak multimedia)
-  - Elastyczne bloki z logo, wspólny suwak wysokości
-  - Sterowanie odstępami i wyrównaniem
+  - Każdy blok ma własne sterowanie rozmiarem (wysokość lub szerokość)
+  - Sterowanie odstępami i wyrównaniem całej sekcji
 {%- endcomment -%}
 
 {%- liquid
@@ -14,7 +14,6 @@
 
   assign alignment = section.settings.alignment | default: 'center'
   assign gap = section.settings.gap | default: 24
-  assign logo_height = section.settings.logo_height | default: 80
 
   assign justify_value = 'center'
   case alignment
@@ -28,7 +27,7 @@
 <section
   id="{{ section_id }}"
   class="logo-bar-section"
-  style="--lb-margin: {{ margin_all }}px; --lb-padding: {{ padding_all }}px; --lb-gap: {{ gap }}px; --lb-logo-height: {{ logo_height }}px; --lb-justify: {{ justify_value }};"
+  style="--lb-margin: {{ margin_all }}px; --lb-padding: {{ padding_all }}px; --lb-gap: {{ gap }}px; --lb-justify: {{ justify_value }};"
 >
   <div class="logo-bar-container">
     <div class="logo-bar">
@@ -38,8 +37,31 @@
           {%- assign alt_text = block.settings.alt_text | default: logo.alt | default: 'Logo' -%}
           {%- assign link = block.settings.link -%}
           {%- assign new_tab = block.settings.open_in_new_tab -%}
+          {%- assign size_mode = block.settings.size_mode | default: 'height' -%}
+          {%- assign item_style = '' -%}
+          {%- assign image_style = '' -%}
+          {%- assign placeholder_style = '' -%}
 
-          <div class="logo-bar__item" {{ block.shopify_attributes }}>
+          {%- case size_mode -%}
+            {%- when 'height' -%}
+              {%- assign custom_height = block.settings.custom_height | default: 80 -%}
+              {%- if custom_height > 0 -%}
+                {%- assign item_style = 'height: ' | append: custom_height | append: 'px;' -%}
+                {%- assign image_style = 'height: 100%; width: auto;' -%}
+                {%- assign placeholder_style = item_style -%}
+              {%- endif -%}
+            {%- when 'width' -%}
+              {%- assign custom_width = block.settings.custom_width | default: 160 -%}
+              {%- if custom_width > 0 -%}
+                {%- assign item_style = 'width: ' | append: custom_width | append: 'px;' -%}
+                {%- assign image_style = 'width: 100%; height: auto;' -%}
+                {%- assign placeholder_style = item_style -%}
+              {%- endif -%}
+            {%- else -%}
+              {%- assign image_style = 'height: auto; width: auto; max-height: 100%; max-width: 100%;' -%}
+            {%- endcase -%}
+
+          <div class="logo-bar__item" {{ block.shopify_attributes }}{% if item_style != blank %} style="{{ item_style }}"{% endif %}>
             {%- if logo != blank -%}
               {%- if link != blank -%}
                 <a
@@ -52,7 +74,8 @@
                     | image_tag:
                       alt: alt_text,
                       class: 'logo-bar__image',
-                      loading: 'lazy'
+                      loading: 'lazy',
+                      style: image_style
                   }}
                 </a>
               {%- else -%}
@@ -61,11 +84,12 @@
                   | image_tag:
                     alt: alt_text,
                     class: 'logo-bar__image',
-                    loading: 'lazy'
+                    loading: 'lazy',
+                    style: image_style
                 }}
               {%- endif -%}
             {%- else -%}
-              <div class="logo-bar__placeholder">
+              <div class="logo-bar__placeholder"{% if placeholder_style != blank %} style="{{ placeholder_style }}"{% endif %}>
                 {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
                 <span>Dodaj logo</span>
               </div>
@@ -105,19 +129,22 @@
   #{{ section_id }} .logo-bar__item {
     display: flex;
     align-items: center;
-    height: var(--lb-logo-height);
+    justify-content: center;
+    flex-shrink: 0;
   }
 
   #{{ section_id }} .logo-bar__link {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
     height: 100%;
   }
 
   #{{ section_id }} .logo-bar__image {
-    height: 100%;
-    width: auto;
     display: block;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   #{{ section_id }} .logo-bar__placeholder,
@@ -130,7 +157,9 @@
     background: #f5f5f5;
     color: #888;
     border-radius: 8px;
-    min-height: var(--lb-logo-height);
+    min-height: 48px;
+    min-width: 120px;
+    text-align: center;
   }
 
   @media (max-width: 749px) {
@@ -196,15 +225,6 @@
       "max": 120,
       "step": 4,
       "default": 24
-    },
-    {
-      "type": "range",
-      "id": "logo_height",
-      "label": "Wysokość bloków (px)",
-      "min": 30,
-      "max": 240,
-      "step": 5,
-      "default": 80
     }
   ],
   "blocks": [
@@ -232,6 +252,35 @@
           "id": "open_in_new_tab",
           "label": "Otwórz w nowej karcie",
           "default": false
+        },
+        {
+          "type": "select",
+          "id": "size_mode",
+          "label": "Sterowanie rozmiarem",
+          "options": [
+            { "value": "height", "label": "Ustal wysokość" },
+            { "value": "width", "label": "Ustal szerokość" },
+            { "value": "auto", "label": "Automatycznie" }
+          ],
+          "default": "height"
+        },
+        {
+          "type": "range",
+          "id": "custom_height",
+          "label": "Wysokość (px)",
+          "min": 30,
+          "max": 240,
+          "step": 5,
+          "default": 80
+        },
+        {
+          "type": "range",
+          "id": "custom_width",
+          "label": "Szerokość (px)",
+          "min": 40,
+          "max": 400,
+          "step": 5,
+          "default": 160
         }
       ]
     }
