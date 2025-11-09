@@ -574,66 +574,6 @@
         "block_height": 300
       }
     },
-    "generic_section_alt": {
-      "type": "user-highlights",
-      "blocks": {
-        "block_alt1": {
-          "type": "block",
-          "settings": {
-            "background_video": "",
-            "media_position": "center",
-            "media_scale": 100,
-            "show_border": true,
-            "padding": 24,
-            "background_color": "",
-            "border_color": "#0b00b5",
-            "text_color": "#0b00b5",
-            "header": "Nowa sekcja highlight",
-            "subheader": "Dodaj własne treści dla zduplikowanej sekcji.",
-            "link": "",
-            "content_position_vertical": "center",
-            "text_alignment": "center",
-            "header_subheader_gap": 2,
-            "header_font_size": 24,
-            "subheader_font_size": 14
-          }
-        },
-        "block_alt2": {
-          "type": "block",
-          "settings": {
-            "background_video": "",
-            "media_position": "center",
-            "media_scale": 100,
-            "show_border": true,
-            "padding": 24,
-            "background_color": "",
-            "border_color": "#0b00b5",
-            "text_color": "#0b00b5",
-            "header": "Drugi blok",
-            "subheader": "Ustawienia są niezależne od pierwszej sekcji.",
-            "link": "",
-            "content_position_vertical": "center",
-            "text_alignment": "center",
-            "header_subheader_gap": 2,
-            "header_font_size": 24,
-            "subheader_font_size": 14
-          }
-        }
-      },
-      "block_order": [
-        "block_alt1",
-        "block_alt2"
-      ],
-      "settings": {
-        "background_color": "#ffffff",
-        "margins": 48,
-        "gap": 24,
-        "columns_per_row": 2,
-        "size_mode": "fixed",
-        "block_width": 574,
-        "block_height": 300
-      }
-    },
     "user_tiles_divider_HrUdCn": {
       "type": "user-tiles-divider",
       "disabled": true,
@@ -936,7 +876,6 @@
     "nowy_slider_produktowy_jQTUxJ",
     "user_nowy_slider_produktowy_N6E9Ch",
     "generic_section",
-    "generic_section_alt",
     "user_tiles_divider_HrUdCn",
     "spotify_player_bEC9xV",
     "user_spacer_9P79h8",
