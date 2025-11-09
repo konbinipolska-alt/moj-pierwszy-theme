@@ -427,10 +427,11 @@
       "type": "user-multimedia",
       "name": "Sekcja: Multimedia",
       "settings": {
+        "video_url": "",
         "alt_text": "",
         "margin_all": 0,
         "padding_all": 0,
-        "width_mode": "auto",
+        "width_mode": "fixed_percent",
         "width_px": 1200,
         "width_percent": 100,
         "height_px": 480,
