@@ -594,13 +594,20 @@
         "theme": "0"
       }
     },
+    "user_spacer_9P79h8": {
+      "type": "user-spacer",
+      "name": "Spacer",
+      "settings": {
+        "height": 48
+      }
+    },
     "user_multimedia_HTgjgA": {
       "type": "user-multimedia",
       "name": "Sekcja: Multimedia",
       "settings": {
         "video_url": "",
         "alt_text": "",
-        "margin_all": 48,
+        "margin_all": 0,
         "padding_all": 0,
         "width_mode": "auto",
         "width_px": 2400,
@@ -612,6 +619,115 @@
         "loop_video": false,
         "show_controls": true,
         "border_radius": 0
+      }
+    },
+    "user_spacer_8cWp9W": {
+      "type": "user-spacer",
+      "name": "Spacer",
+      "settings": {
+        "height": 48
+      }
+    },
+    "user_logo_bar_tWirxV": {
+      "type": "user-logo-bar",
+      "blocks": {
+        "logo_DEtLLb": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/inpist_paczkomat.svg",
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "logo_YrkGEj": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/inpost_kurier.svg",
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "logo_AeKJjC": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/orlen_paczka.svg",
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "logo_wyxPNU": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/kurier_DHL.svg",
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "logo_4kiUhH": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Kurier_DPD.svg",
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "logo_wH9REM": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Kurier_UPS.svg",
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "logo_i4kjDY": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Uber_eats.svg",
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "logo_dEmRcM": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Wolt.svg",
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "logo_DEtLLb",
+        "logo_YrkGEj",
+        "logo_AeKJjC",
+        "logo_wyxPNU",
+        "logo_4kiUhH",
+        "logo_wH9REM",
+        "logo_i4kjDY",
+        "logo_dEmRcM"
+      ],
+      "name": "Sekcja: Logos bar",
+      "settings": {
+        "margin_all": 0,
+        "padding_all": 0,
+        "alignment": "center",
+        "gap": 48,
+        "logo_height": 40
+      }
+    },
+    "user_spacer_HxPdAC": {
+      "type": "user-spacer",
+      "name": "Spacer",
+      "settings": {
+        "height": 48
       }
     },
     "user_tiles_divider_bwzjJt": {
@@ -634,7 +750,11 @@
     "generic_section",
     "user_tiles_divider_HrUdCn",
     "spotify_player_bEC9xV",
+    "user_spacer_9P79h8",
     "user_multimedia_HTgjgA",
+    "user_spacer_8cWp9W",
+    "user_logo_bar_tWirxV",
+    "user_spacer_HxPdAC",
     "user_tiles_divider_bwzjJt"
   ]
 }
