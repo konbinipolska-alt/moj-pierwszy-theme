@@ -330,10 +330,76 @@
             "header_font_size": 24,
             "subheader_font_size": 14
           }
+        },
+        "block_cGHJyL": {
+          "type": "block",
+          "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "show_border": true,
+            "padding": 0,
+            "background_color": "",
+            "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
+            "header": "Reactionals",
+            "subheader": "Jak Polacy z różnych grup społecznych reagują na przysmaki kuchni japońskiej i koreanskiej",
+            "link": "",
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_font_size": 24,
+            "subheader_font_size": 14
+          }
+        },
+        "block_FHndWg": {
+          "type": "block",
+          "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "show_border": true,
+            "padding": 0,
+            "background_color": "",
+            "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
+            "header": "",
+            "subheader": "",
+            "link": "",
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_font_size": 24,
+            "subheader_font_size": 14
+          }
+        },
+        "block_Kjada9": {
+          "type": "block",
+          "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "show_border": true,
+            "padding": 0,
+            "background_color": "",
+            "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
+            "header": "",
+            "subheader": "",
+            "link": "",
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_font_size": 24,
+            "subheader_font_size": 14
+          }
         }
       },
       "block_order": [
-        "block_QbB3df"
+        "block_QbB3df",
+        "block_cGHJyL",
+        "block_FHndWg",
+        "block_Kjada9"
       ],
       "name": "Highlights",
       "settings": {
