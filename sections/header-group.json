@@ -41,12 +41,23 @@
             "open_new_tab": false,
             "show_separator": false
           }
+        },
+        "nav_link_c4kryG": {
+          "type": "nav_link",
+          "settings": {
+            "link_type": "custom",
+            "label": "0-Waste",
+            "url": "",
+            "open_new_tab": false,
+            "show_separator": true
+          }
         }
       },
       "block_order": [
         "nav_dropdown_ikYhrd",
         "nav_link_EMfR3D",
-        "nav_link_6gKniE"
+        "nav_link_6gKniE",
+        "nav_link_c4kryG"
       ],
       "settings": {
         "link_gap": 24,
