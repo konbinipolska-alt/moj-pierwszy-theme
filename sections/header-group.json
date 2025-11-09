@@ -31,8 +31,7 @@
             "url": "",
             "open_new_tab": false,
             "margin_left": 12,
-            "margin_right": 12,
-            "badge_size": 20
+            "margin_right": 12
           }
         },
         "nav_link_6gKniE": {
@@ -43,8 +42,7 @@
             "url": "",
             "open_new_tab": false,
             "margin_left": 12,
-            "margin_right": 12,
-            "badge_size": 20
+            "margin_right": 12
           }
         },
         "nav_link_c4kryG": {
@@ -55,24 +53,10 @@
             "url": "",
             "open_new_tab": false,
             "margin_left": 12,
-            "margin_right": 12,
-            "badge_size": 20
+            "margin_right": 12
           }
         },
-        "nav_link_3r6nBj": {
-          "type": "nav_link",
-          "disabled": true,
-          "settings": {
-            "link_type": "custom",
-            "label": "Konto",
-            "url": "",
-            "open_new_tab": false,
-            "margin_left": 12,
-            "margin_right": 12,
-            "badge_size": 20
-          }
-        },
-        "nav_separator_nRTkVP": {
+        "nav_separator_Ub9Lhe": {
           "type": "nav_separator",
           "settings": {
             "height": 24,
@@ -80,16 +64,13 @@
             "margin_right": 12
           }
         },
-        "nav_link_Xkp4je": {
-          "type": "nav_link",
+        "nav_cart_Xt69Nx": {
+          "type": "nav_cart",
           "settings": {
-            "link_type": "cart",
             "label": "Koszyk",
-            "url": "",
-            "open_new_tab": false,
+            "badge_size": 20,
             "margin_left": 12,
-            "margin_right": 12,
-            "badge_size": 20
+            "margin_right": 12
           }
         }
       },
@@ -98,9 +79,8 @@
         "nav_link_EMfR3D",
         "nav_link_6gKniE",
         "nav_link_c4kryG",
-        "nav_link_3r6nBj",
-        "nav_separator_nRTkVP",
-        "nav_link_Xkp4je"
+        "nav_separator_Ub9Lhe",
+        "nav_cart_Xt69Nx"
       ],
       "settings": {
         "separator_gap": 12,
