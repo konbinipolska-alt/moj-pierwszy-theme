@@ -19,7 +19,7 @@
           "settings": {
             "label": "Produkty",
             "dropdown_menu": "",
-            "show_separator": true
+            "show_separator": false
           }
         },
         "nav_link_EMfR3D": {
