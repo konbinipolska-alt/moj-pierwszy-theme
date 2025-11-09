@@ -39,6 +39,7 @@
           {%- assign block_margin_horizontal = block.settings.margin_horizontal | default: 0 -%}
           {%- assign block_padding_vertical = block.settings.padding_vertical | default: 0 -%}
           {%- assign block_padding_horizontal = block.settings.padding_horizontal | default: 0 -%}
+          {%- assign block_max_width = block.settings.max_width | default: 9999 -%}
           <div
             class="logo-grid__item"
             {{ block.shopify_attributes }}
@@ -47,6 +48,7 @@
               --item-padding-horizontal: {{ block_padding_horizontal }}px;
               --item-margin-vertical: {{ block_margin_vertical }}px;
               --item-margin-horizontal: {{ block_margin_horizontal }}px;
+              --item-max-width: {{ block_max_width }}px;
             "
           >
             {%- if block.settings.logo != blank -%}
