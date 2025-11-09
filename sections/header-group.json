@@ -49,11 +49,12 @@
             "label": "0-Waste",
             "url": "",
             "open_new_tab": false,
-            "show_separator": false
+            "show_separator": true
           }
         },
         "nav_link_3r6nBj": {
           "type": "nav_link",
+          "disabled": true,
           "settings": {
             "link_type": "custom",
             "label": "Konto",
