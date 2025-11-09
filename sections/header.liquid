@@ -69,6 +69,16 @@
                     {% endif %}
                     <div class="{{ nav_item_classes }}" {{ block.shopify_attributes }}>
                       {% if link_type == 'cart' %}
+                        {% assign badge_size = block.settings.badge_size | default: 20 %}
+                        {% assign badge_value = cart.item_count | default: 0 %}
+                        {% assign badge_string = badge_value | append: '' %}
+                        {% assign badge_classes = 'cart-badge' %}
+                        {% if badge_value > 0 %}
+                          {% assign badge_classes = badge_classes | append: ' cart-badge--active' %}
+                        {% endif %}
+                        {% if badge_string | size > 1 %}
+                          {% assign badge_classes = badge_classes | append: ' cart-badge--wide' %}
+                        {% endif %}
                         <button
                           class="nav-link nav-link--cart"
                           data-cart-trigger
@@ -81,6 +91,7 @@
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                           </svg>
+                          <span class="{{ badge_classes }}" data-cart-badge data-badge-size="{{ badge_size }}" style="--badge-size: {{ badge_size }}px;">{{ badge_value }}</span>
                         </button>
                       {% else %}
                         <a
@@ -256,10 +267,37 @@
     font-weight: 500;
     font-size: 18px;
     transition: color 0.3s ease;
+    position: relative;
   }
 
   .nav-link-icon {
     display: none;
+  }
+
+  .cart-badge {
+    --badge-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--badge-size);
+    height: var(--badge-size);
+    padding: 0 calc(var(--badge-size) * 0.3);
+    background-color: rgba(11, 0, 181, 0.05);
+    color: #ffffff;
+    font-size: calc(var(--badge-size) * 0.55);
+    font-weight: 600;
+    border-radius: calc(var(--badge-size) / 2);
+    margin-left: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, padding 0.2s ease;
+  }
+
+  .cart-badge--active {
+    background-color: #e11d48;
+    color: #ffffff;
+  }
+
+  .cart-badge--wide {
+    padding: 0 calc(var(--badge-size) * 0.45);
   }
 
   .nav-link:hover,
@@ -491,8 +529,10 @@
       height: 24px;
     }
 
-    .logo-img {
-      height: 20px; /* Much smaller for mobile */
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -12px;
     }
   }
 
@@ -632,6 +672,15 @@
           "max": 48,
           "step": 1,
           "default": 12
+        },
+        {
+          "type": "range",
+          "id": "badge_size",
+          "label": "Rozmiar odznaki koszyka (px)",
+          "min": 16,
+          "max": 36,
+          "step": 1,
+          "default": 20
         }
       ]
     }
@@ -734,6 +783,11 @@
 
     const cartButtons = header.querySelectorAll('[data-cart-trigger]');
     cartButtons.forEach((btn) => {
+      const badge = btn.querySelector('[data-cart-badge]');
+      if (badge) {
+        const badgeSize = parseFloat(badge.dataset.badgeSize) || 20;
+        badge.style.setProperty('--badge-size', badgeSize + 'px');
+      }
       btn.addEventListener('click', (event) => {
         event.preventDefault();
         if (window.Shopify && Shopify.theme && Shopify.theme.cart && typeof Shopify.theme.cart.openDrawer === 'function') {
@@ -744,6 +798,33 @@
           window.location.href = "{{ routes.cart_url }}";
         }
       });
+    });
+
+    function updateCartBadge(count) {
+      const badges = header.querySelectorAll('[data-cart-badge]');
+      badges.forEach((badge) => {
+        const value = parseInt(count, 10) || 0;
+        badge.textContent = value;
+        if (value > 0) {
+          badge.classList.add('cart-badge--active');
+          if (String(value).length >= 2) {
+            badge.classList.add('cart-badge--wide');
+          } else {
+            badge.classList.remove('cart-badge--wide');
+          }
+        } else {
+          badge.classList.remove('cart-badge--active', 'cart-badge--wide');
+        }
+      });
+    }
+
+    const initialCount = {{ cart.item_count }};
+    updateCartBadge(initialCount);
+
+    document.addEventListener('cart:updated', (event) => {
+      if (event && event.detail && typeof event.detail.item_count !== 'undefined') {
+        updateCartBadge(event.detail.item_count);
+      }
     });
   })();
 </script>
