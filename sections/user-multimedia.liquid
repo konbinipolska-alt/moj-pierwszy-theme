@@ -1,8 +1,12 @@
 {%- assign section_id = 'multimedia-' | append: section.id -%}
 {%- assign margin_vertical = section.settings.margin_vertical | default: 0 -%}
 {%- assign margin_horizontal = section.settings.margin_horizontal | default: 0 -%}
+{%- assign margin_vertical_mobile = section.settings.margin_vertical_mobile | default: margin_vertical -%}
+{%- assign margin_horizontal_mobile = section.settings.margin_horizontal_mobile | default: margin_horizontal -%}
 {%- assign padding_vertical = section.settings.padding_vertical | default: 0 -%}
 {%- assign padding_horizontal = section.settings.padding_horizontal | default: 0 -%}
+{%- assign padding_vertical_mobile = section.settings.padding_vertical_mobile | default: padding_vertical -%}
+{%- assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile | default: padding_horizontal -%}
 {%- assign media_height = section.settings.media_height | default: 480 -%}
 {%- assign media_height_mobile = section.settings.media_height_mobile | default: media_height -%}
 {%- assign max_height = section.settings.max_height | default: 900 -%}
@@ -16,64 +20,76 @@
   style="
     --margin-vertical: {{ margin_vertical }}px;
     --margin-horizontal: {{ margin_horizontal }}px;
+    --margin-vertical-mobile: {{ margin_vertical_mobile }}px;
+    --margin-horizontal-mobile: {{ margin_horizontal_mobile }}px;
     --padding-vertical: {{ padding_vertical }}px;
     --padding-horizontal: {{ padding_horizontal }}px;
+    --padding-vertical-mobile: {{ padding_vertical_mobile }}px;
+    --padding-horizontal-mobile: {{ padding_horizontal_mobile }}px;
     --media-height: {{ media_height }}px;
+    --media-height-mobile: {{ media_height_mobile }}px;
     --media-max-height: {{ max_height }}px;
     --border-radius: {{ border_radius }}px;
   "
 >
-  <div class="multimedia-media">
-    {%- liquid
-      assign uploaded_video = section.settings.video
-      assign external_video = section.settings.video_url
-      assign image = section.settings.image
-      assign alt_text = section.settings.alt_text | default: image.alt | default: 'Materiał multimedialny'
-    -%}
+  <div class="multimedia-inner">
+    <div class="multimedia-media">
+      {%- liquid
+        assign uploaded_video = section.settings.video
+        assign external_video = section.settings.video_url
+        assign image = section.settings.image
+        assign alt_text = section.settings.alt_text | default: image.alt | default: 'Materiał multimedialny'
+      -%}
 
-    {%- if uploaded_video != blank -%}
-      {{ uploaded_video
-        | video_tag:
-          class: 'multimedia-video',
-          image_size: 'master',
-          loop: loop_video,
-          autoplay: autoplay,
-          muted: autoplay,
-          controls: section.settings.show_controls
-      }}
-    {%- elsif external_video != blank -%}
-      {{ external_video
-        | external_video_tag:
-          class: 'multimedia-video',
-          image_size: 'master',
-          loop: loop_video,
-          autoplay: autoplay,
-          controls: section.settings.show_controls,
-          muted: autoplay
-      }}
-    {%- elsif image != blank -%}
-      {{ image
-        | image_url: width: 3200
-        | image_tag:
-          alt: alt_text,
-          class: 'multimedia-image',
-          sizes: '100vw',
-          widths: '480, 720, 960, 1200, 1600, 2000, 2400, 2800, 3200',
-          loading: 'lazy'
-      }}
-    {%- else -%}
-      <div class="multimedia-placeholder">
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-        <p>{{ 'Dodaj obraz lub wideo w ustawieniach sekcji.' }}</p>
-      </div>
-    {%- endif -%}
+      {%- if uploaded_video != blank -%}
+        {{ uploaded_video
+          | video_tag:
+            class: 'multimedia-video',
+            image_size: 'master',
+            loop: loop_video,
+            autoplay: autoplay,
+            muted: autoplay,
+            controls: section.settings.show_controls
+        }}
+      {%- elsif external_video != blank -%}
+        {{ external_video
+          | external_video_tag:
+            class: 'multimedia-video',
+            image_size: 'master',
+            loop: loop_video,
+            autoplay: autoplay,
+            controls: section.settings.show_controls,
+            muted: autoplay
+        }}
+      {%- elsif image != blank -%}
+        {{ image
+          | image_url: width: 3200
+          | image_tag:
+            alt: alt_text,
+            class: 'multimedia-image',
+            sizes: '100vw',
+            widths: '480, 720, 960, 1200, 1600, 2000, 2400, 2800, 3200',
+            loading: 'lazy'
+        }}
+      {%- else -%}
+        <div class="multimedia-placeholder">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          <p>{{ 'Dodaj obraz lub wideo w ustawieniach sekcji.' }}</p>
+        </div>
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
 <style>
   #{{ section_id }} {
     width: 100%;
-    margin: var(--margin-vertical) var(--margin-horizontal);
+    margin: var(--margin-vertical) 0;
+  }
+
+  #{{ section_id }} .multimedia-inner {
+    width: min(100%, calc(100% - (var(--margin-horizontal) * 2)));
+    margin: 0 auto;
     padding: var(--padding-vertical) var(--padding-horizontal);
     box-sizing: border-box;
   }
@@ -116,12 +132,17 @@
 
   @media (max-width: 749px) {
     #{{ section_id }} {
-      --margin-vertical: {{ section.settings.margin_vertical_mobile | default: margin_vertical }}px;
-      --margin-horizontal: {{ section.settings.margin_horizontal_mobile | default: margin_horizontal }}px;
-      --padding-vertical: {{ section.settings.padding_vertical_mobile | default: padding_vertical }}px;
-      --padding-horizontal: {{ section.settings.padding_horizontal_mobile | default: padding_horizontal }}px;
-      --media-height: {{ media_height_mobile }}px;
-      --media-max-height: {{ media_height_mobile }}px;
+      margin: var(--margin-vertical-mobile) 0;
+    }
+
+    #{{ section_id }} .multimedia-inner {
+      width: min(100%, calc(100% - (var(--margin-horizontal-mobile) * 2)));
+      padding: var(--padding-vertical-mobile) var(--padding-horizontal-mobile);
+    }
+
+    #{{ section_id }} .multimedia-media {
+      min-height: var(--media-height-mobile);
+      max-height: var(--media-height-mobile);
     }
   }
 </style>
@@ -320,4 +341,3 @@
   ]
 }
 {% endschema %}
-

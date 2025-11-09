@@ -1,16 +1,18 @@
 {%- assign section_id = 'content-blocks-' | append: section.id -%}
 {%- assign margin_vertical = section.settings.margin_vertical | default: 0 -%}
 {%- assign margin_horizontal = section.settings.margin_horizontal | default: 0 -%}
+{%- assign margin_vertical_mobile = section.settings.margin_vertical_mobile | default: margin_vertical -%}
+{%- assign margin_horizontal_mobile = section.settings.margin_horizontal_mobile | default: margin_horizontal -%}
 {%- assign padding_vertical = section.settings.padding_vertical | default: 0 -%}
 {%- assign padding_horizontal = section.settings.padding_horizontal | default: 0 -%}
-
+{%- assign padding_vertical_mobile = section.settings.padding_vertical_mobile | default: padding_vertical -%}
+{%- assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile | default: padding_horizontal -%}
 {%- assign rows = section.settings.rows | default: 1 -%}
 {%- assign columns = section.settings.columns | default: 3 -%}
 {%- assign max_blocks = rows | times: columns -%}
 {%- if max_blocks < 1 -%}
   {%- assign max_blocks = section.blocks.size -%}
 {%- endif -%}
-
 {%- assign column_gap = section.settings.column_gap | default: 24 -%}
 {%- assign row_gap = section.settings.row_gap | default: 24 -%}
 
@@ -18,109 +20,123 @@
   id="{{ section_id }}"
   class="content-blocks-section"
   style="
-    margin: {{ margin_vertical }}px {{ margin_horizontal }}px;
-    padding: {{ padding_vertical }}px {{ padding_horizontal }}px;
-    background-color: {{ section.settings.background_color | default: 'transparent' }};
+    --margin-vertical: {{ margin_vertical }}px;
+    --margin-horizontal: {{ margin_horizontal }}px;
+    --margin-vertical-mobile: {{ margin_vertical_mobile }}px;
+    --margin-horizontal-mobile: {{ margin_horizontal_mobile }}px;
+    --padding-vertical: {{ padding_vertical }}px;
+    --padding-horizontal: {{ padding_horizontal }}px;
+    --padding-vertical-mobile: {{ padding_vertical_mobile }}px;
+    --padding-horizontal-mobile: {{ padding_horizontal_mobile }}px;
+    --column-gap: {{ column_gap }}px;
+    --row-gap: {{ row_gap }}px;
   "
 >
-  <div
-    class="content-blocks-grid"
-    style="
-      --column-gap: {{ column_gap }}px;
-      --row-gap: {{ row_gap }}px;
-      grid-template-columns: repeat({{ columns }}, minmax(0, 1fr));
-    "
-  >
-    {%- if section.blocks.size > 0 -%}
-      {%- for block in section.blocks limit: max_blocks -%}
-        {%- assign block_margin_vertical = block.settings.margin_vertical | default: 0 -%}
-        {%- assign block_margin_horizontal = block.settings.margin_horizontal | default: 0 -%}
-        {%- assign block_padding_vertical = block.settings.padding_vertical | default: 24 -%}
-        {%- assign block_padding_horizontal = block.settings.padding_horizontal | default: 24 -%}
-        {%- assign block_bg = block.settings.background_color | default: section.settings.block_background | default: '#ffffff' -%}
-        {%- assign block_text_color = block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' -%}
-        {%- assign block_border_radius = block.settings.border_radius | default: section.settings.block_border_radius | default: 0 -%}
-        {%- assign border_width_setting = block.settings.border_width | default: section.settings.block_border_width | default: 0 -%}
-        {%- assign border_width_value = border_width_setting | plus: 0 -%}
-        {%- assign border_color = block.settings.border_color | default: section.settings.block_border_color | default: 'transparent' -%}
-        {%- assign show_border = block.settings.show_border -%}
-        {%- assign border_style = 'none' -%}
-        {%- if show_border or border_width_value > 0 -%}
-          {%- if show_border and border_width_value == 0 -%}
-            {%- assign border_width_value = 1 -%}
+  <div class="content-blocks-container">
+    <div
+      class="content-blocks-grid"
+      style="grid-template-columns: repeat({{ columns }}, minmax(0, 1fr));"
+    >
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks limit: max_blocks -%}
+          {%- assign block_margin_vertical = block.settings.margin_vertical | default: 0 -%}
+          {%- assign block_margin_horizontal = block.settings.margin_horizontal | default: 0 -%}
+          {%- assign block_padding_vertical = block.settings.padding_vertical | default: 24 -%}
+          {%- assign block_padding_horizontal = block.settings.padding_horizontal | default: 24 -%}
+          {%- assign block_bg = block.settings.background_color | default: section.settings.block_background | default: '#ffffff' -%}
+          {%- assign block_text_color = block.settings.text_color | default: section.settings.text_color | default: '#0b00b5' -%}
+          {%- assign block_border_radius = block.settings.border_radius | default: section.settings.block_border_radius | default: 0 -%}
+          {%- assign border_width_setting = block.settings.border_width | default: section.settings.block_border_width | default: 0 -%}
+          {%- assign border_width_value = border_width_setting | plus: 0 -%}
+          {%- assign border_color = block.settings.border_color | default: section.settings.block_border_color | default: 'transparent' -%}
+          {%- assign show_border = block.settings.show_border -%}
+          {%- assign border_style = 'none' -%}
+          {%- if show_border or border_width_value > 0 -%}
+            {%- if show_border and border_width_value == 0 -%}
+              {%- assign border_width_value = 1 -%}
+            {%- endif -%}
+            {%- assign border_style = border_width_value | append: 'px solid ' | append: border_color -%}
           {%- endif -%}
-          {%- assign border_style = border_width_value | append: 'px solid ' | append: border_color -%}
-        {%- endif -%}
-        {%- assign text_alignment = block.settings.text_alignment | default: 'left' -%}
-        {%- assign button_label = block.settings.button_label -%}
-        {%- assign button_link = block.settings.button_link -%}
-        {%- assign button_new_tab = block.settings.button_new_tab -%}
-        {%- assign button_alignment = 'flex-start' -%}
-        {%- assign block_button_bg = block.settings.button_background_color | default: section.settings.button_background_color | default: block_text_color -%}
-        {%- assign block_button_text = block.settings.button_text_color | default: section.settings.button_text_color | default: '#ffffff' -%}
-        {%- case text_alignment -%}
-          {%- when 'center' -%}
-            {%- assign button_alignment = 'center' -%}
-          {%- when 'right' -%}
-            {%- assign button_alignment = 'flex-end' -%}
-        {%- endcase -%}
+          {%- assign text_alignment = block.settings.text_alignment | default: 'left' -%}
+          {%- assign button_label = block.settings.button_label -%}
+          {%- assign button_link = block.settings.button_link -%}
+          {%- assign button_new_tab = block.settings.button_new_tab -%}
+          {%- assign button_alignment = 'flex-start' -%}
+          {%- case text_alignment -%}
+            {%- when 'center' -%}
+              {%- assign button_alignment = 'center' -%}
+            {%- when 'right' -%}
+              {%- assign button_alignment = 'flex-end' -%}
+          {%- endcase -%}
+          {%- assign block_button_bg = block.settings.button_background_color | default: section.settings.button_background_color | default: block_text_color -%}
+          {%- assign block_button_text = block.settings.button_text_color | default: section.settings.button_text_color | default: '#ffffff' -%}
 
-        <div
-          class="content-blocks-grid__item"
-          {{ block.shopify_attributes }}
-          style="
-            margin: {{ block_margin_vertical }}px {{ block_margin_horizontal }}px;
-            padding: {{ block_padding_vertical }}px {{ block_padding_horizontal }}px;
-            background-color: {{ block_bg }};
-            color: {{ block_text_color }};
-            border-radius: {{ block_border_radius }}px;
-            border: {{ border_style }};
-            text-align: {{ text_alignment }};
-          "
-        >
-          {%- if block.settings.eyebrow != blank -%}
-            <p class="content-blocks-grid__eyebrow">{{ block.settings.eyebrow }}</p>
-          {%- endif -%}
+          <div
+            class="content-blocks-grid__item"
+            {{ block.shopify_attributes }}
+            style="
+              margin: {{ block_margin_vertical }}px {{ block_margin_horizontal }}px;
+              padding: {{ block_padding_vertical }}px {{ block_padding_horizontal }}px;
+              background-color: {{ block_bg }};
+              color: {{ block_text_color }};
+              border-radius: {{ block_border_radius }}px;
+              border: {{ border_style }};
+              text-align: {{ text_alignment }};
+            "
+          >
+            {%- if block.settings.eyebrow != blank -%}
+              <p class="content-blocks-grid__eyebrow">{{ block.settings.eyebrow }}</p>
+            {%- endif -%}
 
-          {%- if block.settings.heading != blank -%}
-            <h3 class="content-blocks-grid__heading">{{ block.settings.heading }}</h3>
-          {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <h3 class="content-blocks-grid__heading">{{ block.settings.heading }}</h3>
+            {%- endif -%}
 
-          {%- if block.settings.text != blank -%}
-            <div class="content-blocks-grid__text">
-              {{ block.settings.text | newline_to_br }}
-            </div>
-          {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="content-blocks-grid__text">
+                {{ block.settings.text | newline_to_br }}
+              </div>
+            {%- endif -%}
 
-          {%- if button_label != blank and button_link != blank -%}
-            <a
-              href="{{ button_link }}"
-              class="content-blocks-grid__button"
-              style="align-self: {{ button_alignment }}; background-color: {{ block_button_bg }}; color: {{ block_button_text }};"
-              {% if button_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-            >
-              {{ button_label }}
-            </a>
-          {%- endif -%}
+            {%- if button_label != blank and button_link != blank -%}
+              <a
+                href="{{ button_link }}"
+                class="content-blocks-grid__button"
+                style="align-self: {{ button_alignment }}; background-color: {{ block_button_bg }}; color: {{ block_button_text }};"
+                {% if button_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+              >
+                {{ button_label }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="content-blocks-empty">
+          <p>Dodaj bloki, aby zbudować układ treści.</p>
         </div>
-      {%- endfor -%}
-    {%- else -%}
-      <div class="content-blocks-empty">
-        <p>Dodaj bloki, aby zbudować układ treści.</p>
-      </div>
-    {%- endif -%}
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
 <style>
   #{{ section_id }} {
     width: 100%;
+    margin: var(--margin-vertical) 0;
+  }
+
+  #{{ section_id }} .content-blocks-container {
+    width: min(100%, calc(100% - (var(--margin-horizontal) * 2)));
+    margin: 0 auto;
+    padding: var(--padding-vertical) var(--padding-horizontal);
     box-sizing: border-box;
+    background-color: {{ section.settings.background_color | default: 'transparent' }};
   }
 
   #{{ section_id }} .content-blocks-grid {
     display: grid;
     gap: var(--row-gap) var(--column-gap);
+    width: 100%;
   }
 
   #{{ section_id }} .content-blocks-grid__item {
@@ -151,12 +167,9 @@
 
   #{{ section_id }} .content-blocks-grid__button {
     display: inline-flex;
-    align-self: flex-start;
     gap: 8px;
     padding: 12px 20px;
     border-radius: 999px;
-    background-color: {{ section.settings.button_background_color | default: section.settings.text_color | default: '#0b00b5' }};
-    color: {{ section.settings.button_text_color | default: '#ffffff' }};
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.2s ease, opacity 0.2s ease;
@@ -181,8 +194,12 @@
 
   @media (max-width: 749px) {
     #{{ section_id }} {
-      margin: {{ section.settings.margin_vertical_mobile | default: margin_vertical }}px {{ section.settings.margin_horizontal_mobile | default: margin_horizontal }}px;
-      padding: {{ section.settings.padding_vertical_mobile | default: padding_vertical }}px {{ section.settings.padding_horizontal_mobile | default: padding_horizontal }}px;
+      margin: var(--margin-vertical-mobile) 0;
+    }
+
+    #{{ section_id }} .content-blocks-container {
+      width: min(100%, calc(100% - (var(--margin-horizontal-mobile) * 2)));
+      padding: var(--padding-vertical-mobile) var(--padding-horizontal-mobile);
     }
 
     #{{ section_id }} .content-blocks-grid {
@@ -551,4 +568,3 @@
   ]
 }
 {% endschema %}
-

@@ -10,9 +10,9 @@
 {%- assign column_gap = section.settings.column_gap | default: 32 -%}
 {%- assign row_gap = section.settings.row_gap | default: 24 -%}
 {%- assign min_column_width = section.settings.min_column_width | default: 160 -%}
-{%- assign alignment = section.settings.alignment | default: 'center' -%}
 {%- assign logo_height = section.settings.logo_height | default: 80 -%}
 {%- assign logo_height_mobile = section.settings.logo_height_mobile | default: logo_height -%}
+{%- assign alignment = section.settings.alignment | default: 'center' -%}
 
 {%- assign alignment_class = 'logo-grid--align-' | append: alignment -%}
 
@@ -20,18 +20,22 @@
   id="{{ section_id }}"
   class="logo-grid-section"
   style="
-    --section-margin-vertical: {{ margin_vertical }}px;
-    --section-margin-horizontal: {{ margin_horizontal }}px;
-    --section-padding-vertical: {{ padding_vertical }}px;
-    --section-padding-horizontal: {{ padding_horizontal }}px;
+    --margin-vertical: {{ margin_vertical }}px;
+    --margin-horizontal: {{ margin_horizontal }}px;
+    --margin-vertical-mobile: {{ margin_vertical_mobile }}px;
+    --margin-horizontal-mobile: {{ margin_horizontal_mobile }}px;
+    --padding-vertical: {{ padding_vertical }}px;
+    --padding-horizontal: {{ padding_horizontal }}px;
+    --padding-vertical-mobile: {{ padding_vertical_mobile }}px;
+    --padding-horizontal-mobile: {{ padding_horizontal_mobile }}px;
     --column-gap: {{ column_gap }}px;
     --row-gap: {{ row_gap }}px;
     --min-column-width: {{ min_column_width }}px;
     --logo-height: {{ logo_height }}px;
-    background-color: {{ section.settings.background_color | default: 'transparent' }};
+    --logo-height-mobile: {{ logo_height_mobile }}px;
   "
 >
-  <div class="logo-grid-inner">
+  <div class="logo-grid-container">
     <div class="logo-grid {{ alignment_class }}">
       {%- if section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
@@ -39,26 +43,24 @@
           {%- assign block_margin_horizontal = block.settings.margin_horizontal | default: 0 -%}
           {%- assign block_padding_vertical = block.settings.padding_vertical | default: 0 -%}
           {%- assign block_padding_horizontal = block.settings.padding_horizontal | default: 0 -%}
-          {%- assign block_max_width = block.settings.max_width | default: 9999 -%}
+          {%- assign block_max_width = block.settings.max_width | default: 0 -%}
           <div
             class="logo-grid__item"
             {{ block.shopify_attributes }}
             style="
-              --item-padding-vertical: {{ block_padding_vertical }}px;
-              --item-padding-horizontal: {{ block_padding_horizontal }}px;
-              --item-margin-vertical: {{ block_margin_vertical }}px;
-              --item-margin-horizontal: {{ block_margin_horizontal }}px;
-              --item-max-width: {{ block_max_width }}px;
+              margin: {{ block_margin_vertical }}px {{ block_margin_horizontal }}px;
+              padding: {{ block_padding_vertical }}px {{ block_padding_horizontal }}px;
+              {% if block_max_width > 0 %}max-width: {{ block_max_width }}px;{% endif %}
             "
           >
             {%- if block.settings.logo != blank -%}
+              {%- assign open_in_new_tab = block.settings.open_in_new_tab -%}
+              {%- assign alignment_value = block.settings.logo_alignment | default: 'center' -%}
               {%- if block.settings.link != blank -%}
-                {%- assign open_in_new_tab = block.settings.open_in_new_tab -%}
                 <a
                   href="{{ block.settings.link }}"
-                  class="logo-grid__link"
+                  class="logo-grid__link logo-grid__link--{{ alignment_value }}"
                   {% if open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-                  style="justify-content: {{ block.settings.logo_alignment | default: 'center' }};"
                 >
                   {{ block.settings.logo
                     | image_url: width: 600
@@ -69,10 +71,7 @@
                   }}
                 </a>
               {%- else -%}
-                <div
-                  class="logo-grid__item-inner"
-                  style="justify-content: {{ block.settings.logo_alignment | default: 'center' }};"
-                >
+                <div class="logo-grid__item-inner logo-grid__item-inner--{{ alignment_value }}">
                   {{ block.settings.logo
                     | image_url: width: 600
                     | image_tag:
@@ -102,13 +101,15 @@
 <style>
   #{{ section_id }} {
     width: 100%;
-    box-sizing: border-box;
-    margin: var(--section-margin-vertical) var(--section-margin-horizontal);
-    padding: var(--section-padding-vertical) var(--section-padding-horizontal);
+    margin: var(--margin-vertical) 0;
   }
 
-  #{{ section_id }} .logo-grid-inner {
-    display: block;
+  #{{ section_id }} .logo-grid-container {
+    width: min(100%, calc(100% - (var(--margin-horizontal) * 2)));
+    margin: 0 auto;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    box-sizing: border-box;
+    background-color: {{ section.settings.background_color | default: 'transparent' }};
   }
 
   #{{ section_id }} .logo-grid {
@@ -119,17 +120,17 @@
     max-width: 100%;
   }
 
-  #{{ section_id }} .logo-grid.logo-grid--align-left {
+  #{{ section_id }} .logo-grid--align-left {
     margin-left: 0;
     margin-right: auto;
   }
 
-  #{{ section_id }} .logo-grid.logo-grid--align-center {
+  #{{ section_id }} .logo-grid--align-center {
     margin-left: auto;
     margin-right: auto;
   }
 
-  #{{ section_id }} .logo-grid.logo-grid--align-right {
+  #{{ section_id }} .logo-grid--align-right {
     margin-left: auto;
     margin-right: 0;
   }
@@ -139,15 +140,27 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    margin: var(--item-margin-vertical) var(--item-margin-horizontal);
-    padding: var(--item-padding-vertical) var(--item-padding-horizontal);
   }
 
   #{{ section_id }} .logo-grid__item-inner,
   #{{ section_id }} .logo-grid__link {
     display: flex;
-    align-items: center;
     width: 100%;
+  }
+
+  #{{ section_id }} .logo-grid__item-inner--flex-start,
+  #{{ section_id }} .logo-grid__link--flex-start {
+    justify-content: flex-start;
+  }
+
+  #{{ section_id }} .logo-grid__item-inner--center,
+  #{{ section_id }} .logo-grid__link--center {
+    justify-content: center;
+  }
+
+  #{{ section_id }} .logo-grid__item-inner--flex-end,
+  #{{ section_id }} .logo-grid__link--flex-end {
+    justify-content: flex-end;
   }
 
   #{{ section_id }} .logo-grid__link {
@@ -178,19 +191,28 @@
 
   @media (max-width: 749px) {
     #{{ section_id }} {
-      --section-margin-vertical: {{ margin_vertical_mobile }}px;
-      --section-margin-horizontal: {{ margin_horizontal_mobile }}px;
-      --section-padding-vertical: {{ padding_vertical_mobile }}px;
-      --section-padding-horizontal: {{ padding_horizontal_mobile }}px;
-      --logo-height: {{ logo_height_mobile }}px;
+      margin: var(--margin-vertical-mobile) 0;
+    }
+
+    #{{ section_id }} .logo-grid-container {
+      width: min(100%, calc(100% - (var(--margin-horizontal-mobile) * 2)));
+      padding: var(--padding-vertical-mobile) var(--padding-horizontal-mobile);
     }
 
     #{{ section_id }} .logo-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       width: 100%;
       margin-left: 0;
       margin-right: 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       justify-items: center;
+      gap: var(--row-gap) var(--column-gap);
+    }
+
+    #{{ section_id }} .logo-grid__image,
+    #{{ section_id }} .logo-grid__placeholder,
+    #{{ section_id }} .logo-grid__empty {
+      height: var(--logo-height-mobile);
+      min-height: var(--logo-height-mobile);
     }
   }
 
@@ -311,6 +333,24 @@
     },
     {
       "type": "range",
+      "id": "logo_height",
+      "label": "Wysokość logo (px)",
+      "min": 20,
+      "max": 240,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "logo_height_mobile",
+      "label": "Wysokość logo (mobile, px)",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "default": 64
+    },
+    {
+      "type": "range",
       "id": "min_column_width",
       "label": "Minimalna szerokość kolumny (px)",
       "min": 80,
@@ -389,10 +429,11 @@
           "type": "range",
           "id": "max_width",
           "label": "Maksymalna szerokość logo (px)",
-          "min": 60,
-          "max": 320,
+          "min": 0,
+          "max": 600,
           "step": 10,
-          "default": 160
+          "default": 0,
+          "info": "Ustaw 0, aby logo skalowało się tylko po wysokości."
         },
         {
           "type": "range",
@@ -452,4 +493,3 @@
   ]
 }
 {% endschema %}
-
