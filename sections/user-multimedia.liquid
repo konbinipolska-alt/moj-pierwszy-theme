@@ -1,0 +1,315 @@
+{%- comment -%}
+  User Multimedia Section
+  - Simple controls: outer margin and inner padding (defaults 48px)
+  - Image OR Video (Shopify file) OR External video (YouTube/Vimeo)
+  - Container sizing: width (auto / px / %) and height (px + mobile px)
+  - Fit mode: cover (longer side) or contain (shorter side)
+  - Mobile-friendly defaults
+{%- endcomment -%}
+
+{%- liquid
+  assign section_id = 'user-multimedia-' | append: section.id
+
+  assign margin_all = section.settings.margin_all | default: 48
+  assign padding_all = section.settings.padding_all | default: 48
+
+  assign width_mode = section.settings.width_mode | default: 'auto'
+  assign width_px = section.settings.width_px | default: 1200
+  assign width_percent = section.settings.width_percent | default: 100
+
+  assign height_px = section.settings.height_px | default: 480
+  assign height_mobile_px = section.settings.height_mobile_px | default: 360
+
+  assign fit_mode = section.settings.media_fit | default: 'cover'
+
+  assign uploaded_video = section.settings.video
+  assign external_video = section.settings.video_url
+  assign image = section.settings.image
+  assign alt_text = section.settings.alt_text | default: image.alt | default: 'Multimedia'
+
+  assign autoplay = section.settings.autoplay
+  assign loop_video = section.settings.loop_video
+  assign show_controls = section.settings.show_controls
+-%}
+
+<section
+  id="{{ section_id }}"
+  class="mm-section"
+  style="
+    --mm-margin: {{ margin_all }}px;
+    --mm-padding: {{ padding_all }}px;
+    --mm-height: {{ height_px }}px;
+    --mm-height-mobile: {{ height_mobile_px }}px;
+  "
+>
+  <div
+    class="mm-inner"
+    style="
+      {% case width_mode %}
+        {% when 'fixed_px' %}
+          max-width: {{ width_px }}px;
+          width: 100%;
+        {% when 'fixed_percent' %}
+          width: {{ width_percent }}%;
+          max-width: none;
+        {% else %}
+          max-width: 100%;
+          width: 100%;
+      {% endcase %}
+      margin-left: auto;
+      margin-right: auto;
+      padding: var(--mm-padding);
+      box-sizing: border-box;
+    "
+  >
+    <div class="mm-media" style="height: var(--mm-height);">
+      {%- if uploaded_video != blank -%}
+        {{ uploaded_video
+          | video_tag:
+            class: 'mm-video',
+            image_size: 'master',
+            loop: loop_video,
+            autoplay: autoplay,
+            controls: show_controls,
+            muted: autoplay
+        }}
+      {%- elsif external_video != blank -%}
+        {{ external_video
+          | external_video_tag:
+            class: 'mm-video',
+            image_size: 'master',
+            loop: loop_video,
+            autoplay: autoplay,
+            controls: show_controls,
+            muted: autoplay
+        }}
+      {%- elsif image != blank -%}
+        {{ image
+          | image_url: width: 3200
+          | image_tag:
+            alt: alt_text,
+            class: 'mm-image',
+            sizes: '100vw',
+            widths: '480, 720, 960, 1200, 1600, 2000, 2400, 2800, 3200',
+            loading: 'lazy'
+        }}
+      {%- else -%}
+        <div class="mm-placeholder">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          <p>Dodaj obraz lub wideo w ustawieniach sekcji.</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  #{{ section_id }}.mm-section {
+    width: 100%;
+    margin: var(--mm-margin) 0;
+  }
+
+  #{{ section_id }} .mm-media {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ section.settings.border_radius | default: 0 }}px;
+  }
+
+  #{{ section_id }} .mm-video,
+  #{{ section_id }} .mm-image,
+  #{{ section_id }} .mm-placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #{{ section_id }} .mm-video,
+  #{{ section_id }} .mm-image {
+    object-fit: {{ fit_mode }};
+  }
+
+  #{{ section_id }} .mm-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #888;
+    background: #f5f5f5;
+    text-align: center;
+  }
+
+  @media (max-width: 749px) {
+    #{{ section_id }} .mm-inner {
+      /* Uproszczenie: na mobile zawsze 100% szerokości */
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: calc(var(--mm-padding) * 0.5);
+    }
+    #{{ section_id }} .mm-media {
+      height: var(--mm-height-mobile);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Sekcja: Multimedia",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["index", "product", "collection", "page", "blog", "article", "list-collections", "cart", "search"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Źródło multimediów"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Obraz"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Wideo (plik z biblioteki)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": ["youtube", "vimeo"],
+      "label": "Wideo (YouTube/Vimeo)"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Tekst alternatywny"
+    },
+
+    {
+      "type": "header",
+      "content": "Odstępy (minimum kontroli)"
+    },
+    {
+      "type": "range",
+      "id": "margin_all",
+      "label": "Marginesy zewnętrzne (góra/dół) (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_all",
+      "label": "Padding wewnętrzny (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 48
+    },
+
+    {
+      "type": "header",
+      "content": "Rozmiar kontenera"
+    },
+    {
+      "type": "select",
+      "id": "width_mode",
+      "label": "Szerokość",
+      "options": [
+        { "value": "auto", "label": "Automatyczna (100%)" },
+        { "value": "fixed_px", "label": "Stała (px)" },
+        { "value": "fixed_percent", "label": "Procent ( % )" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "width_px",
+      "label": "Szerokość (px)",
+      "min": 200,
+      "max": 2400,
+      "step": 20,
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "width_percent",
+      "label": "Szerokość (%)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "height_px",
+      "label": "Wysokość (px)",
+      "min": 120,
+      "max": 1200,
+      "step": 20,
+      "default": 480
+    },
+    {
+      "type": "range",
+      "id": "height_mobile_px",
+      "label": "Wysokość na mobile (px)",
+      "min": 120,
+      "max": 900,
+      "step": 20,
+      "default": 360
+    },
+    {
+      "type": "select",
+      "id": "media_fit",
+      "label": "Dopasowanie (po dłuższym/krótszym boku)",
+      "options": [
+        { "value": "cover", "label": "Wypełnij (cover, dłuższy bok)" },
+        { "value": "contain", "label": "Dopasuj (contain, krótszy bok)" }
+      ],
+      "default": "cover"
+    },
+
+    {
+      "type": "header",
+      "content": "Wideo – odtwarzanie"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoodtwarzanie",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop_video",
+      "label": "Zapętlanie",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Pokaż kontrolki",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Zaokrąglenie narożników (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sekcja: Multimedia"
+    }
+  ]
+}
+{% endschema %}
+
+
