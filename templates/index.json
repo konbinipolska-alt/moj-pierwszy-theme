@@ -594,13 +594,6 @@
         "theme": "0"
       }
     },
-    "user_spacer_9P79h8": {
-      "type": "user-spacer",
-      "name": "Spacer",
-      "settings": {
-        "height": 48
-      }
-    },
     "user_multimedia_HTgjgA": {
       "type": "user-multimedia",
       "name": "Sekcja: Multimedia",
@@ -619,13 +612,6 @@
         "loop_video": false,
         "show_controls": true,
         "border_radius": 0
-      }
-    },
-    "user_spacer_8cWp9W": {
-      "type": "user-spacer",
-      "name": "Spacer",
-      "settings": {
-        "height": 48
       }
     },
     "user_tiles_divider_bwzjJt": {
@@ -648,9 +634,7 @@
     "generic_section",
     "user_tiles_divider_HrUdCn",
     "spotify_player_bEC9xV",
-    "user_spacer_9P79h8",
     "user_multimedia_HTgjgA",
-    "user_spacer_8cWp9W",
     "user_tiles_divider_bwzjJt"
   ]
 }
