@@ -747,6 +747,75 @@
         "gap": 48
       }
     },
+    "user_text_columns_nMhbDP": {
+      "type": "user-text-columns",
+      "blocks": {
+        "horizontal_text_7afymj": {
+          "type": "horizontal_text",
+          "settings": {
+            "background_color": "",
+            "show_border": false,
+            "border_color": "#0b00b5",
+            "padding": 24,
+            "text_color": "#0b00b5",
+            "text": "",
+            "subtext": "",
+            "text_alignment": "center",
+            "content_position_vertical": "center",
+            "font_size": 24,
+            "sub_font_size": 16,
+            "letter_spacing": 0
+          }
+        },
+        "vertical_text_eWkAXM": {
+          "type": "vertical_text",
+          "settings": {
+            "background_color": "",
+            "show_border": false,
+            "border_color": "#0b00b5",
+            "padding": 24,
+            "text_color": "#0b00b5",
+            "vertical_text": "",
+            "text_alignment": "center",
+            "content_position_vertical": "center",
+            "vertical_font_size": 24,
+            "vertical_letter_spacing": 4
+          }
+        },
+        "horizontal_text_E76U6t": {
+          "type": "horizontal_text",
+          "settings": {
+            "background_color": "",
+            "show_border": false,
+            "border_color": "#0b00b5",
+            "padding": 24,
+            "text_color": "#0b00b5",
+            "text": "",
+            "subtext": "",
+            "text_alignment": "center",
+            "content_position_vertical": "center",
+            "font_size": 24,
+            "sub_font_size": 16,
+            "letter_spacing": 0
+          }
+        }
+      },
+      "block_order": [
+        "horizontal_text_7afymj",
+        "vertical_text_eWkAXM",
+        "horizontal_text_E76U6t"
+      ],
+      "name": "Sekcja: Teksty poziome i pionowe",
+      "settings": {
+        "background_color": "#ffffff",
+        "margins": 0,
+        "gap": 24,
+        "columns_per_row": 2,
+        "size_mode": "fixed",
+        "block_width": 574,
+        "block_height": 200
+      }
+    },
     "user_spacer_HxPdAC": {
       "type": "user-spacer",
       "name": "Spacer",
@@ -778,6 +847,7 @@
     "user_multimedia_HTgjgA",
     "user_spacer_8cWp9W",
     "user_logo_bar_tWirxV",
+    "user_text_columns_nMhbDP",
     "user_spacer_HxPdAC",
     "user_tiles_divider_bwzjJt"
   ]
