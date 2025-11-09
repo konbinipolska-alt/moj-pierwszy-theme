@@ -749,7 +749,7 @@
           "type": "horizontal_text",
           "settings": {
             "background_color": "",
-            "show_border": true,
+            "show_border": false,
             "border_color": "#0b00b5",
             "padding": 0,
             "text_color": "#0b00b5",
@@ -766,7 +766,7 @@
           "type": "horizontal_text",
           "settings": {
             "background_color": "",
-            "show_border": true,
+            "show_border": false,
             "border_color": "#0b00b5",
             "padding": 0,
             "text_color": "#0b00b5",
@@ -783,7 +783,7 @@
           "type": "horizontal_text",
           "settings": {
             "background_color": "",
-            "show_border": true,
+            "show_border": false,
             "border_color": "#0b00b5",
             "padding": 0,
             "text_color": "#0b00b5",
@@ -800,7 +800,7 @@
           "type": "horizontal_text",
           "settings": {
             "background_color": "",
-            "show_border": true,
+            "show_border": false,
             "border_color": "#0b00b5",
             "padding": 0,
             "text_color": "#0b00b5",
