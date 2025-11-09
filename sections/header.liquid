@@ -167,9 +167,8 @@
 
     <div class="nav-right">
       <div class="header__logo">
-        <a href="{{ routes.root_url }}" class="logo-link">
+        <a href="{{ routes.root_url }}">
           <img src="{{ 'konbini-logo.svg' | asset_url }}" alt="{{ shop.name }}" class="logo-img" width="180" height="32" />
-          <span class="logo-initial">k<span class="logo-dot">.</span></span>
         </a>
       </div>
     </div>
@@ -390,30 +389,10 @@
     align-items: center;
   }
 
-  .logo-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-  }
-
   .logo-img {
     height: 32px;
     width: auto;
     max-width: 180px;
-  }
-
-  .logo-initial {
-    display: none;
-    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-weight: 700;
-    font-size: 28px;
-    color: var(--color-primary);
-    text-transform: lowercase;
-  }
-
-  .logo-dot {
-    color: var(--color-accent, #0b00b5);
   }
 
   /* Mobile menu styles */
@@ -513,11 +492,7 @@
     }
 
     .logo-img {
-      display: none;
-    }
-
-    .logo-initial {
-      display: inline;
+      height: 20px; /* Much smaller for mobile */
     }
   }
 
