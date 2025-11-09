@@ -637,7 +637,10 @@
             "logo": "shopify://shop_images/inpist_paczkomat.svg",
             "alt_text": "",
             "link": "",
-            "open_in_new_tab": false
+            "open_in_new_tab": false,
+            "size_mode": "height",
+            "custom_height": 40,
+            "custom_width": 160
           }
         },
         "logo_YrkGEj": {
@@ -646,7 +649,10 @@
             "logo": "shopify://shop_images/inpost_kurier.svg",
             "alt_text": "",
             "link": "",
-            "open_in_new_tab": false
+            "open_in_new_tab": false,
+            "size_mode": "height",
+            "custom_height": 40,
+            "custom_width": 160
           }
         },
         "logo_AeKJjC": {
@@ -655,7 +661,10 @@
             "logo": "shopify://shop_images/orlen_paczka.svg",
             "alt_text": "",
             "link": "",
-            "open_in_new_tab": false
+            "open_in_new_tab": false,
+            "size_mode": "height",
+            "custom_height": 40,
+            "custom_width": 160
           }
         },
         "logo_wyxPNU": {
@@ -664,7 +673,10 @@
             "logo": "shopify://shop_images/kurier_DHL.svg",
             "alt_text": "",
             "link": "",
-            "open_in_new_tab": false
+            "open_in_new_tab": false,
+            "size_mode": "width",
+            "custom_height": 30,
+            "custom_width": 120
           }
         },
         "logo_4kiUhH": {
@@ -673,7 +685,10 @@
             "logo": "shopify://shop_images/Kurier_DPD.svg",
             "alt_text": "",
             "link": "",
-            "open_in_new_tab": false
+            "open_in_new_tab": false,
+            "size_mode": "height",
+            "custom_height": 40,
+            "custom_width": 160
           }
         },
         "logo_wH9REM": {
@@ -682,7 +697,10 @@
             "logo": "shopify://shop_images/Kurier_UPS.svg",
             "alt_text": "",
             "link": "",
-            "open_in_new_tab": false
+            "open_in_new_tab": false,
+            "size_mode": "height",
+            "custom_height": 40,
+            "custom_width": 160
           }
         },
         "logo_i4kjDY": {
@@ -691,7 +709,10 @@
             "logo": "shopify://shop_images/Uber_eats.svg",
             "alt_text": "",
             "link": "",
-            "open_in_new_tab": false
+            "open_in_new_tab": false,
+            "size_mode": "height",
+            "custom_height": 40,
+            "custom_width": 160
           }
         },
         "logo_dEmRcM": {
@@ -700,7 +721,10 @@
             "logo": "shopify://shop_images/Wolt.svg",
             "alt_text": "",
             "link": "",
-            "open_in_new_tab": false
+            "open_in_new_tab": false,
+            "size_mode": "width",
+            "custom_height": 80,
+            "custom_width": 80
           }
         }
       },
@@ -719,8 +743,7 @@
         "margin_all": 0,
         "padding_all": 0,
         "alignment": "center",
-        "gap": 48,
-        "logo_height": 40
+        "gap": 48
       }
     },
     "user_spacer_HxPdAC": {
