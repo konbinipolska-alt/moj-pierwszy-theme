@@ -1,10 +1,7 @@
 {%- comment -%}
   Sekcja: Typografia (pozioma i pionowa)
   - Konfiguracja sekcji identyczna jak w highlights (marginesy, siatka, tło, gapy)
-  - Dwa typy bloków:
-      * horizontal_text – klasyczny tekst LTR
-      * vertical_text   – tekst pionowy (writing-mode: vertical-rl) np. dla japońskiego zapisu
-  - Każdy blok ma osobne kolory, border, padding, rozmiary czcionek
+  - Jeden typ bloków tekstowych z pełną kontrolą stylu
 {%- endcomment -%}
 
 {%- liquid
@@ -316,10 +313,11 @@
   ],
   "presets": [
     {
-      "name": "Sekcja: Teksty poziome i pionowe",
+      "name": "Sekcja: Teksty mix",
       "blocks": [
         { "type": "horizontal_text" },
-        { "type": "vertical_text" },
+        { "type": "horizontal_text" },
+        { "type": "horizontal_text" },
         { "type": "horizontal_text" }
       ]
     }
