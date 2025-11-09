@@ -363,8 +363,8 @@
             "background_color": "",
             "border_color": "#0b00b5",
             "text_color": "#0b00b5",
-            "header": "",
-            "subheader": "",
+            "header": "Zaraz się zacznie rabatowanie",
+            "subheader": "twój rabat zwiększa się z wartością koszyka, już przy pierwszych \nzakupach. aktualną wysokość rabatu sprawdzisz w koszyku",
             "link": "",
             "content_position_vertical": "bottom",
             "text_alignment": "left",
@@ -423,6 +423,25 @@
         "theme": "0"
       }
     },
+    "user_multimedia_rhUgCi": {
+      "type": "user-multimedia",
+      "name": "Sekcja: Multimedia",
+      "settings": {
+        "alt_text": "",
+        "margin_all": 0,
+        "padding_all": 0,
+        "width_mode": "auto",
+        "width_px": 1200,
+        "width_percent": 100,
+        "height_px": 480,
+        "height_mobile_px": 360,
+        "media_fit": "cover",
+        "autoplay": false,
+        "loop_video": false,
+        "show_controls": true,
+        "border_radius": 0
+      }
+    },
     "user_tiles_divider_XPaRKt": {
       "type": "user-tiles-divider",
       "name": "Tiles Divider",
@@ -450,6 +469,7 @@
     "user_nowy_slider_produktowy_QyWUAF",
     "user_highlights_ccTTMH",
     "user_spotify_player_hKNfid",
+    "user_multimedia_rhUgCi",
     "user_tiles_divider_XPaRKt",
     "user_spacer_HVMFiN"
   ]
