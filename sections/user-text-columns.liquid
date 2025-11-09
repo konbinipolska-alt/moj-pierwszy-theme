@@ -12,7 +12,6 @@
   assign columns = section.settings.columns_per_row | default: 3
   assign size_mode = section.settings.size_mode | default: 'auto'
   assign block_width = section.settings.block_width | default: 300
-  assign block_height = section.settings.block_height | default: 200
 -%}
 
 <section
@@ -25,11 +24,9 @@
     style="
       padding: {{ margins }}px;
       gap: {{ gap }}px;
-      {% if size_mode == 'auto' %}
-        grid-template-columns: repeat({{ columns }}, minmax(0, 1fr));
-      {% else %}
-        grid-template-columns: repeat({{ columns }}, minmax(0, {{ block_width }}px));
-        grid-auto-rows: {{ block_height }}px;
+      grid-template-columns: repeat({{ columns }}, minmax(0, {{ block_width }}px));
+      {% if size_mode == 'fixed' %}
+        grid-auto-rows: auto;
       {% endif %}
     "
   >
@@ -202,28 +199,11 @@
       "default": 3
     },
     {
-      "type": "select",
-      "id": "size_mode",
-      "label": "Tryb wymiarów bloków",
-      "options": [
-        { "value": "auto", "label": "Auto (wypełniają przestrzeń)" },
-        { "value": "fixed", "label": "Stałe wymiary w px" }
-      ],
-      "default": "auto"
-    },
-    {
       "type": "number",
       "id": "block_width",
       "label": "Szerokość bloku (px)",
       "default": 300,
-      "info": "Tylko w trybie stałych wymiarów"
-    },
-    {
-      "type": "number",
-      "id": "block_height",
-      "label": "Wysokość bloku (px)",
-      "default": 200,
-      "info": "Tylko w trybie stałych wymiarów"
+      "info": "Stała szerokość kolumny (px). Wysokość dopasuje się do treści."
     }
   ],
   "blocks": [
