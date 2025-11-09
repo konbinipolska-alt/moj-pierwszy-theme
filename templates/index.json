@@ -594,92 +594,142 @@
         "theme": "0"
       }
     },
-      "user_tiles_divider_bwzjJt": {
-        "type": "user-tiles-divider",
-        "name": "Kafelki",
-        "settings": {
-          "rows": 5,
-          "stroke_width": 2
-        }
-      },
-      "homepage_multimedia": {
-        "type": "user-multimedia",
-        "settings": {
-          "margin_vertical": 0,
-          "margin_horizontal": 0,
-          "padding_vertical": 0,
-          "padding_horizontal": 0,
-          "media_height": 520,
-          "media_height_mobile": 360,
-          "media_fit": "cover",
-          "show_controls": true
-        }
-      },
-      "homepage_logo_grid": {
-        "type": "user-logo-grid",
-        "blocks": {
-          "logo_block_1": {
-            "type": "logo",
-            "settings": {}
-          },
-          "logo_block_2": {
-            "type": "logo",
-            "settings": {}
-          },
-          "logo_block_3": {
-            "type": "logo",
-            "settings": {}
-          }
-        },
-        "block_order": [
-          "logo_block_1",
-          "logo_block_2",
-          "logo_block_3"
-        ],
-        "settings": {
-          "margin_vertical": 0,
-          "margin_horizontal": 0,
-          "padding_vertical": 0,
-          "padding_horizontal": 0,
-          "alignment": "center",
-          "column_gap": 32,
-          "row_gap": 24
-        }
-      },
-      "homepage_content_blocks": {
-        "type": "user-content-blocks",
-        "blocks": {
-          "content_block_home_1": {
-            "type": "content",
-            "settings": {
-              "heading": "Nagłówek sekcji",
-              "text": "Dodaj opis treści w edytorze sekcji."
-            }
-          },
-          "content_block_home_2": {
-            "type": "content",
-            "settings": {
-              "heading": "Drugi blok",
-              "text": "Możesz zarządzać liczbą bloków, marginesami i paddingami."
-            }
-          }
-        },
-        "block_order": [
-          "content_block_home_1",
-          "content_block_home_2"
-        ],
-        "settings": {
-          "rows": 1,
-          "columns": 2,
-          "column_gap": 24,
-          "row_gap": 24,
-          "block_background": "#ffffff",
-          "text_color": "#0b00b5",
-          "button_background_color": "#0b00b5",
-          "button_text_color": "#ffffff",
-          "block_border_radius": 12
-        }
+    "user_spacer_9P79h8": {
+      "type": "user-spacer",
+      "name": "Spacer",
+      "settings": {
+        "height": 48
       }
+    },
+    "user_multimedia_dPGpED": {
+      "type": "user-multimedia",
+      "name": "Sekcja: Multimedia",
+      "settings": {
+        "margin_vertical": 0,
+        "margin_horizontal": 0,
+        "margin_vertical_mobile": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_vertical": 0,
+        "padding_horizontal": 0,
+        "padding_vertical_mobile": 0,
+        "padding_horizontal_mobile": 0,
+        "alt_text": "",
+        "media_height": 480,
+        "media_height_mobile": 360,
+        "max_height": 900,
+        "border_radius": 0,
+        "media_fit": "cover",
+        "autoplay": false,
+        "loop_video": false,
+        "show_controls": true
+      }
+    },
+    "user_logo_grid_734Rc3": {
+      "type": "user-logo-grid",
+      "blocks": {
+        "logo_mAmAbi": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
+        "logo_P8fY7V": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
+        "logo_7qWYkH": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
+        "logo_aA9cJj": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
+        "logo_jzUJPT": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        }
+      },
+      "block_order": [
+        "logo_mAmAbi",
+        "logo_P8fY7V",
+        "logo_7qWYkH",
+        "logo_aA9cJj",
+        "logo_jzUJPT"
+      ],
+      "name": "Sekcja: Logotypy",
+      "settings": {
+        "margin_vertical": 0,
+        "margin_horizontal": 0,
+        "margin_vertical_mobile": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_vertical": 0,
+        "padding_horizontal": 0,
+        "padding_vertical_mobile": 0,
+        "padding_horizontal_mobile": 0,
+        "background_color": "transparent",
+        "column_gap": 24,
+        "row_gap": 24,
+        "min_column_width": 160,
+        "alignment": "center"
+      }
+    },
+    "user_tiles_divider_bwzjJt": {
+      "type": "user-tiles-divider",
+      "name": "Kafelki",
+      "settings": {
+        "rows": 5,
+        "stroke_width": 2
+      }
+    }
   },
   "order": [
     "main",
@@ -692,9 +742,9 @@
     "generic_section",
     "user_tiles_divider_HrUdCn",
     "spotify_player_bEC9xV",
-      "user_tiles_divider_bwzjJt",
-      "homepage_multimedia",
-      "homepage_logo_grid",
-      "homepage_content_blocks"
+    "user_spacer_9P79h8",
+    "user_multimedia_dPGpED",
+    "user_logo_grid_734Rc3",
+    "user_tiles_divider_bwzjJt"
   ]
 }
