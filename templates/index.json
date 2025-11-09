@@ -697,6 +697,48 @@
             "margin_horizontal": 0
           }
         },
+        "logo_Uhqb7U": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
+        "logo_KACH8f": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
+        "logo_agYBpC": {
+          "type": "logo",
+          "settings": {
+            "alt_text": "",
+            "link": "",
+            "open_in_new_tab": false,
+            "logo_alignment": "center",
+            "max_width": 160,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "margin_vertical": 0,
+            "margin_horizontal": 0
+          }
+        },
         "logo_7qWYkH": {
           "type": "logo",
           "settings": {
@@ -718,6 +760,9 @@
         "logo_W9Egkx",
         "logo_Y76Yg7",
         "logo_P8fY7V",
+        "logo_Uhqb7U",
+        "logo_KACH8f",
+        "logo_agYBpC",
         "logo_7qWYkH"
       ],
       "name": "Sekcja: Logotypy",
