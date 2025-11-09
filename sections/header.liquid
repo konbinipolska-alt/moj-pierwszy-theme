@@ -67,6 +67,8 @@
                     {% assign margin_left = block.settings.margin_left | default: 12 %}
                     {% assign margin_right = block.settings.margin_right | default: 12 %}
                     {% assign badge_size = block.settings.badge_size | default: 20 %}
+                    {% assign badge_empty_opacity_percent = block.settings.badge_empty_opacity | default: 5 %}
+                    {% assign badge_empty_opacity = badge_empty_opacity_percent | times: 0.01 %}
                     {% assign badge_value = cart.item_count | default: 0 %}
                     {% assign badge_string = badge_value | append: '' %}
                     {% assign badge_length = badge_string | size %}
@@ -90,7 +92,7 @@
                           <circle cx="20" cy="21" r="1"></circle>
                           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                         </svg>
-                        <span class="{{ badge_classes }}" data-cart-badge data-badge-size="{{ badge_size }}" style="--badge-size: {{ badge_size }}px;">{{ badge_value }}</span>
+                        <span class="{{ badge_classes }}" data-cart-badge data-badge-size="{{ badge_size }}" data-badge-opacity="{{ badge_empty_opacity }}" style="--badge-size: {{ badge_size }}px; --badge-empty-opacity: {{ badge_empty_opacity }};">{{ badge_value }}</span>
                       </button>
                     </div>
                   {% when 'nav_separator' %}
@@ -273,13 +275,14 @@
 
   .cart-badge {
     --badge-size: 20px;
+    --badge-empty-opacity: 0.05;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: var(--badge-size);
     height: var(--badge-size);
     padding: 0 calc(var(--badge-size) * 0.3);
-    background-color: rgba(11, 0, 181, 0.05);
+    background-color: rgba(11, 0, 181, var(--badge-empty-opacity));
     color: #ffffff;
     font-size: calc(var(--badge-size) * 0.55);
     font-weight: 600;
@@ -663,6 +666,15 @@
         },
         {
           "type": "range",
+          "id": "badge_empty_opacity",
+          "label": "Opacity tła odznaki (pusty koszyk, %)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "range",
           "id": "margin_left",
           "label": "Margines z lewej (px)",
           "min": 0,
@@ -855,6 +867,10 @@
       if (badge) {
         const badgeSize = parseFloat(badge.dataset.badgeSize) || 20;
         badge.style.setProperty('--badge-size', badgeSize + 'px');
+        const badgeOpacity = parseFloat(badge.dataset.badgeOpacity);
+        if (!Number.isNaN(badgeOpacity)) {
+          badge.style.setProperty('--badge-empty-opacity', badgeOpacity);
+        }
       }
       btn.addEventListener('click', (event) => {
         event.preventDefault();
