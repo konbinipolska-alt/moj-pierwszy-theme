@@ -11,6 +11,8 @@
 {%- assign row_gap = section.settings.row_gap | default: 24 -%}
 {%- assign min_column_width = section.settings.min_column_width | default: 160 -%}
 {%- assign alignment = section.settings.alignment | default: 'center' -%}
+{%- assign logo_height = section.settings.logo_height | default: 80 -%}
+{%- assign logo_height_mobile = section.settings.logo_height_mobile | default: logo_height -%}
 
 {%- assign alignment_class = 'logo-grid--align-' | append: alignment -%}
 
@@ -25,6 +27,7 @@
     --column-gap: {{ column_gap }}px;
     --row-gap: {{ row_gap }}px;
     --min-column-width: {{ min_column_width }}px;
+    --logo-height: {{ logo_height }}px;
     background-color: {{ section.settings.background_color | default: 'transparent' }};
   "
 >
@@ -36,12 +39,10 @@
           {%- assign block_margin_horizontal = block.settings.margin_horizontal | default: 0 -%}
           {%- assign block_padding_vertical = block.settings.padding_vertical | default: 0 -%}
           {%- assign block_padding_horizontal = block.settings.padding_horizontal | default: 0 -%}
-          {%- assign block_max_width = block.settings.max_width | default: 160 -%}
           <div
             class="logo-grid__item"
             {{ block.shopify_attributes }}
             style="
-              --item-max-width: {{ block_max_width }}px;
               --item-padding-vertical: {{ block_padding_vertical }}px;
               --item-padding-horizontal: {{ block_padding_horizontal }}px;
               --item-margin-vertical: {{ block_margin_vertical }}px;
@@ -136,7 +137,6 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    max-width: var(--item-max-width);
     margin: var(--item-margin-vertical) var(--item-margin-horizontal);
     padding: var(--item-padding-vertical) var(--item-padding-horizontal);
   }
@@ -153,8 +153,9 @@
   }
 
   #{{ section_id }} .logo-grid__image {
-    width: 100%;
-    height: auto;
+    height: var(--logo-height);
+    width: auto;
+    max-width: 100%;
     object-fit: contain;
   }
 
@@ -170,6 +171,7 @@
     color: #999999;
     border-radius: 8px;
     text-align: center;
+    min-height: var(--logo-height);
   }
 
   @media (max-width: 749px) {
@@ -178,6 +180,7 @@
       --section-margin-horizontal: {{ margin_horizontal_mobile }}px;
       --section-padding-vertical: {{ padding_vertical_mobile }}px;
       --section-padding-horizontal: {{ padding_horizontal_mobile }}px;
+      --logo-height: {{ logo_height_mobile }}px;
     }
 
     #{{ section_id }} .logo-grid {
