@@ -7,6 +7,46 @@
             {% if section.blocks.size > 0 %}
               {% for block in section.blocks %}
                 {% case block.type %}
+                  {% when 'nav_dropdown' %}
+                    {% assign dropdown_label = block.settings.label | default: 'Produkty' %}
+                    {% assign dropdown_separator = block.settings.show_separator %}
+                    {% assign dropdown_menu = block.settings.dropdown_menu %}
+                    <div class="nav-item dropdown" {{ block.shopify_attributes }}>
+                      <button class="dropdown-toggle nav-link" type="button">
+                        {{ dropdown_label }}
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                      </button>
+                      <div class="dropdown-menu">
+                        {% if dropdown_menu != blank and dropdown_menu.links.size > 0 %}
+                          {% for link in dropdown_menu.links %}
+                            <a href="{{ link.url }}" {% if link.current %}aria-selected="true"{% endif %}>
+                              {{ link.title }}
+                            </a>
+                          {% endfor %}
+                        {% else %}
+                          <a href="/collections/sosy-i-syropy-do-gotowania">Sosy i syropy do gotowania</a>
+                          <a href="/collections/dodatki-i-pasty">Dodatki i pasty</a>
+                          <a href="/collections/ryz">Ryż</a>
+                          <a href="/collections/noodle-i-kluchy">Noodle i kluchy</a>
+                          <a href="/collections/soki-i-napoje">Soki i napoje</a>
+                          <a href="/collections/octy-i-oleje">Octy i oleje</a>
+                          <a href="/collections/zupoteka-szybka-micha">Zupoteka &amp; Szybka micha</a>
+                          <a href="/collections/przystawki">Przystawki</a>
+                          <a href="/collections/slodycze-i-przekaski">Słodycze i przekąski</a>
+                          <a href="/collections/herbata">Herbata</a>
+                          <a href="/collections/kawa">Kawa</a>
+                          <a href="/collections/plony">Plony</a>
+                          <a href="/collections/yamamoto-selection">Yamamoto Selection</a>
+                          <a href="/collections/owoce-morza">Owoce morza</a>
+                          <a href="/collections/przydasie-i-tentegi">Przydasie i Tentegi</a>
+                        {% endif %}
+                      </div>
+                      {% if dropdown_separator %}
+                        <span class="nav-separator" style="height: {{ separator_height }}px; margin: 0 {{ separator_margin }}px;"></span>
+                      {% endif %}
+                    </div>
                   {% when 'nav_link' %}
                     {% assign link_type = block.settings.link_type | default: 'custom' %}
                     {% assign label = block.settings.label | default: 'Link' %}
@@ -47,8 +87,30 @@
                 {% endcase %}
               {% endfor %}
             {% else %}
-              <div class="nav-item">
-                <a class="nav-link" href="/">Zero waste</a>
+              <div class="nav-item dropdown">
+                <button class="dropdown-toggle nav-link" type="button">
+                  Produkty
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"></polyline>
+                  </svg>
+                </button>
+                <div class="dropdown-menu">
+                  <a href="/collections/sosy-i-syropy-do-gotowania">Sosy i syropy do gotowania</a>
+                  <a href="/collections/dodatki-i-pasty">Dodatki i pasty</a>
+                  <a href="/collections/ryz">Ryż</a>
+                  <a href="/collections/noodle-i-kluchy">Noodle i kluchy</a>
+                  <a href="/collections/soki-i-napoje">Soki i napoje</a>
+                  <a href="/collections/octy-i-oleje">Octy i oleje</a>
+                  <a href="/collections/zupoteka-szybka-micha">Zupoteka &amp; Szybka micha</a>
+                  <a href="/collections/przystawki">Przystawki</a>
+                  <a href="/collections/slodycze-i-przekaski">Słodycze i przekąski</a>
+                  <a href="/collections/herbata">Herbata</a>
+                  <a href="/collections/kawa">Kawa</a>
+                  <a href="/collections/plony">Plony</a>
+                  <a href="/collections/yamamoto-selection">Yamamoto Selection</a>
+                  <a href="/collections/owoce-morza">Owoce morza</a>
+                  <a href="/collections/przydasie-i-tentegi">Przydasie i Tentegi</a>
+                </div>
                 <span class="nav-separator" style="height: {{ separator_height }}px; margin: 0 {{ separator_margin }}px;"></span>
               </div>
             {% endif %}
@@ -65,17 +127,21 @@
             </button>
             <div class="mobile-menu-dropdown-content">
               {% for block in section.blocks %}
-                {% if block.type == 'nav_link' %}
-                  {% assign link_type = block.settings.link_type | default: 'custom' %}
-                  {% assign label = block.settings.label | default: 'Link' %}
-                  {% assign url = block.settings.url | default: '#' %}
-                  {% if link_type == 'account' %}
-                    {% assign url = routes.account_url %}
-                  {% elsif link_type == 'cart' %}
-                    {% assign url = routes.cart_url %}
-                  {% endif %}
-                  <a href="{{ url }}">{{ label }}</a>
-                {% endif %}
+                {% case block.type %}
+                  {% when 'nav_dropdown' %}
+                    {% assign dropdown_label = block.settings.label | default: 'Produkty' %}
+                    <a href="/collections">{{ dropdown_label }}</a>
+                  {% when 'nav_link' %}
+                    {% assign link_type = block.settings.link_type | default: 'custom' %}
+                    {% assign label = block.settings.label | default: 'Link' %}
+                    {% assign url = block.settings.url | default: '#' %}
+                    {% if link_type == 'account' %}
+                      {% assign url = routes.account_url %}
+                    {% elsif link_type == 'cart' %}
+                      {% assign url = routes.cart_url %}
+                    {% endif %}
+                    <a href="{{ url }}">{{ label }}</a>
+                {% endcase %}
               {% endfor %}
             </div>
           </div>
@@ -451,6 +517,30 @@
   ],
   "blocks": [
     {
+      "type": "nav_dropdown",
+      "name": "Dropdown produktów",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etykieta dropdownu",
+          "default": "Produkty"
+        },
+        {
+          "type": "link_list",
+          "id": "dropdown_menu",
+          "label": "Menu dropdownu",
+          "info": "Jeśli nie ustawisz, wyświetlimy domyślną listę kategorii."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_separator",
+          "label": "Pokaż separator po dropdownie",
+          "default": true
+        }
+      ]
+    },
+    {
       "type": "nav_link",
       "name": "Link nawigacji",
       "settings": [
@@ -495,6 +585,13 @@
     {
       "name": "Nawigacja Konbini",
       "blocks": [
+        {
+          "type": "nav_dropdown",
+          "settings": {
+            "label": "Produkty",
+            "show_separator": true
+          }
+        },
         {
           "type": "nav_link",
           "settings": {
@@ -562,6 +659,23 @@
 
     // Listen for scroll events
     window.addEventListener('scroll', handleScroll, { passive: true });
+
+    const dropdownToggles = header.querySelectorAll('.nav-item.dropdown .dropdown-toggle');
+    dropdownToggles.forEach((toggle) => {
+      toggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        const parent = toggle.closest('.dropdown');
+        if (parent) {
+          parent.classList.toggle('open');
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!header.contains(event.target)) {
+        header.querySelectorAll('.nav-item.dropdown.open').forEach((dropdown) => dropdown.classList.remove('open'));
+      }
+    });
 
     const cartButtons = header.querySelectorAll('[data-cart-trigger]');
     cartButtons.forEach((btn) => {
