@@ -14,7 +14,7 @@
                     {% assign dropdown_separator_height = block.settings.separator_height | default: separator_height_default %}
                     {% assign dropdown_separator_margin = block.settings.separator_margin | default: separator_margin_default %}
                     {% assign dropdown_menu = block.settings.dropdown_menu %}
-                    <div class="nav-item dropdown" {{ block.shopify_attributes }}>
+                    <div class="nav-item dropdown nav-item--primary" {{ block.shopify_attributes }}>
                       <button class="dropdown-toggle nav-link" type="button">
                         {{ dropdown_label }}
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -63,7 +63,11 @@
                     {% elsif link_type == 'cart' %}
                       {% assign url = routes.cart_url %}
                     {% endif %}
-                    <div class="nav-item" {{ block.shopify_attributes }}>
+                    {% assign nav_item_classes = 'nav-item' %}
+                    {% if link_type == 'cart' %}
+                      {% assign nav_item_classes = nav_item_classes | append: ' nav-item--primary nav-item--cart' %}
+                    {% endif %}
+                    <div class="{{ nav_item_classes }}" {{ block.shopify_attributes }}>
                       {% if link_type == 'cart' %}
                         <button
                           class="nav-link nav-link--cart"
@@ -71,7 +75,12 @@
                           type="button"
                           aria-label="{{ 'templates.cart.titles.cart' | t | default: 'Cart' }}"
                         >
-                          {{ label }}
+                          <span class="nav-link-label">{{ label }}</span>
+                          <svg class="nav-link-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                          </svg>
                         </button>
                       {% else %}
                         <a
@@ -83,13 +92,16 @@
                         </a>
                       {% endif %}
                       {% if show_separator %}
-                        <span class="nav-separator" style="height: {{ link_separator_height }}px; margin: 0 {{ link_separator_margin }}px;"></span>
+                        <span
+                          class="nav-separator"
+                          style="height: {{ link_separator_height }}px; margin: 0 {{ link_separator_margin }}px;"
+                        ></span>
                       {% endif %}
                     </div>
                 {% endcase %}
               {% endfor %}
             {% else %}
-              <div class="nav-item dropdown">
+              <div class="nav-item dropdown nav-item--primary">
                 <button class="dropdown-toggle nav-link" type="button">
                   Produkty
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -131,16 +143,16 @@
               {% for block in section.blocks %}
                 {% case block.type %}
                   {% when 'nav_dropdown' %}
-                    {% assign dropdown_label = block.settings.label | default: 'Produkty' %}
-                    <a href="/collections">{{ dropdown_label }}</a>
+                    {% continue %}
                   {% when 'nav_link' %}
                     {% assign link_type = block.settings.link_type | default: 'custom' %}
+                    {% if link_type == 'cart' %}
+                      {% continue %}
+                    {% endif %}
                     {% assign label = block.settings.label | default: 'Link' %}
                     {% assign url = block.settings.url | default: '#' %}
                     {% if link_type == 'account' %}
                       {% assign url = routes.account_url %}
-                    {% elsif link_type == 'cart' %}
-                      {% assign url = routes.cart_url %}
                     {% endif %}
                     <a href="{{ url }}">{{ label }}</a>
                 {% endcase %}
@@ -244,6 +256,10 @@
     font-weight: 500;
     font-size: 18px;
     transition: color 0.3s ease;
+  }
+
+  .nav-link-icon {
+    display: none;
   }
 
   .nav-link:hover,
@@ -459,6 +475,24 @@
     
     .nav-right {
       gap: 1rem;
+    }
+
+    .nav-item {
+      display: none;
+    }
+
+    .nav-item.nav-item--primary {
+      display: inline-flex;
+    }
+
+    .nav-link--cart .nav-link-label {
+      display: none;
+    }
+
+    .nav-link--cart .nav-link-icon {
+      display: block;
+      width: 24px;
+      height: 24px;
     }
 
     .logo-img {
