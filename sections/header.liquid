@@ -72,11 +72,12 @@
                         {% assign badge_size = block.settings.badge_size | default: 20 %}
                         {% assign badge_value = cart.item_count | default: 0 %}
                         {% assign badge_string = badge_value | append: '' %}
+                        {% assign badge_length = badge_string | size %}
                         {% assign badge_classes = 'cart-badge' %}
                         {% if badge_value > 0 %}
                           {% assign badge_classes = badge_classes | append: ' cart-badge--active' %}
                         {% endif %}
-                        {% if badge_string | size > 1 %}
+                        {% if badge_length > 1 %}
                           {% assign badge_classes = badge_classes | append: ' cart-badge--wide' %}
                         {% endif %}
                         <button
