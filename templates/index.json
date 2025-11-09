@@ -753,6 +753,111 @@
         "height": 48
       }
     },
+    "user_highlights_AGDFJE": {
+      "type": "user-highlights",
+      "blocks": {
+        "block_Cwx7p6": {
+          "type": "block",
+          "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "show_border": true,
+            "padding": 0,
+            "background_color": "",
+            "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
+            "header": "",
+            "subheader": "",
+            "link": "",
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_font_size": 24,
+            "subheader_font_size": 14
+          }
+        },
+        "block_rgFfhB": {
+          "type": "block",
+          "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "show_border": true,
+            "padding": 0,
+            "background_color": "",
+            "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
+            "header": "",
+            "subheader": "",
+            "link": "",
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_font_size": 24,
+            "subheader_font_size": 14
+          }
+        },
+        "block_LM8hz3": {
+          "type": "block",
+          "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "show_border": true,
+            "padding": 0,
+            "background_color": "",
+            "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
+            "header": "",
+            "subheader": "",
+            "link": "",
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_font_size": 24,
+            "subheader_font_size": 14
+          }
+        },
+        "block_TJQzfX": {
+          "type": "block",
+          "settings": {
+            "background_video": "",
+            "media_position": "center",
+            "media_scale": 100,
+            "show_border": true,
+            "padding": 0,
+            "background_color": "",
+            "border_color": "#0b00b5",
+            "text_color": "#0b00b5",
+            "header": "",
+            "subheader": "",
+            "link": "",
+            "content_position_vertical": "center",
+            "text_alignment": "center",
+            "header_subheader_gap": 8,
+            "header_font_size": 24,
+            "subheader_font_size": 14
+          }
+        }
+      },
+      "block_order": [
+        "block_Cwx7p6",
+        "block_rgFfhB",
+        "block_LM8hz3",
+        "block_TJQzfX"
+      ],
+      "name": "Highlights",
+      "settings": {
+        "background_color": "#ffffff",
+        "margins": 48,
+        "gap": 24,
+        "columns_per_row": 2,
+        "size_mode": "fixed",
+        "block_width": 574,
+        "block_height": 200
+      }
+    },
     "user_tiles_divider_bwzjJt": {
       "type": "user-tiles-divider",
       "name": "Kafelki",
@@ -778,6 +883,7 @@
     "user_spacer_8cWp9W",
     "user_logo_bar_tWirxV",
     "user_spacer_HxPdAC",
+    "user_highlights_AGDFJE",
     "user_tiles_divider_bwzjJt"
   ]
 }
