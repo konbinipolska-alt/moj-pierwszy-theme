@@ -283,6 +283,7 @@
     height: var(--badge-size);
     padding: 0 calc(var(--badge-size) * 0.3);
     background-color: rgba(11, 0, 181, 0.05);
+    border: 1px solid rgba(11, 0, 181, 0.2);
     color: #ffffff;
     font-size: calc(var(--badge-size) * 0.55);
     font-weight: 600;
@@ -790,20 +791,27 @@
       }
       btn.addEventListener('click', (event) => {
         event.preventDefault();
-        if (window.Shopify && Shopify.theme && Shopify.theme.cart && typeof Shopify.theme.cart.openDrawer === 'function') {
+        if (window.Shopify && Shopify.theme && Shopify.theme.cartDrawer && typeof Shopify.theme.cartDrawer.open === 'function') {
+          Shopify.theme.cartDrawer.open();
+        } else if (window.Shopify && Shopify.theme && Shopify.theme.cart && typeof Shopify.theme.cart.openDrawer === 'function') {
           Shopify.theme.cart.openDrawer();
         } else if (window.toggleCartDrawer && typeof window.toggleCartDrawer === 'function') {
           window.toggleCartDrawer();
         } else {
-          window.location.href = "{{ routes.cart_url }}";
+          const toggleButton = document.querySelector('[data-cart-drawer-toggle], [data-drawer-toggle="cart"], .js-drawer-open-cart');
+          if (toggleButton) {
+            toggleButton.click();
+          } else {
+            window.location.href = "{{ routes.cart_url }}";
+          }
         }
       });
     });
 
     function updateCartBadge(count) {
+      const value = parseInt(count, 10) || 0;
       const badges = header.querySelectorAll('[data-cart-badge]');
       badges.forEach((badge) => {
-        const value = parseInt(count, 10) || 0;
         badge.textContent = value;
         if (value > 0) {
           badge.classList.add('cart-badge--active');
@@ -821,10 +829,15 @@
     const initialCount = {{ cart.item_count }};
     updateCartBadge(initialCount);
 
-    document.addEventListener('cart:updated', (event) => {
-      if (event && event.detail && typeof event.detail.item_count !== 'undefined') {
-        updateCartBadge(event.detail.item_count);
-      }
+    const badgeUpdateEvents = ['cart:updated', 'cart:change', 'cart:refresh', 'cart:drawer-updated'];
+    badgeUpdateEvents.forEach((eventName) => {
+      document.addEventListener(eventName, (event) => {
+        if (event && event.detail && typeof event.detail.item_count !== 'undefined') {
+          updateCartBadge(event.detail.item_count);
+        } else if (event && typeof event.item_count !== 'undefined') {
+          updateCartBadge(event.item_count);
+        }
+      });
     });
   })();
 </script>
