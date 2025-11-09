@@ -95,6 +95,142 @@
         "height": 48
       }
     },
+    "categories_CHT3ba": {
+      "type": "categories",
+      "blocks": {
+        "category_tx9xGD": {
+          "type": "category",
+          "settings": {
+            "category_name": "sosy-i-syropy-do-gotowania",
+            "custom_name": "sosy"
+          }
+        },
+        "category_FpH7xm": {
+          "type": "category",
+          "settings": {
+            "category_name": "dodatki-i-pasty",
+            "custom_name": "dodatki"
+          }
+        },
+        "category_ngEJPt": {
+          "type": "category",
+          "settings": {
+            "category_name": "ryz",
+            "custom_name": "ryż"
+          }
+        },
+        "category_7mjCaJ": {
+          "type": "category",
+          "settings": {
+            "category_name": "noodle-i-kluchy",
+            "custom_name": "noodle"
+          }
+        },
+        "category_CGPCap": {
+          "type": "category",
+          "settings": {
+            "category_name": "soki-i-napoje",
+            "custom_name": "napoje"
+          }
+        },
+        "category_aLyMwN": {
+          "type": "category",
+          "settings": {
+            "category_name": "octy-i-oleje",
+            "custom_name": "oleje"
+          }
+        },
+        "category_7PbdCD": {
+          "type": "category",
+          "settings": {
+            "category_name": "zupoteka-szybka-micha",
+            "custom_name": "zupy"
+          }
+        },
+        "category_njraLX": {
+          "type": "category",
+          "settings": {
+            "category_name": "przystawki",
+            "custom_name": "przystawki"
+          }
+        },
+        "category_VAyyLa": {
+          "type": "category",
+          "settings": {
+            "category_name": "slodycze-i-przekaski",
+            "custom_name": "słodycze"
+          }
+        },
+        "category_ML9J9b": {
+          "type": "category",
+          "settings": {
+            "category_name": "herbata",
+            "custom_name": "herbata"
+          }
+        },
+        "category_tAt67H": {
+          "type": "category",
+          "settings": {
+            "category_name": "kawa",
+            "custom_name": "kawa"
+          }
+        },
+        "category_3Ng7fa": {
+          "type": "category",
+          "settings": {
+            "category_name": "plony",
+            "custom_name": "plony"
+          }
+        },
+        "category_WfjkNC": {
+          "type": "category",
+          "settings": {
+            "category_name": "yamamoto-selection",
+            "custom_name": "yamamoto"
+          }
+        },
+        "category_RYKTaX": {
+          "type": "category",
+          "settings": {
+            "category_name": "owoce-morza",
+            "custom_name": "owoce morza"
+          }
+        },
+        "category_RewgcB": {
+          "type": "category",
+          "settings": {
+            "category_name": "przydasie-i-tentegi",
+            "custom_name": "przydasie"
+          }
+        }
+      },
+      "block_order": [
+        "category_tx9xGD",
+        "category_FpH7xm",
+        "category_ngEJPt",
+        "category_7mjCaJ",
+        "category_CGPCap",
+        "category_aLyMwN",
+        "category_7PbdCD",
+        "category_njraLX",
+        "category_VAyyLa",
+        "category_ML9J9b",
+        "category_tAt67H",
+        "category_3Ng7fa",
+        "category_WfjkNC",
+        "category_RYKTaX",
+        "category_RewgcB"
+      ],
+      "name": "Categories with Icons",
+      "settings": {}
+    },
+    "user_spacer_beefdj": {
+      "type": "user-spacer",
+      "name": "Spacer",
+      "settings": {
+        "height": 48
+      }
+    },
     "user_tiles_divider_E9KUji": {
       "type": "user-tiles-divider",
       "name": "Tiles Divider",
@@ -110,24 +246,17 @@
         "height": 48
       }
     },
-    "user_spacer_HVMFiN": {
-      "type": "user-spacer",
-      "name": "Spacer",
-      "settings": {
-        "height": 48
-      }
-    },
     "user_nowy_slider_produktowy_QyWUAF": {
       "type": "user-nowy-slider-produktowy",
       "name": "Nowy slider produktowy",
       "settings": {
         "background_color": "#ffffff",
-        "height": 700,
+        "height": 520,
         "margins": 48,
         "gap": 16,
         "inner_padding": 16,
-        "content_tile_width": 400,
-        "product_card_width": 260,
+        "content_tile_width": 300,
+        "product_card_width": 300,
         "image_ratio": "square",
         "card_bg_color": "",
         "text_color": "#0b00b5",
@@ -138,10 +267,17 @@
         "actions_gap": 16,
         "sale_color": "#e11d48",
         "border_radius": 8,
-        "enable_shadow": true,
+        "enable_shadow": false,
         "source_mode": "collection",
         "collection": "frontpage",
         "product_limit": 10
+      }
+    },
+    "user_spacer_HVMFiN": {
+      "type": "user-spacer",
+      "name": "Spacer",
+      "settings": {
+        "height": 48
       }
     }
   },
@@ -149,9 +285,11 @@
     "main",
     "user_image_slider_simple_pBcJyr",
     "user_spacer_XXkCim",
+    "categories_CHT3ba",
+    "user_spacer_beefdj",
     "user_tiles_divider_E9KUji",
     "user_spacer_QxQkxt",
-    "user_spacer_HVMFiN",
-    "user_nowy_slider_produktowy_QyWUAF"
+    "user_nowy_slider_produktowy_QyWUAF",
+    "user_spacer_HVMFiN"
   ]
 }
