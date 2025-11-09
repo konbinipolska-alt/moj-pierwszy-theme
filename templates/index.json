@@ -576,22 +576,10 @@
     },
     "user_tiles_divider_HrUdCn": {
       "type": "user-tiles-divider",
-      "disabled": true,
       "name": "Kafelki",
       "settings": {
         "rows": 5,
         "stroke_width": 2
-      }
-    },
-    "spotify_player_bEC9xV": {
-      "type": "user-spotify-player",
-      "name": "Spotify Player",
-      "settings": {
-        "background_color": "#ffffff",
-        "margins": 48,
-        "playlist_id": "68q7TYjLgjswOnGRgcsSEq",
-        "player_height": 152,
-        "theme": "0"
       }
     },
     "user_spacer_9P79h8": {
@@ -795,7 +783,7 @@
           "type": "horizontal_text",
           "settings": {
             "background_color": "",
-            "show_border": false,
+            "show_border": true,
             "border_color": "#0b00b5",
             "padding": 0,
             "text_color": "#0b00b5",
@@ -812,7 +800,7 @@
           "type": "horizontal_text",
           "settings": {
             "background_color": "",
-            "show_border": false,
+            "show_border": true,
             "border_color": "#0b00b5",
             "padding": 0,
             "text_color": "#0b00b5",
@@ -850,6 +838,17 @@
         "height": 48
       }
     },
+    "spotify_player_bEC9xV": {
+      "type": "user-spotify-player",
+      "name": "Spotify Player",
+      "settings": {
+        "background_color": "#ffffff",
+        "margins": 48,
+        "playlist_id": "68q7TYjLgjswOnGRgcsSEq",
+        "player_height": 152,
+        "theme": "0"
+      }
+    },
     "user_tiles_divider_bwzjJt": {
       "type": "user-tiles-divider",
       "name": "Kafelki",
@@ -869,7 +868,6 @@
     "user_nowy_slider_produktowy_N6E9Ch",
     "generic_section",
     "user_tiles_divider_HrUdCn",
-    "spotify_player_bEC9xV",
     "user_spacer_9P79h8",
     "user_multimedia_HTgjgA",
     "user_spacer_8cWp9W",
@@ -877,6 +875,7 @@
     "user_spacer_k4DbqT",
     "user_text_columns_nMhbDP",
     "user_spacer_HxPdAC",
+    "spotify_player_bEC9xV",
     "user_tiles_divider_bwzjJt"
   ]
 }
