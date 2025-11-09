@@ -12,6 +12,16 @@
   assign columns = section.settings.columns_per_row | default: 3
   assign size_mode = section.settings.size_mode | default: 'auto'
   assign block_width = section.settings.block_width | default: 300
+  assign wrapper_align = section.settings.wrapper_alignment | default: 'center'
+  assign justify_value = 'center'
+  case wrapper_align
+    when 'left'
+      assign justify_value = 'flex-start'
+    when 'right'
+      assign justify_value = 'flex-end'
+    else
+      assign justify_value = 'center'
+  endcase
 -%}
 
 <section
@@ -25,9 +35,7 @@
       padding: {{ margins }}px;
       gap: {{ gap }}px;
       grid-template-columns: repeat({{ columns }}, minmax(0, {{ block_width }}px));
-      {% if size_mode == 'fixed' %}
-        grid-auto-rows: auto;
-      {% endif %}
+      justify-content: {{ justify_value }};
     "
   >
     {%- if section.blocks.size > 0 -%}
@@ -204,6 +212,17 @@
       "label": "Szerokość bloku (px)",
       "default": 300,
       "info": "Stała szerokość kolumny (px). Wysokość dopasuje się do treści."
+    },
+    {
+      "type": "select",
+      "id": "wrapper_alignment",
+      "label": "Wyrównanie sekcji",
+      "options": [
+        { "value": "left", "label": "Do lewej" },
+        { "value": "center", "label": "Do środka" },
+        { "value": "right", "label": "Do prawej" }
+      ],
+      "default": "center"
     }
   ],
   "blocks": [
