@@ -838,9 +838,9 @@
         "margins": 0,
         "gap": 24,
         "columns_per_row": 2,
-        "size_mode": "fixed",
+        "size_mode": "auto",
         "block_width": 574,
-        "block_height": 70
+        "block_height": 0
       }
     },
     "user_spacer_HxPdAC": {
