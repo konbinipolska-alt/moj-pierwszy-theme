@@ -7,14 +7,99 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "404",
       "settings": {}
+    },
+    "user_image_slider_simple_pBcJyr": {
+      "type": "user-image-slider-simple",
+      "blocks": {
+        "image_slide_KbYnJy": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_bGqYKe": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_VfUPRb": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_cjTAbh": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_tDYTwH": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_rnxrHx": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_DMMDkP": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        },
+        "image_slide_LL4zxa": {
+          "type": "image_slide",
+          "settings": {
+            "link": "",
+            "alt_text": "Slide image"
+          }
+        }
+      },
+      "block_order": [
+        "image_slide_KbYnJy",
+        "image_slide_bGqYKe",
+        "image_slide_VfUPRb",
+        "image_slide_cjTAbh",
+        "image_slide_tDYTwH",
+        "image_slide_rnxrHx",
+        "image_slide_DMMDkP",
+        "image_slide_LL4zxa"
+      ],
+      "name": "Image Slider (Simple)",
+      "settings": {
+        "slide_border_radius": 0
+      }
+    },
+    "user_tiles_divider_E9KUji": {
+      "type": "user-tiles-divider",
+      "name": "Tiles Divider",
+      "settings": {
+        "rows": 5,
+        "stroke_width": 2
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "user_image_slider_simple_pBcJyr",
+    "user_tiles_divider_E9KUji"
   ]
 }
