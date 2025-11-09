@@ -19,7 +19,7 @@
           "settings": {
             "label": "Produkty",
             "dropdown_menu": "",
-            "margin_left": 12,
+            "margin_left": 0,
             "margin_right": 12
           }
         },
