@@ -58,7 +58,7 @@
       {% endcase %}
       margin-left: auto;
       margin-right: auto;
-      padding: var(--mm-padding);
+      padding: var(--mm-padding) 0;
       box-sizing: border-box;
     "
   >
@@ -144,7 +144,7 @@
       /* Uproszczenie: na mobile zawsze 100% szerokości */
       width: 100% !important;
       max-width: 100% !important;
-      padding: calc(var(--mm-padding) * 0.5);
+      padding: calc(var(--mm-padding) * 0.5) 0;
     }
     #{{ section_id }} .mm-media {
       height: var(--mm-height-mobile);
