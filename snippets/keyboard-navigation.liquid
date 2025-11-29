@@ -1,0 +1,45 @@
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('keydown', function(event) {
+      // Ignoruj jeśli użytkownik pisze w polu tekstowym, textarea lub select
+      if (event.target.matches('input, textarea, select') || event.target.isContentEditable) {
+        return;
+      }
+
+      // Sprawdź czy wciśnięto 'p' lub 'P'
+      if (event.key.toLowerCase() === 'p') {
+        const productsDropdown = document.getElementById('products-dropdown');
+        
+        if (productsDropdown) {
+          // Zapobiegamy wpisaniu litery 'p' jeśli focus byłby gdzieś indziej (opcjonalne, ale dobra praktyka)
+          // event.preventDefault(); 
+          
+          productsDropdown.classList.toggle('open');
+          
+          // Opcjonalnie: focus na pierwszy link w menu po otwarciu
+          if (productsDropdown.classList.contains('open')) {
+             const firstLink = productsDropdown.querySelector('a');
+             if (firstLink) firstLink.focus();
+          }
+        }
+      }
+      
+      // Obsługa zamykania klawiszem Escape
+      if (event.key === 'Escape') {
+        const openDropdown = document.querySelector('.dropdown.open');
+        if (openDropdown) {
+          openDropdown.classList.remove('open');
+        }
+      }
+    });
+
+    // Obsługa kliknięcia poza menu żeby je zamknąć
+    document.addEventListener('click', function(event) {
+      const openDropdown = document.querySelector('.dropdown.open');
+      if (openDropdown && !openDropdown.contains(event.target)) {
+        openDropdown.classList.remove('open');
+      }
+    });
+  });
+</script>

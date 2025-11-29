@@ -10,7 +10,12 @@
                     {% assign dropdown_margin_left = block.settings.margin_left | default: 0 %}
                     {% assign dropdown_margin_right = block.settings.margin_right | default: 12 %}
                     {% assign dropdown_menu = block.settings.dropdown_menu %}
-                    <div class="nav-item dropdown nav-item--primary" style="margin-left: {{ dropdown_margin_left }}px; margin-right: {{ dropdown_margin_right }}px;" {{ block.shopify_attributes }}>
+                    {% assign is_products_dropdown = false %}
+                    {% assign downcased_label = dropdown_label | downcase %}
+                    {% if downcased_label == 'produkty' or downcased_label == 'products' %}
+                      {% assign is_products_dropdown = true %}
+                    {% endif %}
+                    <div class="nav-item dropdown nav-item--primary" {% if is_products_dropdown %}id="products-dropdown"{% endif %} style="margin-left: {{ dropdown_margin_left }}px; margin-right: {{ dropdown_margin_right }}px;" {{ block.shopify_attributes }}>
                       <button class="dropdown-toggle nav-link" type="button">
                         {{ dropdown_label }}
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -106,7 +111,7 @@
                 {% endcase %}
               {% endfor %}
             {% else %}
-              <div class="nav-item dropdown nav-item--primary" style="margin: 0 12px;">
+              <div class="nav-item dropdown nav-item--primary" id="products-dropdown" style="margin: 0 12px;">
                 <button class="dropdown-toggle nav-link" type="button">
                   Produkty
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -179,6 +184,7 @@
       </div>
     </div>
   </div>
+  {% render 'keyboard-navigation' %}
 </header>
 
 {% stylesheet %}
