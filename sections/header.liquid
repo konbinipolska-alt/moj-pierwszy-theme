@@ -51,6 +51,9 @@
                   {% when 'nav_link' %}
                     {% assign link_type = block.settings.link_type | default: 'custom' %}
                     {% assign label = block.settings.label | default: 'Link' %}
+                    {% if label == 'Zero waste' or label == 'zero waste' or label == '0-Waste' %}
+                      {% assign label = 'ZERO-waste' %}
+                    {% endif %}
                     {% assign url = block.settings.url | default: '#' %}
                     {% assign open_new_tab = block.settings.open_new_tab %}
                     {% assign link_margin_left = block.settings.margin_left | default: 12 %}
@@ -67,6 +70,9 @@
                         {{ label }}
                       </a>
                     </div>
+                    {% if label contains 'waste' or label contains 'Waste' %}
+                      <!-- DEBUG: Label detected as: {{ label }} -->
+                    {% endif %}
                   {% when 'nav_cart' %}
                     {% assign label = block.settings.label | default: 'Koszyk' %}
                     {% assign margin_left = block.settings.margin_left | default: 12 %}
